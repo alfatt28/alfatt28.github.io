@@ -1,11 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Anak Magang</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atthar Search</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:white;
+}
+
+.container{
+text-align:center;
+width:90%;
+max-width:700px;
+}
+
+.logo{
+font-size:72px;
+font-weight:bold;
+margin-bottom:30px;
+}
+
+.blue{color:#4285F4;}
+.red{color:#EA4335;}
+.yellow{color:#FBBC05;}
+.green{color:#34A853;}
+
+.search-box{
+width:100%;
+padding:15px 20px;
+font-size:18px;
+border:1px solid #dcdcdc;
+border-radius:50px;
+outline:none;
+box-shadow:0 1px 6px rgba(0,0,0,.15);
+}
+
+.buttons{
+margin-top:25px;
+}
+
+button{
+padding:10px 20px;
+margin:5px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+background:#f8f9fa;
+}
+
+button:hover{
+box-shadow:0 1px 4px rgba(0,0,0,.2);
+}
+
+</style>
 </head>
+
 <body>
-<h1>Website Pertama Saya</h1>
-<p>Halo GitHub Pages!</p>
+
+<div class="container">
+
+<div class="logo">
+<span class="blue">A</span>
+<span class="red">t</span>
+<span class="yellow">t</span>
+<span class="blue">h</span>
+<span class="green">a</span>
+<span class="red">r</span>
+</div>
+
+<input
+class="search-box"
+type="text"
+placeholder="Cari sesuatu..."
+id="q">
+
+<div class="buttons">
+<button onclick="searchGoogle()">
+Cari
+</button>
+
+<button onclick="window.location.href='https://github.com/alfatt28'">
+GitHub
+</button>
+</div>
+
+</div>
+
+<script>
+
+function searchGoogle(){
+
+let q =
+document.getElementById("q").value;
+
+if(q.trim()!=""){
+window.location.href=
+"https://www.google.com/search?q="
++ encodeURIComponent(q);
+}
+
+}
+
+</script>
+
 </body>
 </html>
