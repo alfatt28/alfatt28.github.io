@@ -1,27 +1,14 @@
-<!DOCTYPE html>
+git add .
+git commit -m "Update website"
+git push origin main<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>alfatt519.web - Personal Website</title>
-    <meta name="description" content="Website personal al fatt - terhubung dengan saya melalui media sosial">
-    <meta name="keywords" content="alfatt519, personal, website, sosial media">
-    <meta name="author" content="alfatt519">
-    
-    <meta property="og:title" content="alfatt519.web - Personal Website">
-    <meta property="og:description" content="Website personal al fatt">
-    <meta property="og:type" content="website">
-
+    <title>alfatt519.web - Beranda</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
@@ -32,7 +19,6 @@
             color: white;
             padding: 20px;
         }
-
         .container {
             background: rgba(255,255,255,0.05);
             backdrop-filter: blur(20px);
@@ -46,564 +32,205 @@
             max-height: 90vh;
             overflow-y: auto;
         }
-
-        .container::-webkit-scrollbar {
-            width: 5px;
-        }
-        .container::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .container::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-        }
+        .container::-webkit-scrollbar { width: 5px; }
+        .container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
 
         .profile-photo {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: block;
-            object-fit: cover;
+            width: 130px; height: 130px; border-radius: 50%;
+            margin: 0 auto 20px; display: block; object-fit: cover;
             border: 4px solid rgba(255,255,255,0.2);
             box-shadow: 0 10px 30px rgba(245,87,108,0.4);
-            cursor: pointer;
-            transition: all 0.3s;
+            cursor: pointer; transition: all 0.3s;
         }
-
-        .profile-photo:hover {
-            transform: scale(1.05);
-            border-color: #f5576c;
-        }
+        .profile-photo:hover { transform: scale(1.05); border-color: #f5576c; }
 
         .name {
-            font-size: 2.5em;
+            font-size: 2.5em; font-weight: 700;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .subtitle { font-size: 1em; color: rgba(255,255,255,0.6); margin: 10px 0 30px; letter-spacing: 2px; }
+        .divider { width: 60px; height: 3px; background: linear-gradient(135deg, #f093fb, #f5576c); margin: 30px auto; border-radius: 10px; }
+
+        /* JUDUL BERANDA */
+        .beranda-title {
+            font-size: 1.8em;
             font-weight: 700;
-            margin-bottom: 5px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            font-size: 1em;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            color: white;
             letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(245,87,108,0.3);
+        }
+        .beranda-title i {
+            color: #f5576c;
+            margin-right: 10px;
         }
 
-        .divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            margin: 0 auto 30px;
-            border-radius: 10px;
-        }
-
-        /* ===== SEMUA DALAM BERANDA ===== */
-        .beranda-content {
-            display: block;
-        }
-
-        /* ===== BIO EDITABLE (USER ONLY) ===== */
         .bio {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.08);
-            cursor: pointer;
-            transition: all 0.3s;
+            background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px;
+            margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer; transition: all 0.3s;
         }
+        .bio:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+        .bio p { font-size: 1em; line-height: 1.8; color: rgba(255,255,255,0.85); }
+        .bio .edit-hint { font-size: 0.7em; color: rgba(255,255,255,0.25); display: block; margin-top: 5px; }
 
-        .bio:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .bio p {
-            font-size: 1em;
-            line-height: 1.8;
-            color: rgba(255,255,255,0.85);
-        }
-
-        .bio .edit-hint {
-            font-size: 0.7em;
-            color: rgba(255,255,255,0.25);
-            display: block;
-            margin-top: 5px;
-        }
-
-        /* ===== NOTE EDITABLE (USER ONLY) ===== */
         .note {
-            background: rgba(255,255,255,0.03);
-            border-left: 4px solid #f5576c;
-            padding: 15px 20px;
-            margin-bottom: 25px;
-            border-radius: 0 15px 15px 0;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s;
+            background: rgba(255,255,255,0.03); border-left: 4px solid #f5576c;
+            padding: 15px 20px; margin-bottom: 25px; border-radius: 0 15px 15px 0;
+            text-align: left; cursor: pointer; transition: all 0.3s;
         }
-
-        .note:hover {
-            background: rgba(255,255,255,0.06);
-        }
-
-        .note p {
-            font-size: 0.95em;
-            color: rgba(255,255,255,0.7);
-            font-style: italic;
-        }
-
-        .note .author {
-            font-style: normal;
-            font-size: 0.8em;
-            color: rgba(255,255,255,0.4);
-            margin-top: 5px;
-            display: block;
-        }
-
-        .note .edit-hint {
-            font-size: 0.7em;
-            color: rgba(255,255,255,0.2);
-            display: block;
-            margin-top: 5px;
-            font-style: normal;
-        }
-
-        /* ===== UPLOAD FOTO ===== */
-        .upload-section {
-            margin-bottom: 25px;
-        }
+        .note:hover { background: rgba(255,255,255,0.06); }
+        .note p { font-size: 0.95em; color: rgba(255,255,255,0.7); font-style: italic; }
+        .note .author { font-style: normal; font-size: 0.8em; color: rgba(255,255,255,0.4); margin-top: 5px; display: block; }
+        .note .edit-hint { font-size: 0.7em; color: rgba(255,255,255,0.2); display: block; margin-top: 5px; font-style: normal; }
 
         .upload-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            border: none;
-            border-radius: 50px;
-            color: white;
-            font-weight: 700;
-            font-size: 0.95em;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 25px; background: linear-gradient(135deg, #f093fb, #f5576c);
+            border: none; border-radius: 50px; color: white; font-weight: 700;
+            font-size: 0.95em; cursor: pointer; transition: all 0.3s ease;
             box-shadow: 0 8px 25px rgba(245,87,108,0.3);
         }
+        .upload-btn:hover { transform: translateY(-3px) scale(1.03); }
+        .upload-btn input { display: none; }
 
-        .upload-btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 12px 35px rgba(245,87,108,0.5);
-        }
-
-        .upload-btn input {
-            display: none;
-        }
-
-        /* ===== KOLEKSI FOTO ===== */
-        .collection-title {
-            font-size: 0.9em;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
+        .collection-title { font-size: 0.9em; color: rgba(255,255,255,0.5); margin: 20px 0 12px; letter-spacing: 1px; }
         .collection-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-            min-height: 100px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+            margin-bottom: 15px; min-height: 100px;
         }
-
         .collection-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 1/1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            color: rgba(255,255,255,0.2);
+            position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1/1;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2em; color: rgba(255,255,255,0.2);
         }
-
-        .collection-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
+        .collection-item img { width: 100%; height: 100%; object-fit: cover; }
         .collection-item .delete-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(0,0,0,0.7);
-            border: none;
-            color: white;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            font-size: 0.7em;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: 5px; right: 5px;
+            background: rgba(0,0,0,0.7); border: none; color: white;
+            border-radius: 50%; width: 25px; height: 25px; font-size: 0.7em;
+            cursor: pointer; transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
         }
-
-        .collection-item .delete-btn:hover {
-            background: #f5576c;
-            transform: scale(1.1);
-        }
-
+        .collection-item .delete-btn:hover { background: #f5576c; transform: scale(1.1); }
         .collection-empty {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 20px;
-            color: rgba(255,255,255,0.3);
-            font-size: 0.9em;
+            grid-column: 1 / -1; text-align: center; padding: 20px;
+            color: rgba(255,255,255,0.3); font-size: 0.9em;
         }
 
-        /* ===== TIMELINE PENGUNJUNG ===== */
         .timeline-visitor {
-            background: rgba(255,255,255,0.03);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03); border-radius: 15px; padding: 20px;
+            margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.08);
         }
-
         .timeline-visitor .section-title {
-            font-size: 0.9em;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 12px;
-            letter-spacing: 1px;
+            font-size: 0.9em; color: rgba(255,255,255,0.5); margin-bottom: 12px; letter-spacing: 1px;
         }
-
         .timeline-visitor .timeline-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 15px;
+            display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;
         }
-
         .timeline-visitor .timeline-form input {
-            padding: 12px 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            font-size: 0.9em;
-            outline: none;
-            transition: all 0.3s;
+            padding: 12px 15px; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
+            color: white; font-size: 0.9em; outline: none; transition: all 0.3s;
         }
-
-        .timeline-visitor .timeline-form input::placeholder {
-            color: rgba(255,255,255,0.3);
-        }
-
-        .timeline-visitor .timeline-form input:focus {
-            border-color: #f5576c;
-            background: rgba(255,255,255,0.08);
-        }
-
-        .timeline-visitor .timeline-form .form-row {
-            display: flex;
-            gap: 10px;
-        }
-
-        .timeline-visitor .timeline-form .form-row input {
-            flex: 1;
-        }
-
+        .timeline-visitor .timeline-form input::placeholder { color: rgba(255,255,255,0.3); }
+        .timeline-visitor .timeline-form input:focus { border-color: #f5576c; background: rgba(255,255,255,0.08); }
+        .timeline-visitor .timeline-form .form-row { display: flex; gap: 10px; }
+        .timeline-visitor .timeline-form .form-row input { flex: 1; }
         .timeline-visitor .post-btn {
-            padding: 12px;
-            border-radius: 12px;
-            border: none;
+            padding: 12px; border-radius: 12px; border: none;
             background: linear-gradient(135deg, #4facfe, #00f2fe);
-            color: white;
-            font-weight: 700;
-            font-size: 0.95em;
-            cursor: pointer;
-            transition: all 0.3s;
+            color: white; font-weight: 700; font-size: 0.95em; cursor: pointer; transition: all 0.3s;
         }
+        .timeline-visitor .post-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(79,172,254,0.3); }
 
-        .timeline-visitor .post-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(79,172,254,0.3);
-        }
-
-        .timeline-posts {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-height: 200px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        .timeline-posts::-webkit-scrollbar {
-            width: 3px;
-        }
-        .timeline-posts::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-        }
-
-        .post-item {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: left;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s;
-        }
-
-        .post-item:hover {
-            background: rgba(255,255,255,0.08);
-        }
-
-        .post-item .post-place {
-            font-weight: 700;
-            color: white;
-            font-size: 1em;
-        }
-
-        .post-item .post-location {
-            font-size: 0.85em;
-            color: rgba(255,255,255,0.5);
-            display: block;
-            margin-top: 3px;
-        }
-
-        .post-item .post-time {
-            font-size: 0.7em;
-            color: rgba(255,255,255,0.3);
-            display: block;
-            margin-top: 5px;
-        }
-
-        .post-item .post-author {
-            font-size: 0.7em;
-            color: rgba(255,255,255,0.2);
-            display: inline-block;
-            margin-top: 5px;
-        }
-
-        .post-item .delete-post {
-            float: right;
-            background: none;
-            border: none;
-            color: rgba(255,255,255,0.2);
-            cursor: pointer;
-            font-size: 0.8em;
-            transition: all 0.3s;
-        }
-
-        .post-item .delete-post:hover {
-            color: #f5576c;
-        }
-
-        .post-empty {
-            text-align: center;
-            color: rgba(255,255,255,0.3);
-            padding: 20px;
-            font-size: 0.9em;
-        }
-
-        /* ===== TIMELINE PRIBADI ===== */
         .timeline-private {
-            background: rgba(255,255,255,0.03);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03); border-radius: 15px; padding: 20px;
+            margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.08);
             border-left: 4px solid #f093fb;
         }
-
         .timeline-private .section-title {
-            font-size: 0.9em;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 12px;
-            letter-spacing: 1px;
+            font-size: 0.9em; color: rgba(255,255,255,0.5); margin-bottom: 12px; letter-spacing: 1px;
         }
-
         .timeline-private .private-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 15px;
+            display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;
         }
-
         .timeline-private .private-form input {
-            padding: 12px 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            font-size: 0.9em;
-            outline: none;
-            transition: all 0.3s;
+            padding: 12px 15px; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
+            color: white; font-size: 0.9em; outline: none; transition: all 0.3s;
         }
-
-        .timeline-private .private-form input::placeholder {
-            color: rgba(255,255,255,0.3);
-        }
-
-        .timeline-private .private-form input:focus {
-            border-color: #f093fb;
-            background: rgba(255,255,255,0.08);
-        }
-
+        .timeline-private .private-form input::placeholder { color: rgba(255,255,255,0.3); }
+        .timeline-private .private-form input:focus { border-color: #f093fb; background: rgba(255,255,255,0.08); }
         .timeline-private .private-btn {
-            padding: 12px;
-            border-radius: 12px;
-            border: none;
+            padding: 12px; border-radius: 12px; border: none;
             background: linear-gradient(135deg, #f093fb, #f5576c);
-            color: white;
-            font-weight: 700;
-            font-size: 0.95em;
-            cursor: pointer;
-            transition: all 0.3s;
+            color: white; font-weight: 700; font-size: 0.95em; cursor: pointer; transition: all 0.3s;
+        }
+        .timeline-private .private-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,87,108,0.3); }
+
+        .timeline-posts {
+            display: flex; flex-direction: column; gap: 12px;
+            max-height: 200px; overflow-y: auto; padding-right: 5px;
+        }
+        .timeline-posts::-webkit-scrollbar { width: 3px; }
+        .timeline-posts::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        .post-item {
+            background: rgba(255,255,255,0.05); border-radius: 12px; padding: 15px;
+            text-align: left; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s;
+        }
+        .post-item:hover { background: rgba(255,255,255,0.08); }
+        .post-item .post-place { font-weight: 700; color: white; font-size: 1em; }
+        .post-item .post-location { font-size: 0.85em; color: rgba(255,255,255,0.5); display: block; margin-top: 3px; }
+        .post-item .post-time { font-size: 0.7em; color: rgba(255,255,255,0.3); display: block; margin-top: 5px; }
+        .post-item .post-author { font-size: 0.7em; color: rgba(255,255,255,0.2); display: inline-block; margin-top: 5px; }
+        .post-item .delete-post {
+            float: right; background: none; border: none; color: rgba(255,255,255,0.2);
+            cursor: pointer; font-size: 0.8em; transition: all 0.3s;
+        }
+        .post-item .delete-post:hover { color: #f5576c; }
+        .post-empty {
+            text-align: center; color: rgba(255,255,255,0.3);
+            padding: 20px; font-size: 0.9em;
         }
 
-        .timeline-private .private-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245,87,108,0.3);
-        }
-
-        /* ===== SOSIAL MEDIA (DI LUAR BERANDA) ===== */
-        .social-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            padding: 16px 20px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .social-btn i {
-            font-size: 1.8em;
-            width: 40px;
-            text-align: center;
-        }
-
-        .btn-instagram:hover {
-            background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949, #d6249f, #285aeb);
-            border-color: #d6249f;
-        }
-
-        .btn-facebook:hover {
-            background: #1877f2;
-            border-color: #1877f2;
-        }
-
-        .btn-whatsapp:hover {
-            background: #25d366;
-            border-color: #25d366;
-        }
-
-        /* ===== MESIN PENCARI (DI LUAR BERANDA) ===== */
-        .search-section {
-            margin-bottom: 30px;
-        }
-
-        .search-title {
-            font-size: 0.9em;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
-        .search-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
+        .search-section { margin: 20px 0; }
+        .search-title { font-size: 0.9em; color: rgba(255,255,255,0.5); margin-bottom: 12px; letter-spacing: 1px; }
+        .search-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .search-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 12px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            font-size: 0.85em;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 10px 12px; border-radius: 12px; text-decoration: none; color: white;
+            font-weight: 600; font-size: 0.85em; transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.05);
         }
-
-        .search-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        .search-btn i {
-            font-size: 1.2em;
-        }
-
+        .search-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .search-btn i { font-size: 1.2em; }
         .btn-google:hover { background: #ea4335; border-color: #ea4335; }
         .btn-bing:hover { background: #0078d4; border-color: #0078d4; }
         .btn-yahoo:hover { background: #6001d2; border-color: #6001d2; }
         .btn-firefox:hover { background: #ff7139; border-color: #ff7139; }
 
-        .footer {
-            margin-top: 30px;
-            font-size: 0.8em;
-            color: rgba(255,255,255,0.3);
+        .social-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            padding: 16px 20px; border-radius: 15px; text-decoration: none; color: white;
+            font-weight: 600; font-size: 1.1em; transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
         }
+        .social-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .social-btn i { font-size: 1.8em; width: 40px; text-align: center; }
+        .btn-instagram:hover { background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949, #d6249f, #285aeb); border-color: #d6249f; }
+        .btn-facebook:hover { background: #1877f2; border-color: #1877f2; }
+        .btn-whatsapp:hover { background: #25d366; border-color: #25d366; }
 
+        .footer { margin-top: 30px; font-size: 0.8em; color: rgba(255,255,255,0.3); }
         .glow {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
+            position: fixed; width: 300px; height: 300px; border-radius: 50%; filter: blur(100px); z-index: -1;
         }
-
-        .glow-1 {
-            top: -100px;
-            right: -100px;
-            background: #f5576c;
-            opacity: 0.3;
-        }
-
-        .glow-2 {
-            bottom: -100px;
-            left: -100px;
-            background: #4facfe;
-            opacity: 0.2;
-        }
+        .glow-1 { top: -100px; right: -100px; background: #f5576c; opacity: 0.3; }
+        .glow-2 { bottom: -100px; left: -100px; background: #4facfe; opacity: 0.2; }
 
         @media (max-width: 450px) {
             .container { padding: 30px 20px; }
@@ -616,144 +243,98 @@
     </style>
 </head>
 <body>
-
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
-
     <div class="container">
-        
-        <!-- FOTO PROFIL -->
-        <img src="https://via.placeholder.com/130/667eea/white?text=FOTO" alt="Foto Profil" class="profile-photo" id="profilePhoto">
 
+        <img src="https://via.placeholder.com/130/667eea/white?text=FOTO" alt="Foto Profil" class="profile-photo" id="profilePhoto">
         <h1 class="name">alfatt519.web</h1>
         <p class="subtitle">✦ Personal Website ✦</p>
+        <div class="divider"></div>
+
+        <!-- ===== JUDUL BERANDA ===== -->
+        <div class="beranda-title">
+            <i class="fas fa-home"></i> Beranda
+        </div>
+
+        <!-- ===== KONTEN BERANDA ===== -->
+        <div class="bio" onclick="editBio()">
+            <p id="bioText">💪 tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung</p>
+            <span class="edit-hint">✏️ Klik untuk edit bio</span>
+        </div>
+
+        <div class="note" onclick="editNote()">
+            <p id="noteText">"✨ Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai." <span class="author">— al fatt</span></p>
+            <span class="edit-hint">✏️ Klik untuk edit note</span>
+        </div>
+
+        <div>
+            <label class="upload-btn"><i class="fas fa-upload"></i> Upload Foto <input type="file" id="photoInput" accept="image/*" multiple></label>
+        </div>
+
+        <p class="collection-title">📸 Koleksi Foto</p>
+        <div class="collection-grid" id="collectionGrid">
+            <div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>
+        </div>
 
         <div class="divider"></div>
 
-        <!-- ===== SEMUA DALAM BERANDA (TANPA TOMBOL BERANDA) ===== -->
-        <div class="beranda-content">
-
-            <!-- BIO -->
-            <div class="bio" id="bioContainer" onclick="editBio()">
-                <p id="bioText">
-                    💪 tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung
-                </p>
-                <span class="edit-hint">✏️ Klik untuk edit bio</span>
-            </div>
-
-            <!-- NOTE -->
-            <div class="note" id="noteContainer" onclick="editNote()">
-                <p id="noteText">
-                    "✨ Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai."
-                    <span class="author">— al fatt</span>
-                </p>
-                <span class="edit-hint">✏️ Klik untuk edit note</span>
-            </div>
-
-            <!-- UPLOAD FOTO -->
-            <div class="upload-section">
-                <label class="upload-btn">
-                    <i class="fas fa-upload"></i> Upload Foto
-                    <input type="file" id="photoInput" accept="image/*" multiple>
-                </label>
-            </div>
-
-            <!-- KOLEKSI FOTO -->
-            <p class="collection-title">📸 Koleksi Foto</p>
-            <div class="collection-grid" id="collectionGrid">
-                <div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>
-            </div>
-
-            <div class="divider"></div>
-
-            <!-- TIMELINE PENGUNJUNG -->
-            <div class="timeline-visitor">
-                <p class="section-title">📍 Timeline Pengunjung</p>
-                
-                <div class="timeline-form">
-                    <div class="form-row">
-                        <input type="text" id="visitorPlace" placeholder="Nama Tempat (contoh: Pantai Kuta)">
-                        <input type="text" id="visitorLocation" placeholder="Lokasi (contoh: Bali, Indonesia)">
-                    </div>
-                    <input type="text" id="visitorName" placeholder="Nama Kamu (opsional)">
-                    <button class="post-btn" onclick="addVisitorPost()">
-                        <i class="fas fa-map-pin"></i> Posting Lokasi
-                    </button>
+        <div class="timeline-visitor">
+            <p class="section-title">📍 Timeline Pengunjung</p>
+            <div class="timeline-form">
+                <div class="form-row">
+                    <input type="text" id="visitorPlace" placeholder="Nama Tempat (contoh: Pantai Kuta)">
+                    <input type="text" id="visitorLocation" placeholder="Lokasi (contoh: Bali, Indonesia)">
                 </div>
-
-                <div class="timeline-posts" id="visitorPosts">
-                    <div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>
-                </div>
+                <input type="text" id="visitorName" placeholder="Nama Kamu (opsional)">
+                <button class="post-btn" onclick="addVisitorPost()"><i class="fas fa-map-pin"></i> Posting Lokasi</button>
             </div>
-
-            <!-- TIMELINE PRIBADI -->
-            <div class="timeline-private">
-                <p class="section-title">🔒 Timeline Pribadi (Hanya Saya)</p>
-                
-                <div class="private-form">
-                    <div class="form-row">
-                        <input type="text" id="privatePlace" placeholder="Alamat / Tempat Pribadi">
-                        <input type="text" id="privateLocation" placeholder="Lokasi (kota/daerah)">
-                    </div>
-                    <button class="private-btn" onclick="addPrivatePost()">
-                        <i class="fas fa-lock"></i> Simpan Lokasi Pribadi
-                    </button>
-                </div>
-
-                <div class="timeline-posts" id="privatePosts">
-                    <div class="post-empty">Belum ada lokasi pribadi</div>
-                </div>
+            <div class="timeline-posts" id="visitorPosts">
+                <div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>
             </div>
-
         </div>
 
-        <!-- ===== DIVIDER ===== -->
+        <div class="timeline-private">
+            <p class="section-title">🔒 Timeline Pribadi (Hanya Saya)</p>
+            <div class="private-form">
+                <div class="form-row">
+                    <input type="text" id="privatePlace" placeholder="Alamat / Tempat Pribadi">
+                    <input type="text" id="privateLocation" placeholder="Lokasi (kota/daerah)">
+                </div>
+                <button class="private-btn" onclick="addPrivatePost()"><i class="fas fa-lock"></i> Simpan Lokasi Pribadi</button>
+            </div>
+            <div class="timeline-posts" id="privatePosts">
+                <div class="post-empty">Belum ada lokasi pribadi</div>
+            </div>
+        </div>
+
         <div class="divider"></div>
 
         <!-- ===== MESIN PENCARI (DI LUAR BERANDA) ===== -->
         <div class="search-section">
             <p class="search-title">🔍 Cari di Mesin Pencari</p>
             <div class="search-grid">
-                <a href="https://www.google.com" target="_blank" class="search-btn btn-google">
-                    <i class="fab fa-google"></i> Google
-                </a>
-                <a href="https://www.bing.com" target="_blank" class="search-btn btn-bing">
-                    <i class="fab fa-microsoft"></i> Bing
-                </a>
-                <a href="https://search.yahoo.com" target="_blank" class="search-btn btn-yahoo">
-                    <i class="fab fa-yahoo"></i> Yahoo
-                </a>
-                <a href="https://www.firefox.com" target="_blank" class="search-btn btn-firefox">
-                    <i class="fab fa-firefox"></i> Firefox
-                </a>
+                <a href="https://www.google.com" target="_blank" class="search-btn btn-google"><i class="fab fa-google"></i> Google</a>
+                <a href="https://www.bing.com" target="_blank" class="search-btn btn-bing"><i class="fab fa-microsoft"></i> Bing</a>
+                <a href="https://search.yahoo.com" target="_blank" class="search-btn btn-yahoo"><i class="fab fa-yahoo"></i> Yahoo</a>
+                <a href="https://www.firefox.com" target="_blank" class="search-btn btn-firefox"><i class="fab fa-firefox"></i> Firefox</a>
             </div>
         </div>
 
-        <!-- ===== DIVIDER ===== -->
         <div class="divider"></div>
 
         <!-- ===== SOSIAL MEDIA (DI LUAR BERANDA) ===== -->
         <div class="social-grid">
-            
-            <a href="https://instagram.com/nashmuhammad11" target="_blank" class="social-btn btn-instagram">
-                <i class="fab fa-instagram"></i> Instagram
-            </a>
-
-            <a href="https://m.facebook.com/af.nazril.a/" target="_blank" class="social-btn btn-facebook">
-                <i class="fab fa-facebook"></i> Facebook
-            </a>
-
-            <a href="https://wa.me/6281231868636" target="_blank" class="social-btn btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-
+            <a href="https://instagram.com/nashmuhammad11" target="_blank" class="social-btn btn-instagram"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://m.facebook.com/af.nazril.a/" target="_blank" class="social-btn btn-facebook"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://wa.me/6281231868636" target="_blank" class="social-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </div>
 
         <p class="footer">© 2026 • Terhubung dengan saya</p>
     </div>
 
     <script>
-        // ===== 1. EDIT BIO (USER ONLY) =====
+        // ===== BIO =====
         function editBio() {
             const bioText = document.getElementById('bioText');
             const currentText = bioText.textContent.replace('✏️ Klik untuk edit bio', '').trim();
@@ -763,13 +344,10 @@
                 localStorage.setItem('bioContent', newText.trim());
             }
         }
-
         const savedBio = localStorage.getItem('bioContent');
-        if (savedBio) {
-            document.getElementById('bioText').innerHTML = `💪 ${savedBio}`;
-        }
+        if (savedBio) document.getElementById('bioText').innerHTML = `💪 ${savedBio}`;
 
-        // ===== 2. EDIT NOTE (USER ONLY) =====
+        // ===== NOTE =====
         function editNote() {
             const noteText = document.getElementById('noteText');
             const currentText = noteText.textContent.replace('✏️ Klik untuk edit note', '').replace('— al fatt', '').replace(/"/g, '').trim();
@@ -779,16 +357,12 @@
                 localStorage.setItem('noteContent', newNote.trim());
             }
         }
-
         const savedNote = localStorage.getItem('noteContent');
-        if (savedNote) {
-            document.getElementById('noteText').innerHTML = `"✨ ${savedNote}" <span class="author">— al fatt</span>`;
-        }
+        if (savedNote) document.getElementById('noteText').innerHTML = `"✨ ${savedNote}" <span class="author">— al fatt</span>`;
 
-        // ===== 3. UPLOAD FOTO & KOLEKSI =====
+        // ===== UPLOAD FOTO =====
         const photoInput = document.getElementById('photoInput');
         const collectionGrid = document.getElementById('collectionGrid');
-
         let photos = JSON.parse(localStorage.getItem('fotoKoleksi')) || [];
 
         function renderCollection() {
@@ -796,17 +370,9 @@
                 collectionGrid.innerHTML = `<div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>`;
                 return;
             }
-
             let html = '';
             photos.forEach((src, index) => {
-                html += `
-                    <div class="collection-item">
-                        <img src="${src}" alt="Foto ${index + 1}">
-                        <button class="delete-btn" onclick="deletePhoto(${index})">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                `;
+                html += `<div class="collection-item"><img src="${src}"><button class="delete-btn" onclick="deletePhoto(${index})"><i class="fas fa-times"></i></button></div>`;
             });
             collectionGrid.innerHTML = html;
         }
@@ -819,10 +385,8 @@
 
         photoInput.addEventListener('change', function(e) {
             const files = e.target.files;
-            
             for (let file of files) {
                 if (!file.type.startsWith('image/')) continue;
-                
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     photos.push(event.target.result);
@@ -831,27 +395,20 @@
                 };
                 reader.readAsDataURL(file);
             }
-            
             photoInput.value = '';
         });
-
         renderCollection();
 
-        // ===== 4. FOTO PROFIL (USER ONLY) =====
+        // ===== FOTO PROFIL =====
         const profilePhoto = document.getElementById('profilePhoto');
         const profileInput = document.createElement('input');
         profileInput.type = 'file';
         profileInput.accept = 'image/*';
         profileInput.style.display = 'none';
-
-        profilePhoto.addEventListener('click', function() {
-            profileInput.click();
-        });
-
+        profilePhoto.addEventListener('click', () => profileInput.click());
         profileInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = function(event) {
                 profilePhoto.src = event.target.result;
@@ -859,13 +416,10 @@
             };
             reader.readAsDataURL(file);
         });
-
         const savedProfile = localStorage.getItem('fotoProfil');
-        if (savedProfile) {
-            profilePhoto.src = savedProfile;
-        }
+        if (savedProfile) profilePhoto.src = savedProfile;
 
-        // ===== 5. TIMELINE PENGUNJUNG =====
+        // ===== TIMELINE PENGUNJUNG =====
         let visitorPosts = JSON.parse(localStorage.getItem('visitorPosts')) || [];
 
         function renderVisitorPosts() {
@@ -874,20 +428,9 @@
                 container.innerHTML = `<div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>`;
                 return;
             }
-
             let html = '';
             visitorPosts.forEach((post, index) => {
-                html += `
-                    <div class="post-item">
-                        <button class="delete-post" onclick="deleteVisitorPost(${index})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                        <div class="post-place">📍 ${post.place}</div>
-                        <span class="post-location">${post.location}</span>
-                        ${post.author ? `<span class="post-author">👤 ${post.author}</span>` : ''}
-                        <span class="post-time">🕐 ${post.time}</span>
-                    </div>
-                `;
+                html += `<div class="post-item"><button class="delete-post" onclick="deleteVisitorPost(${index})"><i class="fas fa-trash"></i></button><div class="post-place">📍 ${post.place}</div><span class="post-location">${post.location}</span>${post.author ? `<span class="post-author">👤 ${post.author}</span>` : ''}<span class="post-time">🕐 ${post.time}</span></div>`;
             });
             container.innerHTML = html;
         }
@@ -896,20 +439,12 @@
             const place = document.getElementById('visitorPlace').value.trim();
             const location = document.getElementById('visitorLocation').value.trim();
             const author = document.getElementById('visitorName').value.trim() || 'Pengunjung';
-
-            if (!place || !location) {
-                alert('⚠️ Isi nama tempat dan lokasi dulu!');
-                return;
-            }
-
+            if (!place || !location) { alert('⚠️ Isi nama tempat dan lokasi dulu!'); return; }
             const now = new Date();
-            const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + 
-                         ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-
+            const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
             visitorPosts.unshift({ place, location, author, time });
             localStorage.setItem('visitorPosts', JSON.stringify(visitorPosts));
             renderVisitorPosts();
-
             document.getElementById('visitorPlace').value = '';
             document.getElementById('visitorLocation').value = '';
             document.getElementById('visitorName').value = '';
@@ -920,10 +455,9 @@
             localStorage.setItem('visitorPosts', JSON.stringify(visitorPosts));
             renderVisitorPosts();
         }
-
         renderVisitorPosts();
 
-        // ===== 6. TIMELINE PRIBADI (USER ONLY) =====
+        // ===== TIMELINE PRIBADI =====
         let privatePosts = JSON.parse(localStorage.getItem('privatePosts')) || [];
 
         function renderPrivatePosts() {
@@ -932,19 +466,9 @@
                 container.innerHTML = `<div class="post-empty">Belum ada lokasi pribadi</div>`;
                 return;
             }
-
             let html = '';
             privatePosts.forEach((post, index) => {
-                html += `
-                    <div class="post-item">
-                        <button class="delete-post" onclick="deletePrivatePost(${index})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                        <div class="post-place">📍 ${post.place}</div>
-                        <span class="post-location">${post.location}</span>
-                        <span class="post-time">🕐 ${post.time}</span>
-                    </div>
-                `;
+                html += `<div class="post-item"><button class="delete-post" onclick="deletePrivatePost(${index})"><i class="fas fa-trash"></i></button><div class="post-place">📍 ${post.place}</div><span class="post-location">${post.location}</span><span class="post-time">🕐 ${post.time}</span></div>`;
             });
             container.innerHTML = html;
         }
@@ -952,20 +476,12 @@
         function addPrivatePost() {
             const place = document.getElementById('privatePlace').value.trim();
             const location = document.getElementById('privateLocation').value.trim();
-
-            if (!place || !location) {
-                alert('⚠️ Isi alamat/tempat dan lokasi dulu!');
-                return;
-            }
-
+            if (!place || !location) { alert('⚠️ Isi alamat/tempat dan lokasi dulu!'); return; }
             const now = new Date();
-            const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + 
-                         ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-
+            const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
             privatePosts.unshift({ place, location, time });
             localStorage.setItem('privatePosts', JSON.stringify(privatePosts));
             renderPrivatePosts();
-
             document.getElementById('privatePlace').value = '';
             document.getElementById('privateLocation').value = '';
         }
@@ -975,9 +491,7 @@
             localStorage.setItem('privatePosts', JSON.stringify(privatePosts));
             renderPrivatePosts();
         }
-
         renderPrivatePosts();
     </script>
-
 </body>
 </html>
