@@ -101,6 +101,11 @@
             border-radius: 10px;
         }
 
+        /* ===== SEMUA DALAM BERANDA ===== */
+        .beranda-content {
+            display: block;
+        }
+
         /* ===== BIO EDITABLE (USER ONLY) ===== */
         .bio {
             background: rgba(255,255,255,0.05);
@@ -265,7 +270,7 @@
             font-size: 0.9em;
         }
 
-        /* ===== TIMELINE PENGUNJUNG (semua orang bisa posting) ===== */
+        /* ===== TIMELINE PENGUNJUNG ===== */
         .timeline-visitor {
             background: rgba(255,255,255,0.03);
             border-radius: 15px;
@@ -412,7 +417,7 @@
             font-size: 0.9em;
         }
 
-        /* ===== TIMELINE PRIBADI (hanya user yang bisa edit) ===== */
+        /* ===== TIMELINE PRIBADI ===== */
         .timeline-private {
             background: rgba(255,255,255,0.03);
             border-radius: 15px;
@@ -473,33 +478,57 @@
             box-shadow: 0 8px 25px rgba(245,87,108,0.3);
         }
 
-        /* ===== BERANDA ===== */
-        .home-section {
-            margin-bottom: 25px;
+        /* ===== SOSIAL MEDIA (DI LUAR BERANDA) ===== */
+        .social-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
         }
 
-        .home-btn {
-            display: inline-flex;
+        .social-btn {
+            display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 30px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50px;
-            color: white;
+            justify-content: center;
+            gap: 15px;
+            padding: 16px 20px;
+            border-radius: 15px;
             text-decoration: none;
+            color: white;
             font-weight: 600;
+            font-size: 1.1em;
             transition: all 0.3s ease;
-            font-size: 1em;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
         }
 
-        .home-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .social-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        /* ===== SEARCH ===== */
+        .social-btn i {
+            font-size: 1.8em;
+            width: 40px;
+            text-align: center;
+        }
+
+        .btn-instagram:hover {
+            background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949, #d6249f, #285aeb);
+            border-color: #d6249f;
+        }
+
+        .btn-facebook:hover {
+            background: #1877f2;
+            border-color: #1877f2;
+        }
+
+        .btn-whatsapp:hover {
+            background: #25d366;
+            border-color: #25d366;
+        }
+
+        /* ===== MESIN PENCARI (DI LUAR BERANDA) ===== */
         .search-section {
             margin-bottom: 30px;
         }
@@ -547,55 +576,6 @@
         .btn-yahoo:hover { background: #6001d2; border-color: #6001d2; }
         .btn-firefox:hover { background: #ff7139; border-color: #ff7139; }
 
-        /* ===== SOSIAL MEDIA ===== */
-        .social-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            padding: 16px 20px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.05);
-        }
-
-        .social-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .social-btn i {
-            font-size: 1.8em;
-            width: 40px;
-            text-align: center;
-        }
-
-        .btn-instagram:hover {
-            background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949, #d6249f, #285aeb);
-            border-color: #d6249f;
-        }
-
-        .btn-facebook:hover {
-            background: #1877f2;
-            border-color: #1877f2;
-        }
-
-        .btn-whatsapp:hover {
-            background: #25d366;
-            border-color: #25d366;
-        }
-
         .footer {
             margin-top: 30px;
             font-size: 0.8em;
@@ -642,7 +622,7 @@
 
     <div class="container">
         
-        <!-- FOTO PROFIL (klik untuk ganti - USER ONLY) -->
+        <!-- FOTO PROFIL -->
         <img src="https://via.placeholder.com/130/667eea/white?text=FOTO" alt="Foto Profil" class="profile-photo" id="profilePhoto">
 
         <h1 class="name">alfatt519.web</h1>
@@ -650,88 +630,87 @@
 
         <div class="divider"></div>
 
-        <!-- ===== BIO EDITABLE (USER ONLY) ===== -->
-        <div class="bio" id="bioContainer" onclick="editBio()">
-            <p id="bioText">
-                💪 tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung
-            </p>
-            <span class="edit-hint">✏️ Klik untuk edit bio</span>
+        <!-- ===== SEMUA DALAM BERANDA (TANPA TOMBOL BERANDA) ===== -->
+        <div class="beranda-content">
+
+            <!-- BIO -->
+            <div class="bio" id="bioContainer" onclick="editBio()">
+                <p id="bioText">
+                    💪 tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung
+                </p>
+                <span class="edit-hint">✏️ Klik untuk edit bio</span>
+            </div>
+
+            <!-- NOTE -->
+            <div class="note" id="noteContainer" onclick="editNote()">
+                <p id="noteText">
+                    "✨ Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai."
+                    <span class="author">— al fatt</span>
+                </p>
+                <span class="edit-hint">✏️ Klik untuk edit note</span>
+            </div>
+
+            <!-- UPLOAD FOTO -->
+            <div class="upload-section">
+                <label class="upload-btn">
+                    <i class="fas fa-upload"></i> Upload Foto
+                    <input type="file" id="photoInput" accept="image/*" multiple>
+                </label>
+            </div>
+
+            <!-- KOLEKSI FOTO -->
+            <p class="collection-title">📸 Koleksi Foto</p>
+            <div class="collection-grid" id="collectionGrid">
+                <div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- TIMELINE PENGUNJUNG -->
+            <div class="timeline-visitor">
+                <p class="section-title">📍 Timeline Pengunjung</p>
+                
+                <div class="timeline-form">
+                    <div class="form-row">
+                        <input type="text" id="visitorPlace" placeholder="Nama Tempat (contoh: Pantai Kuta)">
+                        <input type="text" id="visitorLocation" placeholder="Lokasi (contoh: Bali, Indonesia)">
+                    </div>
+                    <input type="text" id="visitorName" placeholder="Nama Kamu (opsional)">
+                    <button class="post-btn" onclick="addVisitorPost()">
+                        <i class="fas fa-map-pin"></i> Posting Lokasi
+                    </button>
+                </div>
+
+                <div class="timeline-posts" id="visitorPosts">
+                    <div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>
+                </div>
+            </div>
+
+            <!-- TIMELINE PRIBADI -->
+            <div class="timeline-private">
+                <p class="section-title">🔒 Timeline Pribadi (Hanya Saya)</p>
+                
+                <div class="private-form">
+                    <div class="form-row">
+                        <input type="text" id="privatePlace" placeholder="Alamat / Tempat Pribadi">
+                        <input type="text" id="privateLocation" placeholder="Lokasi (kota/daerah)">
+                    </div>
+                    <button class="private-btn" onclick="addPrivatePost()">
+                        <i class="fas fa-lock"></i> Simpan Lokasi Pribadi
+                    </button>
+                </div>
+
+                <div class="timeline-posts" id="privatePosts">
+                    <div class="post-empty">Belum ada lokasi pribadi</div>
+                </div>
+            </div>
+
         </div>
 
-        <!-- ===== NOTE EDITABLE (USER ONLY) ===== -->
-        <div class="note" id="noteContainer" onclick="editNote()">
-            <p id="noteText">
-                "✨ Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai."
-                <span class="author">— al fatt</span>
-            </p>
-            <span class="edit-hint">✏️ Klik untuk edit note</span>
-        </div>
-
-        <!-- ===== UPLOAD FOTO ===== -->
-        <div class="upload-section">
-            <label class="upload-btn">
-                <i class="fas fa-upload"></i> Upload Foto
-                <input type="file" id="photoInput" accept="image/*" multiple>
-            </label>
-        </div>
-
-        <!-- ===== KOLEKSI FOTO ===== -->
-        <p class="collection-title">📸 Koleksi Foto</p>
-        <div class="collection-grid" id="collectionGrid">
-            <div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>
-        </div>
-
+        <!-- ===== DIVIDER ===== -->
         <div class="divider"></div>
 
-        <!-- ===== TIMELINE PENGUNJUNG (SEMUA ORANG BISA POSTING) ===== -->
-        <div class="timeline-visitor">
-            <p class="section-title">📍 Timeline Pengunjung</p>
-            
-            <div class="timeline-form">
-                <div class="form-row">
-                    <input type="text" id="visitorPlace" placeholder="Nama Tempat (contoh: Pantai Kuta)">
-                    <input type="text" id="visitorLocation" placeholder="Lokasi (contoh: Bali, Indonesia)">
-                </div>
-                <input type="text" id="visitorName" placeholder="Nama Kamu (opsional)">
-                <button class="post-btn" onclick="addVisitorPost()">
-                    <i class="fas fa-map-pin"></i> Posting Lokasi
-                </button>
-            </div>
-
-            <div class="timeline-posts" id="visitorPosts">
-                <div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>
-            </div>
-        </div>
-
-        <!-- ===== TIMELINE PRIBADI (HANYA USER YANG BISA EDIT) ===== -->
-        <div class="timeline-private">
-            <p class="section-title">🔒 Timeline Pribadi (Hanya Saya)</p>
-            
-            <div class="private-form">
-                <div class="form-row">
-                    <input type="text" id="privatePlace" placeholder="Alamat / Tempat Pribadi">
-                    <input type="text" id="privateLocation" placeholder="Lokasi (kota/daerah)">
-                </div>
-                <button class="private-btn" onclick="addPrivatePost()">
-                    <i class="fas fa-lock"></i> Simpan Lokasi Pribadi
-                </button>
-            </div>
-
-            <div class="timeline-posts" id="privatePosts">
-                <div class="post-empty">Belum ada lokasi pribadi</div>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ===== BERANDA ===== -->
-        <div class="home-section">
-            <a href="#" class="home-btn" onclick="alert('🏠 Selamat datang di Beranda al fatt!')">
-                <i class="fas fa-house"></i> Beranda
-            </a>
-        </div>
-
-        <!-- ===== MESIN PENCARI ===== -->
+        <!-- ===== MESIN PENCARI (DI LUAR BERANDA) ===== -->
         <div class="search-section">
             <p class="search-title">🔍 Cari di Mesin Pencari</p>
             <div class="search-grid">
@@ -750,9 +729,10 @@
             </div>
         </div>
 
+        <!-- ===== DIVIDER ===== -->
         <div class="divider"></div>
 
-        <!-- ===== SOSIAL MEDIA ===== -->
+        <!-- ===== SOSIAL MEDIA (DI LUAR BERANDA) ===== -->
         <div class="social-grid">
             
             <a href="https://instagram.com/nashmuhammad11" target="_blank" class="social-btn btn-instagram">
@@ -837,7 +817,6 @@
             renderCollection();
         }
 
-        // FIX: Upload foto sekarang berfungsi!
         photoInput.addEventListener('change', function(e) {
             const files = e.target.files;
             
@@ -853,7 +832,6 @@
                 reader.readAsDataURL(file);
             }
             
-            // Reset input biar bisa upload ulang
             photoInput.value = '';
         });
 
