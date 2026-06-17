@@ -15,6 +15,9 @@
     <meta property="og:description" content="Website personal al fatt">
     <meta property="og:type" content="website">
 
+    <!-- Font Awesome untuk ikon asli -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -38,7 +41,7 @@
             backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 50px 40px;
-            max-width: 500px;
+            max-width: 550px;
             width: 100%;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.1);
@@ -85,6 +88,81 @@
             border-radius: 10px;
         }
 
+        /* ===== BERANDA / HOME ===== */
+        .home-section {
+            margin-bottom: 25px;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .home-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* ===== MESIN PENCARI ===== */
+        .search-section {
+            margin-bottom: 30px;
+        }
+
+        .search-title {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .search-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .search-btn i {
+            font-size: 1.2em;
+        }
+
+        .btn-google:hover { background: #ea4335; border-color: #ea4335; }
+        .btn-bing:hover { background: #0078d4; border-color: #0078d4; }
+        .btn-yahoo:hover { background: #6001d2; border-color: #6001d2; }
+        .btn-firefox:hover { background: #ff7139; border-color: #ff7139; }
+
+        /* ===== SOSIAL MEDIA ===== */
         .social-grid {
             display: flex;
             flex-direction: column;
@@ -112,15 +190,16 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .social-btn .icon {
+        .social-btn i {
             font-size: 1.8em;
             width: 40px;
             text-align: center;
         }
 
+        /* Warna asli masing-masing saat hover */
         .btn-instagram:hover {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            border-color: #f5576c;
+            background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949, #d6249f, #285aeb);
+            border-color: #d6249f;
         }
 
         .btn-facebook:hover {
@@ -161,6 +240,14 @@
             background: #4facfe;
             opacity: 0.2;
         }
+
+        /* Responsive */
+        @media (max-width: 450px) {
+            .container { padding: 30px 20px; }
+            .name { font-size: 1.8em; }
+            .search-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .search-btn { font-size: 0.75em; padding: 8px 10px; }
+        }
     </style>
 </head>
 <body>
@@ -171,30 +258,52 @@
     <div class="container">
         <div class="avatar">A</div>
 
-        <!-- NAMA: al fatt -->
         <h1 class="name">alfatt519.web</h1>
         <p class="subtitle">✦ Personal Website ✦</p>
 
         <div class="divider"></div>
 
+        <!-- ===== BERANDA / HOME ===== -->
+        <div class="home-section">
+            <a href="#" class="home-btn" onclick="alert('🏠 Selamat datang di Beranda al fatt!')">
+                <i class="fas fa-house"></i> Beranda
+            </a>
+        </div>
+
+        <!-- ===== MESIN PENCARI ===== -->
+        <div class="search-section">
+            <p class="search-title">🔍 Cari di Mesin Pencari</p>
+            <div class="search-grid">
+                <a href="https://www.google.com" target="_blank" class="search-btn btn-google">
+                    <i class="fab fa-google"></i> Google
+                </a>
+                <a href="https://www.bing.com" target="_blank" class="search-btn btn-bing">
+                    <i class="fab fa-microsoft"></i> Bing
+                </a>
+                <a href="https://search.yahoo.com" target="_blank" class="search-btn btn-yahoo">
+                    <i class="fab fa-yahoo"></i> Yahoo
+                </a>
+                <a href="https://www.firefox.com" target="_blank" class="search-btn btn-firefox">
+                    <i class="fab fa-firefox"></i> Firefox
+                </a>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ===== SOSIAL MEDIA (IKON ASLI) ===== -->
         <div class="social-grid">
             
-            <!-- INSTAGRAM: nashmuhammad11 -->
             <a href="https://instagram.com/nashmuhammad11" target="_blank" class="social-btn btn-instagram">
-                <span class="icon">📸</span>
-                <span>Instagram</span>
+                <i class="fab fa-instagram"></i> Instagram
             </a>
 
-            <!-- FACEBOOK: https://m.facebook.com/af.nazril.a/ -->
             <a href="https://m.facebook.com/af.nazril.a/" target="_blank" class="social-btn btn-facebook">
-                <span class="icon">👍</span>
-                <span>Facebook</span>
+                <i class="fab fa-facebook"></i> Facebook
             </a>
 
-            <!-- WHATSAPP: 081231868636 -->
             <a href="https://wa.me/6281231868636" target="_blank" class="social-btn btn-whatsapp">
-                <span class="icon">💬</span>
-                <span>WhatsApp</span>
+                <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
 
         </div>
