@@ -101,7 +101,7 @@
             border-radius: 10px;
         }
 
-        /* ===== BIO EDITABLE ===== */
+        /* ===== BIO EDITABLE (USER ONLY) ===== */
         .bio {
             background: rgba(255,255,255,0.05);
             border-radius: 15px;
@@ -123,10 +123,6 @@
             color: rgba(255,255,255,0.85);
         }
 
-        .bio .emoji {
-            font-size: 1.2em;
-        }
-
         .bio .edit-hint {
             font-size: 0.7em;
             color: rgba(255,255,255,0.25);
@@ -134,7 +130,7 @@
             margin-top: 5px;
         }
 
-        /* ===== NOTE EDITABLE ===== */
+        /* ===== NOTE EDITABLE (USER ONLY) ===== */
         .note {
             background: rgba(255,255,255,0.03);
             border-left: 4px solid #f5576c;
@@ -269,26 +265,30 @@
             font-size: 0.9em;
         }
 
-        /* ===== TIMELINE LOKASI ===== */
-        .timeline-section {
+        /* ===== TIMELINE PENGUNJUNG (semua orang bisa posting) ===== */
+        .timeline-visitor {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 20px;
             margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
-        .timeline-title {
+        .timeline-visitor .section-title {
             font-size: 0.9em;
             color: rgba(255,255,255,0.5);
             margin-bottom: 12px;
             letter-spacing: 1px;
         }
 
-        .timeline-form {
+        .timeline-visitor .timeline-form {
             display: flex;
             flex-direction: column;
             gap: 10px;
             margin-bottom: 15px;
         }
 
-        .timeline-form input {
+        .timeline-visitor .timeline-form input {
             padding: 12px 15px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.1);
@@ -299,25 +299,25 @@
             transition: all 0.3s;
         }
 
-        .timeline-form input::placeholder {
+        .timeline-visitor .timeline-form input::placeholder {
             color: rgba(255,255,255,0.3);
         }
 
-        .timeline-form input:focus {
+        .timeline-visitor .timeline-form input:focus {
             border-color: #f5576c;
             background: rgba(255,255,255,0.08);
         }
 
-        .timeline-form .form-row {
+        .timeline-visitor .timeline-form .form-row {
             display: flex;
             gap: 10px;
         }
 
-        .timeline-form .form-row input {
+        .timeline-visitor .timeline-form .form-row input {
             flex: 1;
         }
 
-        .timeline-form .post-btn {
+        .timeline-visitor .post-btn {
             padding: 12px;
             border-radius: 12px;
             border: none;
@@ -329,17 +329,16 @@
             transition: all 0.3s;
         }
 
-        .timeline-form .post-btn:hover {
+        .timeline-visitor .post-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(79,172,254,0.3);
         }
 
-        /* ===== TIMELINE POST ===== */
         .timeline-posts {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-height: 300px;
+            max-height: 200px;
             overflow-y: auto;
             padding-right: 5px;
         }
@@ -385,6 +384,13 @@
             margin-top: 5px;
         }
 
+        .post-item .post-author {
+            font-size: 0.7em;
+            color: rgba(255,255,255,0.2);
+            display: inline-block;
+            margin-top: 5px;
+        }
+
         .post-item .delete-post {
             float: right;
             background: none;
@@ -404,6 +410,67 @@
             color: rgba(255,255,255,0.3);
             padding: 20px;
             font-size: 0.9em;
+        }
+
+        /* ===== TIMELINE PRIBADI (hanya user yang bisa edit) ===== */
+        .timeline-private {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-left: 4px solid #f093fb;
+        }
+
+        .timeline-private .section-title {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-private .private-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .timeline-private .private-form input {
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 0.9em;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .timeline-private .private-form input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .timeline-private .private-form input:focus {
+            border-color: #f093fb;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .timeline-private .private-btn {
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            font-weight: 700;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timeline-private .private-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245,87,108,0.3);
         }
 
         /* ===== BERANDA ===== */
@@ -564,7 +631,7 @@
             .search-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
             .search-btn { font-size: 0.75em; padding: 8px 10px; }
             .collection-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-            .timeline-form .form-row { flex-direction: column; }
+            .timeline-visitor .timeline-form .form-row { flex-direction: column; }
         }
     </style>
 </head>
@@ -575,7 +642,7 @@
 
     <div class="container">
         
-        <!-- FOTO PROFIL (klik untuk ganti) -->
+        <!-- FOTO PROFIL (klik untuk ganti - USER ONLY) -->
         <img src="https://via.placeholder.com/130/667eea/white?text=FOTO" alt="Foto Profil" class="profile-photo" id="profilePhoto">
 
         <h1 class="name">alfatt519.web</h1>
@@ -583,15 +650,15 @@
 
         <div class="divider"></div>
 
-        <!-- ===== BIO EDITABLE ===== -->
+        <!-- ===== BIO EDITABLE (USER ONLY) ===== -->
         <div class="bio" id="bioContainer" onclick="editBio()">
             <p id="bioText">
-                <span class="emoji">💪</span> tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung
+                💪 tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung
             </p>
             <span class="edit-hint">✏️ Klik untuk edit bio</span>
         </div>
 
-        <!-- ===== NOTE EDITABLE ===== -->
+        <!-- ===== NOTE EDITABLE (USER ONLY) ===== -->
         <div class="note" id="noteContainer" onclick="editNote()">
             <p id="noteText">
                 "✨ Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai."
@@ -616,22 +683,42 @@
 
         <div class="divider"></div>
 
-        <!-- ===== TIMELINE LOKASI ===== -->
-        <div class="timeline-section">
-            <p class="timeline-title">📍 Timeline Lokasi</p>
+        <!-- ===== TIMELINE PENGUNJUNG (SEMUA ORANG BISA POSTING) ===== -->
+        <div class="timeline-visitor">
+            <p class="section-title">📍 Timeline Pengunjung</p>
             
             <div class="timeline-form">
                 <div class="form-row">
-                    <input type="text" id="placeInput" placeholder="Nama Tempat (contoh: Pantai Kuta)">
-                    <input type="text" id="locationInput" placeholder="Lokasi (contoh: Bali, Indonesia)">
+                    <input type="text" id="visitorPlace" placeholder="Nama Tempat (contoh: Pantai Kuta)">
+                    <input type="text" id="visitorLocation" placeholder="Lokasi (contoh: Bali, Indonesia)">
                 </div>
-                <button class="post-btn" onclick="addPost()">
+                <input type="text" id="visitorName" placeholder="Nama Kamu (opsional)">
+                <button class="post-btn" onclick="addVisitorPost()">
                     <i class="fas fa-map-pin"></i> Posting Lokasi
                 </button>
             </div>
 
-            <div class="timeline-posts" id="timelinePosts">
-                <div class="post-empty">Belum ada postingan lokasi<br>Jadi orang pertama yang posting!</div>
+            <div class="timeline-posts" id="visitorPosts">
+                <div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>
+            </div>
+        </div>
+
+        <!-- ===== TIMELINE PRIBADI (HANYA USER YANG BISA EDIT) ===== -->
+        <div class="timeline-private">
+            <p class="section-title">🔒 Timeline Pribadi (Hanya Saya)</p>
+            
+            <div class="private-form">
+                <div class="form-row">
+                    <input type="text" id="privatePlace" placeholder="Alamat / Tempat Pribadi">
+                    <input type="text" id="privateLocation" placeholder="Lokasi (kota/daerah)">
+                </div>
+                <button class="private-btn" onclick="addPrivatePost()">
+                    <i class="fas fa-lock"></i> Simpan Lokasi Pribadi
+                </button>
+            </div>
+
+            <div class="timeline-posts" id="privatePosts">
+                <div class="post-empty">Belum ada lokasi pribadi</div>
             </div>
         </div>
 
@@ -686,35 +773,33 @@
     </div>
 
     <script>
-        // ===== 1. EDIT BIO =====
+        // ===== 1. EDIT BIO (USER ONLY) =====
         function editBio() {
             const bioText = document.getElementById('bioText');
             const currentText = bioText.textContent.replace('✏️ Klik untuk edit bio', '').trim();
-            const newText = prompt('✏️ Edit Bio:', currentText);
+            const newText = prompt('✏️ Edit Bio (hanya untuk kamu):', currentText);
             if (newText !== null && newText.trim() !== '') {
-                bioText.innerHTML = `<span class="emoji">💪</span> ${newText.trim()}`;
+                bioText.innerHTML = `💪 ${newText.trim()}`;
                 localStorage.setItem('bioContent', newText.trim());
             }
         }
 
-        // Load bio dari LocalStorage
         const savedBio = localStorage.getItem('bioContent');
         if (savedBio) {
-            document.getElementById('bioText').innerHTML = `<span class="emoji">💪</span> ${savedBio}`;
+            document.getElementById('bioText').innerHTML = `💪 ${savedBio}`;
         }
 
-        // ===== 2. EDIT NOTE =====
+        // ===== 2. EDIT NOTE (USER ONLY) =====
         function editNote() {
             const noteText = document.getElementById('noteText');
             const currentText = noteText.textContent.replace('✏️ Klik untuk edit note', '').replace('— al fatt', '').replace(/"/g, '').trim();
-            const newNote = prompt('✏️ Edit Note:', currentText);
+            const newNote = prompt('✏️ Edit Note (hanya untuk kamu):', currentText);
             if (newNote !== null && newNote.trim() !== '') {
                 noteText.innerHTML = `"✨ ${newNote.trim()}" <span class="author">— al fatt</span>`;
                 localStorage.setItem('noteContent', newNote.trim());
             }
         }
 
-        // Load note dari LocalStorage
         const savedNote = localStorage.getItem('noteContent');
         if (savedNote) {
             document.getElementById('noteText').innerHTML = `"✨ ${savedNote}" <span class="author">— al fatt</span>`;
@@ -752,6 +837,7 @@
             renderCollection();
         }
 
+        // FIX: Upload foto sekarang berfungsi!
         photoInput.addEventListener('change', function(e) {
             const files = e.target.files;
             
@@ -767,12 +853,13 @@
                 reader.readAsDataURL(file);
             }
             
+            // Reset input biar bisa upload ulang
             photoInput.value = '';
         });
 
         renderCollection();
 
-        // ===== 4. FOTO PROFIL =====
+        // ===== 4. FOTO PROFIL (USER ONLY) =====
         const profilePhoto = document.getElementById('profilePhoto');
         const profileInput = document.createElement('input');
         profileInput.type = 'file';
@@ -800,21 +887,79 @@
             profilePhoto.src = savedProfile;
         }
 
-        // ===== 5. TIMELINE LOKASI =====
-        let posts = JSON.parse(localStorage.getItem('timelinePosts')) || [];
+        // ===== 5. TIMELINE PENGUNJUNG =====
+        let visitorPosts = JSON.parse(localStorage.getItem('visitorPosts')) || [];
 
-        function renderPosts() {
-            const container = document.getElementById('timelinePosts');
-            if (posts.length === 0) {
-                container.innerHTML = `<div class="post-empty">Belum ada postingan lokasi<br>Jadi orang pertama yang posting!</div>`;
+        function renderVisitorPosts() {
+            const container = document.getElementById('visitorPosts');
+            if (visitorPosts.length === 0) {
+                container.innerHTML = `<div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>`;
                 return;
             }
 
             let html = '';
-            posts.forEach((post, index) => {
+            visitorPosts.forEach((post, index) => {
                 html += `
                     <div class="post-item">
-                        <button class="delete-post" onclick="deletePost(${index})">
+                        <button class="delete-post" onclick="deleteVisitorPost(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <div class="post-place">📍 ${post.place}</div>
+                        <span class="post-location">${post.location}</span>
+                        ${post.author ? `<span class="post-author">👤 ${post.author}</span>` : ''}
+                        <span class="post-time">🕐 ${post.time}</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function addVisitorPost() {
+            const place = document.getElementById('visitorPlace').value.trim();
+            const location = document.getElementById('visitorLocation').value.trim();
+            const author = document.getElementById('visitorName').value.trim() || 'Pengunjung';
+
+            if (!place || !location) {
+                alert('⚠️ Isi nama tempat dan lokasi dulu!');
+                return;
+            }
+
+            const now = new Date();
+            const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + 
+                         ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+            visitorPosts.unshift({ place, location, author, time });
+            localStorage.setItem('visitorPosts', JSON.stringify(visitorPosts));
+            renderVisitorPosts();
+
+            document.getElementById('visitorPlace').value = '';
+            document.getElementById('visitorLocation').value = '';
+            document.getElementById('visitorName').value = '';
+        }
+
+        function deleteVisitorPost(index) {
+            visitorPosts.splice(index, 1);
+            localStorage.setItem('visitorPosts', JSON.stringify(visitorPosts));
+            renderVisitorPosts();
+        }
+
+        renderVisitorPosts();
+
+        // ===== 6. TIMELINE PRIBADI (USER ONLY) =====
+        let privatePosts = JSON.parse(localStorage.getItem('privatePosts')) || [];
+
+        function renderPrivatePosts() {
+            const container = document.getElementById('privatePosts');
+            if (privatePosts.length === 0) {
+                container.innerHTML = `<div class="post-empty">Belum ada lokasi pribadi</div>`;
+                return;
+            }
+
+            let html = '';
+            privatePosts.forEach((post, index) => {
+                html += `
+                    <div class="post-item">
+                        <button class="delete-post" onclick="deletePrivatePost(${index})">
                             <i class="fas fa-trash"></i>
                         </button>
                         <div class="post-place">📍 ${post.place}</div>
@@ -826,12 +971,12 @@
             container.innerHTML = html;
         }
 
-        function addPost() {
-            const place = document.getElementById('placeInput').value.trim();
-            const location = document.getElementById('locationInput').value.trim();
+        function addPrivatePost() {
+            const place = document.getElementById('privatePlace').value.trim();
+            const location = document.getElementById('privateLocation').value.trim();
 
             if (!place || !location) {
-                alert('⚠️ Isi nama tempat dan lokasi dulu!');
+                alert('⚠️ Isi alamat/tempat dan lokasi dulu!');
                 return;
             }
 
@@ -839,21 +984,21 @@
             const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + 
                          ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
 
-            posts.unshift({ place, location, time });
-            localStorage.setItem('timelinePosts', JSON.stringify(posts));
-            renderPosts();
+            privatePosts.unshift({ place, location, time });
+            localStorage.setItem('privatePosts', JSON.stringify(privatePosts));
+            renderPrivatePosts();
 
-            document.getElementById('placeInput').value = '';
-            document.getElementById('locationInput').value = '';
+            document.getElementById('privatePlace').value = '';
+            document.getElementById('privateLocation').value = '';
         }
 
-        function deletePost(index) {
-            posts.splice(index, 1);
-            localStorage.setItem('timelinePosts', JSON.stringify(posts));
-            renderPosts();
+        function deletePrivatePost(index) {
+            privatePosts.splice(index, 1);
+            localStorage.setItem('privatePosts', JSON.stringify(privatePosts));
+            renderPrivatePosts();
         }
 
-        renderPosts();
+        renderPrivatePosts();
     </script>
 
 </body>
