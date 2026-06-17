@@ -38,26 +38,42 @@
             backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 50px 40px;
-            max-width: 550px;
+            max-width: 600px;
             width: 100%;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        .avatar {
-            width: 120px;
-            height: 120px;
+        .container::-webkit-scrollbar {
+            width: 5px;
+        }
+        .container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .container::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .profile-photo {
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
             margin: 0 auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 50px;
-            font-weight: bold;
-            color: white;
+            display: block;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.2);
             box-shadow: 0 10px 30px rgba(245,87,108,0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            border-color: #f5576c;
         }
 
         .name {
@@ -85,6 +101,312 @@
             border-radius: 10px;
         }
 
+        /* ===== BIO EDITABLE ===== */
+        .bio {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .bio:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .bio p {
+            font-size: 1em;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .bio .emoji {
+            font-size: 1.2em;
+        }
+
+        .bio .edit-hint {
+            font-size: 0.7em;
+            color: rgba(255,255,255,0.25);
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* ===== NOTE EDITABLE ===== */
+        .note {
+            background: rgba(255,255,255,0.03);
+            border-left: 4px solid #f5576c;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 0 15px 15px 0;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .note:hover {
+            background: rgba(255,255,255,0.06);
+        }
+
+        .note p {
+            font-size: 0.95em;
+            color: rgba(255,255,255,0.7);
+            font-style: italic;
+        }
+
+        .note .author {
+            font-style: normal;
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.4);
+            margin-top: 5px;
+            display: block;
+        }
+
+        .note .edit-hint {
+            font-size: 0.7em;
+            color: rgba(255,255,255,0.2);
+            display: block;
+            margin-top: 5px;
+            font-style: normal;
+        }
+
+        /* ===== UPLOAD FOTO ===== */
+        .upload-section {
+            margin-bottom: 25px;
+        }
+
+        .upload-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(245,87,108,0.3);
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 35px rgba(245,87,108,0.5);
+        }
+
+        .upload-btn input {
+            display: none;
+        }
+
+        /* ===== KOLEKSI FOTO ===== */
+        .collection-title {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            min-height: 100px;
+        }
+
+        .collection-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: rgba(255,255,255,0.2);
+        }
+
+        .collection-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .collection-item .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0,0,0,0.7);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 0.7em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .collection-item .delete-btn:hover {
+            background: #f5576c;
+            transform: scale(1.1);
+        }
+
+        .collection-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 20px;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.9em;
+        }
+
+        /* ===== TIMELINE LOKASI ===== */
+        .timeline-section {
+            margin-bottom: 25px;
+        }
+
+        .timeline-title {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .timeline-form input {
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 0.9em;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .timeline-form input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .timeline-form input:focus {
+            border-color: #f5576c;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .timeline-form .form-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .timeline-form .form-row input {
+            flex: 1;
+        }
+
+        .timeline-form .post-btn {
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+            font-weight: 700;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timeline-form .post-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79,172,254,0.3);
+        }
+
+        /* ===== TIMELINE POST ===== */
+        .timeline-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .timeline-posts::-webkit-scrollbar {
+            width: 3px;
+        }
+        .timeline-posts::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .post-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+
+        .post-item:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .post-item .post-place {
+            font-weight: 700;
+            color: white;
+            font-size: 1em;
+        }
+
+        .post-item .post-location {
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.5);
+            display: block;
+            margin-top: 3px;
+        }
+
+        .post-item .post-time {
+            font-size: 0.7em;
+            color: rgba(255,255,255,0.3);
+            display: block;
+            margin-top: 5px;
+        }
+
+        .post-item .delete-post {
+            float: right;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.2);
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.3s;
+        }
+
+        .post-item .delete-post:hover {
+            color: #f5576c;
+        }
+
+        .post-empty {
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* ===== BERANDA ===== */
         .home-section {
             margin-bottom: 25px;
         }
@@ -110,6 +432,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
+        /* ===== SEARCH ===== */
         .search-section {
             margin-bottom: 30px;
         }
@@ -157,6 +480,7 @@
         .btn-yahoo:hover { background: #6001d2; border-color: #6001d2; }
         .btn-firefox:hover { background: #ff7139; border-color: #ff7139; }
 
+        /* ===== SOSIAL MEDIA ===== */
         .social-grid {
             display: flex;
             flex-direction: column;
@@ -239,6 +563,8 @@
             .name { font-size: 1.8em; }
             .search-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
             .search-btn { font-size: 0.75em; padding: 8px 10px; }
+            .collection-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .timeline-form .form-row { flex-direction: column; }
         }
     </style>
 </head>
@@ -248,19 +574,77 @@
     <div class="glow glow-2"></div>
 
     <div class="container">
-        <div class="avatar">A</div>
+        
+        <!-- FOTO PROFIL (klik untuk ganti) -->
+        <img src="https://via.placeholder.com/130/667eea/white?text=FOTO" alt="Foto Profil" class="profile-photo" id="profilePhoto">
 
         <h1 class="name">alfatt519.web</h1>
         <p class="subtitle">✦ Personal Website ✦</p>
 
         <div class="divider"></div>
 
+        <!-- ===== BIO EDITABLE ===== -->
+        <div class="bio" id="bioContainer" onclick="editBio()">
+            <p id="bioText">
+                <span class="emoji">💪</span> tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung
+            </p>
+            <span class="edit-hint">✏️ Klik untuk edit bio</span>
+        </div>
+
+        <!-- ===== NOTE EDITABLE ===== -->
+        <div class="note" id="noteContainer" onclick="editNote()">
+            <p id="noteText">
+                "✨ Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai."
+                <span class="author">— al fatt</span>
+            </p>
+            <span class="edit-hint">✏️ Klik untuk edit note</span>
+        </div>
+
+        <!-- ===== UPLOAD FOTO ===== -->
+        <div class="upload-section">
+            <label class="upload-btn">
+                <i class="fas fa-upload"></i> Upload Foto
+                <input type="file" id="photoInput" accept="image/*" multiple>
+            </label>
+        </div>
+
+        <!-- ===== KOLEKSI FOTO ===== -->
+        <p class="collection-title">📸 Koleksi Foto</p>
+        <div class="collection-grid" id="collectionGrid">
+            <div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ===== TIMELINE LOKASI ===== -->
+        <div class="timeline-section">
+            <p class="timeline-title">📍 Timeline Lokasi</p>
+            
+            <div class="timeline-form">
+                <div class="form-row">
+                    <input type="text" id="placeInput" placeholder="Nama Tempat (contoh: Pantai Kuta)">
+                    <input type="text" id="locationInput" placeholder="Lokasi (contoh: Bali, Indonesia)">
+                </div>
+                <button class="post-btn" onclick="addPost()">
+                    <i class="fas fa-map-pin"></i> Posting Lokasi
+                </button>
+            </div>
+
+            <div class="timeline-posts" id="timelinePosts">
+                <div class="post-empty">Belum ada postingan lokasi<br>Jadi orang pertama yang posting!</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ===== BERANDA ===== -->
         <div class="home-section">
             <a href="#" class="home-btn" onclick="alert('🏠 Selamat datang di Beranda al fatt!')">
                 <i class="fas fa-house"></i> Beranda
             </a>
         </div>
 
+        <!-- ===== MESIN PENCARI ===== -->
         <div class="search-section">
             <p class="search-title">🔍 Cari di Mesin Pencari</p>
             <div class="search-grid">
@@ -281,6 +665,7 @@
 
         <div class="divider"></div>
 
+        <!-- ===== SOSIAL MEDIA ===== -->
         <div class="social-grid">
             
             <a href="https://instagram.com/nashmuhammad11" target="_blank" class="social-btn btn-instagram">
@@ -299,6 +684,177 @@
 
         <p class="footer">© 2026 • Terhubung dengan saya</p>
     </div>
+
+    <script>
+        // ===== 1. EDIT BIO =====
+        function editBio() {
+            const bioText = document.getElementById('bioText');
+            const currentText = bioText.textContent.replace('✏️ Klik untuk edit bio', '').trim();
+            const newText = prompt('✏️ Edit Bio:', currentText);
+            if (newText !== null && newText.trim() !== '') {
+                bioText.innerHTML = `<span class="emoji">💪</span> ${newText.trim()}`;
+                localStorage.setItem('bioContent', newText.trim());
+            }
+        }
+
+        // Load bio dari LocalStorage
+        const savedBio = localStorage.getItem('bioContent');
+        if (savedBio) {
+            document.getElementById('bioText').innerHTML = `<span class="emoji">💪</span> ${savedBio}`;
+        }
+
+        // ===== 2. EDIT NOTE =====
+        function editNote() {
+            const noteText = document.getElementById('noteText');
+            const currentText = noteText.textContent.replace('✏️ Klik untuk edit note', '').replace('— al fatt', '').replace(/"/g, '').trim();
+            const newNote = prompt('✏️ Edit Note:', currentText);
+            if (newNote !== null && newNote.trim() !== '') {
+                noteText.innerHTML = `"✨ ${newNote.trim()}" <span class="author">— al fatt</span>`;
+                localStorage.setItem('noteContent', newNote.trim());
+            }
+        }
+
+        // Load note dari LocalStorage
+        const savedNote = localStorage.getItem('noteContent');
+        if (savedNote) {
+            document.getElementById('noteText').innerHTML = `"✨ ${savedNote}" <span class="author">— al fatt</span>`;
+        }
+
+        // ===== 3. UPLOAD FOTO & KOLEKSI =====
+        const photoInput = document.getElementById('photoInput');
+        const collectionGrid = document.getElementById('collectionGrid');
+
+        let photos = JSON.parse(localStorage.getItem('fotoKoleksi')) || [];
+
+        function renderCollection() {
+            if (photos.length === 0) {
+                collectionGrid.innerHTML = `<div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>`;
+                return;
+            }
+
+            let html = '';
+            photos.forEach((src, index) => {
+                html += `
+                    <div class="collection-item">
+                        <img src="${src}" alt="Foto ${index + 1}">
+                        <button class="delete-btn" onclick="deletePhoto(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            collectionGrid.innerHTML = html;
+        }
+
+        function deletePhoto(index) {
+            photos.splice(index, 1);
+            localStorage.setItem('fotoKoleksi', JSON.stringify(photos));
+            renderCollection();
+        }
+
+        photoInput.addEventListener('change', function(e) {
+            const files = e.target.files;
+            
+            for (let file of files) {
+                if (!file.type.startsWith('image/')) continue;
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    photos.push(event.target.result);
+                    localStorage.setItem('fotoKoleksi', JSON.stringify(photos));
+                    renderCollection();
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            photoInput.value = '';
+        });
+
+        renderCollection();
+
+        // ===== 4. FOTO PROFIL =====
+        const profilePhoto = document.getElementById('profilePhoto');
+        const profileInput = document.createElement('input');
+        profileInput.type = 'file';
+        profileInput.accept = 'image/*';
+        profileInput.style.display = 'none';
+
+        profilePhoto.addEventListener('click', function() {
+            profileInput.click();
+        });
+
+        profileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                profilePhoto.src = event.target.result;
+                localStorage.setItem('fotoProfil', event.target.result);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        const savedProfile = localStorage.getItem('fotoProfil');
+        if (savedProfile) {
+            profilePhoto.src = savedProfile;
+        }
+
+        // ===== 5. TIMELINE LOKASI =====
+        let posts = JSON.parse(localStorage.getItem('timelinePosts')) || [];
+
+        function renderPosts() {
+            const container = document.getElementById('timelinePosts');
+            if (posts.length === 0) {
+                container.innerHTML = `<div class="post-empty">Belum ada postingan lokasi<br>Jadi orang pertama yang posting!</div>`;
+                return;
+            }
+
+            let html = '';
+            posts.forEach((post, index) => {
+                html += `
+                    <div class="post-item">
+                        <button class="delete-post" onclick="deletePost(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <div class="post-place">📍 ${post.place}</div>
+                        <span class="post-location">${post.location}</span>
+                        <span class="post-time">🕐 ${post.time}</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function addPost() {
+            const place = document.getElementById('placeInput').value.trim();
+            const location = document.getElementById('locationInput').value.trim();
+
+            if (!place || !location) {
+                alert('⚠️ Isi nama tempat dan lokasi dulu!');
+                return;
+            }
+
+            const now = new Date();
+            const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + 
+                         ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+            posts.unshift({ place, location, time });
+            localStorage.setItem('timelinePosts', JSON.stringify(posts));
+            renderPosts();
+
+            document.getElementById('placeInput').value = '';
+            document.getElementById('locationInput').value = '';
+        }
+
+        function deletePost(index) {
+            posts.splice(index, 1);
+            localStorage.setItem('timelinePosts', JSON.stringify(posts));
+            renderPosts();
+        }
+
+        renderPosts();
+    </script>
 
 </body>
 </html>
