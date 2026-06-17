@@ -1,497 +1,699 @@
-git add .
-git commit -m "Update website"
-git push origin main<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>alfatt519.web - Beranda</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            padding: 20px;
-        }
-        .container {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px 40px;
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .container::-webkit-scrollbar { width: 5px; }
-        .container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>alfatt28 · Personal Space</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    }
 
-        .profile-photo {
-            width: 130px; height: 130px; border-radius: 50%;
-            margin: 0 auto 20px; display: block; object-fit: cover;
-            border: 4px solid rgba(255,255,255,0.2);
-            box-shadow: 0 10px 30px rgba(245,87,108,0.4);
-            cursor: pointer; transition: all 0.3s;
-        }
-        .profile-photo:hover { transform: scale(1.05); border-color: #f5576c; }
+    body {
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
 
-        .name {
-            font-size: 2.5em; font-weight: 700;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .subtitle { font-size: 1em; color: rgba(255,255,255,0.6); margin: 10px 0 30px; letter-spacing: 2px; }
-        .divider { width: 60px; height: 3px; background: linear-gradient(135deg, #f093fb, #f5576c); margin: 30px auto; border-radius: 10px; }
+    .card {
+      max-width: 400px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 24px 20px 28px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+      transition: all 0.2s;
+    }
 
-        /* JUDUL BERANDA */
-        .beranda-title {
-            font-size: 1.8em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: white;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(245,87,108,0.3);
-        }
-        .beranda-title i {
-            color: #f5576c;
-            margin-right: 10px;
-        }
+    /* ===== HEADER ===== */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
 
-        .bio {
-            background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px;
-            margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.08);
-            cursor: pointer; transition: all 0.3s;
-        }
-        .bio:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
-        .bio p { font-size: 1em; line-height: 1.8; color: rgba(255,255,255,0.85); }
-        .bio .edit-hint { font-size: 0.7em; color: rgba(255,255,255,0.25); display: block; margin-top: 5px; }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .note {
-            background: rgba(255,255,255,0.03); border-left: 4px solid #f5576c;
-            padding: 15px 20px; margin-bottom: 25px; border-radius: 0 15px 15px 0;
-            text-align: left; cursor: pointer; transition: all 0.3s;
-        }
-        .note:hover { background: rgba(255,255,255,0.06); }
-        .note p { font-size: 0.95em; color: rgba(255,255,255,0.7); font-style: italic; }
-        .note .author { font-style: normal; font-size: 0.8em; color: rgba(255,255,255,0.4); margin-top: 5px; display: block; }
-        .note .edit-hint { font-size: 0.7em; color: rgba(255,255,255,0.2); display: block; margin-top: 5px; font-style: normal; }
+    .header-left i {
+      font-size: 20px;
+      color: #1e2b3c;
+      background: #f0f4fa;
+      padding: 8px 10px;
+      border-radius: 14px;
+    }
 
-        .upload-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            padding: 12px 25px; background: linear-gradient(135deg, #f093fb, #f5576c);
-            border: none; border-radius: 50px; color: white; font-weight: 700;
-            font-size: 0.95em; cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(245,87,108,0.3);
-        }
-        .upload-btn:hover { transform: translateY(-3px) scale(1.03); }
-        .upload-btn input { display: none; }
+    .header-left .date {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1e2b3c;
+      letter-spacing: 0.2px;
+    }
 
-        .collection-title { font-size: 0.9em; color: rgba(255,255,255,0.5); margin: 20px 0 12px; letter-spacing: 1px; }
-        .collection-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-            margin-bottom: 15px; min-height: 100px;
-        }
-        .collection-item {
-            position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1/1;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2em; color: rgba(255,255,255,0.2);
-        }
-        .collection-item img { width: 100%; height: 100%; object-fit: cover; }
-        .collection-item .delete-btn {
-            position: absolute; top: 5px; right: 5px;
-            background: rgba(0,0,0,0.7); border: none; color: white;
-            border-radius: 50%; width: 25px; height: 25px; font-size: 0.7em;
-            cursor: pointer; transition: all 0.3s;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .collection-item .delete-btn:hover { background: #f5576c; transform: scale(1.1); }
-        .collection-empty {
-            grid-column: 1 / -1; text-align: center; padding: 20px;
-            color: rgba(255,255,255,0.3); font-size: 0.9em;
-        }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .timeline-visitor {
-            background: rgba(255,255,255,0.03); border-radius: 15px; padding: 20px;
-            margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.08);
-        }
-        .timeline-visitor .section-title {
-            font-size: 0.9em; color: rgba(255,255,255,0.5); margin-bottom: 12px; letter-spacing: 1px;
-        }
-        .timeline-visitor .timeline-form {
-            display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;
-        }
-        .timeline-visitor .timeline-form input {
-            padding: 12px 15px; border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
-            color: white; font-size: 0.9em; outline: none; transition: all 0.3s;
-        }
-        .timeline-visitor .timeline-form input::placeholder { color: rgba(255,255,255,0.3); }
-        .timeline-visitor .timeline-form input:focus { border-color: #f5576c; background: rgba(255,255,255,0.08); }
-        .timeline-visitor .timeline-form .form-row { display: flex; gap: 10px; }
-        .timeline-visitor .timeline-form .form-row input { flex: 1; }
-        .timeline-visitor .post-btn {
-            padding: 12px; border-radius: 12px; border: none;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            color: white; font-weight: 700; font-size: 0.95em; cursor: pointer; transition: all 0.3s;
-        }
-        .timeline-visitor .post-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(79,172,254,0.3); }
+    .header-right i {
+      font-size: 18px;
+      color: #2c3e50;
+      opacity: 0.6;
+    }
 
-        .timeline-private {
-            background: rgba(255,255,255,0.03); border-radius: 15px; padding: 20px;
-            margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.08);
-            border-left: 4px solid #f093fb;
-        }
-        .timeline-private .section-title {
-            font-size: 0.9em; color: rgba(255,255,255,0.5); margin-bottom: 12px; letter-spacing: 1px;
-        }
-        .timeline-private .private-form {
-            display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;
-        }
-        .timeline-private .private-form input {
-            padding: 12px 15px; border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
-            color: white; font-size: 0.9em; outline: none; transition: all 0.3s;
-        }
-        .timeline-private .private-form input::placeholder { color: rgba(255,255,255,0.3); }
-        .timeline-private .private-form input:focus { border-color: #f093fb; background: rgba(255,255,255,0.08); }
-        .timeline-private .private-btn {
-            padding: 12px; border-radius: 12px; border: none;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            color: white; font-weight: 700; font-size: 0.95em; cursor: pointer; transition: all 0.3s;
-        }
-        .timeline-private .private-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,87,108,0.3); }
+    .badge-pro {
+      background: #e8edf4;
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #1a2b3c;
+      letter-spacing: 0.3px;
+    }
 
-        .timeline-posts {
-            display: flex; flex-direction: column; gap: 12px;
-            max-height: 200px; overflow-y: auto; padding-right: 5px;
-        }
-        .timeline-posts::-webkit-scrollbar { width: 3px; }
-        .timeline-posts::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-        .post-item {
-            background: rgba(255,255,255,0.05); border-radius: 12px; padding: 15px;
-            text-align: left; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s;
-        }
-        .post-item:hover { background: rgba(255,255,255,0.08); }
-        .post-item .post-place { font-weight: 700; color: white; font-size: 1em; }
-        .post-item .post-location { font-size: 0.85em; color: rgba(255,255,255,0.5); display: block; margin-top: 3px; }
-        .post-item .post-time { font-size: 0.7em; color: rgba(255,255,255,0.3); display: block; margin-top: 5px; }
-        .post-item .post-author { font-size: 0.7em; color: rgba(255,255,255,0.2); display: inline-block; margin-top: 5px; }
-        .post-item .delete-post {
-            float: right; background: none; border: none; color: rgba(255,255,255,0.2);
-            cursor: pointer; font-size: 0.8em; transition: all 0.3s;
-        }
-        .post-item .delete-post:hover { color: #f5576c; }
-        .post-empty {
-            text-align: center; color: rgba(255,255,255,0.3);
-            padding: 20px; font-size: 0.9em;
-        }
+    /* ===== PROFILE ===== */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
 
-        .search-section { margin: 20px 0; }
-        .search-title { font-size: 0.9em; color: rgba(255,255,255,0.5); margin-bottom: 12px; letter-spacing: 1px; }
-        .search-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .search-btn {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 10px 12px; border-radius: 12px; text-decoration: none; color: white;
-            font-weight: 600; font-size: 0.85em; transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.05);
-        }
-        .search-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-        .search-btn i { font-size: 1.2em; }
-        .btn-google:hover { background: #ea4335; border-color: #ea4335; }
-        .btn-bing:hover { background: #0078d4; border-color: #0078d4; }
-        .btn-yahoo:hover { background: #6001d2; border-color: #6001d2; }
-        .btn-firefox:hover { background: #ff7139; border-color: #ff7139; }
+    .avatar {
+      width: 54px;
+      height: 54px;
+      background: #1e2b3c;
+      border-radius: 27px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
 
-        .social-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
-        .social-btn {
-            display: flex; align-items: center; justify-content: center; gap: 15px;
-            padding: 16px 20px; border-radius: 15px; text-decoration: none; color: white;
-            font-weight: 600; font-size: 1.1em; transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
-        }
-        .social-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .social-btn i { font-size: 1.8em; width: 40px; text-align: center; }
-        .btn-instagram:hover { background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949, #d6249f, #285aeb); border-color: #d6249f; }
-        .btn-facebook:hover { background: #1877f2; border-color: #1877f2; }
-        .btn-whatsapp:hover { background: #25d366; border-color: #25d366; }
+    .profile-info h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f1a26;
+      letter-spacing: -0.3px;
+    }
 
-        .footer { margin-top: 30px; font-size: 0.8em; color: rgba(255,255,255,0.3); }
-        .glow {
-            position: fixed; width: 300px; height: 300px; border-radius: 50%; filter: blur(100px); z-index: -1;
-        }
-        .glow-1 { top: -100px; right: -100px; background: #f5576c; opacity: 0.3; }
-        .glow-2 { bottom: -100px; left: -100px; background: #4facfe; opacity: 0.2; }
+    .profile-info .sub {
+      font-size: 12px;
+      color: #5b738a;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
 
-        @media (max-width: 450px) {
-            .container { padding: 30px 20px; }
-            .name { font-size: 1.8em; }
-            .search-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .search-btn { font-size: 0.75em; padding: 8px 10px; }
-            .collection-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-            .timeline-visitor .timeline-form .form-row { flex-direction: column; }
-        }
-    </style>
+    /* ===== TABS ===== */
+    .tabs {
+      display: flex;
+      background: #f0f4fa;
+      padding: 4px;
+      border-radius: 40px;
+      margin-bottom: 22px;
+      gap: 2px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 0;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #4d667e;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+
+    .tab-btn i {
+      margin-right: 5px;
+      font-size: 13px;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: #0f1a26;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ===== STATS ===== */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      background: #f8faff;
+      padding: 12px 10px;
+      border-radius: 24px;
+      margin-bottom: 22px;
+      border: 1px solid #eaeef5;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item .angka {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f1a26;
+    }
+
+    .stat-item .label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #6f889e;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== PAGES ===== */
+    .page {
+      display: none;
+      animation: fade 0.2s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: #f8faff;
+      padding: 14px 16px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      border: 1px solid #eaeef5;
+    }
+
+    .info-box .label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6f889e;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .info-box .value {
+      font-size: 14px;
+      font-weight: 500;
+      color: #0f1a26;
+      line-height: 1.5;
+    }
+
+    .info-box .value i {
+      margin-right: 5px;
+      color: #2c3e50;
+      opacity: 0.5;
+    }
+
+    /* ===== MOOD ===== */
+    .mood-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .mood-tag {
+      background: white;
+      padding: 5px 14px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #1e2b3c;
+      border: 1px solid #e2e9f2;
+    }
+
+    .mood-tag i {
+      margin-right: 4px;
+    }
+
+    /* ===== SOCIAL ===== */
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .social-item {
+      background: white;
+      padding: 4px 14px 4px 10px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #e2e9f2;
+      color: #1e2b3c;
+    }
+
+    .social-item i {
+      font-size: 14px;
+      width: 18px;
+      color: #1e2b3c;
+    }
+
+    .whatsapp-btn {
+      background: #1e2b3c;
+      color: white !important;
+      border: none;
+      padding: 4px 16px 4px 12px;
+    }
+
+    .whatsapp-btn i {
+      color: white;
+    }
+
+    /* ===== PRO NOTE ===== */
+    .pro-note {
+      background: #eef3f9;
+      border-radius: 60px;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 12px;
+      color: #1e2b3c;
+    }
+
+    .pro-note span i {
+      margin-right: 6px;
+    }
+
+    .pro-note .upgrade {
+      font-weight: 600;
+      background: white;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 11px;
+      color: #0f1a26;
+    }
+
+    /* ===== CALCULATOR ===== */
+    .calculator {
+      background: #f8faff;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid #eaeef5;
+      margin-bottom: 14px;
+    }
+
+    .calc-input {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .calc-input input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid #dce3ed;
+      border-radius: 40px;
+      font-size: 14px;
+      background: white;
+      outline: none;
+      transition: 0.15s;
+    }
+
+    .calc-input input:focus {
+      border-color: #1e2b3c;
+    }
+
+    .calc-result {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0f1a26;
+      background: white;
+      padding: 8px 16px;
+      border-radius: 40px;
+      text-align: center;
+      border: 1px solid #dce3ed;
+    }
+
+    .calc-btn {
+      background: #1e2b3c;
+      border: none;
+      color: white;
+      padding: 0 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .calc-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* ===== QUOTE ===== */
+    .quote-box {
+      background: #f0f6fe;
+      padding: 14px 16px;
+      border-radius: 20px;
+      border-left: 4px solid #1e2b3c;
+      font-style: italic;
+      color: #1a2b3c;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .quote-box i {
+      opacity: 0.4;
+      margin-right: 6px;
+    }
+
+    .quote-nav {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 6px;
+    }
+
+    .quote-nav button {
+      background: transparent;
+      border: 1px solid #dce3ed;
+      padding: 4px 16px;
+      border-radius: 40px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #1e2b3c;
+      transition: 0.15s;
+    }
+
+    .quote-nav button:hover {
+      background: #eef3f9;
+    }
+
+    /* ===== EXPLORE FOOTER ===== */
+    .explore-footer {
+      background: #f0f4fa;
+      border-radius: 60px;
+      padding: 8px 16px;
+      font-size: 12px;
+      color: #1e2b3c;
+      text-align: center;
+    }
+
+    .explore-footer i {
+      margin-right: 6px;
+    }
+
+    /* ===== MISC ===== */
+    hr {
+      border: none;
+      border-top: 1px solid #e8edf4;
+      margin: 18px 0 10px;
+    }
+
+    .footer-small {
+      font-size: 11px;
+      color: #8aa0b5;
+      text-align: center;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 440px) {
+      .card {
+        padding: 18px 14px 22px;
+      }
+      .tab-btn {
+        font-size: 12px;
+        padding: 8px 0;
+      }
+      .tab-btn i {
+        margin-right: 3px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
-    <div class="container">
+<div class="card" id="app">
 
-        <img src="https://via.placeholder.com/130/667eea/white?text=FOTO" alt="Foto Profil" class="profile-photo" id="profilePhoto">
-        <h1 class="name">alfatt519.web</h1>
-        <p class="subtitle">✦ Personal Website ✦</p>
-        <div class="divider"></div>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <i class="fas fa-folder-open"></i>
+      <span class="date">03.26</span>
+    </div>
+    <div class="header-right">
+      <i class="far fa-bell"></i>
+      <span class="badge-pro">PRO</span>
+    </div>
+  </div>
 
-        <!-- ===== JUDUL BERANDA ===== -->
-        <div class="beranda-title">
-            <i class="fas fa-home"></i> Beranda
+  <!-- PROFILE -->
+  <div class="profile">
+    <div class="avatar">A</div>
+    <div class="profile-info">
+      <h2>alfatt519</h2>
+      <div class="sub">PERSONAL SPACE</div>
+    </div>
+  </div>
+
+  <!-- TABS (tanpa #) -->
+  <div class="tabs" id="tabContainer">
+    <button class="tab-btn active" data-page="beranda"><i class="fas fa-home"></i> Beranda</button>
+    <button class="tab-btn" data-page="galeri"><i class="fas fa-image"></i> Galeri</button>
+    <button class="tab-btn" data-page="timeline"><i class="fas fa-clock"></i> Timeline</button>
+    <button class="tab-btn" data-page="catatan"><i class="fas fa-pen"></i> Catatan</button>
+    <button class="tab-btn" data-page="jelajah"><i class="fas fa-compass"></i> Jelajah</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item"><div class="angka">0</div><div class="label">Foto</div></div>
+    <div class="stat-item"><div class="angka">0</div><div class="label">Timeline</div></div>
+    <div class="stat-item"><div class="angka">0</div><div class="label">Catatan</div></div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ===== BERANDA ===== -->
+    <div id="page-beranda" class="page active">
+      <div class="info-box">
+        <div class="label">TENTANG</div>
+        <div class="value">tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung 😉</div>
+      </div>
+      <div class="info-box">
+        <div class="label">KUTIPAN</div>
+        <div class="value">“Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.”</div>
+      </div>
+      <div class="info-box">
+        <div class="label">MOOD HARI INI</div>
+        <div class="mood-row">
+          <span class="mood-tag"><i class="fas fa-leaf"></i> Semangat 🌱</span>
+          <span class="mood-tag"><i class="fas fa-smile"></i> Santi 😊</span>
+          <span class="mood-tag"><i class="fas fa-bullseye"></i> Fokus 🎯</span>
+          <span class="mood-tag"><i class="fas fa-meh"></i> Galau 😏</span>
         </div>
-
-        <!-- ===== KONTEN BERANDA ===== -->
-        <div class="bio" onclick="editBio()">
-            <p id="bioText">💪 tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung</p>
-            <span class="edit-hint">✏️ Klik untuk edit bio</span>
+      </div>
+      <div class="info-box">
+        <div class="label">TEMUKAN SAYA</div>
+        <div class="social-row">
+          <span class="social-item"><i class="fab fa-instagram"></i> @nashmuhammad11</span>
+          <span class="social-item"><i class="fab fa-facebook"></i> af.nazril.a</span>
+          <span class="social-item whatsapp-btn"><i class="fab fa-whatsapp"></i> Chat Langsung</span>
         </div>
-
-        <div class="note" onclick="editNote()">
-            <p id="noteText">"✨ Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai." <span class="author">— al fatt</span></p>
-            <span class="edit-hint">✏️ Klik untuk edit note</span>
-        </div>
-
-        <div>
-            <label class="upload-btn"><i class="fas fa-upload"></i> Upload Foto <input type="file" id="photoInput" accept="image/*" multiple></label>
-        </div>
-
-        <p class="collection-title">📸 Koleksi Foto</p>
-        <div class="collection-grid" id="collectionGrid">
-            <div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="timeline-visitor">
-            <p class="section-title">📍 Timeline Pengunjung</p>
-            <div class="timeline-form">
-                <div class="form-row">
-                    <input type="text" id="visitorPlace" placeholder="Nama Tempat (contoh: Pantai Kuta)">
-                    <input type="text" id="visitorLocation" placeholder="Lokasi (contoh: Bali, Indonesia)">
-                </div>
-                <input type="text" id="visitorName" placeholder="Nama Kamu (opsional)">
-                <button class="post-btn" onclick="addVisitorPost()"><i class="fas fa-map-pin"></i> Posting Lokasi</button>
-            </div>
-            <div class="timeline-posts" id="visitorPosts">
-                <div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>
-            </div>
-        </div>
-
-        <div class="timeline-private">
-            <p class="section-title">🔒 Timeline Pribadi (Hanya Saya)</p>
-            <div class="private-form">
-                <div class="form-row">
-                    <input type="text" id="privatePlace" placeholder="Alamat / Tempat Pribadi">
-                    <input type="text" id="privateLocation" placeholder="Lokasi (kota/daerah)">
-                </div>
-                <button class="private-btn" onclick="addPrivatePost()"><i class="fas fa-lock"></i> Simpan Lokasi Pribadi</button>
-            </div>
-            <div class="timeline-posts" id="privatePosts">
-                <div class="post-empty">Belum ada lokasi pribadi</div>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ===== MESIN PENCARI (DI LUAR BERANDA) ===== -->
-        <div class="search-section">
-            <p class="search-title">🔍 Cari di Mesin Pencari</p>
-            <div class="search-grid">
-                <a href="https://www.google.com" target="_blank" class="search-btn btn-google"><i class="fab fa-google"></i> Google</a>
-                <a href="https://www.bing.com" target="_blank" class="search-btn btn-bing"><i class="fab fa-microsoft"></i> Bing</a>
-                <a href="https://search.yahoo.com" target="_blank" class="search-btn btn-yahoo"><i class="fab fa-yahoo"></i> Yahoo</a>
-                <a href="https://www.firefox.com" target="_blank" class="search-btn btn-firefox"><i class="fab fa-firefox"></i> Firefox</a>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ===== SOSIAL MEDIA (DI LUAR BERANDA) ===== -->
-        <div class="social-grid">
-            <a href="https://instagram.com/nashmuhammad11" target="_blank" class="social-btn btn-instagram"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://m.facebook.com/af.nazril.a/" target="_blank" class="social-btn btn-facebook"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://wa.me/6281231868636" target="_blank" class="social-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
-
-        <p class="footer">© 2026 • Terhubung dengan saya</p>
+      </div>
+      <div class="pro-note">
+        <span><i class="far fa-clock"></i> Kamu kehabisan pesan sampai 07:50</span>
+        <span class="upgrade">Tingkatkan ke Pro</span>
+      </div>
     </div>
 
-    <script>
-        // ===== BIO =====
-        function editBio() {
-            const bioText = document.getElementById('bioText');
-            const currentText = bioText.textContent.replace('✏️ Klik untuk edit bio', '').trim();
-            const newText = prompt('✏️ Edit Bio (hanya untuk kamu):', currentText);
-            if (newText !== null && newText.trim() !== '') {
-                bioText.innerHTML = `💪 ${newText.trim()}`;
-                localStorage.setItem('bioContent', newText.trim());
-            }
+    <!-- ===== GALERI ===== -->
+    <div id="page-galeri" class="page">
+      <div class="info-box">
+        <div class="label">📸 GALERI</div>
+        <div class="value" style="font-weight:400;">Belum ada foto. Unggah karya terbaikmu!</div>
+        <div style="margin-top:12px; background:#eef3f9; border-radius:60px; padding:10px 16px; text-align:center; font-size:13px; color:#1e2b3c;">
+          <i class="fas fa-cloud-upload-alt"></i> Tambah foto
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TIMELINE ===== -->
+    <div id="page-timeline" class="page">
+      <div class="info-box">
+        <div class="label">⏳ TIMELINE</div>
+        <div class="value" style="font-weight:400;">Belum ada aktivitas. Mulai bagikan momen!</div>
+      </div>
+    </div>
+
+    <!-- ===== CATATAN ===== -->
+    <div id="page-catatan" class="page">
+      <div class="info-box">
+        <div class="label">📝 CATATAN</div>
+        <div class="value" style="font-weight:400;">Tulis ide, rencana, atau pelajaran hari ini.</div>
+        <div style="margin-top:12px; background:#eef3f9; border-radius:60px; padding:10px 16px; text-align:center; font-size:13px; color:#1e2b3c;">
+          <i class="fas fa-plus-circle"></i> Buat catatan baru
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== JELAJAH ===== -->
+    <div id="page-jelajah" class="page">
+      <!-- Kalkulator -->
+      <div class="calculator">
+        <div style="font-weight:600; margin-bottom:8px; color:#1e2b3c; font-size:14px;">
+          <i class="fas fa-calculator"></i> Kalkulator cepat
+        </div>
+        <div class="calc-input">
+          <input type="text" id="calcInput" placeholder="misal: 12 + 8" value="12 + 8">
+          <button class="calc-btn" id="calcBtn">=</button>
+        </div>
+        <div class="calc-result" id="calcResult">20</div>
+      </div>
+
+      <!-- Quote -->
+      <div class="quote-box" id="quoteBox">
+        <i class="fas fa-quote-left"></i>
+        <span id="quoteText">Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.</span>
+      </div>
+      <div class="quote-nav">
+        <button id="nextQuoteBtn"><i class="fas fa-sync-alt"></i> kutipan lain</button>
+      </div>
+
+      <!-- Explore footer -->
+      <div class="explore-footer">
+        <i class="fas fa-globe-asia"></i> Jelajahi lebih banyak fitur
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="footer-small">
+    <i class="far fa-copyright"></i> alfatt28.github.io · personal space
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ===== TAB NAVIGASI (tanpa #) =====
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const pages = {
+      beranda: document.getElementById('page-beranda'),
+      galeri: document.getElementById('page-galeri'),
+      timeline: document.getElementById('page-timeline'),
+      catatan: document.getElementById('page-catatan'),
+      jelajah: document.getElementById('page-jelajah')
+    };
+
+    function setActiveTab(pageId) {
+      // update tombol
+      tabButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.page === pageId);
+      });
+      // update halaman
+      Object.keys(pages).forEach(key => {
+        pages[key].classList.toggle('active', key === pageId);
+      });
+
+      // history replace state (tanpa #)
+      const baseUrl = window.location.pathname + window.location.search;
+      const newUrl = baseUrl + (baseUrl.includes('?') ? '&' : '?') + 'tab=' + pageId;
+      window.history.replaceState({ tab: pageId }, '', newUrl);
+    }
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const page = this.dataset.page;
+        if (page) setActiveTab(page);
+      });
+    });
+
+    // baca tab dari URL
+    function getTabFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('tab') || 'beranda';
+    }
+
+    const initialTab = getTabFromUrl();
+    if (pages[initialTab]) {
+      setActiveTab(initialTab);
+    } else {
+      setActiveTab('beranda');
+    }
+
+    // ===== KALKULATOR =====
+    const calcInput = document.getElementById('calcInput');
+    const calcBtn = document.getElementById('calcBtn');
+    const calcResult = document.getElementById('calcResult');
+
+    function evaluateCalc() {
+      try {
+        const expr = calcInput.value.trim();
+        const sanitized = expr.replace(/[^0-9+\-*/().]/g, '');
+        if (sanitized === '') {
+          calcResult.textContent = '0';
+          return;
         }
-        const savedBio = localStorage.getItem('bioContent');
-        if (savedBio) document.getElementById('bioText').innerHTML = `💪 ${savedBio}`;
+        const result = new Function(`return (${sanitized})`)();
+        calcResult.textContent = (typeof result === 'number' && !isNaN(result)) ? result : 'Error';
+      } catch {
+        calcResult.textContent = 'Error';
+      }
+    }
 
-        // ===== NOTE =====
-        function editNote() {
-            const noteText = document.getElementById('noteText');
-            const currentText = noteText.textContent.replace('✏️ Klik untuk edit note', '').replace('— al fatt', '').replace(/"/g, '').trim();
-            const newNote = prompt('✏️ Edit Note (hanya untuk kamu):', currentText);
-            if (newNote !== null && newNote.trim() !== '') {
-                noteText.innerHTML = `"✨ ${newNote.trim()}" <span class="author">— al fatt</span>`;
-                localStorage.setItem('noteContent', newNote.trim());
-            }
-        }
-        const savedNote = localStorage.getItem('noteContent');
-        if (savedNote) document.getElementById('noteText').innerHTML = `"✨ ${savedNote}" <span class="author">— al fatt</span>`;
+    calcBtn.addEventListener('click', evaluateCalc);
+    calcInput.addEventListener('keydown', e => { if (e.key === 'Enter') evaluateCalc(); });
+    evaluateCalc();
 
-        // ===== UPLOAD FOTO =====
-        const photoInput = document.getElementById('photoInput');
-        const collectionGrid = document.getElementById('collectionGrid');
-        let photos = JSON.parse(localStorage.getItem('fotoKoleksi')) || [];
+    // ===== KUTIPAN (10) =====
+    const quotes = [
+      "Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.",
+      "Kesuksesan bukanlah kunci kebahagiaan. Kebahagiaan adalah kunci kesuksesan.",
+      "Bekerjalah seolah-olah kau tak butuh uang, cintailah seolah-olah kau tak pernah terluka.",
+      "Hidup yang terbaik adalah hidup yang dijalani dengan tujuan.",
+      "Kegagalan adalah bumbu kehidupan yang membuat kesuksesan terasa lebih manis.",
+      "Jangan takut melangkah perlahan, takutlah jika hanya berdiam diri.",
+      "Orang hebat bukanlah mereka yang tidak pernah gagal, tapi yang bangkit setiap kali jatuh.",
+      "Rahasia perubahan adalah memfokuskan energi bukan untuk melawan yang lama, tapi membangun yang baru.",
+      "Hiduplah seolah-olah kau akan mati besok, belajarlah seolah-olah kau akan hidup selamanya.",
+      "Menjadi diri sendiri di dunia yang terus berusaha mengubahmu adalah pencapaian terbesar."
+    ];
+    let quoteIndex = 0;
+    const quoteText = document.getElementById('quoteText');
+    const nextQuoteBtn = document.getElementById('nextQuoteBtn');
 
-        function renderCollection() {
-            if (photos.length === 0) {
-                collectionGrid.innerHTML = `<div class="collection-empty">Belum ada foto<br>Upload foto pertama kamu!</div>`;
-                return;
-            }
-            let html = '';
-            photos.forEach((src, index) => {
-                html += `<div class="collection-item"><img src="${src}"><button class="delete-btn" onclick="deletePhoto(${index})"><i class="fas fa-times"></i></button></div>`;
-            });
-            collectionGrid.innerHTML = html;
-        }
+    function showQuote(index) {
+      quoteText.textContent = quotes[index % quotes.length];
+    }
 
-        function deletePhoto(index) {
-            photos.splice(index, 1);
-            localStorage.setItem('fotoKoleksi', JSON.stringify(photos));
-            renderCollection();
-        }
+    nextQuoteBtn.addEventListener('click', () => {
+      quoteIndex = (quoteIndex + 1) % quotes.length;
+      showQuote(quoteIndex);
+    });
 
-        photoInput.addEventListener('change', function(e) {
-            const files = e.target.files;
-            for (let file of files) {
-                if (!file.type.startsWith('image/')) continue;
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    photos.push(event.target.result);
-                    localStorage.setItem('fotoKoleksi', JSON.stringify(photos));
-                    renderCollection();
-                };
-                reader.readAsDataURL(file);
-            }
-            photoInput.value = '';
-        });
-        renderCollection();
-
-        // ===== FOTO PROFIL =====
-        const profilePhoto = document.getElementById('profilePhoto');
-        const profileInput = document.createElement('input');
-        profileInput.type = 'file';
-        profileInput.accept = 'image/*';
-        profileInput.style.display = 'none';
-        profilePhoto.addEventListener('click', () => profileInput.click());
-        profileInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                profilePhoto.src = event.target.result;
-                localStorage.setItem('fotoProfil', event.target.result);
-            };
-            reader.readAsDataURL(file);
-        });
-        const savedProfile = localStorage.getItem('fotoProfil');
-        if (savedProfile) profilePhoto.src = savedProfile;
-
-        // ===== TIMELINE PENGUNJUNG =====
-        let visitorPosts = JSON.parse(localStorage.getItem('visitorPosts')) || [];
-
-        function renderVisitorPosts() {
-            const container = document.getElementById('visitorPosts');
-            if (visitorPosts.length === 0) {
-                container.innerHTML = `<div class="post-empty">Belum ada postingan dari pengunjung<br>Jadi orang pertama yang posting!</div>`;
-                return;
-            }
-            let html = '';
-            visitorPosts.forEach((post, index) => {
-                html += `<div class="post-item"><button class="delete-post" onclick="deleteVisitorPost(${index})"><i class="fas fa-trash"></i></button><div class="post-place">📍 ${post.place}</div><span class="post-location">${post.location}</span>${post.author ? `<span class="post-author">👤 ${post.author}</span>` : ''}<span class="post-time">🕐 ${post.time}</span></div>`;
-            });
-            container.innerHTML = html;
-        }
-
-        function addVisitorPost() {
-            const place = document.getElementById('visitorPlace').value.trim();
-            const location = document.getElementById('visitorLocation').value.trim();
-            const author = document.getElementById('visitorName').value.trim() || 'Pengunjung';
-            if (!place || !location) { alert('⚠️ Isi nama tempat dan lokasi dulu!'); return; }
-            const now = new Date();
-            const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-            visitorPosts.unshift({ place, location, author, time });
-            localStorage.setItem('visitorPosts', JSON.stringify(visitorPosts));
-            renderVisitorPosts();
-            document.getElementById('visitorPlace').value = '';
-            document.getElementById('visitorLocation').value = '';
-            document.getElementById('visitorName').value = '';
-        }
-
-        function deleteVisitorPost(index) {
-            visitorPosts.splice(index, 1);
-            localStorage.setItem('visitorPosts', JSON.stringify(visitorPosts));
-            renderVisitorPosts();
-        }
-        renderVisitorPosts();
-
-        // ===== TIMELINE PRIBADI =====
-        let privatePosts = JSON.parse(localStorage.getItem('privatePosts')) || [];
-
-        function renderPrivatePosts() {
-            const container = document.getElementById('privatePosts');
-            if (privatePosts.length === 0) {
-                container.innerHTML = `<div class="post-empty">Belum ada lokasi pribadi</div>`;
-                return;
-            }
-            let html = '';
-            privatePosts.forEach((post, index) => {
-                html += `<div class="post-item"><button class="delete-post" onclick="deletePrivatePost(${index})"><i class="fas fa-trash"></i></button><div class="post-place">📍 ${post.place}</div><span class="post-location">${post.location}</span><span class="post-time">🕐 ${post.time}</span></div>`;
-            });
-            container.innerHTML = html;
-        }
-
-        function addPrivatePost() {
-            const place = document.getElementById('privatePlace').value.trim();
-            const location = document.getElementById('privateLocation').value.trim();
-            if (!place || !location) { alert('⚠️ Isi alamat/tempat dan lokasi dulu!'); return; }
-            const now = new Date();
-            const time = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) + ' ' + now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-            privatePosts.unshift({ place, location, time });
-            localStorage.setItem('privatePosts', JSON.stringify(privatePosts));
-            renderPrivatePosts();
-            document.getElementById('privatePlace').value = '';
-            document.getElementById('privateLocation').value = '';
-        }
-
-        function deletePrivatePost(index) {
-            privatePosts.splice(index, 1);
-            localStorage.setItem('privatePosts', JSON.stringify(privatePosts));
-            renderPrivatePosts();
-        }
-        renderPrivatePosts();
-    </script>
+    showQuote(0);
+  })();
+</script>
 </body>
 </html>
