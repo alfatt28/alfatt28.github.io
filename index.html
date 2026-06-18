@@ -46,10 +46,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes grow {
-            from { width: 0; }
-        }
-
         /* ===== HEADER ===== */
         .header {
             display: flex;
@@ -101,6 +97,22 @@
             letter-spacing: 0.3px;
         }
 
+        .lock-btn {
+            background: transparent;
+            border: none;
+            color: #8aa0b5;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 4px 8px;
+            border-radius: 20px;
+        }
+
+        .lock-btn:hover {
+            background: #eef3f9;
+            color: #1e2b3c;
+        }
+
         /* ===== PROFILE ===== */
         .profile {
             display: flex;
@@ -118,12 +130,16 @@
             position: absolute;
             top: -8px;
             right: 10px;
-            display: flex;
+            display: none;
             gap: 4px;
             background: white;
             padding: 3px 6px;
             border-radius: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .bg-options.show {
+            display: flex;
         }
 
         .bg-options button {
@@ -172,8 +188,12 @@
             position: absolute;
             bottom: -4px;
             right: -4px;
-            display: flex;
+            display: none;
             gap: 2px;
+        }
+
+        .avatar-actions.show {
+            display: flex;
         }
 
         .avatar-actions button {
@@ -214,6 +234,10 @@
             font-weight: 700;
             color: #0f1a26;
             letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .profile-info .sub {
@@ -221,6 +245,37 @@
             color: #5b738a;
             font-weight: 500;
             letter-spacing: 0.5px;
+        }
+
+        /* ===== BADGE ===== */
+        .badge-owner {
+            display: none;
+            background: #1e2b3c;
+            color: white;
+            font-size: 9px;
+            padding: 2px 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-owner.show {
+            display: inline-block;
+        }
+
+        .badge-guest {
+            display: inline-block;
+            background: #e8edf4;
+            color: #5b738a;
+            font-size: 9px;
+            padding: 2px 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-guest.hide {
+            display: none;
         }
 
         /* ===== TABS ===== */
@@ -303,6 +358,7 @@
             border-radius: 20px;
             margin-bottom: 14px;
             border: 1px solid #eaeef5;
+            position: relative;
         }
 
         .info-box .label {
@@ -312,6 +368,39 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-box .label .edit-btn {
+            background: transparent;
+            border: none;
+            color: #8aa0b5;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 2px 8px;
+            border-radius: 12px;
+            transition: 0.2s;
+            display: none;
+        }
+
+        .info-box .label .edit-btn.show {
+            display: inline-block;
+        }
+
+        .info-box .label .edit-btn:hover {
+            background: #eef3f9;
+            color: #1e2b3c;
+        }
+
+        .info-box .label .lock-icon {
+            color: #8aa0b5;
+            font-size: 12px;
+        }
+
+        .info-box .label .lock-icon.hide {
+            display: none;
         }
 
         .info-box .value {
@@ -319,12 +408,43 @@
             font-weight: 500;
             color: #0f1a26;
             line-height: 1.5;
+            word-wrap: break-word;
         }
 
         .info-box .value i {
             margin-right: 5px;
             color: #2c3e50;
             opacity: 0.5;
+        }
+
+        .info-box .editable-text {
+            width: 100%;
+            border: 2px dashed #dce3ed;
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0f1a26;
+            background: white;
+            outline: none;
+            font-family: inherit;
+            line-height: 1.5;
+            resize: vertical;
+            min-height: 50px;
+            transition: 0.2s;
+            display: none;
+        }
+
+        .info-box .editable-text:focus {
+            border-color: #1e2b3c;
+        }
+
+        .info-box .editable-text.active {
+            display: block;
+        }
+
+        .info-box .value.hidden {
+            display: none;
         }
 
         /* ===== MOOD ===== */
@@ -630,6 +750,10 @@
             border-radius: 40px;
             text-align: center;
             border: 1px solid #dce3ed;
+            min-height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .calc-btn {
@@ -781,16 +905,171 @@
             .search-engine .search-row select {
                 flex: 1;
             }
+            .profile-info h2 {
+                font-size: 16px;
+            }
+        }
+
+        /* ===== PASSWORD MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 24px;
+            padding: 30px 24px;
+            max-width: 320px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn .3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-box h3 {
+            font-size: 18px;
+            color: #0f1a26;
+            margin-bottom: 6px;
+        }
+
+        .modal-box p {
+            font-size: 13px;
+            color: #6f889e;
+            margin-bottom: 16px;
+        }
+
+        .modal-box input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dce3ed;
+            border-radius: 40px;
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .modal-box input:focus {
+            border-color: #1e2b3c;
+        }
+
+        .modal-box .modal-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .modal-box .modal-buttons button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .modal-box .modal-buttons .btn-cancel {
+            background: #eef3f9;
+            color: #4d667e;
+        }
+
+        .modal-box .modal-buttons .btn-cancel:hover {
+            background: #e2e9f2;
+        }
+
+        .modal-box .modal-buttons .btn-confirm {
+            background: #1e2b3c;
+            color: white;
+        }
+
+        .modal-box .modal-buttons .btn-confirm:hover {
+            opacity: 0.85;
+        }
+
+        .modal-box .error-msg {
+            color: #e74c3c;
+            font-size: 12px;
+            display: none;
+            margin-bottom: 8px;
+        }
+
+        .modal-box .error-msg.show {
+            display: block;
+        }
+
+        /* ===== OWNER MODE TOGGLE ===== */
+        .owner-mode .bg-options {
+            display: flex !important;
+        }
+
+        .owner-mode .avatar-actions {
+            display: flex !important;
+        }
+
+        .owner-mode .badge-owner {
+            display: inline-block !important;
+        }
+
+        .owner-mode .badge-guest {
+            display: none !important;
+        }
+
+        .owner-mode .edit-btn {
+            display: inline-block !important;
+        }
+
+        .owner-mode .lock-icon {
+            display: none !important;
+        }
+
+        .owner-mode .editable-text {
+            display: block !important;
+        }
+
+        .owner-mode .owner-upload-btn {
+            display: flex !important;
+        }
+
+        .owner-mode .owner-timeline-input {
+            display: flex !important;
+        }
+
+        .owner-mode .owner-notes {
+            display: block !important;
+        }
+
+        .owner-mode .owner-notes-display {
+            display: none !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== LOADER ===== -->
-    <div id="loader">
-        <div class="loader-box">
-            <h1>⏳</h1>
-            <p style="color:#ffffff; margin-top:10px;">Memuat...</p>
+    <!-- ===== PASSWORD MODAL ===== -->
+    <div class="modal-overlay" id="ownerModal">
+        <div class="modal-box">
+            <h3>🔐 Mode Owner</h3>
+            <p>Masukkan password untuk mengedit profil</p>
+            <div class="error-msg" id="modalError">Password salah!</div>
+            <input type="password" id="ownerPassword" placeholder="Masukkan password..." autocomplete="off">
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeModal()">Batal</button>
+                <button class="btn-confirm" onclick="verifyPassword()">Masuk</button>
+            </div>
         </div>
     </div>
 
@@ -806,11 +1085,15 @@
             <div class="header-right">
                 <i class="far fa-bell"></i>
                 <span class="badge-pro">PRO</span>
+                <button class="lock-btn" onclick="toggleOwnerMode()" title="Mode Owner">
+                    <i class="fas fa-lock" id="lockIcon"></i>
+                </button>
             </div>
         </div>
 
         <!-- PROFILE -->
         <div class="profile" id="profileContainer">
+            <!-- Background Color Picker -->
             <div class="bg-options" id="bgOptions">
                 <button style="background:#f0f4fa;" data-bg="#f0f4fa"></button>
                 <button style="background:#d4edda;" data-bg="#d4edda"></button>
@@ -823,6 +1106,7 @@
             <div class="avatar-wrapper">
                 <img class="avatar" id="avatar" src="" alt="Avatar" style="display:none;">
                 <div class="avatar" id="avatarPlaceholder">A</div>
+                <!-- Avatar Actions -->
                 <div class="avatar-actions">
                     <button class="upload-avatar-btn" id="uploadAvatarBtn" title="Upload Foto Profil">
                         <i class="fas fa-camera" style="font-size:9px;"></i>
@@ -835,7 +1119,11 @@
             </div>
 
             <div class="profile-info">
-                <h2>alfatt519</h2>
+                <h2>
+                    alfatts519
+                    <span class="badge-owner">OWNER</span>
+                    <span class="badge-guest">TAMU</span>
+                </h2>
                 <div class="sub">PERSONAL SPACE</div>
             </div>
         </div>
@@ -870,14 +1158,32 @@
 
             <!-- ===== BERANDA ===== -->
             <div id="page-beranda" class="page active">
+                <!-- TENTANG -->
                 <div class="info-box">
-                    <div class="label">TENTANG</div>
-                    <div class="value">tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung 😉</div>
+                    <div class="label">
+                        TENTANG
+                        <span>
+                            <button class="edit-btn" onclick="editText('tentang')"><i class="fas fa-pen"></i> Edit</button>
+                            <span class="lock-icon"><i class="fas fa-lock"></i></span>
+                        </span>
+                    </div>
+                    <div class="value" id="tentangDisplay">tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung 😉</div>
+                    <textarea class="editable-text" id="tentangInput" placeholder="Tulis tentang Anda..."></textarea>
                 </div>
+
+                <!-- KUTIPAN -->
                 <div class="info-box">
-                    <div class="label">KUTIPAN</div>
-                    <div class="value">“Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.”</div>
+                    <div class="label">
+                        KUTIPAN
+                        <span>
+                            <button class="edit-btn" onclick="editText('kutipan')"><i class="fas fa-pen"></i> Edit</button>
+                            <span class="lock-icon"><i class="fas fa-lock"></i></span>
+                        </span>
+                    </div>
+                    <div class="value" id="kutipanDisplay">“Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.”</div>
+                    <textarea class="editable-text" id="kutipanInput" placeholder="Tulis kutipan favorit Anda..."></textarea>
                 </div>
+
                 <div class="info-box">
                     <div class="label">MOOD HARI INI</div>
                     <div class="mood-row">
@@ -887,13 +1193,14 @@
                         <span class="mood-tag"><i class="fas fa-meh"></i> Galau 😏</span>
                     </div>
                 </div>
+
                 <div class="info-box">
                     <div class="label">TEMUKAN SAYA</div>
                     <div class="social-row">
                         <a href="https://www.instagram.com/nashmuhammad11" target="_blank" class="social-item instagram-btn">
                             <i class="fab fa-instagram"></i> @nashmuhammad11
                         </a>
-                        <a href="https://www.facebook.com/profile.php?id=61558921940476" target="_blank" class="social-item facebook-btn">
+                        <a href="https://www.facebook.com/people/Muhammad-Nash/61558921940476/" target="_blank" class="social-item facebook-btn">
                             <i class="fab fa-facebook"></i> Muhammad Nash
                         </a>
                         <a href="https://wa.me/6281231868636" target="_blank" class="social-item whatsapp-btn">
@@ -921,7 +1228,7 @@
                 <div class="info-box">
                     <div class="label">⏳ TIMELINE</div>
                     <div class="value" style="font-weight:400;" id="timelineStatus">Belum ada aktivitas. Mulai bagikan momen!</div>
-                    <div style="margin-top:12px; display:flex; gap:8px;">
+                    <div style="margin-top:12px; display:flex; gap:8px;" id="timelineInputWrapper">
                         <input type="text" id="status" placeholder="Tulis status..." style="flex:1; padding:10px 14px; border:1px solid #dce3ed; border-radius:40px; font-size:14px; outline:none;">
                         <button onclick="postStatus()" style="background:#1e2b3c; border:none; color:white; padding:10px 20px; border-radius:40px; font-weight:600; cursor:pointer;">Kirim</button>
                     </div>
@@ -932,20 +1239,25 @@
             <!-- ===== CATATAN ===== -->
             <div id="page-catatan" class="page">
                 <div class="info-box">
-                    <div class="label">📝 CATATAN</div>
-                    <div class="value" style="font-weight:400;">Tulis ide, rencana, atau pelajaran hari ini.</div>
-                    <textarea id="notes" style="width:100%; margin-top:12px; padding:12px; border:1px solid #dce3ed; border-radius:16px; font-size:14px; min-height:120px; resize:vertical; outline:none; font-family:inherit;" placeholder="Tulis catatan di sini..."></textarea>
+                    <div class="label">
+                        📝 CATATAN
+                        <span>
+                            <button class="edit-btn" onclick="toggleNotes()"><i class="fas fa-pen"></i> Edit</button>
+                            <span class="lock-icon"><i class="fas fa-lock"></i></span>
+                        </span>
+                    </div>
+                    <div class="value" style="font-weight:400;" id="notesDisplay">Tulis ide, rencana, atau pelajaran hari ini.</div>
+                    <textarea id="notes" style="width:100%; margin-top:12px; padding:12px; border:1px solid #dce3ed; border-radius:16px; font-size:14px; min-height:120px; resize:vertical; outline:none; font-family:inherit; display:none;" placeholder="Tulis catatan di sini..."></textarea>
                 </div>
             </div>
 
             <!-- ===== JELAJAH ===== -->
             <div id="page-jelajah" class="page">
 
-                <!-- ===== SEARCH ENGINE ===== -->
                 <div class="search-engine">
                     <div class="label"><i class="fas fa-search"></i> Cari di Internet</div>
                     <div class="search-row">
-                        <input type="text" id="searchInput" placeholder="Cari apa saja..." value="restoran terbaik">
+                        <input type="text" id="searchInput" placeholder="Cari apa saja..." value="">
                         <select id="searchEngine">
                             <option value="google">Google</option>
                             <option value="bing">Bing</option>
@@ -962,11 +1274,10 @@
                     </div>
                 </div>
 
-                <!-- ===== MAPS ===== -->
                 <div class="maps-container">
                     <iframe id="mapsFrame" src="https://maps.google.com/maps?q=restoran&output=embed"></iframe>
                     <div class="maps-search">
-                        <input type="text" id="placeSearch" placeholder="Cari tempat... (restoran, wisata, dll)" value="restoran">
+                        <input type="text" id="placeSearch" placeholder="Cari tempat... (restoran, wisata, dll)" value="">
                         <button onclick="searchPlace()"><i class="fas fa-map-marker-alt"></i> Cari</button>
                     </div>
                     <div class="place-suggestions">
@@ -981,19 +1292,17 @@
                     </div>
                 </div>
 
-                <!-- Kalkulator -->
                 <div class="calculator">
                     <div style="font-weight:600; margin-bottom:8px; color:#1e2b3c; font-size:14px;">
                         <i class="fas fa-calculator"></i> Kalkulator cepat
                     </div>
                     <div class="calc-input">
-                        <input type="text" id="calcInput" placeholder="misal: 12 + 8" value="12 + 8">
+                        <input type="text" id="calcInput" placeholder="misal: 12 + 8" value="">
                         <button class="calc-btn" id="calcBtn">=</button>
                     </div>
-                    <div class="calc-result" id="calcResult">20</div>
+                    <div class="calc-result" id="calcResult">0</div>
                 </div>
 
-                <!-- Quote -->
                 <div class="quote-box" id="quoteBox">
                     <i class="fas fa-quote-left"></i>
                     <span id="quoteText">Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.</span>
@@ -1002,7 +1311,6 @@
                     <button id="nextQuoteBtn"><i class="fas fa-sync-alt"></i> kutipan lain</button>
                 </div>
 
-                <!-- Explore footer -->
                 <div class="explore-footer">
                     <i class="fas fa-globe-asia"></i> Jelajahi lebih banyak fitur
                 </div>
@@ -1017,6 +1325,85 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
+        // ============================================================
+        // PASSWORD & OWNER MODE
+        // ============================================================
+        var isOwner = false;
+        var PASSWORD = 'alfatt28';
+
+        function toggleOwnerMode() {
+            if (isOwner) {
+                // Logout
+                isOwner = false;
+                document.body.classList.remove('owner-mode');
+                document.getElementById('lockIcon').className = 'fas fa-lock';
+                localStorage.removeItem('ownerMode');
+                // Reset edit buttons
+                document.querySelectorAll('.editable-text').forEach(function(el) {
+                    el.classList.remove('active');
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.value.hidden').forEach(function(el) {
+                    el.classList.remove('hidden');
+                    el.style.display = '';
+                });
+                // Reset notes
+                var notes = document.getElementById('notes');
+                var notesDisplay = document.getElementById('notesDisplay');
+                if (notes) notes.style.display = 'none';
+                if (notesDisplay) notesDisplay.style.display = '';
+            } else {
+                document.getElementById('ownerModal').classList.add('active');
+                document.getElementById('ownerPassword').value = '';
+                document.getElementById('ownerPassword').focus();
+                document.getElementById('modalError').classList.remove('show');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('ownerModal').classList.remove('active');
+            document.getElementById('modalError').classList.remove('show');
+        }
+
+        function verifyPassword() {
+            var input = document.getElementById('ownerPassword').value;
+            if (input === PASSWORD) {
+                isOwner = true;
+                document.body.classList.add('owner-mode');
+                document.getElementById('lockIcon').className = 'fas fa-unlock';
+                localStorage.setItem('ownerMode', 'true');
+                closeModal();
+                // Show notes
+                var notes = document.getElementById('notes');
+                var notesDisplay = document.getElementById('notesDisplay');
+                if (notes && notesDisplay) {
+                    notes.style.display = 'block';
+                    notesDisplay.style.display = 'none';
+                }
+            } else {
+                document.getElementById('modalError').classList.add('show');
+                document.getElementById('ownerPassword').value = '';
+                document.getElementById('ownerPassword').focus();
+            }
+        }
+
+        document.getElementById('ownerPassword').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') verifyPassword();
+        });
+
+        // Check saved owner mode
+        if (localStorage.getItem('ownerMode') === 'true') {
+            isOwner = true;
+            document.body.classList.add('owner-mode');
+            document.getElementById('lockIcon').className = 'fas fa-unlock';
+            var notes = document.getElementById('notes');
+            var notesDisplay = document.getElementById('notesDisplay');
+            if (notes && notesDisplay) {
+                notes.style.display = 'block';
+                notesDisplay.style.display = 'none';
+            }
+        }
+
         // ============================================================
         // 1. LOADING SCREEN
         // ============================================================
@@ -1096,7 +1483,125 @@
         })();
 
         // ============================================================
-        // 4. BACKGROUND PROFILE
+        // 4. EDITABLE TEXT (TENTANG & KUTIPAN)
+        // ============================================================
+        (function() {
+            var savedTentang = localStorage.getItem('tentang');
+            var savedKutipan = localStorage.getItem('kutipan');
+
+            var tentangDisplay = document.getElementById('tentangDisplay');
+            var tentangInput = document.getElementById('tentangInput');
+            var kutipanDisplay = document.getElementById('kutipanDisplay');
+            var kutipanInput = document.getElementById('kutipanInput');
+
+            if (savedTentang) {
+                tentangDisplay.textContent = savedTentang;
+                tentangInput.value = savedTentang;
+            }
+
+            if (savedKutipan) {
+                kutipanDisplay.textContent = savedKutipan;
+                kutipanInput.value = savedKutipan;
+            }
+
+            window.saveText = function(type) {
+                var input, display;
+                if (type === 'tentang') {
+                    input = tentangInput;
+                    display = tentangDisplay;
+                } else if (type === 'kutipan') {
+                    input = kutipanInput;
+                    display = kutipanDisplay;
+                }
+
+                var value = input.value.trim();
+                if (value === '') {
+                    alert('Teks tidak boleh kosong!');
+                    return;
+                }
+
+                display.textContent = value;
+                localStorage.setItem(type, value);
+                input.classList.remove('active');
+                input.style.display = 'none';
+                display.classList.remove('hidden');
+                display.style.display = '';
+
+                var btns = document.querySelectorAll('[onclick="editText(\'' + type + '\')"]');
+                btns.forEach(function(btn) {
+                    btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
+                });
+            };
+
+            window.editText = function(type) {
+                if (!isOwner) return;
+
+                var input, display;
+                if (type === 'tentang') {
+                    input = tentangInput;
+                    display = tentangDisplay;
+                } else if (type === 'kutipan') {
+                    input = kutipanInput;
+                    display = kutipanDisplay;
+                }
+
+                if (input.classList.contains('active')) {
+                    saveText(type);
+                } else {
+                    input.value = display.textContent;
+                    input.classList.add('active');
+                    input.style.display = 'block';
+                    display.classList.add('hidden');
+                    display.style.display = 'none';
+
+                    var btns = document.querySelectorAll('[onclick="editText(\'' + type + '\')"]');
+                    btns.forEach(function(btn) {
+                        btn.innerHTML = '<i class="fas fa-save"></i> Simpan';
+                    });
+
+                    input.focus();
+                    input.select();
+                }
+            };
+
+            tentangInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+                    e.preventDefault();
+                    if (isOwner) saveText('tentang');
+                }
+            });
+
+            kutipanInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+                    e.preventDefault();
+                    if (isOwner) saveText('kutipan');
+                }
+            });
+        })();
+
+        // ============================================================
+        // 5. TOGGLE NOTES
+        // ============================================================
+        window.toggleNotes = function() {
+            if (!isOwner) return;
+            var notes = document.getElementById('notes');
+            var notesDisplay = document.getElementById('notesDisplay');
+            if (notes.style.display === 'none' || notes.style.display === '') {
+                notes.style.display = 'block';
+                notesDisplay.style.display = 'none';
+                notes.focus();
+            } else {
+                notes.style.display = 'none';
+                notesDisplay.style.display = '';
+                localStorage.notes = notes.value;
+                if (notes.value.trim() !== '') {
+                    notesDisplay.textContent = notes.value;
+                }
+            }
+        };
+
+        // ============================================================
+        // 6. BACKGROUND PROFILE
         // ============================================================
         (function() {
             var profile = document.getElementById('profileContainer');
@@ -1126,7 +1631,7 @@
         })();
 
         // ============================================================
-        // 5. AVATAR PROFILE (Upload & Delete)
+        // 7. AVATAR PROFILE (Upload & Delete)
         // ============================================================
         (function() {
             var avatar = document.getElementById('avatar');
@@ -1177,7 +1682,7 @@
         })();
 
         // ============================================================
-        // 6. KALKULATOR
+        // 8. KALKULATOR (Kosong saat pertama)
         // ============================================================
         (function() {
             var calcInput = document.getElementById('calcInput');
@@ -1185,9 +1690,16 @@
             var calcResult = document.getElementById('calcResult');
 
             if (calcInput && calcBtn && calcResult) {
+                calcInput.value = '';
+                calcResult.textContent = '0';
+
                 function evaluateCalc() {
                     try {
                         var expr = calcInput.value.trim();
+                        if (expr === '') {
+                            calcResult.textContent = '0';
+                            return;
+                        }
                         var sanitized = expr.replace(/[^0-9+\-*/().]/g, '');
                         if (sanitized === '') {
                             calcResult.textContent = '0';
@@ -1204,12 +1716,11 @@
                 calcInput.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') evaluateCalc();
                 });
-                evaluateCalc();
             }
         })();
 
         // ============================================================
-        // 7. KUTIPAN (10)
+        // 9. KUTIPAN (10)
         // ============================================================
         (function() {
             var quotes = [
@@ -1243,7 +1754,7 @@
         })();
 
         // ============================================================
-        // 8. DARK MODE
+        // 10. DARK MODE
         // ============================================================
         function toggleMode() {
             document.body.classList.toggle("light");
@@ -1255,14 +1766,17 @@
         }
 
         // ============================================================
-        // 9. GOOGLE MAPS SEARCH
+        // 11. GOOGLE MAPS SEARCH
         // ============================================================
         function searchPlace() {
             var place = document.getElementById('placeSearch');
             var mapsFrame = document.getElementById('mapsFrame');
             if (place && mapsFrame) {
                 var value = place.value.trim();
-                if (!value) return;
+                if (!value) {
+                    alert('Masukkan nama tempat!');
+                    return;
+                }
                 mapsFrame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(value) + "&output=embed";
             }
         }
@@ -1284,7 +1798,7 @@
         }
 
         // ============================================================
-        // 10. SEARCH ENGINE (DIPERBAIKI)
+        // 12. SEARCH ENGINE
         // ============================================================
         (function() {
             var searchInput = document.getElementById('searchInput');
@@ -1335,30 +1849,38 @@
         })();
 
         // ============================================================
-        // 11. CATATAN
+        // 13. CATATAN (Owner only)
         // ============================================================
         (function() {
             var notes = document.getElementById('notes');
+            var notesDisplay = document.getElementById('notesDisplay');
             var catatanCount = document.getElementById('catatanCount');
 
             if (notes) {
-                notes.value = localStorage.notes || "";
+                var savedNotes = localStorage.notes || '';
+                notes.value = savedNotes;
+                if (savedNotes.trim() !== '') {
+                    notesDisplay.textContent = savedNotes;
+                    if (catatanCount) catatanCount.textContent = '1';
+                }
+
                 notes.oninput = function() {
                     localStorage.notes = notes.value;
                     if (catatanCount) {
                         var count = notes.value.length > 0 ? 1 : 0;
                         catatanCount.textContent = count;
                     }
+                    if (notes.value.trim() !== '') {
+                        notesDisplay.textContent = notes.value;
+                    } else {
+                        notesDisplay.textContent = 'Tulis ide, rencana, atau pelajaran hari ini.';
+                    }
                 };
-                if (catatanCount) {
-                    var count = notes.value.length > 0 ? 1 : 0;
-                    catatanCount.textContent = count;
-                }
             }
         })();
 
         // ============================================================
-        // 12. GALERI FOTO
+        // 14. GALERI FOTO
         // ============================================================
         (function() {
             var gallery = document.getElementById('gallery');
@@ -1418,7 +1940,7 @@
         })();
 
         // ============================================================
-        // 13. TIMELINE
+        // 15. TIMELINE (Owner only)
         // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
@@ -1448,7 +1970,7 @@
             }
 
             window.postStatus = function() {
-                if (!statusInput) return;
+                if (!statusInput || !isOwner) return;
                 var text = statusInput.value.trim();
                 if (!text) return;
                 posts.unshift({
@@ -1479,7 +2001,7 @@
         })();
 
         // ============================================================
-        // 14. KUTIPAN (kedua)
+        // 16. KUTIPAN (kedua)
         // ============================================================
         (function() {
             var quotes = [
@@ -1503,7 +2025,7 @@
         })();
 
         // ============================================================
-        // 15. MATRIX RAIN
+        // 17. MATRIX RAIN
         // ============================================================
         (function() {
             var canvas = document.getElementById("matrix");
@@ -1545,7 +2067,7 @@
         })();
 
         // ============================================================
-        // 16. VISITOR COUNTER
+        // 18. VISITOR COUNTER
         // ============================================================
         (function() {
             var visitors = parseInt(localStorage.visitors || 0);
@@ -1558,14 +2080,14 @@
         })();
 
         // ============================================================
-        // 17. SCROLL TOP
+        // 19. SCROLL TOP
         // ============================================================
         function scrollTopPage() {
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         // ============================================================
-        // 18. MUSIC
+        // 20. MUSIC
         // ============================================================
         (function() {
             var music = document.getElementById("bgMusic");
@@ -1580,7 +2102,7 @@
         })();
 
         // ============================================================
-        // 19. QR GENERATOR
+        // 21. QR GENERATOR
         // ============================================================
         function generateQR() {
             var qrText = document.getElementById("qrText");
@@ -1593,14 +2115,14 @@
         }
 
         // ============================================================
-        // 20. NOTIFIKASI
+        // 22. NOTIFIKASI
         // ============================================================
         setTimeout(function() {
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
 
         // ============================================================
-        // 21. WELCOME
+        // 23. WELCOME
         // ============================================================
         console.log("ALFATT28 PREMIUM SPACE LOADED");
     </script>
