@@ -37,29 +37,17 @@
 
         /* ===== KEYFRAMES ===== */
         @keyframes fade {
-            0% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes grow {
-            from {
-                width: 0;
-            }
+            from { width: 0; }
         }
 
         /* ===== HEADER ===== */
@@ -119,6 +107,49 @@
             align-items: center;
             gap: 14px;
             margin-bottom: 20px;
+            padding: 16px;
+            border-radius: 20px;
+            background: #f0f4fa;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        /* Background color options */
+        .bg-options {
+            position: absolute;
+            top: -8px;
+            right: 10px;
+            display: flex;
+            gap: 4px;
+            background: white;
+            padding: 3px 6px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .bg-options button {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0;
+        }
+
+        .bg-options button:hover {
+            transform: scale(1.15);
+            border-color: #1e2b3c;
+        }
+
+        .bg-options button.active-bg {
+            border-color: #1e2b3c;
+            box-shadow: 0 0 0 2px white, 0 0 0 3px #1e2b3c;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            flex-shrink: 0;
         }
 
         .avatar {
@@ -133,6 +164,50 @@
             font-size: 20px;
             font-weight: 600;
             flex-shrink: 0;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .avatar-actions {
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            display: flex;
+            gap: 2px;
+        }
+
+        .avatar-actions button {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: none;
+            font-size: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            background: white;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+
+        .avatar-actions .upload-avatar-btn {
+            background: #1e2b3c;
+            color: white;
+        }
+
+        .avatar-actions .upload-avatar-btn:hover {
+            background: #2c3e50;
+        }
+
+        .avatar-actions .delete-avatar-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .avatar-actions .delete-avatar-btn:hover {
+            background: #c0392b;
         }
 
         .profile-info h2 {
@@ -342,6 +417,181 @@
             background: #e3edfc;
         }
 
+        /* ===== MAPS ===== */
+        .maps-container {
+            background: #f8faff;
+            border-radius: 20px;
+            border: 1px solid #eaeef5;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .maps-container iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            display: block;
+        }
+
+        .maps-search {
+            padding: 10px 12px;
+            display: flex;
+            gap: 6px;
+            background: white;
+        }
+
+        .maps-search input {
+            flex: 1;
+            padding: 8px 14px;
+            border: 1px solid #dce3ed;
+            border-radius: 40px;
+            font-size: 13px;
+            outline: none;
+            transition: 0.15s;
+        }
+
+        .maps-search input:focus {
+            border-color: #1e2b3c;
+        }
+
+        .maps-search button {
+            background: #1e2b3c;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.15s;
+            white-space: nowrap;
+        }
+
+        .maps-search button:hover {
+            opacity: 0.85;
+        }
+
+        .place-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 6px 12px 12px;
+            background: white;
+        }
+
+        .place-suggestions button {
+            padding: 4px 12px;
+            border-radius: 40px;
+            border: 1px solid #dce3ed;
+            background: white;
+            font-size: 11px;
+            color: #1e2b3c;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .place-suggestions button:hover {
+            background: #f0f4fa;
+            border-color: #1e2b3c;
+        }
+
+        /* ===== SEARCH ENGINE ===== */
+        .search-engine {
+            background: #f8faff;
+            padding: 14px 16px;
+            border-radius: 20px;
+            border: 1px solid #eaeef5;
+            margin-bottom: 14px;
+        }
+
+        .search-engine .label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #6f889e;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .search-engine .search-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .search-engine .search-row input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #dce3ed;
+            border-radius: 40px;
+            font-size: 13px;
+            outline: none;
+            transition: 0.15s;
+        }
+
+        .search-engine .search-row input:focus {
+            border-color: #1e2b3c;
+        }
+
+        .search-engine .search-row select {
+            padding: 10px 10px;
+            border: 1px solid #dce3ed;
+            border-radius: 40px;
+            font-size: 12px;
+            background: white;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .search-engine .search-row button {
+            background: #1e2b3c;
+            border: none;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .search-engine .search-row button:hover {
+            opacity: 0.85;
+        }
+
+        .search-engine .search-engines {
+            display: flex;
+            gap: 5px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .search-engine .search-engines button {
+            padding: 4px 12px;
+            border-radius: 40px;
+            border: 1px solid #dce3ed;
+            background: white;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .search-engine .search-engines button:hover {
+            background: #f0f4fa;
+            border-color: #1e2b3c;
+        }
+
+        .search-engine .search-engines button.active-engine {
+            background: #1e2b3c;
+            color: white;
+            border-color: #1e2b3c;
+        }
+
+        .search-engine .search-engines button.active-engine i {
+            color: white;
+        }
+
         /* ===== CALCULATOR ===== */
         .calculator {
             background: #f8faff;
@@ -515,6 +765,23 @@
             .tab-btn i {
                 margin-right: 3px;
             }
+            .bg-options {
+                top: -6px;
+                right: 6px;
+            }
+            .bg-options button {
+                width: 16px;
+                height: 16px;
+            }
+            .maps-container iframe {
+                height: 150px;
+            }
+            .search-engine .search-row {
+                flex-wrap: wrap;
+            }
+            .search-engine .search-row select {
+                flex: 1;
+            }
         }
     </style>
 </head>
@@ -544,8 +811,31 @@
         </div>
 
         <!-- PROFILE -->
-        <div class="profile">
-            <div class="avatar" id="avatar">A</div>
+        <div class="profile" id="profileContainer">
+            <!-- Background Color Picker -->
+            <div class="bg-options" id="bgOptions">
+                <button style="background:#f0f4fa;" data-bg="#f0f4fa"></button>
+                <button style="background:#d4edda;" data-bg="#d4edda"></button>
+                <button style="background:#cce5ff;" data-bg="#cce5ff"></button>
+                <button style="background:#f8d7da;" data-bg="#f8d7da"></button>
+                <button style="background:#fff3cd;" data-bg="#fff3cd"></button>
+                <button style="background:#d6d8db;" data-bg="#d6d8db"></button>
+            </div>
+
+            <div class="avatar-wrapper">
+                <img class="avatar" id="avatar" src="" alt="Avatar" style="display:none;">
+                <div class="avatar" id="avatarPlaceholder">A</div>
+                <div class="avatar-actions">
+                    <button class="upload-avatar-btn" id="uploadAvatarBtn" title="Upload Foto Profil">
+                        <i class="fas fa-camera" style="font-size:9px;"></i>
+                    </button>
+                    <button class="delete-avatar-btn" id="deleteAvatarBtn" title="Hapus Foto Profil">
+                        <i class="fas fa-times" style="font-size:9px;"></i>
+                    </button>
+                </div>
+                <input type="file" id="avatarUpload" accept="image/*" style="display:none;">
+            </div>
+
             <div class="profile-info">
                 <h2>alfatt519</h2>
                 <div class="sub">PERSONAL SPACE</div>
@@ -602,15 +892,12 @@
                 <div class="info-box">
                     <div class="label">TEMUKAN SAYA</div>
                     <div class="social-row">
-                        <!-- INSTAGRAM -->
                         <a href="https://www.instagram.com/nashmuhammad11" target="_blank" class="social-item instagram-btn">
                             <i class="fab fa-instagram"></i> @nashmuhammad11
                         </a>
-                        <!-- FACEBOOK -->
                         <a href="https://www.facebook.com/profile.php?id=61558921940476" target="_blank" class="social-item facebook-btn">
                             <i class="fab fa-facebook"></i> Muhammad Nash
                         </a>
-                        <!-- WHATSAPP -->
                         <a href="https://wa.me/6281231868636" target="_blank" class="social-item whatsapp-btn">
                             <i class="fab fa-whatsapp"></i> Chat Langsung
                         </a>
@@ -655,6 +942,47 @@
 
             <!-- ===== JELAJAH ===== -->
             <div id="page-jelajah" class="page">
+
+                <!-- ===== SEARCH ENGINE ===== -->
+                <div class="search-engine">
+                    <div class="label"><i class="fas fa-search"></i> Cari di Internet</div>
+                    <div class="search-row">
+                        <input type="text" id="searchInput" placeholder="Cari apa saja..." value="restoran terbaik">
+                        <select id="searchEngine">
+                            <option value="google">Google</option>
+                            <option value="bing">Bing</option>
+                            <option value="duckduckgo">DuckDuckGo</option>
+                            <option value="firefox">Firefox</option>
+                        </select>
+                        <button id="searchBtn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    <div class="search-engines" id="engineButtons">
+                        <button data-engine="google" class="active-engine"><i class="fab fa-google"></i> Google</button>
+                        <button data-engine="bing"><i class="fab fa-microsoft"></i> Bing</button>
+                        <button data-engine="duckduckgo"><i class="fas fa-duck"></i> DuckDuckGo</button>
+                        <button data-engine="firefox"><i class="fab fa-firefox"></i> Firefox</button>
+                    </div>
+                </div>
+
+                <!-- ===== MAPS ===== -->
+                <div class="maps-container">
+                    <iframe id="mapsFrame" src="https://maps.google.com/maps?q=restoran&output=embed"></iframe>
+                    <div class="maps-search">
+                        <input type="text" id="placeSearch" placeholder="Cari tempat... (restoran, wisata, dll)" value="restoran">
+                        <button onclick="searchPlace()"><i class="fas fa-map-marker-alt"></i> Cari</button>
+                    </div>
+                    <div class="place-suggestions">
+                        <button onclick="goToPlace('restoran')">🍽️ Restoran</button>
+                        <button onclick="goToPlace('kafe')">☕ Kafe</button>
+                        <button onclick="goToPlace('wisata')">🏝️ Wisata</button>
+                        <button onclick="goToPlace('hotel')">🏨 Hotel</button>
+                        <button onclick="goToPlace('mall')">🛍️ Mall</button>
+                        <button onclick="goToPlace('taman')">🌳 Taman</button>
+                        <button onclick="goToPlace('pantai')">🏖️ Pantai</button>
+                        <button onclick="goToPlace('gunung')">⛰️ Gunung</button>
+                    </div>
+                </div>
+
                 <!-- Kalkulator -->
                 <div class="calculator">
                     <div style="font-weight:600; margin-bottom:8px; color:#1e2b3c; font-size:14px;">
@@ -712,7 +1040,7 @@
         }, 1000);
 
         // ============================================================
-        // 3. TAB NAVIGASI (tanpa #)
+        // 3. TAB NAVIGASI
         // ============================================================
         (function() {
             var tabButtons = document.querySelectorAll('.tab-btn');
@@ -770,7 +1098,88 @@
         })();
 
         // ============================================================
-        // 4. KALKULATOR
+        // 4. BACKGROUND PROFILE
+        // ============================================================
+        (function() {
+            var profile = document.getElementById('profileContainer');
+            var bgButtons = document.querySelectorAll('#bgOptions button');
+
+            var savedBg = localStorage.getItem('profileBg');
+            if (savedBg) {
+                profile.style.background = savedBg;
+                bgButtons.forEach(function(btn) {
+                    if (btn.dataset.bg === savedBg) {
+                        btn.classList.add('active-bg');
+                    } else {
+                        btn.classList.remove('active-bg');
+                    }
+                });
+            }
+
+            bgButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var color = this.dataset.bg;
+                    profile.style.background = color;
+                    localStorage.setItem('profileBg', color);
+                    bgButtons.forEach(function(b) { b.classList.remove('active-bg'); });
+                    this.classList.add('active-bg');
+                });
+            });
+        })();
+
+        // ============================================================
+        // 5. AVATAR PROFILE (Upload & Delete)
+        // ============================================================
+        (function() {
+            var avatar = document.getElementById('avatar');
+            var avatarPlaceholder = document.getElementById('avatarPlaceholder');
+            var uploadBtn = document.getElementById('uploadAvatarBtn');
+            var deleteBtn = document.getElementById('deleteAvatarBtn');
+            var fileInput = document.getElementById('avatarUpload');
+
+            function updateAvatar(src) {
+                if (src) {
+                    avatar.src = src;
+                    avatar.style.display = 'block';
+                    avatarPlaceholder.style.display = 'none';
+                } else {
+                    avatar.style.display = 'none';
+                    avatarPlaceholder.style.display = 'flex';
+                }
+            }
+
+            var savedAvatar = localStorage.getItem('avatar');
+            if (savedAvatar) {
+                updateAvatar(savedAvatar);
+            }
+
+            uploadBtn.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', function(e) {
+                var file = e.target.files[0];
+                if (!file) return;
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var dataUrl = reader.result;
+                    updateAvatar(dataUrl);
+                    localStorage.setItem('avatar', dataUrl);
+                };
+                reader.readAsDataURL(file);
+                this.value = '';
+            });
+
+            deleteBtn.addEventListener('click', function() {
+                if (confirm('Hapus foto profil?')) {
+                    localStorage.removeItem('avatar');
+                    updateAvatar(null);
+                }
+            });
+        })();
+
+        // ============================================================
+        // 6. KALKULATOR
         // ============================================================
         (function() {
             var calcInput = document.getElementById('calcInput');
@@ -802,7 +1211,7 @@
         })();
 
         // ============================================================
-        // 5. KUTIPAN (10)
+        // 7. KUTIPAN (10)
         // ============================================================
         (function() {
             var quotes = [
@@ -836,7 +1245,7 @@
         })();
 
         // ============================================================
-        // 6. DARK MODE
+        // 8. DARK MODE
         // ============================================================
         function toggleMode() {
             document.body.classList.toggle("light");
@@ -848,34 +1257,88 @@
         }
 
         // ============================================================
-        // 7. AVATAR PROFILE
-        // ============================================================
-        (function() {
-            var avatar = document.getElementById("avatar");
-            if (avatar && localStorage.avatar) {
-                avatar.src = localStorage.avatar;
-            }
-        })();
-
-        // ============================================================
-        // 8. GOOGLE MAPS SEARCH
+        // 9. GOOGLE MAPS SEARCH
         // ============================================================
         function searchPlace() {
-            var place = document.getElementById("placeSearch");
-            var mapsFrame = document.getElementById("mapsFrame");
+            var place = document.getElementById('placeSearch');
+            var mapsFrame = document.getElementById('mapsFrame');
             if (place && mapsFrame) {
-                var value = place.value;
-                if (!value.trim()) return;
+                var value = place.value.trim();
+                if (!value) return;
                 mapsFrame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(value) + "&output=embed";
             }
         }
 
+        function goToPlace(place) {
+            var input = document.getElementById('placeSearch');
+            var mapsFrame = document.getElementById('mapsFrame');
+            if (input && mapsFrame) {
+                input.value = place;
+                mapsFrame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(place) + "&output=embed";
+            }
+        }
+
+        // Enter key for place search
+        var placeSearch = document.getElementById('placeSearch');
+        if (placeSearch) {
+            placeSearch.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') searchPlace();
+            });
+        }
+
         // ============================================================
-        // 9. CATATAN
+        // 10. SEARCH ENGINE
         // ============================================================
         (function() {
-            var notes = document.getElementById("notes");
-            var catatanCount = document.getElementById("catatanCount");
+            var searchInput = document.getElementById('searchInput');
+            var searchBtn = document.getElementById('searchBtn');
+            var engineSelect = document.getElementById('searchEngine');
+            var engineButtons = document.querySelectorAll('#engineButtons button');
+
+            function getSearchUrl(engine, query) {
+                var urls = {
+                    google: 'https://www.google.com/search?q=',
+                    bing: 'https://www.bing.com/search?q=',
+                    duckduckgo: 'https://duckduckgo.com/?q=',
+                    firefox: 'https://search.firefox.com/search?q='
+                };
+                return urls[engine] + encodeURIComponent(query);
+            }
+
+            function doSearch() {
+                var query = searchInput.value.trim();
+                if (!query) return;
+                var engine = engineSelect.value;
+                window.open(getSearchUrl(engine, query), '_blank');
+            }
+
+            if (searchBtn) {
+                searchBtn.addEventListener('click', doSearch);
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') doSearch();
+                });
+            }
+
+            // Engine buttons
+            engineButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var engine = this.dataset.engine;
+                    if (engineSelect) engineSelect.value = engine;
+                    engineButtons.forEach(function(b) { b.classList.remove('active-engine'); });
+                    this.classList.add('active-engine');
+                });
+            });
+        })();
+
+        // ============================================================
+        // 11. CATATAN
+        // ============================================================
+        (function() {
+            var notes = document.getElementById('notes');
+            var catatanCount = document.getElementById('catatanCount');
 
             if (notes) {
                 notes.value = localStorage.notes || "";
@@ -886,7 +1349,6 @@
                         catatanCount.textContent = count;
                     }
                 };
-                // Update counter on load
                 if (catatanCount) {
                     var count = notes.value.length > 0 ? 1 : 0;
                     catatanCount.textContent = count;
@@ -895,14 +1357,14 @@
         })();
 
         // ============================================================
-        // 10. GALERI FOTO
+        // 12. GALERI FOTO
         // ============================================================
         (function() {
-            var gallery = document.getElementById("gallery");
-            var galleryUpload = document.getElementById("galleryUpload");
-            var uploadBtn = document.getElementById("uploadPhotoBtn");
-            var galleryStatus = document.getElementById("galleryStatus");
-            var fotoCount = document.getElementById("fotoCount");
+            var gallery = document.getElementById('gallery');
+            var galleryUpload = document.getElementById('galleryUpload');
+            var uploadBtn = document.getElementById('uploadPhotoBtn');
+            var galleryStatus = document.getElementById('galleryStatus');
+            var fotoCount = document.getElementById('fotoCount');
 
             var galleryData = JSON.parse(localStorage.gallery || "[]");
 
@@ -918,9 +1380,10 @@
                 if (fotoCount) fotoCount.textContent = galleryData.length;
 
                 galleryData.forEach(function(img, index) {
-                    var card = document.createElement("div");
+                    var card = document.createElement('div');
                     card.style.cssText = "margin-bottom:12px; background:white; border-radius:16px; padding:8px; border:1px solid #eaeef5;";
-                    card.innerHTML = '<img src="' + img + '" style="width:100%; border-radius:12px; max-height:300px; object-fit:cover;"><br><br><button onclick="deleteImage(' + index + ')" style="background:#e74c3c; border:none; color:white; padding:6px 16px; border-radius:40px; font-size:12px; cursor:pointer;">Hapus</button>';
+                    var date = new Date().toLocaleString('id-ID', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+                    card.innerHTML = '<img src="' + img + '" style="width:100%; border-radius:12px; max-height:300px; object-fit:cover;"><div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;"><small style="color:#8aa0b5; font-size:11px;">' + date + '</small><button onclick="deleteImage(' + index + ')" style="background:#e74c3c; border:none; color:white; padding:4px 14px; border-radius:40px; font-size:11px; cursor:pointer;">Hapus</button></div>';
                     gallery.appendChild(card);
                 });
             }
@@ -954,13 +1417,13 @@
         })();
 
         // ============================================================
-        // 11. TIMELINE
+        // 13. TIMELINE
         // ============================================================
         (function() {
-            var timeline = document.getElementById("timeline");
-            var statusInput = document.getElementById("status");
-            var timelineStatus = document.getElementById("timelineStatus");
-            var timelineCount = document.getElementById("timelineCount");
+            var timeline = document.getElementById('timeline');
+            var statusInput = document.getElementById('status');
+            var timelineStatus = document.getElementById('timelineStatus');
+            var timelineCount = document.getElementById('timelineCount');
 
             var posts = JSON.parse(localStorage.posts || "[]");
 
@@ -976,7 +1439,7 @@
                 if (timelineCount) timelineCount.textContent = posts.length;
 
                 posts.forEach(function(post, index) {
-                    var div = document.createElement("div");
+                    var div = document.createElement('div');
                     div.style.cssText = "margin-bottom:12px; background:white; border-radius:16px; padding:14px; border:1px solid #eaeef5;";
                     div.innerHTML = '<p style="font-size:14px; color:#0f1a26;">' + post.text + '</p><small style="font-size:11px; color:#8aa0b5;">' + post.date + '</small><br><br><button onclick="deletePost(' + index + ')" style="background:#e74c3c; border:none; color:white; padding:4px 14px; border-radius:40px; font-size:11px; cursor:pointer;">Hapus</button>';
                     timeline.appendChild(div);
@@ -1015,7 +1478,7 @@
         })();
 
         // ============================================================
-        // 12. KUTIPAN (kedua)
+        // 14. KUTIPAN (kedua)
         // ============================================================
         (function() {
             var quotes = [
@@ -1039,7 +1502,7 @@
         })();
 
         // ============================================================
-        // 13. MATRIX RAIN
+        // 15. MATRIX RAIN
         // ============================================================
         (function() {
             var canvas = document.getElementById("matrix");
@@ -1081,7 +1544,7 @@
         })();
 
         // ============================================================
-        // 14. VISITOR COUNTER
+        // 16. VISITOR COUNTER
         // ============================================================
         (function() {
             var visitors = parseInt(localStorage.visitors || 0);
@@ -1094,14 +1557,14 @@
         })();
 
         // ============================================================
-        // 15. SCROLL TOP
+        // 17. SCROLL TOP
         // ============================================================
         function scrollTopPage() {
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         // ============================================================
-        // 16. MUSIC
+        // 18. MUSIC
         // ============================================================
         (function() {
             var music = document.getElementById("bgMusic");
@@ -1116,7 +1579,7 @@
         })();
 
         // ============================================================
-        // 17. QR GENERATOR
+        // 19. QR GENERATOR
         // ============================================================
         function generateQR() {
             var qrText = document.getElementById("qrText");
@@ -1129,14 +1592,14 @@
         }
 
         // ============================================================
-        // 18. NOTIFIKASI
+        // 20. NOTIFIKASI
         // ============================================================
         setTimeout(function() {
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
 
         // ============================================================
-        // 19. WELCOME
+        // 21. WELCOME
         // ============================================================
         console.log("ALFATT28 PREMIUM SPACE LOADED");
     </script>
