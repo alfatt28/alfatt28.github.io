@@ -269,6 +269,7 @@
             font-weight: 500;
             color: #1e2b3c;
             border: 1px solid #e2e9f2;
+            cursor: default;
         }
 
         .mood-tag i {
@@ -294,6 +295,14 @@
             gap: 6px;
             border: 1px solid #e2e9f2;
             color: #1e2b3c;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .social-item:hover {
+            background: #f0f4fa;
+            transform: scale(1.02);
         }
 
         .social-item i {
@@ -303,14 +312,34 @@
         }
 
         .whatsapp-btn {
-            background: #1e2b3c;
+            background: #25D366;
             color: white !important;
             border: none;
             padding: 4px 16px 4px 12px;
         }
 
+        .whatsapp-btn:hover {
+            background: #1da851 !important;
+        }
+
         .whatsapp-btn i {
             color: white;
+        }
+
+        .instagram-btn i {
+            color: #E4405F;
+        }
+
+        .facebook-btn i {
+            color: #1877F2;
+        }
+
+        .social-item.instagram-btn:hover {
+            background: #fce4ec;
+        }
+
+        .social-item.facebook-btn:hover {
+            background: #e3edfc;
         }
 
         /* ===== CALCULATOR ===== */
@@ -573,12 +602,20 @@
                 <div class="info-box">
                     <div class="label">TEMUKAN SAYA</div>
                     <div class="social-row">
-                        <span class="social-item"><i class="fab fa-instagram"></i> @nashmuhammad11</span>
-                        <span class="social-item"><i class="fab fa-facebook"></i> af.nazril.a</span>
-                        <span class="social-item whatsapp-btn"><i class="fab fa-whatsapp"></i> Chat Langsung</span>
+                        <!-- INSTAGRAM -->
+                        <a href="https://www.instagram.com/nashmuhammad11" target="_blank" class="social-item instagram-btn">
+                            <i class="fab fa-instagram"></i> @nashmuhammad11
+                        </a>
+                        <!-- FACEBOOK -->
+                        <a href="https://www.facebook.com/profile.php?id=61558921940476" target="_blank" class="social-item facebook-btn">
+                            <i class="fab fa-facebook"></i> Muhammad Nash
+                        </a>
+                        <!-- WHATSAPP -->
+                        <a href="https://wa.me/6281231868636" target="_blank" class="social-item whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chat Langsung
+                        </a>
                     </div>
                 </div>
-                <!-- PRO NOTE - DIHAPUS -->
             </div>
 
             <!-- ===== GALERI ===== -->
@@ -965,7 +1002,6 @@
                 renderPosts();
             };
 
-            // Enter key for status
             if (statusInput) {
                 statusInput.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') {
