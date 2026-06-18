@@ -1,147 +1,1088 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>alfatt28 Premium Space</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#0f172a;color:#fff}
-header{padding:20px;text-align:center;background:#111827;position:sticky;top:0}
-.card{background:#1e293b;margin:15px;padding:15px;border-radius:15px}
-button{padding:10px 15px;border:none;border-radius:10px;cursor:pointer}
-input,textarea{width:100%;padding:10px;margin:5px 0;border-radius:10px}
-.gallery img{max-width:100%;border-radius:10px;margin-top:10px}
-marquee{background:#2563eb;padding:10px}
-.light{background:#f1f5f9;color:#111}
-.light .card{background:#fff;color:#111}
-.progress{background:#334155;border-radius:10px;overflow:hidden}
-.bar{height:20px;background:#22c55e;width:85%}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alfatt28 · Personal Space</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .card {
+            max-width: 400px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 24px 20px 28px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+            transition: all 0.2s;
+            animation: fadeIn .6s ease;
+        }
+
+        /* ===== KEYFRAMES ===== */
+        @keyframes fade {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes grow {
+            from {
+                width: 0;
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-left i {
+            font-size: 20px;
+            color: #1e2b3c;
+            background: #f0f4fa;
+            padding: 8px 10px;
+            border-radius: 14px;
+        }
+
+        .header-left .date {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1e2b3c;
+            letter-spacing: 0.2px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-right i {
+            font-size: 18px;
+            color: #2c3e50;
+            opacity: 0.6;
+        }
+
+        .badge-pro {
+            background: #e8edf4;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #1a2b3c;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== PROFILE ===== */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 54px;
+            height: 54px;
+            background: #1e2b3c;
+            border-radius: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .profile-info h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f1a26;
+            letter-spacing: -0.3px;
+        }
+
+        .profile-info .sub {
+            font-size: 12px;
+            color: #5b738a;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            background: #f0f4fa;
+            padding: 4px;
+            border-radius: 40px;
+            margin-bottom: 22px;
+            gap: 2px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 10px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #4d667e;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: center;
+        }
+
+        .tab-btn i {
+            margin-right: 5px;
+            font-size: 13px;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0f1a26;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: #f8faff;
+            padding: 12px 10px;
+            border-radius: 24px;
+            margin-bottom: 22px;
+            border: 1px solid #eaeef5;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .angka {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f1a26;
+        }
+
+        .stat-item .label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #6f889e;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== PAGES ===== */
+        .page {
+            display: none;
+            animation: fade 0.2s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ===== INFO BOX ===== */
+        .info-box {
+            background: #f8faff;
+            padding: 14px 16px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border: 1px solid #eaeef5;
+        }
+
+        .info-box .label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #6f889e;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info-box .value {
+            font-size: 14px;
+            font-weight: 500;
+            color: #0f1a26;
+            line-height: 1.5;
+        }
+
+        .info-box .value i {
+            margin-right: 5px;
+            color: #2c3e50;
+            opacity: 0.5;
+        }
+
+        /* ===== MOOD ===== */
+        .mood-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .mood-tag {
+            background: white;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #1e2b3c;
+            border: 1px solid #e2e9f2;
+        }
+
+        .mood-tag i {
+            margin-right: 4px;
+        }
+
+        /* ===== SOCIAL ===== */
+        .social-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .social-item {
+            background: white;
+            padding: 4px 14px 4px 10px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #e2e9f2;
+            color: #1e2b3c;
+        }
+
+        .social-item i {
+            font-size: 14px;
+            width: 18px;
+            color: #1e2b3c;
+        }
+
+        .whatsapp-btn {
+            background: #1e2b3c;
+            color: white !important;
+            border: none;
+            padding: 4px 16px 4px 12px;
+        }
+
+        .whatsapp-btn i {
+            color: white;
+        }
+
+        /* ===== PRO NOTE ===== */
+        .pro-note {
+            background: #eef3f9;
+            border-radius: 60px;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+            font-size: 12px;
+            color: #1e2b3c;
+        }
+
+        .pro-note span i {
+            margin-right: 6px;
+        }
+
+        .pro-note .upgrade {
+            font-weight: 600;
+            background: white;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 11px;
+            color: #0f1a26;
+        }
+
+        /* ===== CALCULATOR ===== */
+        .calculator {
+            background: #f8faff;
+            padding: 16px;
+            border-radius: 20px;
+            border: 1px solid #eaeef5;
+            margin-bottom: 14px;
+        }
+
+        .calc-input {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .calc-input input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #dce3ed;
+            border-radius: 40px;
+            font-size: 14px;
+            background: white;
+            outline: none;
+            transition: 0.15s;
+        }
+
+        .calc-input input:focus {
+            border-color: #1e2b3c;
+        }
+
+        .calc-result {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f1a26;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid #dce3ed;
+        }
+
+        .calc-btn {
+            background: #1e2b3c;
+            border: none;
+            color: white;
+            padding: 0 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .calc-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* ===== QUOTE ===== */
+        .quote-box {
+            background: #f0f6fe;
+            padding: 14px 16px;
+            border-radius: 20px;
+            border-left: 4px solid #1e2b3c;
+            font-style: italic;
+            color: #1a2b3c;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .quote-box i {
+            opacity: 0.4;
+            margin-right: 6px;
+        }
+
+        .quote-nav {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 6px;
+        }
+
+        .quote-nav button {
+            background: transparent;
+            border: 1px solid #dce3ed;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 12px;
+            cursor: pointer;
+            color: #1e2b3c;
+            transition: 0.15s;
+        }
+
+        .quote-nav button:hover {
+            background: #eef3f9;
+        }
+
+        /* ===== EXPLORE FOOTER ===== */
+        .explore-footer {
+            background: #f0f4fa;
+            border-radius: 60px;
+            padding: 8px 16px;
+            font-size: 12px;
+            color: #1e2b3c;
+            text-align: center;
+        }
+
+        .explore-footer i {
+            margin-right: 6px;
+        }
+
+        /* ===== LOADER ===== */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #020617;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+        }
+
+        .loader-box {
+            text-align: center;
+        }
+
+        .loader-box h1 {
+            font-size: 40px;
+            color: #00e5ff;
+            text-shadow: 0 0 20px #00e5ff;
+        }
+
+        /* ===== MISC ===== */
+        hr {
+            border: none;
+            border-top: 1px solid #e8edf4;
+            margin: 18px 0 10px;
+        }
+
+        .footer-small {
+            font-size: 11px;
+            color: #8aa0b5;
+            text-align: center;
+        }
+
+        #topBtn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 22px;
+            z-index: 999;
+        }
+
+        .bar {
+            animation: grow 2s ease;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 440px) {
+            .card {
+                padding: 18px 14px 22px;
+            }
+            .tab-btn {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+            .tab-btn i {
+                margin-right: 3px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<marquee>🔥 Selamat datang di alfatt28.github.io | Tetap belajar | Tetap bertarung 🚀</marquee>
+    <!-- ===== LOADER ===== -->
+    <div id="loader">
+        <div class="loader-box">
+            <h1>⏳</h1>
+            <p style="color:#ffffff; margin-top:10px;">Memuat...</p>
+        </div>
+    </div>
 
-<header>
-<h1>ALFATT28 PREMIUM WEBSITE</h1>
-<div id="clock"></div>
-<button onclick="toggleMode()">Dark / Light</button>
-</header>
+    <!-- ===== MAIN CARD ===== -->
+    <div class="card" id="app">
 
-<div class="card">
-<h2>Profil</h2>
-<input type="file" id="avatarUpload">
-<img id="avatar" style="max-width:120px;border-radius:50%;display:block;margin-top:10px;">
-</div>
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-left">
+                <i class="fas fa-folder-open"></i>
+                <span class="date" id="clock">03.26</span>
+            </div>
+            <div class="header-right">
+                <i class="far fa-bell"></i>
+                <span class="badge-pro">PRO</span>
+            </div>
+        </div>
 
-<div class="card">
-<h2>Sosial Media</h2>
-<p><a href="https://instagram.com" target="_blank">Instagram</a></p>
-<p><a href="https://facebook.com" target="_blank">Facebook</a></p>
-<p><a href="https://wa.me/" target="_blank">WhatsApp</a></p>
-<p><a href="https://github.com" target="_blank">GitHub</a></p>
-</div>
+        <!-- PROFILE -->
+        <div class="profile">
+            <div class="avatar" id="avatar">A</div>
+            <div class="profile-info">
+                <h2>alfatt519</h2>
+                <div class="sub">PERSONAL SPACE</div>
+            </div>
+        </div>
 
-<div class="card">
-<h2>Galeri</h2>
-<input type="file" id="galleryUpload">
-<div class="gallery" id="gallery"></div>
-</div>
+        <!-- TABS -->
+        <div class="tabs" id="tabContainer">
+            <button class="tab-btn active" data-page="beranda"><i class="fas fa-home"></i> Beranda</button>
+            <button class="tab-btn" data-page="galeri"><i class="fas fa-image"></i> Galeri</button>
+            <button class="tab-btn" data-page="timeline"><i class="fas fa-clock"></i> Timeline</button>
+            <button class="tab-btn" data-page="catatan"><i class="fas fa-pen"></i> Catatan</button>
+            <button class="tab-btn" data-page="jelajah"><i class="fas fa-compass"></i> Jelajah</button>
+        </div>
 
-<div class="card">
-<h2>Timeline</h2>
-<textarea id="status" placeholder="Tulis status..."></textarea>
-<button onclick="postStatus()">Posting</button>
-<div id="timeline"></div>
-</div>
+        <!-- STATS -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="angka">0</div>
+                <div class="label">Foto</div>
+            </div>
+            <div class="stat-item">
+                <div class="angka">0</div>
+                <div class="label">Timeline</div>
+            </div>
+            <div class="stat-item">
+                <div class="angka">0</div>
+                <div class="label">Catatan</div>
+            </div>
+        </div>
 
-<div class="card">
-<h2>Catatan</h2>
-<textarea id="notes"></textarea>
-</div>
+        <!-- CONTENT -->
+        <div class="content">
 
-<div class="card">
-<h2>Kalkulator</h2>
-<input id="calc" placeholder="12+8">
-<button onclick="calc()">Hitung</button>
-<h3 id="result"></h3>
-</div>
+            <!-- ===== BERANDA ===== -->
+            <div id="page-beranda" class="page active">
+                <div class="info-box">
+                    <div class="label">TENTANG</div>
+                    <div class="value">tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung 😉</div>
+                </div>
+                <div class="info-box">
+                    <div class="label">KUTIPAN</div>
+                    <div class="value">“Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.”</div>
+                </div>
+                <div class="info-box">
+                    <div class="label">MOOD HARI INI</div>
+                    <div class="mood-row">
+                        <span class="mood-tag"><i class="fas fa-leaf"></i> Semangat 🌱</span>
+                        <span class="mood-tag"><i class="fas fa-smile"></i> Santi 😊</span>
+                        <span class="mood-tag"><i class="fas fa-bullseye"></i> Fokus 🎯</span>
+                        <span class="mood-tag"><i class="fas fa-meh"></i> Galau 😏</span>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="label">TEMUKAN SAYA</div>
+                    <div class="social-row">
+                        <span class="social-item"><i class="fab fa-instagram"></i> @nashmuhammad11</span>
+                        <span class="social-item"><i class="fab fa-facebook"></i> af.nazril.a</span>
+                        <span class="social-item whatsapp-btn"><i class="fab fa-whatsapp"></i> Chat Langsung</span>
+                    </div>
+                </div>
+                <div class="pro-note">
+                    <span><i class="far fa-clock"></i> Kamu kehabisan pesan sampai 07:50</span>
+                    <span class="upgrade">Tingkatkan ke Pro</span>
+                </div>
+            </div>
 
-<div class="card">
-<h2>Skill Progress</h2>
-HTML
-<div class="progress"><div class="bar"></div></div>
-</div>
+            <!-- ===== GALERI ===== -->
+            <div id="page-galeri" class="page">
+                <div class="info-box">
+                    <div class="label">📸 GALERI</div>
+                    <div class="value" style="font-weight:400;">Belum ada foto. Unggah karya terbaikmu!</div>
+                    <div style="margin-top:12px; background:#eef3f9; border-radius:60px; padding:10px 16px; text-align:center; font-size:13px; color:#1e2b3c;">
+                        <i class="fas fa-cloud-upload-alt"></i> Tambah foto
+                    </div>
+                </div>
+            </div>
 
-<div class="card">
-<h2>Kutipan</h2>
-<p id="quote"></p>
-<button onclick="newQuote()">Kutipan Baru</button>
-</div>
+            <!-- ===== TIMELINE ===== -->
+            <div id="page-timeline" class="page">
+                <div class="info-box">
+                    <div class="label">⏳ TIMELINE</div>
+                    <div class="value" style="font-weight:400;">Belum ada aktivitas. Mulai bagikan momen!</div>
+                </div>
+            </div>
 
-<script>
-setInterval(()=>{
-document.getElementById('clock').innerHTML=new Date().toLocaleString('id-ID');
-},1000);
+            <!-- ===== CATATAN ===== -->
+            <div id="page-catatan" class="page">
+                <div class="info-box">
+                    <div class="label">📝 CATATAN</div>
+                    <div class="value" style="font-weight:400;">Tulis ide, rencana, atau pelajaran hari ini.</div>
+                    <div style="margin-top:12px; background:#eef3f9; border-radius:60px; padding:10px 16px; text-align:center; font-size:13px; color:#1e2b3c;">
+                        <i class="fas fa-plus-circle"></i> Buat catatan baru
+                    </div>
+                </div>
+            </div>
 
-function toggleMode(){
-document.body.classList.toggle('light');
-}
+            <!-- ===== JELAJAH ===== -->
+            <div id="page-jelajah" class="page">
+                <!-- Kalkulator -->
+                <div class="calculator">
+                    <div style="font-weight:600; margin-bottom:8px; color:#1e2b3c; font-size:14px;">
+                        <i class="fas fa-calculator"></i> Kalkulator cepat
+                    </div>
+                    <div class="calc-input">
+                        <input type="text" id="calcInput" placeholder="misal: 12 + 8" value="12 + 8">
+                        <button class="calc-btn" id="calcBtn">=</button>
+                    </div>
+                    <div class="calc-result" id="calcResult">20</div>
+                </div>
 
-document.getElementById('avatarUpload').onchange=e=>{
-let f=e.target.files[0];
-let r=new FileReader();
-r.onload=()=>{
-localStorage.avatar=r.result;
-document.getElementById('avatar').src=r.result;
-};
-r.readAsDataURL(f);
-};
-if(localStorage.avatar)document.getElementById('avatar').src=localStorage.avatar;
+                <!-- Quote -->
+                <div class="quote-box" id="quoteBox">
+                    <i class="fas fa-quote-left"></i>
+                    <span id="quoteText">Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.</span>
+                </div>
+                <div class="quote-nav">
+                    <button id="nextQuoteBtn"><i class="fas fa-sync-alt"></i> kutipan lain</button>
+                </div>
 
-document.getElementById('galleryUpload').onchange=e=>{
-let f=e.target.files[0];
-let r=new FileReader();
-r.onload=()=>{
-let img=document.createElement('img');
-img.src=r.result;
-document.getElementById('gallery').appendChild(img);
-};
-r.readAsDataURL(f);
-};
+                <!-- Explore footer -->
+                <div class="explore-footer">
+                    <i class="fas fa-globe-asia"></i> Jelajahi lebih banyak fitur
+                </div>
+            </div>
+        </div>
 
-function postStatus(){
-let txt=document.getElementById('status').value;
-let div=document.createElement('div');
-div.className='card';
-div.innerHTML=txt;
-document.getElementById('timeline').prepend(div);
-}
+        <hr>
+        <div class="footer-small">
+            <i class="far fa-copyright"></i> alfatt28.github.io · personal space
+        </div>
+    </div>
 
-document.getElementById('notes').value=localStorage.notes||'';
-document.getElementById('notes').oninput=()=>{
-localStorage.notes=document.getElementById('notes').value;
-};
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ============================================================
+        // 1. LOADING SCREEN
+        // ============================================================
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.getElementById("loader").style.display = "none";
+            }, 1500);
+        });
 
-function calc(){
-try{
-document.getElementById('result').innerHTML=eval(document.getElementById('calc').value);
-}catch{
-document.getElementById('result').innerHTML='Error';
-}
-}
+        // ============================================================
+        // 2. JAM DIGITAL
+        // ============================================================
+        setInterval(function() {
+            document.getElementById("clock").innerHTML = new Date().toLocaleString("id-ID");
+        }, 1000);
 
-const quotes=[
-"Jangan menyerah.",
-"Tetap belajar.",
-"Kesuksesan dimulai dari langkah kecil.",
-"Fokus pada tujuan."
-];
-function newQuote(){
-document.getElementById('quote').innerHTML=quotes[Math.floor(Math.random()*quotes.length)];
-}
-newQuote();
-</script>
+        // ============================================================
+        // 3. TAB NAVIGASI (tanpa #)
+        // ============================================================
+        (function() {
+            var tabButtons = document.querySelectorAll('.tab-btn');
+            var pages = {
+                beranda: document.getElementById('page-beranda'),
+                galeri: document.getElementById('page-galeri'),
+                timeline: document.getElementById('page-timeline'),
+                catatan: document.getElementById('page-catatan'),
+                jelajah: document.getElementById('page-jelajah')
+            };
+
+            function setActiveTab(pageId) {
+                // update tombol
+                tabButtons.forEach(function(btn) {
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                // update halaman
+                Object.keys(pages).forEach(function(key) {
+                    if (key === pageId) {
+                        pages[key].classList.add('active');
+                    } else {
+                        pages[key].classList.remove('active');
+                    }
+                });
+
+                // history replace state (tanpa #)
+                var baseUrl = window.location.pathname + window.location.search;
+                var newUrl = baseUrl + (baseUrl.includes('?') ? '&' : '?') + 'tab=' + pageId;
+                window.history.replaceState({ tab: pageId }, '', newUrl);
+            }
+
+            tabButtons.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var page = this.dataset.page;
+                    if (page) setActiveTab(page);
+                });
+            });
+
+            // baca tab dari URL
+            function getTabFromUrl() {
+                var params = new URLSearchParams(window.location.search);
+                return params.get('tab') || 'beranda';
+            }
+
+            var initialTab = getTabFromUrl();
+            if (pages[initialTab]) {
+                setActiveTab(initialTab);
+            } else {
+                setActiveTab('beranda');
+            }
+        })();
+
+        // ============================================================
+        // 4. KALKULATOR
+        // ============================================================
+        (function() {
+            var calcInput = document.getElementById('calcInput');
+            var calcBtn = document.getElementById('calcBtn');
+            var calcResult = document.getElementById('calcResult');
+
+            function evaluateCalc() {
+                try {
+                    var expr = calcInput.value.trim();
+                    var sanitized = expr.replace(/[^0-9+\-*/().]/g, '');
+                    if (sanitized === '') {
+                        calcResult.textContent = '0';
+                        return;
+                    }
+                    var result = new Function('return (' + sanitized + ')')();
+                    calcResult.textContent = (typeof result === 'number' && !isNaN(result)) ? result : 'Error';
+                } catch (e) {
+                    calcResult.textContent = 'Error';
+                }
+            }
+
+            calcBtn.addEventListener('click', evaluateCalc);
+            calcInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') evaluateCalc();
+            });
+            evaluateCalc();
+        })();
+
+        // ============================================================
+        // 5. KUTIPAN (10)
+        // ============================================================
+        (function() {
+            var quotes = [
+                "Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.",
+                "Kesuksesan bukanlah kunci kebahagiaan. Kebahagiaan adalah kunci kesuksesan.",
+                "Bekerjalah seolah-olah kau tak butuh uang, cintailah seolah-olah kau tak pernah terluka.",
+                "Hidup yang terbaik adalah hidup yang dijalani dengan tujuan.",
+                "Kegagalan adalah bumbu kehidupan yang membuat kesuksesan terasa lebih manis.",
+                "Jangan takut melangkah perlahan, takutlah jika hanya berdiam diri.",
+                "Orang hebat bukanlah mereka yang tidak pernah gagal, tapi yang bangkit setiap kali jatuh.",
+                "Rahasia perubahan adalah memfokuskan energi bukan untuk melawan yang lama, tapi membangun yang baru.",
+                "Hiduplah seolah-olah kau akan mati besok, belajarlah seolah-olah kau akan hidup selamanya.",
+                "Menjadi diri sendiri di dunia yang terus berusaha mengubahmu adalah pencapaian terbesar."
+            ];
+            var quoteIndex = 0;
+            var quoteText = document.getElementById('quoteText');
+            var nextQuoteBtn = document.getElementById('nextQuoteBtn');
+
+            function showQuote(index) {
+                quoteText.textContent = quotes[index % quotes.length];
+            }
+
+            nextQuoteBtn.addEventListener('click', function() {
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                showQuote(quoteIndex);
+            });
+
+            showQuote(0);
+        })();
+
+        // ============================================================
+        // 6. DARK MODE
+        // ============================================================
+        function toggleMode() {
+            document.body.classList.toggle("light");
+            localStorage.theme = document.body.classList.contains("light") ? "light" : "dark";
+        }
+
+        if (localStorage.theme === "light") {
+            document.body.classList.add("light");
+        }
+
+        // ============================================================
+        // 7. AVATAR PROFILE
+        // ============================================================
+        (function() {
+            var avatar = document.getElementById("avatar");
+            if (localStorage.avatar) {
+                avatar.src = localStorage.avatar;
+            }
+
+            // Catatan: Elemen #avatarUpload tidak ada di HTML, ditambahkan sebagai fallback
+            var uploadInput = document.getElementById("avatarUpload");
+            if (uploadInput) {
+                uploadInput.onchange = function(e) {
+                    var file = e.target.files[0];
+                    if (!file) return;
+                    var reader = new FileReader();
+                    reader.onload = function() {
+                        avatar.src = reader.result;
+                        localStorage.avatar = reader.result;
+                    };
+                    reader.readAsDataURL(file);
+                };
+            }
+        })();
+
+        // ============================================================
+        // 8. GOOGLE MAPS SEARCH
+        // ============================================================
+        function searchPlace() {
+            var place = document.getElementById("placeSearch").value;
+            if (!place.trim()) return;
+            document.getElementById("mapsFrame").src =
+                "https://maps.google.com/maps?q=" + encodeURIComponent(place) + "&output=embed";
+        }
+
+        // ============================================================
+        // 9. CATATAN
+        // ============================================================
+        (function() {
+            var notes = document.getElementById("notes");
+            if (notes) {
+                notes.value = localStorage.notes || "";
+                notes.oninput = function() {
+                    localStorage.notes = notes.value;
+                };
+            }
+        })();
+
+        // ============================================================
+        // 10. GALERI FOTO
+        // ============================================================
+        (function() {
+            var gallery = document.getElementById("gallery");
+            var galleryData = JSON.parse(localStorage.gallery || "[]");
+
+            function renderGallery() {
+                if (!gallery) return;
+                gallery.innerHTML = "";
+                galleryData.forEach(function(img, index) {
+                    var card = document.createElement("div");
+                    card.innerHTML = '<img src="' + img + '"><br><br><button onclick="deleteImage(' + index +
+                        ')">Hapus</button>';
+                    gallery.appendChild(card);
+                });
+            }
+
+            window.deleteImage = function(index) {
+                galleryData.splice(index, 1);
+                localStorage.gallery = JSON.stringify(galleryData);
+                renderGallery();
+            };
+
+            renderGallery();
+
+            var uploadInput = document.getElementById("galleryUpload");
+            if (uploadInput) {
+                uploadInput.onchange = function(e) {
+                    var file = e.target.files[0];
+                    if (!file) return;
+                    var reader = new FileReader();
+                    reader.onload = function() {
+                        galleryData.push(reader.result);
+                        localStorage.gallery = JSON.stringify(galleryData);
+                        renderGallery();
+                    };
+                    reader.readAsDataURL(file);
+                };
+            }
+        })();
+
+        // ============================================================
+        // 11. TIMELINE
+        // ============================================================
+        (function() {
+            var posts = JSON.parse(localStorage.posts || "[]");
+
+            function renderPosts() {
+                var timeline = document.getElementById("timeline");
+                if (!timeline) return;
+                timeline.innerHTML = "";
+                posts.forEach(function(post, index) {
+                    var div = document.createElement("div");
+                    div.className = "card";
+                    div.innerHTML = '<p>' + post.text + '</p><small>' + post.date +
+                        '</small><br><br><button onclick="deletePost(' + index + ')">Hapus</button>';
+                    timeline.appendChild(div);
+                });
+            }
+
+            window.postStatus = function() {
+                var input = document.getElementById("status");
+                if (!input) return;
+                var text = input.value.trim();
+                if (!text) return;
+                posts.unshift({
+                    text: text,
+                    date: new Date().toLocaleString("id-ID")
+                });
+                localStorage.posts = JSON.stringify(posts);
+                input.value = "";
+                renderPosts();
+            };
+
+            window.deletePost = function(index) {
+                posts.splice(index, 1);
+                localStorage.posts = JSON.stringify(posts);
+                renderPosts();
+            };
+
+            renderPosts();
+        })();
+
+        // ============================================================
+        // 12. KUTIPAN (kedua)
+        // ============================================================
+        (function() {
+            var quotes = [
+                "Jangan menyerah.",
+                "Tetap belajar.",
+                "Kesuksesan dimulai dari langkah kecil.",
+                "Fokus pada tujuan.",
+                "Kerja keras mengalahkan bakat.",
+                "Hari ini lebih baik dari kemarin.",
+                "Terus bergerak maju."
+            ];
+
+            window.newQuote = function() {
+                var quoteEl = document.getElementById("quote");
+                if (quoteEl) {
+                    quoteEl.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+                }
+            };
+
+            newQuote();
+        })();
+
+        // ============================================================
+        // 13. MATRIX RAIN
+        // ============================================================
+        (function() {
+            var canvas = document.getElementById("matrix");
+            if (!canvas) return;
+            var ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var fontSize = 14;
+            var columns = canvas.width / fontSize;
+            var drops = [];
+            for (var i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+
+            function drawMatrix() {
+                ctx.fillStyle = "rgba(0,0,0,0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#00ff88";
+                ctx.font = fontSize + "px monospace";
+
+                for (var i = 0; i < drops.length; i++) {
+                    var text = letters[Math.floor(Math.random() * letters.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            setInterval(drawMatrix, 33);
+
+            window.addEventListener("resize", function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        })();
+
+        // ============================================================
+        // 14. VISITOR COUNTER
+        // ============================================================
+        (function() {
+            var visitors = parseInt(localStorage.visitors || 0);
+            visitors++;
+            localStorage.visitors = visitors;
+            var counterEl = document.getElementById("visitorCount");
+            if (counterEl) {
+                counterEl.innerHTML = visitors;
+            }
+        })();
+
+        // ============================================================
+        // 15. SCROLL TOP
+        // ============================================================
+        function scrollTopPage() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // ============================================================
+        // 16. MUSIC
+        // ============================================================
+        (function() {
+            var music = document.getElementById("bgMusic");
+            window.toggleMusic = function() {
+                if (!music) return;
+                if (music.paused) {
+                    music.play();
+                } else {
+                    music.pause();
+                }
+            };
+        })();
+
+        // ============================================================
+        // 17. QR GENERATOR
+        // ============================================================
+        function generateQR() {
+            var text = document.getElementById("qrText").value;
+            if (!text) return;
+            document.getElementById("qrImage").src =
+                "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(text);
+        }
+
+        // ============================================================
+        // 18. NOTIFIKASI
+        // ============================================================
+        setTimeout(function() {
+            alert("Selamat datang di ALFATT28 Premium Space 🚀");
+        }, 2500);
+
+        // ============================================================
+        // 19. WELCOME
+        // ============================================================
+        console.log("ALFATT28 PREMIUM SPACE LOADED");
+    </script>
+
 </body>
 </html>
-
