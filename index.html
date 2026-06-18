@@ -313,32 +313,6 @@
             color: white;
         }
 
-        /* ===== PRO NOTE ===== */
-        .pro-note {
-            background: #eef3f9;
-            border-radius: 60px;
-            padding: 10px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 4px;
-            font-size: 12px;
-            color: #1e2b3c;
-        }
-
-        .pro-note span i {
-            margin-right: 6px;
-        }
-
-        .pro-note .upgrade {
-            font-weight: 600;
-            background: white;
-            padding: 4px 14px;
-            border-radius: 40px;
-            font-size: 11px;
-            color: #0f1a26;
-        }
-
         /* ===== CALCULATOR ===== */
         .calculator {
             background: #f8faff;
@@ -561,15 +535,15 @@
         <!-- STATS -->
         <div class="stats">
             <div class="stat-item">
-                <div class="angka">0</div>
+                <div class="angka" id="fotoCount">0</div>
                 <div class="label">Foto</div>
             </div>
             <div class="stat-item">
-                <div class="angka">0</div>
+                <div class="angka" id="timelineCount">0</div>
                 <div class="label">Timeline</div>
             </div>
             <div class="stat-item">
-                <div class="angka">0</div>
+                <div class="angka" id="catatanCount">0</div>
                 <div class="label">Catatan</div>
             </div>
         </div>
@@ -591,7 +565,7 @@
                     <div class="label">MOOD HARI INI</div>
                     <div class="mood-row">
                         <span class="mood-tag"><i class="fas fa-leaf"></i> Semangat 🌱</span>
-                        <span class="mood-tag"><i class="fas fa-smile"></i> Santi 😊</span>
+                        <span class="mood-tag"><i class="fas fa-smile"></i> Santai 😊</span>
                         <span class="mood-tag"><i class="fas fa-bullseye"></i> Fokus 🎯</span>
                         <span class="mood-tag"><i class="fas fa-meh"></i> Galau 😏</span>
                     </div>
@@ -604,20 +578,19 @@
                         <span class="social-item whatsapp-btn"><i class="fab fa-whatsapp"></i> Chat Langsung</span>
                     </div>
                 </div>
-                <div class="pro-note">
-                    <span><i class="far fa-clock"></i> Kamu kehabisan pesan sampai 07:50</span>
-                    <span class="upgrade">Tingkatkan ke Pro</span>
-                </div>
+                <!-- PRO NOTE - DIHAPUS -->
             </div>
 
             <!-- ===== GALERI ===== -->
             <div id="page-galeri" class="page">
                 <div class="info-box">
                     <div class="label">📸 GALERI</div>
-                    <div class="value" style="font-weight:400;">Belum ada foto. Unggah karya terbaikmu!</div>
-                    <div style="margin-top:12px; background:#eef3f9; border-radius:60px; padding:10px 16px; text-align:center; font-size:13px; color:#1e2b3c;">
+                    <div class="value" style="font-weight:400;" id="galleryStatus">Belum ada foto. Unggah karya terbaikmu!</div>
+                    <div style="margin-top:12px; background:#eef3f9; border-radius:60px; padding:10px 16px; text-align:center; font-size:13px; color:#1e2b3c; cursor:pointer;" id="uploadPhotoBtn">
                         <i class="fas fa-cloud-upload-alt"></i> Tambah foto
                     </div>
+                    <input type="file" id="galleryUpload" accept="image/*" style="display:none;">
+                    <div id="gallery" style="margin-top:12px;"></div>
                 </div>
             </div>
 
@@ -625,7 +598,12 @@
             <div id="page-timeline" class="page">
                 <div class="info-box">
                     <div class="label">⏳ TIMELINE</div>
-                    <div class="value" style="font-weight:400;">Belum ada aktivitas. Mulai bagikan momen!</div>
+                    <div class="value" style="font-weight:400;" id="timelineStatus">Belum ada aktivitas. Mulai bagikan momen!</div>
+                    <div style="margin-top:12px; display:flex; gap:8px;">
+                        <input type="text" id="status" placeholder="Tulis status..." style="flex:1; padding:10px 14px; border:1px solid #dce3ed; border-radius:40px; font-size:14px; outline:none;">
+                        <button onclick="postStatus()" style="background:#1e2b3c; border:none; color:white; padding:10px 20px; border-radius:40px; font-weight:600; cursor:pointer;">Kirim</button>
+                    </div>
+                    <div id="timeline" style="margin-top:12px;"></div>
                 </div>
             </div>
 
@@ -634,9 +612,7 @@
                 <div class="info-box">
                     <div class="label">📝 CATATAN</div>
                     <div class="value" style="font-weight:400;">Tulis ide, rencana, atau pelajaran hari ini.</div>
-                    <div style="margin-top:12px; background:#eef3f9; border-radius:60px; padding:10px 16px; text-align:center; font-size:13px; color:#1e2b3c;">
-                        <i class="fas fa-plus-circle"></i> Buat catatan baru
-                    </div>
+                    <textarea id="notes" style="width:100%; margin-top:12px; padding:12px; border:1px solid #dce3ed; border-radius:16px; font-size:14px; min-height:120px; resize:vertical; outline:none; font-family:inherit;" placeholder="Tulis catatan di sini..."></textarea>
                 </div>
             </div>
 
@@ -683,7 +659,8 @@
         // ============================================================
         window.addEventListener("load", function() {
             setTimeout(function() {
-                document.getElementById("loader").style.display = "none";
+                var loader = document.getElementById("loader");
+                if (loader) loader.style.display = "none";
             }, 1500);
         });
 
@@ -691,7 +668,10 @@
         // 2. JAM DIGITAL
         // ============================================================
         setInterval(function() {
-            document.getElementById("clock").innerHTML = new Date().toLocaleString("id-ID");
+            var clock = document.getElementById("clock");
+            if (clock) {
+                clock.innerHTML = new Date().toLocaleString("id-ID");
+            }
         }, 1000);
 
         // ============================================================
@@ -708,7 +688,6 @@
             };
 
             function setActiveTab(pageId) {
-                // update tombol
                 tabButtons.forEach(function(btn) {
                     if (btn.dataset.page === pageId) {
                         btn.classList.add('active');
@@ -717,16 +696,16 @@
                     }
                 });
 
-                // update halaman
                 Object.keys(pages).forEach(function(key) {
-                    if (key === pageId) {
-                        pages[key].classList.add('active');
-                    } else {
-                        pages[key].classList.remove('active');
+                    if (pages[key]) {
+                        if (key === pageId) {
+                            pages[key].classList.add('active');
+                        } else {
+                            pages[key].classList.remove('active');
+                        }
                     }
                 });
 
-                // history replace state (tanpa #)
                 var baseUrl = window.location.pathname + window.location.search;
                 var newUrl = baseUrl + (baseUrl.includes('?') ? '&' : '?') + 'tab=' + pageId;
                 window.history.replaceState({ tab: pageId }, '', newUrl);
@@ -740,7 +719,6 @@
                 });
             });
 
-            // baca tab dari URL
             function getTabFromUrl() {
                 var params = new URLSearchParams(window.location.search);
                 return params.get('tab') || 'beranda';
@@ -762,26 +740,28 @@
             var calcBtn = document.getElementById('calcBtn');
             var calcResult = document.getElementById('calcResult');
 
-            function evaluateCalc() {
-                try {
-                    var expr = calcInput.value.trim();
-                    var sanitized = expr.replace(/[^0-9+\-*/().]/g, '');
-                    if (sanitized === '') {
-                        calcResult.textContent = '0';
-                        return;
+            if (calcInput && calcBtn && calcResult) {
+                function evaluateCalc() {
+                    try {
+                        var expr = calcInput.value.trim();
+                        var sanitized = expr.replace(/[^0-9+\-*/().]/g, '');
+                        if (sanitized === '') {
+                            calcResult.textContent = '0';
+                            return;
+                        }
+                        var result = new Function('return (' + sanitized + ')')();
+                        calcResult.textContent = (typeof result === 'number' && !isNaN(result)) ? result : 'Error';
+                    } catch (e) {
+                        calcResult.textContent = 'Error';
                     }
-                    var result = new Function('return (' + sanitized + ')')();
-                    calcResult.textContent = (typeof result === 'number' && !isNaN(result)) ? result : 'Error';
-                } catch (e) {
-                    calcResult.textContent = 'Error';
                 }
-            }
 
-            calcBtn.addEventListener('click', evaluateCalc);
-            calcInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') evaluateCalc();
-            });
-            evaluateCalc();
+                calcBtn.addEventListener('click', evaluateCalc);
+                calcInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') evaluateCalc();
+                });
+                evaluateCalc();
+            }
         })();
 
         // ============================================================
@@ -804,16 +784,18 @@
             var quoteText = document.getElementById('quoteText');
             var nextQuoteBtn = document.getElementById('nextQuoteBtn');
 
-            function showQuote(index) {
-                quoteText.textContent = quotes[index % quotes.length];
+            if (quoteText && nextQuoteBtn) {
+                function showQuote(index) {
+                    quoteText.textContent = quotes[index % quotes.length];
+                }
+
+                nextQuoteBtn.addEventListener('click', function() {
+                    quoteIndex = (quoteIndex + 1) % quotes.length;
+                    showQuote(quoteIndex);
+                });
+
+                showQuote(0);
             }
-
-            nextQuoteBtn.addEventListener('click', function() {
-                quoteIndex = (quoteIndex + 1) % quotes.length;
-                showQuote(quoteIndex);
-            });
-
-            showQuote(0);
         })();
 
         // ============================================================
@@ -833,23 +815,8 @@
         // ============================================================
         (function() {
             var avatar = document.getElementById("avatar");
-            if (localStorage.avatar) {
+            if (avatar && localStorage.avatar) {
                 avatar.src = localStorage.avatar;
-            }
-
-            // Catatan: Elemen #avatarUpload tidak ada di HTML, ditambahkan sebagai fallback
-            var uploadInput = document.getElementById("avatarUpload");
-            if (uploadInput) {
-                uploadInput.onchange = function(e) {
-                    var file = e.target.files[0];
-                    if (!file) return;
-                    var reader = new FileReader();
-                    reader.onload = function() {
-                        avatar.src = reader.result;
-                        localStorage.avatar = reader.result;
-                    };
-                    reader.readAsDataURL(file);
-                };
             }
         })();
 
@@ -857,10 +824,13 @@
         // 8. GOOGLE MAPS SEARCH
         // ============================================================
         function searchPlace() {
-            var place = document.getElementById("placeSearch").value;
-            if (!place.trim()) return;
-            document.getElementById("mapsFrame").src =
-                "https://maps.google.com/maps?q=" + encodeURIComponent(place) + "&output=embed";
+            var place = document.getElementById("placeSearch");
+            var mapsFrame = document.getElementById("mapsFrame");
+            if (place && mapsFrame) {
+                var value = place.value;
+                if (!value.trim()) return;
+                mapsFrame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(value) + "&output=embed";
+            }
         }
 
         // ============================================================
@@ -868,11 +838,22 @@
         // ============================================================
         (function() {
             var notes = document.getElementById("notes");
+            var catatanCount = document.getElementById("catatanCount");
+
             if (notes) {
                 notes.value = localStorage.notes || "";
                 notes.oninput = function() {
                     localStorage.notes = notes.value;
+                    if (catatanCount) {
+                        var count = notes.value.length > 0 ? 1 : 0;
+                        catatanCount.textContent = count;
+                    }
                 };
+                // Update counter on load
+                if (catatanCount) {
+                    var count = notes.value.length > 0 ? 1 : 0;
+                    catatanCount.textContent = count;
+                }
             }
         })();
 
@@ -881,15 +862,28 @@
         // ============================================================
         (function() {
             var gallery = document.getElementById("gallery");
+            var galleryUpload = document.getElementById("galleryUpload");
+            var uploadBtn = document.getElementById("uploadPhotoBtn");
+            var galleryStatus = document.getElementById("galleryStatus");
+            var fotoCount = document.getElementById("fotoCount");
+
             var galleryData = JSON.parse(localStorage.gallery || "[]");
 
             function renderGallery() {
                 if (!gallery) return;
                 gallery.innerHTML = "";
+                if (galleryData.length === 0) {
+                    if (galleryStatus) galleryStatus.style.display = "block";
+                    if (fotoCount) fotoCount.textContent = "0";
+                    return;
+                }
+                if (galleryStatus) galleryStatus.style.display = "none";
+                if (fotoCount) fotoCount.textContent = galleryData.length;
+
                 galleryData.forEach(function(img, index) {
                     var card = document.createElement("div");
-                    card.innerHTML = '<img src="' + img + '"><br><br><button onclick="deleteImage(' + index +
-                        ')">Hapus</button>';
+                    card.style.cssText = "margin-bottom:12px; background:white; border-radius:16px; padding:8px; border:1px solid #eaeef5;";
+                    card.innerHTML = '<img src="' + img + '" style="width:100%; border-radius:12px; max-height:300px; object-fit:cover;"><br><br><button onclick="deleteImage(' + index + ')" style="background:#e74c3c; border:none; color:white; padding:6px 16px; border-radius:40px; font-size:12px; cursor:pointer;">Hapus</button>';
                     gallery.appendChild(card);
                 });
             }
@@ -902,9 +896,12 @@
 
             renderGallery();
 
-            var uploadInput = document.getElementById("galleryUpload");
-            if (uploadInput) {
-                uploadInput.onchange = function(e) {
+            if (uploadBtn && galleryUpload) {
+                uploadBtn.addEventListener('click', function() {
+                    galleryUpload.click();
+                });
+
+                galleryUpload.onchange = function(e) {
                     var file = e.target.files[0];
                     if (!file) return;
                     var reader = new FileReader();
@@ -914,6 +911,7 @@
                         renderGallery();
                     };
                     reader.readAsDataURL(file);
+                    this.value = '';
                 };
             }
         })();
@@ -922,32 +920,42 @@
         // 11. TIMELINE
         // ============================================================
         (function() {
+            var timeline = document.getElementById("timeline");
+            var statusInput = document.getElementById("status");
+            var timelineStatus = document.getElementById("timelineStatus");
+            var timelineCount = document.getElementById("timelineCount");
+
             var posts = JSON.parse(localStorage.posts || "[]");
 
             function renderPosts() {
-                var timeline = document.getElementById("timeline");
                 if (!timeline) return;
                 timeline.innerHTML = "";
+                if (posts.length === 0) {
+                    if (timelineStatus) timelineStatus.style.display = "block";
+                    if (timelineCount) timelineCount.textContent = "0";
+                    return;
+                }
+                if (timelineStatus) timelineStatus.style.display = "none";
+                if (timelineCount) timelineCount.textContent = posts.length;
+
                 posts.forEach(function(post, index) {
                     var div = document.createElement("div");
-                    div.className = "card";
-                    div.innerHTML = '<p>' + post.text + '</p><small>' + post.date +
-                        '</small><br><br><button onclick="deletePost(' + index + ')">Hapus</button>';
+                    div.style.cssText = "margin-bottom:12px; background:white; border-radius:16px; padding:14px; border:1px solid #eaeef5;";
+                    div.innerHTML = '<p style="font-size:14px; color:#0f1a26;">' + post.text + '</p><small style="font-size:11px; color:#8aa0b5;">' + post.date + '</small><br><br><button onclick="deletePost(' + index + ')" style="background:#e74c3c; border:none; color:white; padding:4px 14px; border-radius:40px; font-size:11px; cursor:pointer;">Hapus</button>';
                     timeline.appendChild(div);
                 });
             }
 
             window.postStatus = function() {
-                var input = document.getElementById("status");
-                if (!input) return;
-                var text = input.value.trim();
+                if (!statusInput) return;
+                var text = statusInput.value.trim();
                 if (!text) return;
                 posts.unshift({
                     text: text,
                     date: new Date().toLocaleString("id-ID")
                 });
                 localStorage.posts = JSON.stringify(posts);
-                input.value = "";
+                statusInput.value = "";
                 renderPosts();
             };
 
@@ -956,6 +964,16 @@
                 localStorage.posts = JSON.stringify(posts);
                 renderPosts();
             };
+
+            // Enter key for status
+            if (statusInput) {
+                statusInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        window.postStatus();
+                    }
+                });
+            }
 
             renderPosts();
         })();
@@ -1065,10 +1083,13 @@
         // 17. QR GENERATOR
         // ============================================================
         function generateQR() {
-            var text = document.getElementById("qrText").value;
-            if (!text) return;
-            document.getElementById("qrImage").src =
-                "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(text);
+            var qrText = document.getElementById("qrText");
+            var qrImage = document.getElementById("qrImage");
+            if (qrText && qrImage) {
+                var text = qrText.value;
+                if (!text) return;
+                qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodeURIComponent(text);
+            }
         }
 
         // ============================================================
