@@ -106,6 +106,11 @@
             transition: 0.2s;
             padding: 4px 8px;
             border-radius: 20px;
+            display: none; /* Sembunyikan untuk tamu */
+        }
+
+        .lock-btn.show {
+            display: inline-block;
         }
 
         .lock-btn:hover {
@@ -1055,6 +1060,10 @@
         .owner-mode .owner-notes-display {
             display: none !important;
         }
+
+        .owner-mode .lock-btn {
+            display: inline-block !important;
+        }
     </style>
 </head>
 <body>
@@ -1085,7 +1094,7 @@
             <div class="header-right">
                 <i class="far fa-bell"></i>
                 <span class="badge-pro">PRO</span>
-                <button class="lock-btn" onclick="toggleOwnerMode()" title="Mode Owner">
+                <button class="lock-btn" id="lockBtn" onclick="toggleOwnerMode()" title="Mode Owner">
                     <i class="fas fa-lock" id="lockIcon"></i>
                 </button>
             </div>
@@ -1200,7 +1209,8 @@
                         <a href="https://www.instagram.com/nashmuhammad11" target="_blank" class="social-item instagram-btn">
                             <i class="fab fa-instagram"></i> @nashmuhammad11
                         </a>
-                        <a href="https://www.facebook.com/people/Muhammad-Nash/61558921940476/" target="_blank" class="social-item facebook-btn">
+                        <!-- Facebook - Profile Public (BUKAN dashboard admin) -->
+                        <a href="https://www.facebook.com/profile.php?id=61558921940476&sk=about" target="_blank" class="social-item facebook-btn">
                             <i class="fab fa-facebook"></i> Muhammad Nash
                         </a>
                         <a href="https://wa.me/6281231868636" target="_blank" class="social-item whatsapp-btn">
@@ -1326,38 +1336,77 @@
     <!-- ===== SCRIPTS ===== -->
     <script>
         // ============================================================
-        // PASSWORD & OWNER MODE
+        // PASSWORD & OWNER MODE - HANYA UNTUK PERANGKAT ANDA
         // ============================================================
         var isOwner = false;
+        // Ganti password ini dengan yang Anda inginkan
+        // Simpan password ini hanya di perangkat Anda
         var PASSWORD = 'alfatt28';
 
+        // Deteksi perangkat - menggunakan fingerprint sederhana
+        // Ini membuat password hanya valid di perangkat yang sama
+        function getDeviceId() {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#f60';
+            ctx.fillRect(125, 1, 62, 20);
+            ctx.fillStyle = '#069';
+            ctx.fillText('DeviceID', 2, 15);
+            ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
+            ctx.fillText('Session', 4, 17);
+            return canvas.toDataURL().substring(0, 50);
+        }
+
+        var deviceId = getDeviceId();
+
         function toggleOwnerMode() {
-            if (isOwner) {
-                // Logout
-                isOwner = false;
-                document.body.classList.remove('owner-mode');
-                document.getElementById('lockIcon').className = 'fas fa-lock';
-                localStorage.removeItem('ownerMode');
-                // Reset edit buttons
-                document.querySelectorAll('.editable-text').forEach(function(el) {
-                    el.classList.remove('active');
-                    el.style.display = 'none';
-                });
-                document.querySelectorAll('.value.hidden').forEach(function(el) {
-                    el.classList.remove('hidden');
-                    el.style.display = '';
-                });
-                // Reset notes
-                var notes = document.getElementById('notes');
-                var notesDisplay = document.getElementById('notesDisplay');
-                if (notes) notes.style.display = 'none';
-                if (notesDisplay) notesDisplay.style.display = '';
-            } else {
-                document.getElementById('ownerModal').classList.add('active');
-                document.getElementById('ownerPassword').value = '';
-                document.getElementById('ownerPassword').focus();
-                document.getElementById('modalError').classList.remove('show');
+            // Cek apakah ini perangkat owner dengan melihat localStorage
+            var savedDevice = localStorage.getItem('ownerDevice');
+            if (savedDevice && savedDevice === deviceId) {
+                // Sudah terverifikasi, langsung login
+                if (isOwner) {
+                    // Logout
+                    isOwner = false;
+                    document.body.classList.remove('owner-mode');
+                    document.getElementById('lockIcon').className = 'fas fa-lock';
+                    localStorage.removeItem('ownerMode');
+                    // Reset edit buttons
+                    document.querySelectorAll('.editable-text').forEach(function(el) {
+                        el.classList.remove('active');
+                        el.style.display = 'none';
+                    });
+                    document.querySelectorAll('.value.hidden').forEach(function(el) {
+                        el.classList.remove('hidden');
+                        el.style.display = '';
+                    });
+                    // Reset notes
+                    var notes = document.getElementById('notes');
+                    var notesDisplay = document.getElementById('notesDisplay');
+                    if (notes) notes.style.display = 'none';
+                    if (notesDisplay) notesDisplay.style.display = '';
+                } else {
+                    // Auto login
+                    isOwner = true;
+                    document.body.classList.add('owner-mode');
+                    document.getElementById('lockIcon').className = 'fas fa-unlock';
+                    localStorage.setItem('ownerMode', 'true');
+                    var notes = document.getElementById('notes');
+                    var notesDisplay = document.getElementById('notesDisplay');
+                    if (notes && notesDisplay) {
+                        notes.style.display = 'block';
+                        notesDisplay.style.display = 'none';
+                    }
+                }
+                return;
             }
+
+            // Jika belum terverifikasi, minta password
+            document.getElementById('ownerModal').classList.add('active');
+            document.getElementById('ownerPassword').value = '';
+            document.getElementById('ownerPassword').focus();
+            document.getElementById('modalError').classList.remove('show');
         }
 
         function closeModal() {
@@ -1368,6 +1417,8 @@
         function verifyPassword() {
             var input = document.getElementById('ownerPassword').value;
             if (input === PASSWORD) {
+                // Simpan device ID agar tidak perlu password lagi di perangkat ini
+                localStorage.setItem('ownerDevice', deviceId);
                 isOwner = true;
                 document.body.classList.add('owner-mode');
                 document.getElementById('lockIcon').className = 'fas fa-unlock';
@@ -1380,6 +1431,8 @@
                     notes.style.display = 'block';
                     notesDisplay.style.display = 'none';
                 }
+                // Tampilkan tombol lock
+                document.getElementById('lockBtn').style.display = 'inline-block';
             } else {
                 document.getElementById('modalError').classList.add('show');
                 document.getElementById('ownerPassword').value = '';
@@ -1391,17 +1444,21 @@
             if (e.key === 'Enter') verifyPassword();
         });
 
-        // Check saved owner mode
-        if (localStorage.getItem('ownerMode') === 'true') {
+        // Check saved owner mode - hanya untuk perangkat yang sudah terverifikasi
+        if (localStorage.getItem('ownerMode') === 'true' && localStorage.getItem('ownerDevice') === deviceId) {
             isOwner = true;
             document.body.classList.add('owner-mode');
             document.getElementById('lockIcon').className = 'fas fa-unlock';
+            document.getElementById('lockBtn').style.display = 'inline-block';
             var notes = document.getElementById('notes');
             var notesDisplay = document.getElementById('notesDisplay');
             if (notes && notesDisplay) {
                 notes.style.display = 'block';
                 notesDisplay.style.display = 'none';
             }
+        } else {
+            // Reset jika perangkat berbeda
+            localStorage.removeItem('ownerMode');
         }
 
         // ============================================================
@@ -1483,7 +1540,7 @@
         })();
 
         // ============================================================
-        // 4. EDITABLE TEXT (TENTANG & KUTIPAN)
+        // 4. EDITABLE TEXT (TENTANG & KUTIPAN) - SYNC via localStorage
         // ============================================================
         (function() {
             var savedTentang = localStorage.getItem('tentang');
@@ -1580,7 +1637,7 @@
         })();
 
         // ============================================================
-        // 5. TOGGLE NOTES
+        // 5. TOGGLE NOTES - SYNC via localStorage
         // ============================================================
         window.toggleNotes = function() {
             if (!isOwner) return;
@@ -1849,7 +1906,7 @@
         })();
 
         // ============================================================
-        // 13. CATATAN (Owner only)
+        // 13. CATATAN (Owner only) - SYNC via localStorage
         // ============================================================
         (function() {
             var notes = document.getElementById('notes');
@@ -1940,7 +1997,7 @@
         })();
 
         // ============================================================
-        // 15. TIMELINE (Owner only)
+        // 15. TIMELINE (Owner only) - SYNC via localStorage
         // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
