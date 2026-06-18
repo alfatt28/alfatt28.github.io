@@ -114,7 +114,6 @@
             position: relative;
         }
 
-        /* Background color options */
         .bg-options {
             position: absolute;
             top: -8px;
@@ -812,7 +811,6 @@
 
         <!-- PROFILE -->
         <div class="profile" id="profileContainer">
-            <!-- Background Color Picker -->
             <div class="bg-options" id="bgOptions">
                 <button style="background:#f0f4fa;" data-bg="#f0f4fa"></button>
                 <button style="background:#d4edda;" data-bg="#d4edda"></button>
@@ -1278,7 +1276,6 @@
             }
         }
 
-        // Enter key for place search
         var placeSearch = document.getElementById('placeSearch');
         if (placeSearch) {
             placeSearch.addEventListener('keydown', function(e) {
@@ -1287,7 +1284,7 @@
         }
 
         // ============================================================
-        // 10. SEARCH ENGINE
+        // 10. SEARCH ENGINE (DIPERBAIKI)
         // ============================================================
         (function() {
             var searchInput = document.getElementById('searchInput');
@@ -1296,20 +1293,25 @@
             var engineButtons = document.querySelectorAll('#engineButtons button');
 
             function getSearchUrl(engine, query) {
+                var encoded = encodeURIComponent(query);
                 var urls = {
-                    google: 'https://www.google.com/search?q=',
-                    bing: 'https://www.bing.com/search?q=',
-                    duckduckgo: 'https://duckduckgo.com/?q=',
-                    firefox: 'https://search.firefox.com/search?q='
+                    google: 'https://www.google.com/search?q=' + encoded,
+                    bing: 'https://www.bing.com/search?q=' + encoded,
+                    duckduckgo: 'https://duckduckgo.com/?q=' + encoded + '&ia=web',
+                    firefox: 'https://www.google.com/search?q=' + encoded + '&client=firefox-b-d'
                 };
-                return urls[engine] + encodeURIComponent(query);
+                return urls[engine] || urls.google;
             }
 
             function doSearch() {
                 var query = searchInput.value.trim();
-                if (!query) return;
+                if (!query) {
+                    alert('Masukkan kata kunci pencarian!');
+                    return;
+                }
                 var engine = engineSelect.value;
-                window.open(getSearchUrl(engine, query), '_blank');
+                var url = getSearchUrl(engine, query);
+                window.open(url, '_blank');
             }
 
             if (searchBtn) {
@@ -1322,7 +1324,6 @@
                 });
             }
 
-            // Engine buttons
             engineButtons.forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     var engine = this.dataset.engine;
