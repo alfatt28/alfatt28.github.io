@@ -46,6 +46,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes grow {
+            from { width: 0; }
+        }
+
         /* ===== HEADER ===== */
         .header {
             display: flex;
@@ -97,27 +101,6 @@
             letter-spacing: 0.3px;
         }
 
-        .lock-btn {
-            background: transparent;
-            border: none;
-            color: #8aa0b5;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.2s;
-            padding: 4px 8px;
-            border-radius: 20px;
-            display: none; /* Sembunyikan untuk tamu */
-        }
-
-        .lock-btn.show {
-            display: inline-block;
-        }
-
-        .lock-btn:hover {
-            background: #eef3f9;
-            color: #1e2b3c;
-        }
-
         /* ===== PROFILE ===== */
         .profile {
             display: flex;
@@ -135,16 +118,12 @@
             position: absolute;
             top: -8px;
             right: 10px;
-            display: none;
+            display: flex;
             gap: 4px;
             background: white;
             padding: 3px 6px;
             border-radius: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        .bg-options.show {
-            display: flex;
         }
 
         .bg-options button {
@@ -193,12 +172,8 @@
             position: absolute;
             bottom: -4px;
             right: -4px;
-            display: none;
-            gap: 2px;
-        }
-
-        .avatar-actions.show {
             display: flex;
+            gap: 2px;
         }
 
         .avatar-actions button {
@@ -239,10 +214,6 @@
             font-weight: 700;
             color: #0f1a26;
             letter-spacing: -0.3px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
         }
 
         .profile-info .sub {
@@ -250,37 +221,6 @@
             color: #5b738a;
             font-weight: 500;
             letter-spacing: 0.5px;
-        }
-
-        /* ===== BADGE ===== */
-        .badge-owner {
-            display: none;
-            background: #1e2b3c;
-            color: white;
-            font-size: 9px;
-            padding: 2px 10px;
-            border-radius: 40px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .badge-owner.show {
-            display: inline-block;
-        }
-
-        .badge-guest {
-            display: inline-block;
-            background: #e8edf4;
-            color: #5b738a;
-            font-size: 9px;
-            padding: 2px 10px;
-            border-radius: 40px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .badge-guest.hide {
-            display: none;
         }
 
         /* ===== TABS ===== */
@@ -387,25 +327,11 @@
             padding: 2px 8px;
             border-radius: 12px;
             transition: 0.2s;
-            display: none;
-        }
-
-        .info-box .label .edit-btn.show {
-            display: inline-block;
         }
 
         .info-box .label .edit-btn:hover {
             background: #eef3f9;
             color: #1e2b3c;
-        }
-
-        .info-box .label .lock-icon {
-            color: #8aa0b5;
-            font-size: 12px;
-        }
-
-        .info-box .label .lock-icon.hide {
-            display: none;
         }
 
         .info-box .value {
@@ -424,7 +350,7 @@
 
         .info-box .editable-text {
             width: 100%;
-            border: 2px dashed #dce3ed;
+            border: 2px solid #dce3ed;
             border-radius: 12px;
             padding: 10px 12px;
             font-size: 14px;
@@ -450,6 +376,13 @@
 
         .info-box .value.hidden {
             display: none;
+        }
+
+        .info-box .update-time {
+            font-size: 10px;
+            color: #8aa0b5;
+            margin-top: 6px;
+            display: block;
         }
 
         /* ===== MOOD ===== */
@@ -755,10 +688,6 @@
             border-radius: 40px;
             text-align: center;
             border: 1px solid #dce3ed;
-            min-height: 46px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .calc-btn {
@@ -910,175 +839,16 @@
             .search-engine .search-row select {
                 flex: 1;
             }
-            .profile-info h2 {
-                font-size: 16px;
-            }
-        }
-
-        /* ===== PASSWORD MODAL ===== */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999999;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-box {
-            background: white;
-            border-radius: 24px;
-            padding: 30px 24px;
-            max-width: 320px;
-            width: 90%;
-            text-align: center;
-            animation: fadeIn .3s ease;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .modal-box h3 {
-            font-size: 18px;
-            color: #0f1a26;
-            margin-bottom: 6px;
-        }
-
-        .modal-box p {
-            font-size: 13px;
-            color: #6f889e;
-            margin-bottom: 16px;
-        }
-
-        .modal-box input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #dce3ed;
-            border-radius: 40px;
-            font-size: 14px;
-            outline: none;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .modal-box input:focus {
-            border-color: #1e2b3c;
-        }
-
-        .modal-box .modal-buttons {
-            display: flex;
-            gap: 8px;
-        }
-
-        .modal-box .modal-buttons button {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-
-        .modal-box .modal-buttons .btn-cancel {
-            background: #eef3f9;
-            color: #4d667e;
-        }
-
-        .modal-box .modal-buttons .btn-cancel:hover {
-            background: #e2e9f2;
-        }
-
-        .modal-box .modal-buttons .btn-confirm {
-            background: #1e2b3c;
-            color: white;
-        }
-
-        .modal-box .modal-buttons .btn-confirm:hover {
-            opacity: 0.85;
-        }
-
-        .modal-box .error-msg {
-            color: #e74c3c;
-            font-size: 12px;
-            display: none;
-            margin-bottom: 8px;
-        }
-
-        .modal-box .error-msg.show {
-            display: block;
-        }
-
-        /* ===== OWNER MODE TOGGLE ===== */
-        .owner-mode .bg-options {
-            display: flex !important;
-        }
-
-        .owner-mode .avatar-actions {
-            display: flex !important;
-        }
-
-        .owner-mode .badge-owner {
-            display: inline-block !important;
-        }
-
-        .owner-mode .badge-guest {
-            display: none !important;
-        }
-
-        .owner-mode .edit-btn {
-            display: inline-block !important;
-        }
-
-        .owner-mode .lock-icon {
-            display: none !important;
-        }
-
-        .owner-mode .editable-text {
-            display: block !important;
-        }
-
-        .owner-mode .owner-upload-btn {
-            display: flex !important;
-        }
-
-        .owner-mode .owner-timeline-input {
-            display: flex !important;
-        }
-
-        .owner-mode .owner-notes {
-            display: block !important;
-        }
-
-        .owner-mode .owner-notes-display {
-            display: none !important;
-        }
-
-        .owner-mode .lock-btn {
-            display: inline-block !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== PASSWORD MODAL ===== -->
-    <div class="modal-overlay" id="ownerModal">
-        <div class="modal-box">
-            <h3>🔐 Mode Owner</h3>
-            <p>Masukkan password untuk mengedit profil</p>
-            <div class="error-msg" id="modalError">Password salah!</div>
-            <input type="password" id="ownerPassword" placeholder="Masukkan password..." autocomplete="off">
-            <div class="modal-buttons">
-                <button class="btn-cancel" onclick="closeModal()">Batal</button>
-                <button class="btn-confirm" onclick="verifyPassword()">Masuk</button>
-            </div>
+    <!-- ===== LOADER ===== -->
+    <div id="loader">
+        <div class="loader-box">
+            <h1>⏳</h1>
+            <p style="color:#ffffff; margin-top:10px;">Memuat...</p>
         </div>
     </div>
 
@@ -1094,15 +864,11 @@
             <div class="header-right">
                 <i class="far fa-bell"></i>
                 <span class="badge-pro">PRO</span>
-                <button class="lock-btn" id="lockBtn" onclick="toggleOwnerMode()" title="Mode Owner">
-                    <i class="fas fa-lock" id="lockIcon"></i>
-                </button>
             </div>
         </div>
 
         <!-- PROFILE -->
         <div class="profile" id="profileContainer">
-            <!-- Background Color Picker -->
             <div class="bg-options" id="bgOptions">
                 <button style="background:#f0f4fa;" data-bg="#f0f4fa"></button>
                 <button style="background:#d4edda;" data-bg="#d4edda"></button>
@@ -1115,7 +881,6 @@
             <div class="avatar-wrapper">
                 <img class="avatar" id="avatar" src="" alt="Avatar" style="display:none;">
                 <div class="avatar" id="avatarPlaceholder">A</div>
-                <!-- Avatar Actions -->
                 <div class="avatar-actions">
                     <button class="upload-avatar-btn" id="uploadAvatarBtn" title="Upload Foto Profil">
                         <i class="fas fa-camera" style="font-size:9px;"></i>
@@ -1128,11 +893,7 @@
             </div>
 
             <div class="profile-info">
-                <h2>
-                    alfatts519
-                    <span class="badge-owner">OWNER</span>
-                    <span class="badge-guest">TAMU</span>
-                </h2>
+                <h2>alfatt519</h2>
                 <div class="sub">PERSONAL SPACE</div>
             </div>
         </div>
@@ -1167,30 +928,24 @@
 
             <!-- ===== BERANDA ===== -->
             <div id="page-beranda" class="page active">
-                <!-- TENTANG -->
                 <div class="info-box">
                     <div class="label">
                         TENTANG
-                        <span>
-                            <button class="edit-btn" onclick="editText('tentang')"><i class="fas fa-pen"></i> Edit</button>
-                            <span class="lock-icon"><i class="fas fa-lock"></i></span>
-                        </span>
+                        <button class="edit-btn" onclick="editText('tentang')"><i class="fas fa-pen"></i> Edit</button>
                     </div>
                     <div class="value" id="tentangDisplay">tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung 😉</div>
                     <textarea class="editable-text" id="tentangInput" placeholder="Tulis tentang Anda..."></textarea>
+                    <span class="update-time" id="tentangTime"></span>
                 </div>
 
-                <!-- KUTIPAN -->
                 <div class="info-box">
                     <div class="label">
                         KUTIPAN
-                        <span>
-                            <button class="edit-btn" onclick="editText('kutipan')"><i class="fas fa-pen"></i> Edit</button>
-                            <span class="lock-icon"><i class="fas fa-lock"></i></span>
-                        </span>
+                        <button class="edit-btn" onclick="editText('kutipan')"><i class="fas fa-pen"></i> Edit</button>
                     </div>
                     <div class="value" id="kutipanDisplay">“Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.”</div>
                     <textarea class="editable-text" id="kutipanInput" placeholder="Tulis kutipan favorit Anda..."></textarea>
+                    <span class="update-time" id="kutipanTime"></span>
                 </div>
 
                 <div class="info-box">
@@ -1209,8 +964,7 @@
                         <a href="https://www.instagram.com/nashmuhammad11" target="_blank" class="social-item instagram-btn">
                             <i class="fab fa-instagram"></i> @nashmuhammad11
                         </a>
-                        <!-- Facebook - Profile Public (BUKAN dashboard admin) -->
-                        <a href="https://www.facebook.com/profile.php?id=61558921940476&sk=about" target="_blank" class="social-item facebook-btn">
+                        <a href="https://www.facebook.com/profile.php?id=61558921940476" target="_blank" class="social-item facebook-btn">
                             <i class="fab fa-facebook"></i> Muhammad Nash
                         </a>
                         <a href="https://wa.me/6281231868636" target="_blank" class="social-item whatsapp-btn">
@@ -1238,7 +992,7 @@
                 <div class="info-box">
                     <div class="label">⏳ TIMELINE</div>
                     <div class="value" style="font-weight:400;" id="timelineStatus">Belum ada aktivitas. Mulai bagikan momen!</div>
-                    <div style="margin-top:12px; display:flex; gap:8px;" id="timelineInputWrapper">
+                    <div style="margin-top:12px; display:flex; gap:8px;">
                         <input type="text" id="status" placeholder="Tulis status..." style="flex:1; padding:10px 14px; border:1px solid #dce3ed; border-radius:40px; font-size:14px; outline:none;">
                         <button onclick="postStatus()" style="background:#1e2b3c; border:none; color:white; padding:10px 20px; border-radius:40px; font-weight:600; cursor:pointer;">Kirim</button>
                     </div>
@@ -1251,19 +1005,18 @@
                 <div class="info-box">
                     <div class="label">
                         📝 CATATAN
-                        <span>
-                            <button class="edit-btn" onclick="toggleNotes()"><i class="fas fa-pen"></i> Edit</button>
-                            <span class="lock-icon"><i class="fas fa-lock"></i></span>
-                        </span>
+                        <button class="edit-btn" onclick="toggleNotes()"><i class="fas fa-pen"></i> Edit</button>
                     </div>
                     <div class="value" style="font-weight:400;" id="notesDisplay">Tulis ide, rencana, atau pelajaran hari ini.</div>
                     <textarea id="notes" style="width:100%; margin-top:12px; padding:12px; border:1px solid #dce3ed; border-radius:16px; font-size:14px; min-height:120px; resize:vertical; outline:none; font-family:inherit; display:none;" placeholder="Tulis catatan di sini..."></textarea>
+                    <span class="update-time" id="notesTime"></span>
                 </div>
             </div>
 
             <!-- ===== JELAJAH ===== -->
             <div id="page-jelajah" class="page">
 
+                <!-- ===== SEARCH ENGINE ===== -->
                 <div class="search-engine">
                     <div class="label"><i class="fas fa-search"></i> Cari di Internet</div>
                     <div class="search-row">
@@ -1284,6 +1037,7 @@
                     </div>
                 </div>
 
+                <!-- ===== MAPS ===== -->
                 <div class="maps-container">
                     <iframe id="mapsFrame" src="https://maps.google.com/maps?q=restoran&output=embed"></iframe>
                     <div class="maps-search">
@@ -1302,6 +1056,7 @@
                     </div>
                 </div>
 
+                <!-- Kalkulator -->
                 <div class="calculator">
                     <div style="font-weight:600; margin-bottom:8px; color:#1e2b3c; font-size:14px;">
                         <i class="fas fa-calculator"></i> Kalkulator cepat
@@ -1313,6 +1068,7 @@
                     <div class="calc-result" id="calcResult">0</div>
                 </div>
 
+                <!-- Quote -->
                 <div class="quote-box" id="quoteBox">
                     <i class="fas fa-quote-left"></i>
                     <span id="quoteText">Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.</span>
@@ -1321,6 +1077,7 @@
                     <button id="nextQuoteBtn"><i class="fas fa-sync-alt"></i> kutipan lain</button>
                 </div>
 
+                <!-- Explore footer -->
                 <div class="explore-footer">
                     <i class="fas fa-globe-asia"></i> Jelajahi lebih banyak fitur
                 </div>
@@ -1335,132 +1092,6 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        // ============================================================
-        // PASSWORD & OWNER MODE - HANYA UNTUK PERANGKAT ANDA
-        // ============================================================
-        var isOwner = false;
-        // Ganti password ini dengan yang Anda inginkan
-        // Simpan password ini hanya di perangkat Anda
-        var PASSWORD = 'alfatt28';
-
-        // Deteksi perangkat - menggunakan fingerprint sederhana
-        // Ini membuat password hanya valid di perangkat yang sama
-        function getDeviceId() {
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            ctx.textBaseline = 'top';
-            ctx.font = '14px Arial';
-            ctx.fillStyle = '#f60';
-            ctx.fillRect(125, 1, 62, 20);
-            ctx.fillStyle = '#069';
-            ctx.fillText('DeviceID', 2, 15);
-            ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
-            ctx.fillText('Session', 4, 17);
-            return canvas.toDataURL().substring(0, 50);
-        }
-
-        var deviceId = getDeviceId();
-
-        function toggleOwnerMode() {
-            // Cek apakah ini perangkat owner dengan melihat localStorage
-            var savedDevice = localStorage.getItem('ownerDevice');
-            if (savedDevice && savedDevice === deviceId) {
-                // Sudah terverifikasi, langsung login
-                if (isOwner) {
-                    // Logout
-                    isOwner = false;
-                    document.body.classList.remove('owner-mode');
-                    document.getElementById('lockIcon').className = 'fas fa-lock';
-                    localStorage.removeItem('ownerMode');
-                    // Reset edit buttons
-                    document.querySelectorAll('.editable-text').forEach(function(el) {
-                        el.classList.remove('active');
-                        el.style.display = 'none';
-                    });
-                    document.querySelectorAll('.value.hidden').forEach(function(el) {
-                        el.classList.remove('hidden');
-                        el.style.display = '';
-                    });
-                    // Reset notes
-                    var notes = document.getElementById('notes');
-                    var notesDisplay = document.getElementById('notesDisplay');
-                    if (notes) notes.style.display = 'none';
-                    if (notesDisplay) notesDisplay.style.display = '';
-                } else {
-                    // Auto login
-                    isOwner = true;
-                    document.body.classList.add('owner-mode');
-                    document.getElementById('lockIcon').className = 'fas fa-unlock';
-                    localStorage.setItem('ownerMode', 'true');
-                    var notes = document.getElementById('notes');
-                    var notesDisplay = document.getElementById('notesDisplay');
-                    if (notes && notesDisplay) {
-                        notes.style.display = 'block';
-                        notesDisplay.style.display = 'none';
-                    }
-                }
-                return;
-            }
-
-            // Jika belum terverifikasi, minta password
-            document.getElementById('ownerModal').classList.add('active');
-            document.getElementById('ownerPassword').value = '';
-            document.getElementById('ownerPassword').focus();
-            document.getElementById('modalError').classList.remove('show');
-        }
-
-        function closeModal() {
-            document.getElementById('ownerModal').classList.remove('active');
-            document.getElementById('modalError').classList.remove('show');
-        }
-
-        function verifyPassword() {
-            var input = document.getElementById('ownerPassword').value;
-            if (input === PASSWORD) {
-                // Simpan device ID agar tidak perlu password lagi di perangkat ini
-                localStorage.setItem('ownerDevice', deviceId);
-                isOwner = true;
-                document.body.classList.add('owner-mode');
-                document.getElementById('lockIcon').className = 'fas fa-unlock';
-                localStorage.setItem('ownerMode', 'true');
-                closeModal();
-                // Show notes
-                var notes = document.getElementById('notes');
-                var notesDisplay = document.getElementById('notesDisplay');
-                if (notes && notesDisplay) {
-                    notes.style.display = 'block';
-                    notesDisplay.style.display = 'none';
-                }
-                // Tampilkan tombol lock
-                document.getElementById('lockBtn').style.display = 'inline-block';
-            } else {
-                document.getElementById('modalError').classList.add('show');
-                document.getElementById('ownerPassword').value = '';
-                document.getElementById('ownerPassword').focus();
-            }
-        }
-
-        document.getElementById('ownerPassword').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') verifyPassword();
-        });
-
-        // Check saved owner mode - hanya untuk perangkat yang sudah terverifikasi
-        if (localStorage.getItem('ownerMode') === 'true' && localStorage.getItem('ownerDevice') === deviceId) {
-            isOwner = true;
-            document.body.classList.add('owner-mode');
-            document.getElementById('lockIcon').className = 'fas fa-unlock';
-            document.getElementById('lockBtn').style.display = 'inline-block';
-            var notes = document.getElementById('notes');
-            var notesDisplay = document.getElementById('notesDisplay');
-            if (notes && notesDisplay) {
-                notes.style.display = 'block';
-                notesDisplay.style.display = 'none';
-            }
-        } else {
-            // Reset jika perangkat berbeda
-            localStorage.removeItem('ownerMode');
-        }
-
         // ============================================================
         // 1. LOADING SCREEN
         // ============================================================
@@ -1540,125 +1171,7 @@
         })();
 
         // ============================================================
-        // 4. EDITABLE TEXT (TENTANG & KUTIPAN) - SYNC via localStorage
-        // ============================================================
-        (function() {
-            var savedTentang = localStorage.getItem('tentang');
-            var savedKutipan = localStorage.getItem('kutipan');
-
-            var tentangDisplay = document.getElementById('tentangDisplay');
-            var tentangInput = document.getElementById('tentangInput');
-            var kutipanDisplay = document.getElementById('kutipanDisplay');
-            var kutipanInput = document.getElementById('kutipanInput');
-
-            if (savedTentang) {
-                tentangDisplay.textContent = savedTentang;
-                tentangInput.value = savedTentang;
-            }
-
-            if (savedKutipan) {
-                kutipanDisplay.textContent = savedKutipan;
-                kutipanInput.value = savedKutipan;
-            }
-
-            window.saveText = function(type) {
-                var input, display;
-                if (type === 'tentang') {
-                    input = tentangInput;
-                    display = tentangDisplay;
-                } else if (type === 'kutipan') {
-                    input = kutipanInput;
-                    display = kutipanDisplay;
-                }
-
-                var value = input.value.trim();
-                if (value === '') {
-                    alert('Teks tidak boleh kosong!');
-                    return;
-                }
-
-                display.textContent = value;
-                localStorage.setItem(type, value);
-                input.classList.remove('active');
-                input.style.display = 'none';
-                display.classList.remove('hidden');
-                display.style.display = '';
-
-                var btns = document.querySelectorAll('[onclick="editText(\'' + type + '\')"]');
-                btns.forEach(function(btn) {
-                    btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
-                });
-            };
-
-            window.editText = function(type) {
-                if (!isOwner) return;
-
-                var input, display;
-                if (type === 'tentang') {
-                    input = tentangInput;
-                    display = tentangDisplay;
-                } else if (type === 'kutipan') {
-                    input = kutipanInput;
-                    display = kutipanDisplay;
-                }
-
-                if (input.classList.contains('active')) {
-                    saveText(type);
-                } else {
-                    input.value = display.textContent;
-                    input.classList.add('active');
-                    input.style.display = 'block';
-                    display.classList.add('hidden');
-                    display.style.display = 'none';
-
-                    var btns = document.querySelectorAll('[onclick="editText(\'' + type + '\')"]');
-                    btns.forEach(function(btn) {
-                        btn.innerHTML = '<i class="fas fa-save"></i> Simpan';
-                    });
-
-                    input.focus();
-                    input.select();
-                }
-            };
-
-            tentangInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
-                    e.preventDefault();
-                    if (isOwner) saveText('tentang');
-                }
-            });
-
-            kutipanInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
-                    e.preventDefault();
-                    if (isOwner) saveText('kutipan');
-                }
-            });
-        })();
-
-        // ============================================================
-        // 5. TOGGLE NOTES - SYNC via localStorage
-        // ============================================================
-        window.toggleNotes = function() {
-            if (!isOwner) return;
-            var notes = document.getElementById('notes');
-            var notesDisplay = document.getElementById('notesDisplay');
-            if (notes.style.display === 'none' || notes.style.display === '') {
-                notes.style.display = 'block';
-                notesDisplay.style.display = 'none';
-                notes.focus();
-            } else {
-                notes.style.display = 'none';
-                notesDisplay.style.display = '';
-                localStorage.notes = notes.value;
-                if (notes.value.trim() !== '') {
-                    notesDisplay.textContent = notes.value;
-                }
-            }
-        };
-
-        // ============================================================
-        // 6. BACKGROUND PROFILE
+        // 4. BACKGROUND PROFILE
         // ============================================================
         (function() {
             var profile = document.getElementById('profileContainer');
@@ -1688,7 +1201,7 @@
         })();
 
         // ============================================================
-        // 7. AVATAR PROFILE (Upload & Delete)
+        // 5. AVATAR PROFILE (Upload & Delete)
         // ============================================================
         (function() {
             var avatar = document.getElementById('avatar');
@@ -1739,7 +1252,7 @@
         })();
 
         // ============================================================
-        // 8. KALKULATOR (Kosong saat pertama)
+        // 6. KALKULATOR (Kosong saat pertama)
         // ============================================================
         (function() {
             var calcInput = document.getElementById('calcInput');
@@ -1777,7 +1290,7 @@
         })();
 
         // ============================================================
-        // 9. KUTIPAN (10)
+        // 7. KUTIPAN (10) - Untuk di Jelajah
         // ============================================================
         (function() {
             var quotes = [
@@ -1811,7 +1324,7 @@
         })();
 
         // ============================================================
-        // 10. DARK MODE
+        // 8. DARK MODE
         // ============================================================
         function toggleMode() {
             document.body.classList.toggle("light");
@@ -1823,7 +1336,7 @@
         }
 
         // ============================================================
-        // 11. GOOGLE MAPS SEARCH
+        // 9. GOOGLE MAPS SEARCH
         // ============================================================
         function searchPlace() {
             var place = document.getElementById('placeSearch');
@@ -1855,7 +1368,7 @@
         }
 
         // ============================================================
-        // 12. SEARCH ENGINE
+        // 10. SEARCH ENGINE
         // ============================================================
         (function() {
             var searchInput = document.getElementById('searchInput');
@@ -1906,38 +1419,217 @@
         })();
 
         // ============================================================
-        // 13. CATATAN (Owner only) - SYNC via localStorage
+        // 11. EDITABLE TEXT (TENTANG & KUTIPAN) - SYNC via localStorage
+        // ============================================================
+        (function() {
+            var savedTentang = localStorage.getItem('tentang');
+            var savedKutipan = localStorage.getItem('kutipan');
+            var savedTentangTime = localStorage.getItem('tentangTime');
+            var savedKutipanTime = localStorage.getItem('kutipanTime');
+
+            var tentangDisplay = document.getElementById('tentangDisplay');
+            var tentangInput = document.getElementById('tentangInput');
+            var tentangTime = document.getElementById('tentangTime');
+            var kutipanDisplay = document.getElementById('kutipanDisplay');
+            var kutipanInput = document.getElementById('kutipanInput');
+            var kutipanTime = document.getElementById('kutipanTime');
+
+            function updateTime(element, time) {
+                if (element && time) {
+                    element.textContent = '🕒 Diperbarui: ' + time;
+                }
+            }
+
+            if (savedTentang) {
+                tentangDisplay.textContent = savedTentang;
+                tentangInput.value = savedTentang;
+                if (savedTentangTime) updateTime(tentangTime, savedTentangTime);
+            }
+
+            if (savedKutipan) {
+                kutipanDisplay.textContent = savedKutipan;
+                kutipanInput.value = savedKutipan;
+                if (savedKutipanTime) updateTime(kutipanTime, savedKutipanTime);
+            }
+
+            window.saveText = function(type) {
+                var input, display, timeEl, timeKey;
+                if (type === 'tentang') {
+                    input = tentangInput;
+                    display = tentangDisplay;
+                    timeEl = tentangTime;
+                    timeKey = 'tentangTime';
+                } else if (type === 'kutipan') {
+                    input = kutipanInput;
+                    display = kutipanDisplay;
+                    timeEl = kutipanTime;
+                    timeKey = 'kutipanTime';
+                }
+
+                var value = input.value.trim();
+                if (value === '') {
+                    alert('Teks tidak boleh kosong!');
+                    return;
+                }
+
+                var now = new Date().toLocaleString('id-ID', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+
+                display.textContent = value;
+                localStorage.setItem(type, value);
+                localStorage.setItem(timeKey, now);
+                updateTime(timeEl, now);
+
+                input.classList.remove('active');
+                input.style.display = 'none';
+                display.classList.remove('hidden');
+                display.style.display = '';
+
+                var btn = document.querySelector('[onclick="editText(\'' + type + '\')"]');
+                if (btn) {
+                    btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
+                }
+            };
+
+            window.editText = function(type) {
+                var input, display;
+                if (type === 'tentang') {
+                    input = tentangInput;
+                    display = tentangDisplay;
+                } else if (type === 'kutipan') {
+                    input = kutipanInput;
+                    display = kutipanDisplay;
+                }
+
+                if (input.classList.contains('active')) {
+                    saveText(type);
+                } else {
+                    input.value = display.textContent;
+                    input.classList.add('active');
+                    input.style.display = 'block';
+                    display.classList.add('hidden');
+                    display.style.display = 'none';
+
+                    var btn = document.querySelector('[onclick="editText(\'' + type + '\')"]');
+                    if (btn) {
+                        btn.innerHTML = '<i class="fas fa-save"></i> Simpan';
+                    }
+
+                    input.focus();
+                    input.select();
+                }
+            };
+
+            tentangInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+                    e.preventDefault();
+                    saveText('tentang');
+                }
+            });
+
+            kutipanInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+                    e.preventDefault();
+                    saveText('kutipan');
+                }
+            });
+
+            // Auto-save on blur
+            tentangInput.addEventListener('blur', function() {
+                if (this.classList.contains('active')) {
+                    saveText('tentang');
+                }
+            });
+
+            kutipanInput.addEventListener('blur', function() {
+                if (this.classList.contains('active')) {
+                    saveText('kutipan');
+                }
+            });
+        })();
+
+        // ============================================================
+        // 12. TOGGLE NOTES - SYNC via localStorage
         // ============================================================
         (function() {
             var notes = document.getElementById('notes');
             var notesDisplay = document.getElementById('notesDisplay');
+            var notesTime = document.getElementById('notesTime');
             var catatanCount = document.getElementById('catatanCount');
 
-            if (notes) {
-                var savedNotes = localStorage.notes || '';
+            var savedNotes = localStorage.notes || '';
+            var savedNotesTime = localStorage.getItem('notesTime');
+
+            if (savedNotes) {
                 notes.value = savedNotes;
-                if (savedNotes.trim() !== '') {
-                    notesDisplay.textContent = savedNotes;
+                notesDisplay.textContent = savedNotes;
+                if (savedNotesTime) {
+                    notesTime.textContent = '🕒 Diperbarui: ' + savedNotesTime;
+                }
+                if (catatanCount) catatanCount.textContent = '1';
+            }
+
+            window.toggleNotes = function() {
+                if (notes.style.display === 'none' || notes.style.display === '') {
+                    notes.style.display = 'block';
+                    notesDisplay.style.display = 'none';
+                    notes.focus();
+                } else {
+                    var value = notes.value.trim();
+                    if (value === '') {
+                        alert('Catatan tidak boleh kosong!');
+                        return;
+                    }
+                    notes.style.display = 'none';
+                    notesDisplay.style.display = '';
+                    notesDisplay.textContent = value;
+                    localStorage.notes = value;
+
+                    var now = new Date().toLocaleString('id-ID', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric', 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                    });
+                    localStorage.setItem('notesTime', now);
+                    notesTime.textContent = '🕒 Diperbarui: ' + now;
+
                     if (catatanCount) catatanCount.textContent = '1';
                 }
+            };
 
-                notes.oninput = function() {
-                    localStorage.notes = notes.value;
-                    if (catatanCount) {
-                        var count = notes.value.length > 0 ? 1 : 0;
-                        catatanCount.textContent = count;
+            notes.addEventListener('blur', function() {
+                if (this.style.display !== 'none') {
+                    var value = this.value.trim();
+                    if (value !== '') {
+                        notesDisplay.textContent = value;
+                        localStorage.notes = value;
+                        var now = new Date().toLocaleString('id-ID', { 
+                            weekday: 'long', 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric', 
+                            hour: '2-digit', 
+                            minute: '2-digit' 
+                        });
+                        localStorage.setItem('notesTime', now);
+                        notesTime.textContent = '🕒 Diperbarui: ' + now;
+                        if (catatanCount) catatanCount.textContent = '1';
                     }
-                    if (notes.value.trim() !== '') {
-                        notesDisplay.textContent = notes.value;
-                    } else {
-                        notesDisplay.textContent = 'Tulis ide, rencana, atau pelajaran hari ini.';
-                    }
-                };
-            }
+                }
+            });
         })();
 
         // ============================================================
-        // 14. GALERI FOTO
+        // 13. GALERI FOTO
         // ============================================================
         (function() {
             var gallery = document.getElementById('gallery');
@@ -1997,7 +1689,7 @@
         })();
 
         // ============================================================
-        // 15. TIMELINE (Owner only) - SYNC via localStorage
+        // 14. TIMELINE
         // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
@@ -2027,7 +1719,7 @@
             }
 
             window.postStatus = function() {
-                if (!statusInput || !isOwner) return;
+                if (!statusInput) return;
                 var text = statusInput.value.trim();
                 if (!text) return;
                 posts.unshift({
@@ -2058,7 +1750,7 @@
         })();
 
         // ============================================================
-        // 16. KUTIPAN (kedua)
+        // 15. KUTIPAN (kedua)
         // ============================================================
         (function() {
             var quotes = [
@@ -2082,7 +1774,7 @@
         })();
 
         // ============================================================
-        // 17. MATRIX RAIN
+        // 16. MATRIX RAIN
         // ============================================================
         (function() {
             var canvas = document.getElementById("matrix");
@@ -2124,7 +1816,7 @@
         })();
 
         // ============================================================
-        // 18. VISITOR COUNTER
+        // 17. VISITOR COUNTER
         // ============================================================
         (function() {
             var visitors = parseInt(localStorage.visitors || 0);
@@ -2137,14 +1829,14 @@
         })();
 
         // ============================================================
-        // 19. SCROLL TOP
+        // 18. SCROLL TOP
         // ============================================================
         function scrollTopPage() {
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         // ============================================================
-        // 20. MUSIC
+        // 19. MUSIC
         // ============================================================
         (function() {
             var music = document.getElementById("bgMusic");
@@ -2159,7 +1851,7 @@
         })();
 
         // ============================================================
-        // 21. QR GENERATOR
+        // 20. QR GENERATOR
         // ============================================================
         function generateQR() {
             var qrText = document.getElementById("qrText");
@@ -2172,14 +1864,14 @@
         }
 
         // ============================================================
-        // 22. NOTIFIKASI
+        // 21. NOTIFIKASI
         // ============================================================
         setTimeout(function() {
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
 
         // ============================================================
-        // 23. WELCOME
+        // 22. WELCOME
         // ============================================================
         console.log("ALFATT28 PREMIUM SPACE LOADED");
     </script>
