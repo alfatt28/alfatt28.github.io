@@ -338,6 +338,11 @@
             100% { transform: rotate(360deg); }
         }
 
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .profile-location {
             font-size: 11px;
             color: #5b738a;
@@ -1468,6 +1473,85 @@
             color: #64748b;
         }
 
+        /* ===== LOADING ANIMASI ===== */
+        .upload-loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 16px;
+            z-index: 99999;
+            text-align: center;
+            min-width: 200px;
+            backdrop-filter: blur(4px);
+        }
+
+        .upload-loading .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #333;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spinner 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        .upload-loading .loading-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .upload-loading .loading-progress {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* ===== TOAST ===== */
+        .toast-container {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toast-item {
+            background: #1e2b3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            animation: fadeIn 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        body.dark-mode .toast-item {
+            background: #1e293b;
+        }
+
+        .toast-item.success {
+            background: #22c55e;
+        }
+
+        .toast-item.error {
+            background: #ef4444;
+        }
+
+        .toast-item.info {
+            background: #3b82f6;
+        }
+
         /* ===== TOOLS / IKON ALAT ===== */
         .tools-container {
             display: flex;
@@ -1674,72 +1758,6 @@
             color: #ef4444;
         }
 
-        /* ===== VIDEO UPLOAD ===== */
-        .video-upload-section {
-            margin-top: 12px;
-            border-top: 1px solid #eaeef5;
-            padding-top: 12px;
-        }
-
-        body.dark-mode .video-upload-section {
-            border-top-color: #475569;
-        }
-
-        .video-upload-section .video-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #6f889e;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .video-item {
-            background: #f0f4fa;
-            border-radius: 12px;
-            padding: 8px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        body.dark-mode .video-item {
-            background: #1e293b;
-        }
-
-        .video-item video {
-            width: 80px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            background: #000;
-        }
-
-        .video-item .video-info {
-            flex: 1;
-            font-size: 12px;
-            color: #1e2b3c;
-        }
-
-        body.dark-mode .video-item .video-info {
-            color: #f1f5f9;
-        }
-
-        .video-item .video-info small {
-            color: #8aa0b5;
-            display: block;
-        }
-
-        .video-item .video-delete {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 10px;
-            cursor: pointer;
-        }
-
         @media (max-width: 440px) {
             .card {
                 padding: 18px 14px 22px;
@@ -1814,6 +1832,10 @@
             }
             .tools-container .tool-item i {
                 font-size: 18px;
+            }
+            .upload-loading {
+                padding: 20px 24px;
+                min-width: 160px;
             }
         }
 
@@ -2008,10 +2030,6 @@
         }
 
         .admin-mode .cloud-storage .upload-btn-cloud {
-            display: flex !important;
-        }
-
-        .admin-mode .upload-video-btn {
             display: flex !important;
         }
     </style>
@@ -2421,24 +2439,74 @@
         }
 
         // ============================================================
+        // TOAST NOTIFICATION
+        // ============================================================
+        function showToast(message, type) {
+            type = type || 'info';
+            var container = document.querySelector('.toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.className = 'toast-container';
+                document.body.appendChild(container);
+            }
+
+            var toast = document.createElement('div');
+            toast.className = 'toast-item ' + type;
+            toast.textContent = message;
+
+            // Icon based on type
+            var icon = document.createElement('span');
+            if (type === 'success') icon.innerHTML = '✅ ';
+            else if (type === 'error') icon.innerHTML = '❌ ';
+            else icon.innerHTML = 'ℹ️ ';
+            toast.prepend(icon);
+
+            container.appendChild(toast);
+
+            setTimeout(function() {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s';
+                setTimeout(function() {
+                    container.removeChild(toast);
+                    if (container.children.length === 0) {
+                        container.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // ============================================================
         // LOADING SCREEN
         // ============================================================
-        window.addEventListener("load", function() {
-            setTimeout(function() {
-                var loader = document.getElementById("loader");
-                if (loader) loader.style.display = "none";
-            }, 1500);
-            updateStats();
-            initIndexedDB();
-            window.addEventListener('scroll', function() {
-                var topBtn = document.getElementById('topBtn');
-                if (window.scrollY > 300) {
-                    topBtn.style.display = 'block';
-                } else {
-                    topBtn.style.display = 'none';
-                }
-            });
-        });
+        var loadingOverlay = null;
+
+        function showLoading(text, progress) {
+            if (loadingOverlay) {
+                loadingOverlay.remove();
+                loadingOverlay = null;
+            }
+            loadingOverlay = document.createElement('div');
+            loadingOverlay.className = 'upload-loading';
+            loadingOverlay.innerHTML = `
+                <div class="spinner"></div>
+                <div class="loading-text">${text || 'Memproses...'}</div>
+                <div class="loading-progress">${progress || ''}</div>
+            `;
+            document.body.appendChild(loadingOverlay);
+        }
+
+        function hideLoading() {
+            if (loadingOverlay) {
+                loadingOverlay.style.opacity = '0';
+                loadingOverlay.style.transition = 'opacity 0.3s';
+                setTimeout(function() {
+                    if (loadingOverlay) {
+                        loadingOverlay.remove();
+                        loadingOverlay = null;
+                    }
+                }, 300);
+            }
+        }
 
         // ============================================================
         // JAM DIGITAL
@@ -2726,7 +2794,7 @@
             if (place && mapsFrame) {
                 var value = place.value.trim();
                 if (!value) {
-                    alert('Masukkan nama tempat!');
+                    showToast('Masukkan nama tempat!', 'error');
                     return;
                 }
                 mapsFrame.src = "https://maps.google.com/maps?q=" + encodeURIComponent(value) + "&output=embed";
@@ -2772,7 +2840,7 @@
             function doSearch() {
                 var query = searchInput.value.trim();
                 if (!query) {
-                    alert('Masukkan kata kunci pencarian!');
+                    showToast('Masukkan kata kunci pencarian!', 'error');
                     return;
                 }
                 var engine = engineSelect.value;
@@ -2887,7 +2955,7 @@
 
             window.editText = function(type) {
                 if (!isAdmin) {
-                    alert('Hanya admin yang bisa mengedit!');
+                    showToast('Hanya admin yang bisa mengedit!', 'error');
                     return;
                 }
                 var input, display;
@@ -2962,7 +3030,7 @@
 
             window.toggleNotes = function() {
                 if (!isAdmin) {
-                    alert('Hanya admin yang bisa mengedit catatan!');
+                    showToast('Hanya admin yang bisa mengedit catatan!', 'error');
                     return;
                 }
                 if (notes.style.display === 'none' || notes.style.display === '') {
@@ -3042,7 +3110,7 @@
         })();
 
         // ============================================================
-        // INDEXEDDB - GALERI CLOUD (SOLUSI UNTUK BANYAK FILE)
+        // INDEXEDDB - GALERI CLOUD (DENGAN ANIMASI UPLOAD)
         // ============================================================
         var DB_NAME = 'GalleryDB';
         var STORE_NAME = 'files';
@@ -3053,7 +3121,7 @@
 
             request.onerror = function(event) {
                 console.error('Database error:', event.target.error);
-                showToast('❌ Gagal membuka database!');
+                showToast('Gagal membuka database!', 'error');
             };
 
             request.onsuccess = function(event) {
@@ -3082,20 +3150,37 @@
             return 'other';
         }
 
+        // ===== UPLOAD DENGAN ANIMASI =====
         function uploadFilesToDB(files) {
             if (!isAdmin) {
-                alert('Hanya admin yang bisa upload!');
+                showToast('Hanya admin yang bisa upload!', 'error');
                 return;
             }
             if (!db) {
-                alert('Database belum siap!');
+                showToast('Database belum siap! Tunggu sebentar.', 'error');
                 return;
             }
 
+            var fileList = Array.from(files);
+            var total = fileList.length;
+
+            // Tampilkan loading
+            showLoading('Mengupload ' + total + ' file...', '0/' + total);
+
             var transaction = db.transaction([STORE_NAME], 'readwrite');
             var store = transaction.objectStore(STORE_NAME);
+            var uploaded = 0;
+            var failed = 0;
 
-            Array.from(files).forEach(function(file) {
+            fileList.forEach(function(file, index) {
+                // Cek ukuran file (max 50MB per file)
+                if (file.size > 50 * 1024 * 1024) {
+                    showToast('File ' + file.name + ' terlalu besar (>50MB)!', 'error');
+                    failed++;
+                    updateLoadingProgress(uploaded, total, failed);
+                    return;
+                }
+
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     var fileData = {
@@ -3108,25 +3193,72 @@
                     };
                     var request = store.add(fileData);
                     request.onsuccess = function() {
+                        uploaded++;
                         console.log('File tersimpan:', file.name);
-                        loadAllFiles();
+                        updateLoadingProgress(uploaded, total, failed);
+                        if (uploaded + failed === total) {
+                            hideLoading();
+                            if (failed === 0) {
+                                showToast('✅ ' + total + ' file berhasil diupload!', 'success');
+                            } else {
+                                showToast('⚠️ ' + uploaded + ' file berhasil, ' + failed + ' gagal.', 'info');
+                            }
+                            loadAllFiles();
+                            updateStats();
+                        }
                     };
                     request.onerror = function() {
+                        failed++;
                         console.error('Gagal menyimpan:', file.name);
-                        showToast('❌ Gagal upload: ' + file.name);
+                        updateLoadingProgress(uploaded, total, failed);
+                        if (uploaded + failed === total) {
+                            hideLoading();
+                            showToast('⚠️ ' + uploaded + ' file berhasil, ' + failed + ' gagal.', 'info');
+                            loadAllFiles();
+                            updateStats();
+                        }
                     };
+                };
+                reader.onerror = function() {
+                    failed++;
+                    updateLoadingProgress(uploaded, total, failed);
+                    if (uploaded + failed === total) {
+                        hideLoading();
+                        showToast('⚠️ ' + uploaded + ' file berhasil, ' + failed + ' gagal.', 'info');
+                        loadAllFiles();
+                        updateStats();
+                    }
                 };
                 reader.readAsDataURL(file);
             });
 
-            transaction.oncomplete = function() {
-                showToast('✅ File berhasil diupload!');
-                updateStats();
+            transaction.onerror = function() {
+                hideLoading();
+                showToast('Gagal menyimpan ke database!', 'error');
             };
         }
 
+        function updateLoadingProgress(uploaded, total, failed) {
+            var progressEl = document.querySelector('.loading-progress');
+            if (progressEl) {
+                var success = uploaded;
+                var text = success + '/' + total + ' file';
+                if (failed > 0) text += ' (' + failed + ' gagal)';
+                progressEl.textContent = text;
+            }
+
+            var textEl = document.querySelector('.loading-text');
+            if (textEl) {
+                var percent = Math.round((uploaded / total) * 100);
+                textEl.textContent = 'Mengupload... ' + percent + '%';
+            }
+        }
+
         function loadAllFiles() {
-            if (!db) return;
+            if (!db) {
+                setTimeout(loadAllFiles, 500);
+                return;
+            }
 
             var transaction = db.transaction([STORE_NAME], 'readonly');
             var store = transaction.objectStore(STORE_NAME);
@@ -3196,6 +3328,7 @@
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
+                    showToast('⬇️ Download dimulai', 'info');
                 };
 
                 // Copy Link
@@ -3213,9 +3346,9 @@
                     textarea.select();
                     try {
                         document.execCommand('copy');
-                        showToast('✅ Link disalin!');
+                        showToast('✅ Link disalin!', 'success');
                     } catch (err) {
-                        showToast('❌ Gagal menyalin link');
+                        showToast('❌ Gagal menyalin link', 'error');
                     }
                     document.body.removeChild(textarea);
                 };
@@ -3228,7 +3361,7 @@
                 deleteBtn.onclick = function(e) {
                     e.stopPropagation();
                     if (!isAdmin) {
-                        alert('Hanya admin yang bisa menghapus!');
+                        showToast('Hanya admin yang bisa menghapus!', 'error');
                         return;
                     }
                     if (confirm('Hapus file ini?')) {
@@ -3253,13 +3386,13 @@
             var request = store.delete(id);
 
             request.onsuccess = function() {
-                showToast('✅ File dihapus!');
+                showToast('✅ File dihapus!', 'success');
                 loadAllFiles();
                 updateStats();
             };
 
             request.onerror = function() {
-                showToast('❌ Gagal menghapus file');
+                showToast('❌ Gagal menghapus file', 'error');
             };
         }
 
@@ -3271,10 +3404,8 @@
             if (!files) files = [];
 
             var totalBytes = 0;
-            var imageCount = 0;
             files.forEach(function(file) {
                 totalBytes += file.size || 0;
-                if (file.type === 'image') imageCount++;
             });
 
             if (totalFiles) totalFiles.textContent = files.length + ' File';
@@ -3289,20 +3420,6 @@
             var i = Math.floor(Math.log(bytes) / Math.log(k));
             var size = (bytes / Math.pow(k, i)).toFixed(1);
             return size + ' ' + sizes[i];
-        }
-
-        function showToast(message) {
-            var toast = document.createElement('div');
-            toast.textContent = message;
-            toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e2b3c;color:white;padding:10px 20px;border-radius:40px;font-size:13px;font-weight:500;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,0.2);animation:fadeIn 0.3s ease;';
-            document.body.appendChild(toast);
-            setTimeout(function() {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.3s';
-                setTimeout(function() {
-                    document.body.removeChild(toast);
-                }, 300);
-            }, 2000);
         }
 
         // ============================================================
@@ -3320,7 +3437,7 @@
 
             uploadPhotoBtn.addEventListener('click', function() {
                 if (!isAdmin) {
-                    alert('Hanya admin yang bisa upload!');
+                    showToast('Hanya admin yang bisa upload!', 'error');
                     return;
                 }
                 galleryInput.click();
@@ -3365,12 +3482,15 @@
 
             window.postStatus = function() {
                 if (!isAdmin) {
-                    alert('Hanya admin yang bisa posting!');
+                    showToast('Hanya admin yang bisa posting!', 'error');
                     return;
                 }
                 if (!statusInput) return;
                 var text = statusInput.value.trim();
-                if (!text) return;
+                if (!text) {
+                    showToast('Status tidak boleh kosong!', 'error');
+                    return;
+                }
                 posts.unshift({
                     text: text,
                     date: new Date().toLocaleString("id-ID")
@@ -3379,17 +3499,19 @@
                 statusInput.value = "";
                 renderPosts();
                 updateStats();
+                showToast('✅ Status diposting!', 'success');
             };
 
             window.deletePost = function(index) {
                 if (!isAdmin) {
-                    alert('Hanya admin yang bisa menghapus!');
+                    showToast('Hanya admin yang bisa menghapus!', 'error');
                     return;
                 }
                 posts.splice(index, 1);
                 localStorage.posts = JSON.stringify(posts);
                 renderPosts();
                 updateStats();
+                showToast('✅ Status dihapus!', 'success');
             };
 
             if (statusInput) {
@@ -3480,13 +3602,27 @@
         // UPDATE STATS
         // ============================================================
         function updateStats() {
-            var posts = JSON.parse(localStorage.posts || "[]");
-            var notes = localStorage.notes || "";
-            var timelineCount = document.getElementById('timelineCount');
-            var catatanCount = document.getElementById('catatanCount');
+            if (!db) {
+                setTimeout(updateStats, 500);
+                return;
+            }
+            var transaction = db.transaction([STORE_NAME], 'readonly');
+            var store = transaction.objectStore(STORE_NAME);
+            var request = store.count();
 
-            if (timelineCount) timelineCount.textContent = posts.length;
-            if (catatanCount) catatanCount.textContent = notes.trim().length > 0 ? 1 : 0;
+            request.onsuccess = function() {
+                var count = request.result;
+                var fotoCount = document.getElementById('fotoCount');
+                if (fotoCount) fotoCount.textContent = count;
+
+                var posts = JSON.parse(localStorage.posts || "[]");
+                var notes = localStorage.notes || "";
+                var timelineCount = document.getElementById('timelineCount');
+                var catatanCount = document.getElementById('catatanCount');
+
+                if (timelineCount) timelineCount.textContent = posts.length;
+                if (catatanCount) catatanCount.textContent = notes.trim().length > 0 ? 1 : 0;
+            };
         }
 
         // ============================================================
@@ -3684,13 +3820,39 @@
         }
 
         // ============================================================
-        // NOTIFIKASI
+        // INISIALISASI
         // ============================================================
-        setTimeout(function() {
-            alert("Selamat datang di ALFATT28 Premium Space 🚀");
-        }, 2500);
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                var loader = document.getElementById("loader");
+                if (loader) loader.style.display = "none";
+            }, 1500);
 
-        console.log("ALFATT28 PREMIUM SPACE LOADED - IndexedDB Enabled");
+            // Inisialisasi IndexedDB
+            setTimeout(function() {
+                initIndexedDB();
+            }, 500);
+
+            // Scroll top button
+            window.addEventListener('scroll', function() {
+                var topBtn = document.getElementById('topBtn');
+                if (window.scrollY > 300) {
+                    topBtn.style.display = 'block';
+                } else {
+                    topBtn.style.display = 'none';
+                }
+            });
+
+            // Update stats berkala
+            setInterval(updateStats, 5000);
+
+            // Notifikasi selamat datang
+            setTimeout(function() {
+                showToast('Selamat datang di ALFATT28 Premium Space 🚀', 'info');
+            }, 3000);
+        });
+
+        console.log("ALFATT28 PREMIUM SPACE LOADED - IndexedDB Enabled with Animations");
     </script>
 
 </body>
