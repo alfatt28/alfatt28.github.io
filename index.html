@@ -179,23 +179,6 @@
             border-color: #475569;
         }
 
-        body.dark-mode .calculator {
-            background: #334155;
-            border-color: #475569;
-        }
-
-        body.dark-mode .calculator .calc-input input {
-            background: #1e293b;
-            color: #f1f5f9;
-            border-color: #475569;
-        }
-
-        body.dark-mode .calculator .calc-result {
-            background: #1e293b;
-            color: #f1f5f9;
-            border-color: #475569;
-        }
-
         body.dark-mode .quote-box {
             background: #1e293b;
             color: #f1f5f9;
@@ -357,30 +340,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        /* ===== TYPING EFFECT ===== */
-        .typing-text {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid #1e2b3c;
-            animation: typing 3s steps(30) 1s forwards, blink-caret 0.75s step-end infinite;
-            display: inline-block;
-            max-width: 100%;
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #1e2b3c; }
-        }
-
-        body.dark-mode .typing-text {
-            border-right-color: #94a3b8;
-        }
-
         /* ===== PROFILE LOCATION ===== */
         .profile-location {
             font-size: 11px;
@@ -405,84 +364,6 @@
 
         body.dark-mode .profile-location i {
             color: #94a3b8;
-        }
-
-        /* ===== MUSIC PLAYER ===== */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #1e2b3c;
-            padding: 6px 12px 6px 10px;
-            border-radius: 40px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-            transition: 0.3s;
-            max-width: 200px;
-        }
-
-        .music-player:hover {
-            transform: scale(1.03);
-        }
-
-        .music-player .music-btn {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            padding: 4px;
-            transition: 0.2s;
-            flex-shrink: 0;
-        }
-
-        .music-player .music-btn:hover {
-            color: #60a5fa;
-        }
-
-        .music-player .music-btn.playing {
-            animation: pulse 1s infinite;
-            color: #60a5fa;
-        }
-
-        .music-player .music-label {
-            color: #94a3b8;
-            font-size: 10px;
-            font-weight: 500;
-            max-width: 80px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            cursor: pointer;
-        }
-
-        .music-player .music-label:hover {
-            color: white;
-        }
-
-        .music-player .music-iframe {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            z-index: 9998;
-            width: 300px;
-            height: 80px;
-            border: none;
-            border-radius: 12px;
-            display: none;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            background: transparent;
-        }
-
-        .music-player .music-iframe.show {
-            display: block;
-        }
-
-        body.dark-mode .music-player {
-            background: #1e293b;
         }
 
         /* ===== VISITOR COUNTER ===== */
@@ -1252,64 +1133,6 @@
             color: white;
         }
 
-        /* ===== CALCULATOR ===== */
-        .calculator {
-            background: #f8faff;
-            padding: 16px;
-            border-radius: 20px;
-            border: 1px solid #eaeef5;
-            margin-bottom: 14px;
-            transition: 0.3s;
-        }
-
-        .calc-input {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .calc-input input {
-            flex: 1;
-            padding: 10px 14px;
-            border: 1px solid #dce3ed;
-            border-radius: 40px;
-            font-size: 14px;
-            background: white;
-            outline: none;
-            transition: 0.15s;
-        }
-
-        .calc-input input:focus {
-            border-color: #1e2b3c;
-        }
-
-        .calc-result {
-            font-size: 18px;
-            font-weight: 600;
-            color: #0f1a26;
-            background: white;
-            padding: 8px 16px;
-            border-radius: 40px;
-            text-align: center;
-            border: 1px solid #dce3ed;
-            transition: 0.3s;
-        }
-
-        .calc-btn {
-            background: #1e2b3c;
-            border: none;
-            color: white;
-            padding: 0 20px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-
-        .calc-btn:hover {
-            opacity: 0.85;
-        }
-
         /* ===== QUOTE ===== */
         .quote-box {
             background: #f0f6fe;
@@ -1364,6 +1187,13 @@
             color: #1e2b3c;
             text-align: center;
             transition: 0.3s;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .explore-footer:hover {
+            background: #e8edf4;
+            transform: scale(1.02);
         }
 
         .explore-footer i {
@@ -1970,21 +1800,6 @@
                 font-size: 15px;
                 padding: 2px 6px;
             }
-            .music-player {
-                bottom: 10px;
-                right: 10px;
-                padding: 6px 10px 6px 8px;
-            }
-            .music-player .music-label {
-                max-width: 50px;
-                font-size: 9px;
-            }
-            .music-player .music-iframe {
-                width: 280px;
-                height: 80px;
-                right: 10px;
-                bottom: 70px;
-            }
             .footer-small {
                 gap: 6px;
                 font-size: 10px;
@@ -2096,20 +1911,6 @@
                 height: 250px;
             }
 
-            .calculator {
-                padding: 20px;
-            }
-
-            .calc-input input {
-                padding: 12px 16px;
-                font-size: 15px;
-            }
-
-            .calc-result {
-                font-size: 20px;
-                padding: 10px 20px;
-            }
-
             .quote-box {
                 padding: 16px 20px;
                 font-size: 15px;
@@ -2183,13 +1984,6 @@
                 height: 120px;
             }
 
-            .music-player .music-iframe {
-                width: 320px;
-                height: 80px;
-                bottom: 90px;
-                right: 30px;
-            }
-
             .tools-modal .modal-content {
                 max-width: 450px;
             }
@@ -2253,19 +2047,6 @@
             <h1>⏳</h1>
             <p style="color:#ffffff; margin-top:10px;">Memuat...</p>
         </div>
-    </div>
-
-    <!-- ===== MUSIC PLAYER ===== -->
-    <div class="music-player" id="musicPlayer">
-        <button class="music-btn" id="musicBtn" onclick="toggleMusicPlayer()">
-            <i class="fas fa-music"></i>
-        </button>
-        <span class="music-label" id="musicLabel" onclick="toggleMusicPlayer()">🎵 Putar Musik</span>
-        <iframe class="music-iframe" id="musicIframe" 
-            src="https://open.spotify.com/embed/playlist/37i9dQZF1DX3Ogo9pFvBkY?utm_source=generator&theme=0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-            loading="lazy">
-        </iframe>
     </div>
 
     <!-- ===== SCROLL TOP BUTTON ===== -->
@@ -2333,7 +2114,7 @@
 
             <div class="profile-info">
                 <h2>
-                    <span class="typing-text" id="typingName">alfatt28</span>
+                    alfatt28
                     <span class="badge-admin">ADMIN</span>
                     <span class="badge-user">USER</span>
                 </h2>
@@ -2552,18 +2333,6 @@
                     </div>
                 </div>
 
-                <!-- Kalkulator -->
-                <div class="calculator">
-                    <div style="font-weight:600; margin-bottom:8px; color:#1e2b3c; font-size:14px;">
-                        <i class="fas fa-calculator"></i> Kalkulator cepat
-                    </div>
-                    <div class="calc-input">
-                        <input type="text" id="calcInput" placeholder="misal: 12 + 8" value="">
-                        <button class="calc-btn" id="calcBtn">=</button>
-                    </div>
-                    <div class="calc-result" id="calcResult">0</div>
-                </div>
-
                 <!-- Quote -->
                 <div class="quote-box" id="quoteBox">
                     <i class="fas fa-quote-left"></i>
@@ -2577,9 +2346,13 @@
                 <div class="info-box">
                     <div class="label">🛠️ ALAT</div>
                     <div class="tools-container">
-                        <div class="tool-item" onclick="openTool('music')">
-                            <i class="fas fa-music"></i>
-                            <span class="tool-label">Musik</span>
+                        <div class="tool-item" onclick="openTool('youtube')">
+                            <i class="fab fa-youtube"></i>
+                            <span class="tool-label">YouTube</span>
+                        </div>
+                        <div class="tool-item" onclick="openTool('spotify')">
+                            <i class="fab fa-spotify"></i>
+                            <span class="tool-label">Spotify</span>
                         </div>
                         <div class="tool-item" onclick="openTool('calculator')">
                             <i class="fas fa-calculator"></i>
@@ -2597,7 +2370,7 @@
                 </div>
 
                 <!-- Explore footer -->
-                <div class="explore-footer">
+                <div class="explore-footer" onclick="window.open('https://www.google.com/search?q=website+personal+space+fitur', '_blank')">
                     <i class="fas fa-globe-asia"></i> Jelajahi lebih banyak fitur
                 </div>
             </div>
@@ -2830,29 +2603,7 @@
         }
 
         // ============================================================
-        // 5. MUSIC PLAYER (Spotify Online)
-        // ============================================================
-        var musicIframe = document.getElementById('musicIframe');
-        var musicBtn = document.getElementById('musicBtn');
-        var musicLabel = document.getElementById('musicLabel');
-        var isMusicOpen = false;
-
-        function toggleMusicPlayer() {
-            if (isMusicOpen) {
-                musicIframe.classList.remove('show');
-                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
-                musicLabel.textContent = '🎵 Putar Musik';
-                isMusicOpen = false;
-            } else {
-                musicIframe.classList.add('show');
-                musicBtn.innerHTML = '<i class="fas fa-times"></i>';
-                musicLabel.textContent = '🎵 Tutup Musik';
-                isMusicOpen = true;
-            }
-        }
-
-        // ============================================================
-        // 6. VISITOR COUNTER
+        // 5. VISITOR COUNTER
         // ============================================================
         (function() {
             var visitors = parseInt(localStorage.visitors || 0);
@@ -2865,7 +2616,7 @@
         })();
 
         // ============================================================
-        // 7. STREAK / HARI AKTIF
+        // 6. STREAK / HARI AKTIF
         // ============================================================
         (function() {
             var today = new Date().toDateString();
@@ -2893,7 +2644,7 @@
         })();
 
         // ============================================================
-        // 8. DAILY QUOTE
+        // 7. DAILY QUOTE
         // ============================================================
         (function() {
             var dailyQuotes = [
@@ -2916,14 +2667,14 @@
         })();
 
         // ============================================================
-        // 9. SCROLL TOP
+        // 8. SCROLL TOP
         // ============================================================
         function scrollTopPage() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // ============================================================
-        // 10. BACKGROUND PROFILE
+        // 9. BACKGROUND PROFILE
         // ============================================================
         (function() {
             var profile = document.getElementById('profileContainer');
@@ -2951,7 +2702,7 @@
         })();
 
         // ============================================================
-        // 11. AVATAR PROFILE (Upload & Delete)
+        // 10. AVATAR PROFILE (Upload & Delete)
         // ============================================================
         (function() {
             var avatar = document.getElementById('avatar');
@@ -3002,43 +2753,7 @@
         })();
 
         // ============================================================
-        // 12. KALKULATOR
-        // ============================================================
-        (function() {
-            var calcInput = document.getElementById('calcInput');
-            var calcBtn = document.getElementById('calcBtn');
-            var calcResult = document.getElementById('calcResult');
-            if (calcInput && calcBtn && calcResult) {
-                calcInput.value = '';
-                calcResult.textContent = '0';
-
-                function evaluateCalc() {
-                    try {
-                        var expr = calcInput.value.trim();
-                        if (expr === '') {
-                            calcResult.textContent = '0';
-                            return;
-                        }
-                        var sanitized = expr.replace(/[^0-9+\-*/().]/g, '');
-                        if (sanitized === '') {
-                            calcResult.textContent = '0';
-                            return;
-                        }
-                        var result = new Function('return (' + sanitized + ')')();
-                        calcResult.textContent = (typeof result === 'number' && !isNaN(result)) ? result : 'Error';
-                    } catch (e) {
-                        calcResult.textContent = 'Error';
-                    }
-                }
-                calcBtn.addEventListener('click', evaluateCalc);
-                calcInput.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter') evaluateCalc();
-                });
-            }
-        })();
-
-        // ============================================================
-        // 13. KUTIPAN (10) - Untuk di Jelajah - AUTO ROTATE
+        // 11. KUTIPAN (10) - Untuk di Jelajah - AUTO ROTATE
         // ============================================================
         (function() {
             var quotes = [
@@ -3081,7 +2796,7 @@
         })();
 
         // ============================================================
-        // 14. GOOGLE MAPS SEARCH
+        // 12. GOOGLE MAPS SEARCH
         // ============================================================
         function searchPlace() {
             var place = document.getElementById('placeSearch');
@@ -3113,7 +2828,7 @@
         }
 
         // ============================================================
-        // 15. SEARCH ENGINE
+        // 13. SEARCH ENGINE
         // ============================================================
         (function() {
             var searchInput = document.getElementById('searchInput');
@@ -3162,7 +2877,7 @@
         })();
 
         // ============================================================
-        // 16. EDITABLE TEXT (TENTANG & KUTIPAN) - BISA DIKOSONGKAN
+        // 14. EDITABLE TEXT (TENTANG & KUTIPAN) - BISA DIKOSONGKAN
         // ============================================================
         (function() {
             var savedTentang = localStorage.getItem('tentang');
@@ -3303,7 +3018,7 @@
         })();
 
         // ============================================================
-        // 17. TOGGLE NOTES - BISA DIKOSONGKAN
+        // 15. TOGGLE NOTES - BISA DIKOSONGKAN
         // ============================================================
         (function() {
             var notes = document.getElementById('notes');
@@ -3405,7 +3120,7 @@
         })();
 
         // ============================================================
-        // 18. GALERI CLOUD STORAGE (FIXED - Bisa tampilkan banyak foto)
+        // 16. GALERI CLOUD STORAGE (FIXED - Bisa tampilkan banyak foto)
         // ============================================================
         (function() {
             function formatSize(bytes) {
@@ -3608,7 +3323,7 @@
         })();
 
         // ============================================================
-        // 19. VIDEO UPLOAD
+        // 17. VIDEO UPLOAD (FIXED)
         // ============================================================
         (function() {
             var videoData = JSON.parse(localStorage.videos || '[]');
@@ -3689,7 +3404,7 @@
         })();
 
         // ============================================================
-        // 20. TIMELINE
+        // 18. TIMELINE
         // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
@@ -3757,7 +3472,7 @@
         })();
 
         // ============================================================
-        // 21. KUTIPAN (kedua)
+        // 19. KUTIPAN (kedua)
         // ============================================================
         (function() {
             var quotes = [
@@ -3779,7 +3494,7 @@
         })();
 
         // ============================================================
-        // 22. MATRIX RAIN
+        // 20. MATRIX RAIN
         // ============================================================
         (function() {
             var canvas = document.getElementById("matrix");
@@ -3817,7 +3532,7 @@
         })();
 
         // ============================================================
-        // 23. QR GENERATOR
+        // 21. QR GENERATOR
         // ============================================================
         function generateQR() {
             var qrText = document.getElementById("qrText");
@@ -3830,7 +3545,7 @@
         }
 
         // ============================================================
-        // 24. UPDATE STATS
+        // 22. UPDATE STATS
         // ============================================================
         function updateStats() {
             var galleryData = JSON.parse(localStorage.gallery || "[]");
@@ -3847,7 +3562,7 @@
         }
 
         // ============================================================
-        // 25. TOOLS - MUSIC, CALCULATOR, WEATHER, STOCK
+        // 23. TOOLS - YOUTUBE, SPOTIFY, CALCULATOR, WEATHER, STOCK
         // ============================================================
         function openTool(tool) {
             var modal = document.getElementById('toolsModal');
@@ -3856,8 +3571,20 @@
 
             modal.classList.add('active');
 
-            if (tool === 'music') {
-                title.innerHTML = '🎵 Musik Online';
+            if (tool === 'youtube') {
+                title.innerHTML = '🎬 YouTube Musik';
+                body.innerHTML = `
+                    <div style="text-align:center;">
+                        <iframe style="border-radius:12px; width:100%; height:200px;" 
+                            src="https://www.youtube.com/embed/videoseries?list=PLrAXtmErZgOeiKm4sgN3fVw0Bjbn3D9gX" 
+                            allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                        </iframe>
+                        <p style="font-size:12px; color:#8aa0b5; margin-top:8px;">🎧 Lofi & Chill • YouTube</p>
+                    </div>
+                `;
+            } else if (tool === 'spotify') {
+                title.innerHTML = '🎵 Spotify Musik';
                 body.innerHTML = `
                     <div style="text-align:center;">
                         <iframe style="border-radius:12px; width:100%; height:152px;" 
@@ -4032,14 +3759,14 @@
         }
 
         // ============================================================
-        // 26. NOTIFIKASI
+        // 24. NOTIFIKASI
         // ============================================================
         setTimeout(function() {
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
 
         // ============================================================
-        // 27. WELCOME
+        // 25. WELCOME
         // ============================================================
         console.log("ALFATT28 PREMIUM SPACE LOADED");
     </script>
