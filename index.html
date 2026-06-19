@@ -6,6 +6,14 @@
     <title>alfatt28 · Personal Space</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js">
+    </script>
+
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -331,11 +339,6 @@
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         @keyframes spinner {
@@ -1361,11 +1364,13 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .cloud-storage .gallery-item img {
+        .cloud-storage .gallery-item img,
+        .cloud-storage .gallery-item video {
             width: 100%;
             height: 140px;
             object-fit: cover;
             display: block;
+            background: #000;
         }
 
         .cloud-storage .gallery-item .item-actions {
@@ -1552,7 +1557,7 @@
             background: #3b82f6;
         }
 
-        /* ===== TOOLS / IKON ALAT ===== */
+        /* ===== TOOLS ===== */
         .tools-container {
             display: flex;
             flex-wrap: wrap;
@@ -1602,7 +1607,6 @@
             color: #94a3b8;
         }
 
-        /* ===== MODAL TOOLS ===== */
         .tools-modal {
             position: fixed;
             top: 0;
@@ -1662,7 +1666,6 @@
             padding: 4px 0;
         }
 
-        /* ===== WEATHER ===== */
         .weather-widget {
             background: #f0f6fe;
             border-radius: 16px;
@@ -1704,7 +1707,6 @@
             color: #94a3b8;
         }
 
-        /* ===== STOCK ===== */
         .stock-widget {
             background: #f0f4fa;
             border-radius: 16px;
@@ -1811,7 +1813,8 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 8px;
             }
-            .cloud-storage .gallery-item img {
+            .cloud-storage .gallery-item img,
+            .cloud-storage .gallery-item video {
                 height: 100px;
             }
             .cloud-storage .gallery-item .item-actions button {
@@ -1980,7 +1983,8 @@
                 grid-template-columns: repeat(3, 1fr);
                 gap: 12px;
             }
-            .cloud-storage .gallery-item img {
+            .cloud-storage .gallery-item img,
+            .cloud-storage .gallery-item video {
                 height: 120px;
             }
 
@@ -2198,7 +2202,7 @@
                 </div>
             </div>
 
-            <!-- ===== GALERI CLOUD - IndexedDB ===== -->
+            <!-- ===== GALERI CLOUD - FIREBASE STORAGE ===== -->
             <div id="page-galeri" class="page">
                 <div class="info-box">
                     <div class="label">☁️ GALERI CLOUD</div>
@@ -2358,6 +2362,25 @@
 
     <script>
         // ============================================================
+        // FIREBASE CONFIG - GANTI DENGAN KONFIGURASI ANDA
+        // ============================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyB_05F2qgaSz19pJqgCNQK0ZTKRnHeg87g",
+            authDomain: "alfatt28-gallery.firebaseapp.com",
+            projectId: "alfatt28-gallery",
+            storageBucket: "alfatt28-gallery.firebasestorage.app",
+            messagingSenderId: "1076422133189",
+            appId: "1:1076422133189:web:4acbfd4955e30c488b5067"
+        };
+
+        // ============================================================
+        // INISIALISASI FIREBASE
+        // ============================================================
+        firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+        const storageRef = storage.ref();
+
+        // ============================================================
         // ADMIN / USER MODE TOGGLE
         // ============================================================
         var isAdmin = false;
@@ -2453,30 +2476,20 @@
             var toast = document.createElement('div');
             toast.className = 'toast-item ' + type;
             toast.textContent = message;
-
-            // Icon based on type
-            var icon = document.createElement('span');
-            if (type === 'success') icon.innerHTML = '✅ ';
-            else if (type === 'error') icon.innerHTML = '❌ ';
-            else icon.innerHTML = 'ℹ️ ';
-            toast.prepend(icon);
-
             container.appendChild(toast);
 
             setTimeout(function() {
                 toast.style.opacity = '0';
                 toast.style.transition = 'opacity 0.3s';
                 setTimeout(function() {
-                    container.removeChild(toast);
-                    if (container.children.length === 0) {
-                        container.remove();
-                    }
+                    if (container.contains(toast)) container.removeChild(toast);
+                    if (container.children.length === 0) container.remove();
                 }, 300);
-            }, 3000);
+            }, 4000);
         }
 
         // ============================================================
-        // LOADING SCREEN
+        // LOADING OVERLAY
         // ============================================================
         var loadingOverlay = null;
 
@@ -2505,6 +2518,15 @@
                         loadingOverlay = null;
                     }
                 }, 300);
+            }
+        }
+
+        function updateLoading(text, progress) {
+            if (loadingOverlay) {
+                var textEl = loadingOverlay.querySelector('.loading-text');
+                var progressEl = loadingOverlay.querySelector('.loading-progress');
+                if (textEl) textEl.textContent = text;
+                if (progressEl) progressEl.textContent = progress || '';
             }
         }
 
@@ -3110,171 +3132,130 @@
         })();
 
         // ============================================================
-        // INDEXEDDB - GALERI CLOUD (DENGAN ANIMASI UPLOAD)
+        // FIREBASE STORAGE - UPLOAD & MANAGE
         // ============================================================
-        var DB_NAME = 'GalleryDB';
-        var STORE_NAME = 'files';
-        var db = null;
+        var fileList = [];
 
-        function initIndexedDB() {
-            var request = indexedDB.open(DB_NAME, 1);
+        function loadFromFirebase() {
+            showLoading('Mengambil data dari cloud...', '');
+            var listRef = storageRef.child('gallery/');
 
-            request.onerror = function(event) {
-                console.error('Database error:', event.target.error);
-                showToast('Gagal membuka database!', 'error');
-            };
-
-            request.onsuccess = function(event) {
-                db = event.target.result;
-                console.log('Database berhasil dibuka');
-                loadAllFiles();
-            };
-
-            request.onupgradeneeded = function(event) {
-                var db = event.target.result;
-                if (!db.objectStoreNames.contains(STORE_NAME)) {
-                    var store = db.createObjectStore(STORE_NAME, {
-                        keyPath: 'id',
-                        autoIncrement: true
+            listRef.listAll().then(function(result) {
+                fileList = [];
+                var promises = result.items.map(function(itemRef) {
+                    return itemRef.getDownloadURL().then(function(url) {
+                        fileList.push({
+                            name: itemRef.name,
+                            url: url,
+                            ref: itemRef
+                        });
                     });
-                    store.createIndex('type', 'type', { unique: false });
-                    store.createIndex('date', 'date', { unique: false });
-                    console.log('Object store created');
-                }
-            };
+                });
+
+                return Promise.all(promises);
+            }).then(function() {
+                hideLoading();
+                renderGallery(fileList);
+                updateStorageInfo(fileList);
+                showToast('✅ ' + fileList.length + ' file dari cloud', 'success');
+            }).catch(function(error) {
+                hideLoading();
+                console.error('Error loading from Firebase:', error);
+                showToast('❌ Gagal load dari cloud: ' + error.message, 'error');
+                // Fallback ke IndexedDB
+                loadFromIndexedDB();
+            });
         }
 
-        function getFileType(file) {
-            if (file.type.startsWith('image/')) return 'image';
-            if (file.type.startsWith('video/')) return 'video';
-            return 'other';
-        }
-
-        // ===== UPLOAD DENGAN ANIMASI =====
-        function uploadFilesToDB(files) {
+        function uploadToFirebase(files) {
             if (!isAdmin) {
                 showToast('Hanya admin yang bisa upload!', 'error');
                 return;
             }
-            if (!db) {
-                showToast('Database belum siap! Tunggu sebentar.', 'error');
-                return;
-            }
 
-            var fileList = Array.from(files);
-            var total = fileList.length;
-
-            // Tampilkan loading
-            showLoading('Mengupload ' + total + ' file...', '0/' + total);
-
-            var transaction = db.transaction([STORE_NAME], 'readwrite');
-            var store = transaction.objectStore(STORE_NAME);
+            var total = files.length;
             var uploaded = 0;
             var failed = 0;
 
-            fileList.forEach(function(file, index) {
-                // Cek ukuran file (max 50MB per file)
+            showLoading('Mengupload ke cloud...', '0/' + total);
+
+            Array.from(files).forEach(function(file) {
+                // Cek ukuran file (max 50MB)
                 if (file.size > 50 * 1024 * 1024) {
-                    showToast('File ' + file.name + ' terlalu besar (>50MB)!', 'error');
                     failed++;
-                    updateLoadingProgress(uploaded, total, failed);
+                    showToast('❌ ' + file.name + ' terlalu besar (>50MB)', 'error');
+                    updateLoading('Mengupload...', uploaded + '/' + total + ' (' + failed + ' gagal)');
+                    checkComplete();
                     return;
                 }
 
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var fileData = {
-                        data: e.target.result,
-                        name: file.name,
-                        type: getFileType(file),
-                        mimeType: file.type,
-                        size: file.size,
-                        date: new Date().toISOString()
-                    };
-                    var request = store.add(fileData);
-                    request.onsuccess = function() {
-                        uploaded++;
-                        console.log('File tersimpan:', file.name);
-                        updateLoadingProgress(uploaded, total, failed);
-                        if (uploaded + failed === total) {
-                            hideLoading();
-                            if (failed === 0) {
-                                showToast('✅ ' + total + ' file berhasil diupload!', 'success');
-                            } else {
-                                showToast('⚠️ ' + uploaded + ' file berhasil, ' + failed + ' gagal.', 'info');
-                            }
-                            loadAllFiles();
-                            updateStats();
-                        }
-                    };
-                    request.onerror = function() {
+                var fileName = Date.now() + '_' + file.name;
+                var fileRef = storageRef.child('gallery/' + fileName);
+
+                var uploadTask = fileRef.put(file);
+
+                uploadTask.on('state_changed',
+                    function(snapshot) {
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        updateLoading('Uploading ' + file.name, Math.round(progress) + '%');
+                    },
+                    function(error) {
                         failed++;
-                        console.error('Gagal menyimpan:', file.name);
-                        updateLoadingProgress(uploaded, total, failed);
-                        if (uploaded + failed === total) {
-                            hideLoading();
-                            showToast('⚠️ ' + uploaded + ' file berhasil, ' + failed + ' gagal.', 'info');
-                            loadAllFiles();
-                            updateStats();
-                        }
-                    };
-                };
-                reader.onerror = function() {
-                    failed++;
-                    updateLoadingProgress(uploaded, total, failed);
-                    if (uploaded + failed === total) {
-                        hideLoading();
-                        showToast('⚠️ ' + uploaded + ' file berhasil, ' + failed + ' gagal.', 'info');
-                        loadAllFiles();
-                        updateStats();
+                        console.error('Upload failed:', error);
+                        showToast('❌ Gagal upload ' + file.name, 'error');
+                        updateLoading('Mengupload...', uploaded + '/' + total + ' (' + failed + ' gagal)');
+                        checkComplete();
+                    },
+                    function() {
+                        uploaded++;
+                        showToast('✅ ' + file.name + ' berhasil diupload!', 'success');
+                        updateLoading('Mengupload...', uploaded + '/' + total + ' (' + failed + ' gagal)');
+                        checkComplete();
                     }
-                };
-                reader.readAsDataURL(file);
+                );
             });
 
-            transaction.onerror = function() {
-                hideLoading();
-                showToast('Gagal menyimpan ke database!', 'error');
-            };
-        }
-
-        function updateLoadingProgress(uploaded, total, failed) {
-            var progressEl = document.querySelector('.loading-progress');
-            if (progressEl) {
-                var success = uploaded;
-                var text = success + '/' + total + ' file';
-                if (failed > 0) text += ' (' + failed + ' gagal)';
-                progressEl.textContent = text;
-            }
-
-            var textEl = document.querySelector('.loading-text');
-            if (textEl) {
-                var percent = Math.round((uploaded / total) * 100);
-                textEl.textContent = 'Mengupload... ' + percent + '%';
+            function checkComplete() {
+                if (uploaded + failed === total) {
+                    setTimeout(function() {
+                        hideLoading();
+                        if (failed === 0) {
+                            showToast('✅ Semua file berhasil diupload ke cloud!', 'success');
+                        } else {
+                            showToast('⚠️ ' + uploaded + ' berhasil, ' + failed + ' gagal', 'info');
+                        }
+                        loadFromFirebase();
+                        updateStats();
+                    }, 1000);
+                }
             }
         }
 
-        function loadAllFiles() {
-            if (!db) {
-                setTimeout(loadAllFiles, 500);
+        function deleteFromFirebase(file) {
+            if (!isAdmin) {
+                showToast('Hanya admin yang bisa menghapus!', 'error');
                 return;
             }
 
-            var transaction = db.transaction([STORE_NAME], 'readonly');
-            var store = transaction.objectStore(STORE_NAME);
-            var request = store.getAll();
+            if (!confirm('Hapus file ini dari cloud?')) return;
 
-            request.onsuccess = function(event) {
-                var files = event.target.result;
-                renderGallery(files);
-                updateStorageInfo(files);
-            };
+            showLoading('Menghapus dari cloud...', '');
 
-            request.onerror = function() {
-                console.error('Gagal load files');
-            };
+            file.ref.delete().then(function() {
+                hideLoading();
+                showToast('✅ File dihapus dari cloud!', 'success');
+                loadFromFirebase();
+                updateStats();
+            }).catch(function(error) {
+                hideLoading();
+                console.error('Delete error:', error);
+                showToast('❌ Gagal menghapus: ' + error.message, 'error');
+            });
         }
 
+        // ============================================================
+        // RENDER GALERI
+        // ============================================================
         function renderGallery(files) {
             var galleryGrid = document.getElementById('galleryGrid');
             var emptyGallery = document.getElementById('emptyGallery');
@@ -3293,18 +3274,18 @@
                 var div = document.createElement('div');
                 div.className = 'gallery-item';
 
-                var isVideo = file.type === 'video';
+                var isVideo = file.name && file.name.match(/\.(mp4|webm|mov|avi|mkv|3gp)$/i);
                 var media;
 
                 if (isVideo) {
                     media = document.createElement('video');
-                    media.src = file.data;
+                    media.src = file.url;
                     media.muted = true;
                     media.controls = false;
                 } else {
                     media = document.createElement('img');
-                    media.src = file.data;
-                    media.alt = file.name;
+                    media.src = file.url;
+                    media.alt = file.name || 'File ' + (index + 1);
                 }
                 media.style.width = '100%';
                 media.style.height = '140px';
@@ -3322,12 +3303,7 @@
                 downloadBtn.title = 'Download';
                 downloadBtn.onclick = function(e) {
                     e.stopPropagation();
-                    var link = document.createElement('a');
-                    link.href = file.data;
-                    link.download = file.name || 'file-' + (index + 1);
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    window.open(file.url, '_blank');
                     showToast('⬇️ Download dimulai', 'info');
                 };
 
@@ -3339,7 +3315,7 @@
                 copyBtn.onclick = function(e) {
                     e.stopPropagation();
                     var textarea = document.createElement('textarea');
-                    textarea.value = file.data;
+                    textarea.value = file.url;
                     textarea.style.position = 'fixed';
                     textarea.style.opacity = '0';
                     document.body.appendChild(textarea);
@@ -3353,20 +3329,14 @@
                     document.body.removeChild(textarea);
                 };
 
-                // Delete
+                // Delete (Admin only)
                 var deleteBtn = document.createElement('button');
                 deleteBtn.className = 'btn-delete';
                 deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
                 deleteBtn.title = 'Hapus';
                 deleteBtn.onclick = function(e) {
                     e.stopPropagation();
-                    if (!isAdmin) {
-                        showToast('Hanya admin yang bisa menghapus!', 'error');
-                        return;
-                    }
-                    if (confirm('Hapus file ini?')) {
-                        deleteFileFromDB(file.id);
-                    }
+                    deleteFromFirebase(file);
                 };
 
                 actions.appendChild(downloadBtn);
@@ -3379,23 +3349,9 @@
             });
         }
 
-        function deleteFileFromDB(id) {
-            if (!db) return;
-            var transaction = db.transaction([STORE_NAME], 'readwrite');
-            var store = transaction.objectStore(STORE_NAME);
-            var request = store.delete(id);
-
-            request.onsuccess = function() {
-                showToast('✅ File dihapus!', 'success');
-                loadAllFiles();
-                updateStats();
-            };
-
-            request.onerror = function() {
-                showToast('❌ Gagal menghapus file', 'error');
-            };
-        }
-
+        // ============================================================
+        // UPDATE STORAGE INFO
+        // ============================================================
         function updateStorageInfo(files) {
             var totalFiles = document.getElementById('totalFiles');
             var totalSize = document.getElementById('totalSize');
@@ -3403,23 +3359,38 @@
 
             if (!files) files = [];
 
-            var totalBytes = 0;
-            files.forEach(function(file) {
-                totalBytes += file.size || 0;
-            });
-
             if (totalFiles) totalFiles.textContent = files.length + ' File';
-            if (totalSize) totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
+            if (totalSize) totalSize.textContent = '☁️ Cloud Storage';
             if (fotoCount) fotoCount.textContent = files.length;
         }
 
-        function formatSize(bytes) {
-            if (bytes === 0) return '0 KB';
-            var k = 1024;
-            var sizes = ['B', 'KB', 'MB', 'GB'];
-            var i = Math.floor(Math.log(bytes) / Math.log(k));
-            var size = (bytes / Math.pow(k, i)).toFixed(1);
-            return size + ' ' + sizes[i];
+        // ============================================================
+        // INDEXEDDB FALLBACK
+        // ============================================================
+        function loadFromIndexedDB() {
+            // Jika Firebase gagal, coba load dari IndexedDB lokal
+            var request = indexedDB.open('GalleryDB', 1);
+            request.onsuccess = function(event) {
+                var db = event.target.result;
+                var transaction = db.transaction(['files'], 'readonly');
+                var store = transaction.objectStore('files');
+                var getAll = store.getAll();
+
+                getAll.onsuccess = function() {
+                    var files = getAll.result;
+                    var fileList = files.map(function(f) {
+                        return {
+                            name: f.name || 'File',
+                            url: f.data,
+                            ref: null,
+                            isLocal: true
+                        };
+                    });
+                    renderGallery(fileList);
+                    updateStorageInfo(fileList);
+                    showToast('📁 ' + fileList.length + ' file lokal', 'info');
+                };
+            };
         }
 
         // ============================================================
@@ -3447,7 +3418,7 @@
                 if (!isAdmin) return;
                 var files = e.target.files;
                 if (!files || files.length === 0) return;
-                uploadFilesToDB(files);
+                uploadToFirebase(files);
                 this.value = '';
             });
         }
@@ -3602,27 +3573,19 @@
         // UPDATE STATS
         // ============================================================
         function updateStats() {
-            if (!db) {
-                setTimeout(updateStats, 500);
-                return;
+            var posts = JSON.parse(localStorage.posts || "[]");
+            var notes = localStorage.notes || "";
+            var timelineCount = document.getElementById('timelineCount');
+            var catatanCount = document.getElementById('catatanCount');
+
+            if (timelineCount) timelineCount.textContent = posts.length;
+            if (catatanCount) catatanCount.textContent = notes.trim().length > 0 ? 1 : 0;
+
+            // Update foto count dari Firebase
+            var fotoCount = document.getElementById('fotoCount');
+            if (fotoCount && fileList) {
+                fotoCount.textContent = fileList.length;
             }
-            var transaction = db.transaction([STORE_NAME], 'readonly');
-            var store = transaction.objectStore(STORE_NAME);
-            var request = store.count();
-
-            request.onsuccess = function() {
-                var count = request.result;
-                var fotoCount = document.getElementById('fotoCount');
-                if (fotoCount) fotoCount.textContent = count;
-
-                var posts = JSON.parse(localStorage.posts || "[]");
-                var notes = localStorage.notes || "";
-                var timelineCount = document.getElementById('timelineCount');
-                var catatanCount = document.getElementById('catatanCount');
-
-                if (timelineCount) timelineCount.textContent = posts.length;
-                if (catatanCount) catatanCount.textContent = notes.trim().length > 0 ? 1 : 0;
-            };
         }
 
         // ============================================================
@@ -3828,10 +3791,10 @@
                 if (loader) loader.style.display = "none";
             }, 1500);
 
-            // Inisialisasi IndexedDB
+            // Load dari Firebase
             setTimeout(function() {
-                initIndexedDB();
-            }, 500);
+                loadFromFirebase();
+            }, 800);
 
             // Scroll top button
             window.addEventListener('scroll', function() {
@@ -3844,15 +3807,15 @@
             });
 
             // Update stats berkala
-            setInterval(updateStats, 5000);
+            setInterval(updateStats, 10000);
 
             // Notifikasi selamat datang
             setTimeout(function() {
-                showToast('Selamat datang di ALFATT28 Premium Space 🚀', 'info');
+                showToast('☁️ Cloud Storage Aktif!', 'info');
             }, 3000);
         });
 
-        console.log("ALFATT28 PREMIUM SPACE LOADED - IndexedDB Enabled with Animations");
+        console.log("ALFATT28 PREMIUM SPACE LOADED - Firebase Cloud Enabled");
     </script>
 
 </body>
