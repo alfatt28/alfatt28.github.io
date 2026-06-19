@@ -280,7 +280,6 @@
             color: #64748b;
         }
 
-        /* ===== DARK MODE TOGGLE BUTTON ===== */
         .theme-toggle {
             background: transparent;
             border: none;
@@ -315,7 +314,6 @@
             animation: fadeIn .6s ease;
         }
 
-        /* ===== KEYFRAMES ===== */
         @keyframes fade {
             0% { opacity: 0.5; }
             100% { opacity: 1; }
@@ -340,7 +338,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* ===== PROFILE LOCATION ===== */
         .profile-location {
             font-size: 11px;
             color: #5b738a;
@@ -366,7 +363,6 @@
             color: #94a3b8;
         }
 
-        /* ===== VISITOR COUNTER ===== */
         .visitor-badge {
             font-size: 10px;
             color: #6f889e;
@@ -383,7 +379,6 @@
             color: #94a3b8;
         }
 
-        /* ===== STREAK BADGE ===== */
         .streak-badge {
             font-size: 10px;
             color: #6f889e;
@@ -400,7 +395,6 @@
             color: #94a3b8;
         }
 
-        /* ===== HEADER ===== */
         .header {
             display: flex;
             justify-content: space-between;
@@ -453,7 +447,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* ===== MODE TOGGLE ===== */
         .mode-toggle {
             display: flex;
             align-items: center;
@@ -516,7 +509,6 @@
             color: #1e2b3c;
         }
 
-        /* ===== PROFILE ===== */
         .profile {
             display: flex;
             align-items: center;
@@ -650,7 +642,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* ===== BADGE ===== */
         .badge-admin {
             display: none;
             background: #1e2b3c;
@@ -681,7 +672,6 @@
             display: none;
         }
 
-        /* ===== TABS ===== */
         .tabs {
             display: flex;
             background: #f0f4fa;
@@ -716,7 +706,6 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
-        /* ===== STATS ===== */
         .stats {
             display: flex;
             justify-content: space-around;
@@ -746,7 +735,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* ===== PAGES ===== */
         .page {
             display: none;
             animation: fade 0.2s ease;
@@ -756,7 +744,6 @@
             display: block;
         }
 
-        /* ===== INFO BOX ===== */
         .info-box {
             background: #f8faff;
             padding: 14px 16px;
@@ -862,7 +849,6 @@
             display: block;
         }
 
-        /* ===== MOOD ===== */
         .mood-row {
             display: flex;
             flex-wrap: wrap;
@@ -886,7 +872,6 @@
             margin-right: 4px;
         }
 
-        /* ===== SOCIAL ===== */
         .social-row {
             display: flex;
             flex-wrap: wrap;
@@ -952,7 +937,6 @@
             background: #e3edfc;
         }
 
-        /* ===== MAPS ===== */
         .maps-container {
             background: #f8faff;
             border-radius: 20px;
@@ -1034,7 +1018,6 @@
             border-color: #1e2b3c;
         }
 
-        /* ===== SEARCH ENGINE ===== */
         .search-engine {
             background: #f8faff;
             padding: 14px 16px;
@@ -1133,7 +1116,6 @@
             color: white;
         }
 
-        /* ===== QUOTE ===== */
         .quote-box {
             background: #f0f6fe;
             padding: 14px 16px;
@@ -1178,7 +1160,6 @@
             background: #eef3f9;
         }
 
-        /* ===== EXPLORE FOOTER ===== */
         .explore-footer {
             background: #f0f4fa;
             border-radius: 60px;
@@ -1200,7 +1181,6 @@
             margin-right: 6px;
         }
 
-        /* ===== LOADER ===== */
         #loader {
             position: fixed;
             top: 0;
@@ -1224,7 +1204,6 @@
             text-shadow: 0 0 20px #00e5ff;
         }
 
-        /* ===== MISC ===== */
         hr {
             border: none;
             border-top: 1px solid #e8edf4;
@@ -1761,7 +1740,6 @@
             cursor: pointer;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 440px) {
             .card {
                 padding: 18px 14px 22px;
@@ -2001,7 +1979,6 @@
             }
         }
 
-        /* ===== ADMIN MODE TOGGLE ===== */
         .admin-mode .bg-options {
             display: flex !important;
         }
@@ -2041,7 +2018,6 @@
 </head>
 <body>
 
-    <!-- ===== LOADER ===== -->
     <div id="loader">
         <div class="loader-box">
             <h1>⏳</h1>
@@ -2049,15 +2025,12 @@
         </div>
     </div>
 
-    <!-- ===== SCROLL TOP BUTTON ===== -->
     <button id="topBtn" onclick="scrollTopPage()" title="Kembali ke Atas">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- ===== MAIN CARD ===== -->
     <div class="card" id="app">
 
-        <!-- HEADER -->
         <div class="header">
             <div class="header-left">
                 <i class="fas fa-folder-open"></i>
@@ -2068,7 +2041,6 @@
                     <i class="fas fa-moon" id="themeIcon"></i>
                 </button>
                 <span class="badge-pro">PRO</span>
-                <!-- Mode Toggle -->
                 <div class="mode-toggle" id="modeToggle" onclick="toggleModeAdmin()">
                     <span class="mode-icon"><i class="fas fa-user-cog"></i></span>
                     <span class="mode-label" id="modeLabel">USER</span>
@@ -2079,7 +2051,6 @@
             </div>
         </div>
 
-        <!-- PROFILE -->
         <div class="profile" id="profileContainer">
             <div class="bg-options" id="bgOptions">
                 <button style="background:#f0f4fa;" data-bg="#f0f4fa"></button>
@@ -2119,7 +2090,6 @@
                     <span class="badge-user">USER</span>
                 </h2>
                 <div class="sub">PERSONAL SPACE</div>
-                <!-- LOCATION INFO -->
                 <div class="profile-location">
                     <i class="fas fa-map-pin"></i> 6°9′44″S 106°42′30″E · 7⁰4'50"S 110⁰58'20"E<br>
                     <i class="fas fa-globe-asia"></i> अत्तहर् नज़रिल् अल् फातिह् 🇮🇩
@@ -2127,7 +2097,6 @@
             </div>
         </div>
 
-        <!-- TABS -->
         <div class="tabs" id="tabContainer">
             <button class="tab-btn active" data-page="beranda"><i class="fas fa-home"></i> Beranda</button>
             <button class="tab-btn" data-page="galeri"><i class="fas fa-image"></i> Galeri</button>
@@ -2136,7 +2105,6 @@
             <button class="tab-btn" data-page="jelajah"><i class="fas fa-compass"></i> Jelajah</button>
         </div>
 
-        <!-- STATS -->
         <div class="stats">
             <div class="stat-item">
                 <div class="angka" id="fotoCount">0</div>
@@ -2152,10 +2120,8 @@
             </div>
         </div>
 
-        <!-- CONTENT -->
         <div class="content">
 
-            <!-- ===== BERANDA ===== -->
             <div id="page-beranda" class="page active">
                 <div class="info-box">
                     <div class="label">
@@ -2183,7 +2149,6 @@
                     <span class="update-time" id="kutipanTime"></span>
                 </div>
 
-                <!-- DAILY QUOTE -->
                 <div class="info-box" style="background: linear-gradient(135deg, #f0f6fe, #e8edf4);">
                     <div class="label">📅 KUTIPAN HARI INI</div>
                     <div class="value" id="dailyQuote" style="font-style:italic;">“Hari ini adalah kesempatan baru untuk menjadi lebih baik.”</div>
@@ -2215,12 +2180,11 @@
                 </div>
             </div>
 
-            <!-- ===== GALERI CLOUD ===== -->
+            <!-- ===== GALERI CLOUD - REVISI TOTAL ===== -->
             <div id="page-galeri" class="page">
                 <div class="info-box">
                     <div class="label">☁️ GALERI CLOUD</div>
                     <div class="cloud-storage">
-                        <!-- Storage Info -->
                         <div class="storage-info">
                             <div class="info-left">
                                 <i class="fas fa-cloud"></i>
@@ -2229,39 +2193,33 @@
                                     <div class="total-size" id="totalSize">0 KB Digunakan</div>
                                 </div>
                             </div>
-                            <button class="upload-btn-cloud" id="uploadPhotoBtn" style="display:none;">
+                            <button class="upload-btn-cloud" id="uploadPhotoBtn">
                                 <i class="fas fa-upload"></i> Upload
                             </button>
                             <input type="file" id="galleryUpload" accept="image/*" style="display:none;" multiple>
                         </div>
 
-                        <!-- Gallery Grid -->
-                        <div id="galleryGrid" class="gallery-grid">
-                            <!-- Gallery items akan di-render di sini -->
-                        </div>
+                        <div id="galleryGrid" class="gallery-grid"></div>
 
-                        <!-- Empty State -->
                         <div class="empty-gallery" id="emptyGallery">
                             <i class="fas fa-cloud-upload-alt"></i>
                             <p>Belum ada file. Upload foto pertamamu!</p>
                         </div>
 
-                        <!-- Video Upload Section -->
                         <div class="video-upload-section">
                             <span class="video-label">🎬 VIDEO</span>
                             <div id="videoGallery"></div>
                             <div style="margin-top:8px;">
-                                <button onclick="setupVideoUpload()" class="upload-video-btn" style="background:#1e2b3c; color:white; border:none; padding:8px 16px; border-radius:40px; font-size:12px; cursor:pointer; display:none;" id="uploadVideoBtn">
+                                <button onclick="setupVideoUpload()" class="upload-video-btn" id="uploadVideoBtn">
                                     <i class="fas fa-video"></i> Upload Video
                                 </button>
-                                <input type="file" id="videoUploadInput" accept="video/*" style="display:none;" multiple onchange="handleVideoUpload(event)">
+                                <input type="file" id="videoUploadInput" accept="video/*" style="display:none;" multiple>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== TIMELINE ===== -->
             <div id="page-timeline" class="page">
                 <div class="info-box">
                     <div class="label">⏳ TIMELINE</div>
@@ -2274,7 +2232,6 @@
                 </div>
             </div>
 
-            <!-- ===== CATATAN ===== -->
             <div id="page-catatan" class="page">
                 <div class="info-box">
                     <div class="label">
@@ -2290,10 +2247,8 @@
                 </div>
             </div>
 
-            <!-- ===== JELAJAH ===== -->
             <div id="page-jelajah" class="page">
 
-                <!-- ===== SEARCH ENGINE ===== -->
                 <div class="search-engine">
                     <div class="label"><i class="fas fa-search"></i> Cari di Internet</div>
                     <div class="search-row">
@@ -2314,7 +2269,6 @@
                     </div>
                 </div>
 
-                <!-- ===== MAPS ===== -->
                 <div class="maps-container">
                     <iframe id="mapsFrame" src="https://maps.google.com/maps?q=restoran&output=embed"></iframe>
                     <div class="maps-search">
@@ -2333,7 +2287,6 @@
                     </div>
                 </div>
 
-                <!-- Quote -->
                 <div class="quote-box" id="quoteBox">
                     <i class="fas fa-quote-left"></i>
                     <span id="quoteText" class="quote-animate">Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.</span>
@@ -2342,7 +2295,6 @@
                     <button id="nextQuoteBtn"><i class="fas fa-sync-alt"></i> kutipan lain</button>
                 </div>
 
-                <!-- ===== TOOLS / IKON ALAT ===== -->
                 <div class="info-box">
                     <div class="label">🛠️ ALAT</div>
                     <div class="tools-container">
@@ -2369,7 +2321,6 @@
                     </div>
                 </div>
 
-                <!-- Explore footer -->
                 <div class="explore-footer" onclick="window.open('https://www.google.com/search?q=website+personal+space+fitur', '_blank')">
                     <i class="fas fa-globe-asia"></i> Jelajahi lebih banyak fitur
                 </div>
@@ -2388,23 +2339,19 @@
         </div>
     </div>
 
-    <!-- ===== TOOLS MODAL ===== -->
     <div class="tools-modal" id="toolsModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modalTitle">🛠️ Alat</h3>
                 <button class="close-modal" onclick="closeTools()">&times;</button>
             </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Konten dinamis di sini -->
-            </div>
+            <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
 
-    <!-- ===== SCRIPTS ===== -->
     <script>
         // ============================================================
-        // 0. ADMIN / USER MODE TOGGLE
+        // ADMIN / USER MODE TOGGLE
         // ============================================================
         var isAdmin = false;
         var ADMIN_PASSWORD = '31Mei2019';
@@ -2434,12 +2381,6 @@
                 var notesDisplay = document.getElementById('notesDisplay');
                 if (notes) notes.style.display = 'none';
                 if (notesDisplay) notesDisplay.style.display = '';
-                // Sembunyikan tombol upload di cloud
-                var uploadBtn = document.getElementById('uploadPhotoBtn');
-                if (uploadBtn) uploadBtn.style.display = 'none';
-                // Sembunyikan tombol upload video
-                var videoBtn = document.getElementById('uploadVideoBtn');
-                if (videoBtn) videoBtn.style.display = 'none';
             } else {
                 var password = prompt('Masukkan password ADMIN:');
                 if (password === ADMIN_PASSWORD) {
@@ -2463,7 +2404,6 @@
                     // Tampilkan tombol upload di cloud
                     var uploadBtn = document.getElementById('uploadPhotoBtn');
                     if (uploadBtn) uploadBtn.style.display = 'flex';
-                    // Tampilkan tombol upload video
                     var videoBtn = document.getElementById('uploadVideoBtn');
                     if (videoBtn) videoBtn.style.display = 'flex';
                 } else if (password !== null) {
@@ -2496,7 +2436,7 @@
         }
 
         // ============================================================
-        // 1. LOADING SCREEN
+        // LOADING SCREEN
         // ============================================================
         window.addEventListener("load", function() {
             setTimeout(function() {
@@ -2517,7 +2457,7 @@
         });
 
         // ============================================================
-        // 2. JAM DIGITAL
+        // JAM DIGITAL
         // ============================================================
         setInterval(function() {
             var clock = document.getElementById("clock");
@@ -2527,7 +2467,7 @@
         }, 1000);
 
         // ============================================================
-        // 3. TAB NAVIGASI
+        // TAB NAVIGASI
         // ============================================================
         (function() {
             var tabButtons = document.querySelectorAll('.tab-btn');
@@ -2583,7 +2523,7 @@
         })();
 
         // ============================================================
-        // 4. DARK MODE
+        // DARK MODE
         // ============================================================
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
@@ -2603,7 +2543,7 @@
         }
 
         // ============================================================
-        // 5. VISITOR COUNTER
+        // VISITOR COUNTER
         // ============================================================
         (function() {
             var visitors = parseInt(localStorage.visitors || 0);
@@ -2616,16 +2556,14 @@
         })();
 
         // ============================================================
-        // 6. STREAK / HARI AKTIF
+        // STREAK
         // ============================================================
         (function() {
             var today = new Date().toDateString();
             var lastVisit = localStorage.getItem('lastVisit');
             var streak = parseInt(localStorage.getItem('streak') || 0);
 
-            if (lastVisit === today) {
-                // Sudah visit hari ini
-            } else {
+            if (lastVisit !== today) {
                 var yesterday = new Date();
                 yesterday.setDate(yesterday.getDate() - 1);
                 if (lastVisit === yesterday.toDateString()) {
@@ -2644,7 +2582,7 @@
         })();
 
         // ============================================================
-        // 7. DAILY QUOTE
+        // DAILY QUOTE
         // ============================================================
         (function() {
             var dailyQuotes = [
@@ -2667,14 +2605,14 @@
         })();
 
         // ============================================================
-        // 8. SCROLL TOP
+        // SCROLL TOP
         // ============================================================
         function scrollTopPage() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // ============================================================
-        // 9. BACKGROUND PROFILE
+        // BACKGROUND PROFILE
         // ============================================================
         (function() {
             var profile = document.getElementById('profileContainer');
@@ -2702,7 +2640,7 @@
         })();
 
         // ============================================================
-        // 10. AVATAR PROFILE (Upload & Delete)
+        // AVATAR PROFILE
         // ============================================================
         (function() {
             var avatar = document.getElementById('avatar');
@@ -2753,7 +2691,7 @@
         })();
 
         // ============================================================
-        // 11. KUTIPAN (10) - Untuk di Jelajah - AUTO ROTATE
+        // KUTIPAN AUTO ROTATE
         // ============================================================
         (function() {
             var quotes = [
@@ -2796,7 +2734,7 @@
         })();
 
         // ============================================================
-        // 12. GOOGLE MAPS SEARCH
+        // GOOGLE MAPS SEARCH
         // ============================================================
         function searchPlace() {
             var place = document.getElementById('placeSearch');
@@ -2828,7 +2766,7 @@
         }
 
         // ============================================================
-        // 13. SEARCH ENGINE
+        // SEARCH ENGINE
         // ============================================================
         (function() {
             var searchInput = document.getElementById('searchInput');
@@ -2877,7 +2815,7 @@
         })();
 
         // ============================================================
-        // 14. EDITABLE TEXT (TENTANG & KUTIPAN) - BISA DIKOSONGKAN
+        // EDITABLE TEXT
         // ============================================================
         (function() {
             var savedTentang = localStorage.getItem('tentang');
@@ -3018,7 +2956,7 @@
         })();
 
         // ============================================================
-        // 15. TOGGLE NOTES - BISA DIKOSONGKAN
+        // TOGGLE NOTES
         // ============================================================
         (function() {
             var notes = document.getElementById('notes');
@@ -3120,9 +3058,13 @@
         })();
 
         // ============================================================
-        // 16. GALERI CLOUD STORAGE (FIXED - Bisa tampilkan banyak foto)
+        // GALERI CLOUD - REVISI TOTAL (FOTO & VIDEO)
         // ============================================================
         (function() {
+            var galleryData = JSON.parse(localStorage.gallery || '[]');
+            var videoData = JSON.parse(localStorage.videos || '[]');
+
+            // ===== FORMAT SIZE =====
             function formatSize(bytes) {
                 if (bytes === 0) return '0 KB';
                 var k = 1024;
@@ -3132,6 +3074,7 @@
                 return size + ' ' + sizes[i];
             }
 
+            // ===== GET TOTAL SIZE =====
             function getTotalSize(data) {
                 var total = 0;
                 data.forEach(function(item) {
@@ -3147,6 +3090,7 @@
                 return total;
             }
 
+            // ===== SHOW TOAST =====
             function showToast(message) {
                 var toast = document.createElement('div');
                 toast.textContent = message;
@@ -3161,8 +3105,8 @@
                 }, 2000);
             }
 
+            // ===== RENDER GALERI FOTO =====
             window.renderCloudGallery = function() {
-                var galleryData = JSON.parse(localStorage.gallery || '[]');
                 var galleryGrid = document.getElementById('galleryGrid');
                 var emptyGallery = document.getElementById('emptyGallery');
                 var totalFiles = document.getElementById('totalFiles');
@@ -3171,12 +3115,14 @@
 
                 if (!galleryGrid) return;
 
-                var totalBytes = getTotalSize(galleryData);
-                if (totalFiles) totalFiles.textContent = galleryData.length + ' File';
-                if (totalSize) totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
-                if (fotoCount) fotoCount.textContent = galleryData.length;
+                var data = JSON.parse(localStorage.gallery || '[]');
+                var totalBytes = getTotalSize(data);
 
-                if (galleryData.length === 0) {
+                if (totalFiles) totalFiles.textContent = data.length + ' File';
+                if (totalSize) totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
+                if (fotoCount) fotoCount.textContent = data.length;
+
+                if (data.length === 0) {
                     if (emptyGallery) emptyGallery.style.display = 'block';
                     galleryGrid.innerHTML = '';
                     return;
@@ -3184,7 +3130,7 @@
                 if (emptyGallery) emptyGallery.style.display = 'none';
 
                 galleryGrid.innerHTML = '';
-                galleryData.forEach(function(item, index) {
+                data.forEach(function(item, index) {
                     var imgSrc = item.data || item;
                     var div = document.createElement('div');
                     div.className = 'gallery-item';
@@ -3261,19 +3207,66 @@
                 });
             };
 
-            // Upload handler
-            var uploadBtn = document.getElementById('uploadPhotoBtn');
-            var fileInput = document.getElementById('galleryUpload');
-            if (uploadBtn && fileInput) {
-                uploadBtn.addEventListener('click', function() {
+            // ===== RENDER VIDEO =====
+            window.renderVideos = function() {
+                var container = document.getElementById('videoGallery');
+                if (!container) return;
+                var data = JSON.parse(localStorage.videos || '[]');
+                container.innerHTML = '';
+                if (data.length === 0) {
+                    container.innerHTML = '<p style="color:#8aa0b5; font-size:12px; text-align:center; padding:8px;">Belum ada video.</p>';
+                    return;
+                }
+                data.forEach(function(video, index) {
+                    var div = document.createElement('div');
+                    div.className = 'video-item';
+                    div.innerHTML = `
+                        <video src="${video.data}" muted></video>
+                        <div class="video-info">
+                            ${video.name || 'Video ' + (index + 1)}
+                            <small>${new Date(video.date).toLocaleString('id-ID')}</small>
+                        </div>
+                        <button class="video-delete" onclick="window.deleteVideo(${index})">Hapus</button>
+                    `;
+                    container.appendChild(div);
+                });
+            };
+
+            // ===== DELETE VIDEO =====
+            window.deleteVideo = function(index) {
+                if (!isAdmin) {
+                    alert('Hanya admin yang bisa menghapus!');
+                    return;
+                }
+                if (confirm('Hapus video ini?')) {
+                    var data = JSON.parse(localStorage.videos || '[]');
+                    data.splice(index, 1);
+                    localStorage.videos = JSON.stringify(data);
+                    window.renderVideos();
+                }
+            };
+
+            // ===== UPLOAD FOTO =====
+            var uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+            var galleryInput = document.getElementById('galleryUpload');
+
+            if (uploadPhotoBtn && galleryInput) {
+                // Tampilkan tombol upload hanya jika admin
+                if (isAdmin) {
+                    uploadPhotoBtn.style.display = 'flex';
+                } else {
+                    uploadPhotoBtn.style.display = 'none';
+                }
+
+                uploadPhotoBtn.addEventListener('click', function() {
                     if (!isAdmin) {
                         alert('Hanya admin yang bisa upload!');
                         return;
                     }
-                    fileInput.click();
+                    galleryInput.click();
                 });
 
-                fileInput.onchange = function(e) {
+                galleryInput.addEventListener('change', function(e) {
                     if (!isAdmin) return;
                     var files = e.target.files;
                     if (!files || files.length === 0) return;
@@ -3300,10 +3293,51 @@
                         reader.readAsDataURL(file);
                     });
                     this.value = '';
-                };
+                });
             }
 
-            // Override deleteImage
+            // ===== UPLOAD VIDEO =====
+            window.setupVideoUpload = function() {
+                if (!isAdmin) {
+                    alert('Hanya admin yang bisa upload!');
+                    return;
+                }
+                var input = document.getElementById('videoUploadInput');
+                if (!input) return;
+                input.click();
+            };
+
+            var videoInput = document.getElementById('videoUploadInput');
+            if (videoInput) {
+                videoInput.addEventListener('change', function(e) {
+                    if (!isAdmin) return;
+                    var files = e.target.files;
+                    if (!files || files.length === 0) return;
+
+                    Array.from(files).forEach(function(file) {
+                        if (!file.type.startsWith('video/')) {
+                            alert('File ' + file.name + ' bukan video!');
+                            return;
+                        }
+                        var reader = new FileReader();
+                        reader.onload = function(ev) {
+                            var data = JSON.parse(localStorage.videos || '[]');
+                            data.push({
+                                data: ev.target.result,
+                                name: file.name,
+                                size: file.size,
+                                date: new Date().toISOString()
+                            });
+                            localStorage.videos = JSON.stringify(data);
+                            window.renderVideos();
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                    this.value = '';
+                });
+            }
+
+            // ===== DELETE FOTO (global) =====
             window.deleteImage = function(index) {
                 if (!isAdmin) {
                     alert('Hanya admin yang bisa menghapus!');
@@ -3318,93 +3352,24 @@
                 }
             };
 
-            // Initial render
-            setTimeout(window.renderCloudGallery, 100);
+            // ===== INITIAL RENDER =====
+            setTimeout(function() {
+                window.renderCloudGallery();
+                window.renderVideos();
+                // Update tombol upload
+                var uploadBtn = document.getElementById('uploadPhotoBtn');
+                var videoBtn = document.getElementById('uploadVideoBtn');
+                if (uploadBtn) {
+                    uploadBtn.style.display = isAdmin ? 'flex' : 'none';
+                }
+                if (videoBtn) {
+                    videoBtn.style.display = isAdmin ? 'flex' : 'none';
+                }
+            }, 200);
         })();
 
         // ============================================================
-        // 17. VIDEO UPLOAD (FIXED)
-        // ============================================================
-        (function() {
-            var videoData = JSON.parse(localStorage.videos || '[]');
-
-            window.renderVideos = function() {
-                var container = document.getElementById('videoGallery');
-                if (!container) return;
-                container.innerHTML = '';
-                if (videoData.length === 0) {
-                    container.innerHTML = '<p style="color:#8aa0b5; font-size:12px; text-align:center; padding:8px;">Belum ada video.</p>';
-                    return;
-                }
-                videoData.forEach(function(video, index) {
-                    var div = document.createElement('div');
-                    div.className = 'video-item';
-                    div.innerHTML = `
-                        <video src="${video.data}" muted></video>
-                        <div class="video-info">
-                            ${video.name || 'Video ' + (index + 1)}
-                            <small>${new Date(video.date).toLocaleString('id-ID')}</small>
-                        </div>
-                        <button class="video-delete" onclick="window.deleteVideo(${index})">Hapus</button>
-                    `;
-                    container.appendChild(div);
-                });
-            };
-
-            window.deleteVideo = function(index) {
-                if (!isAdmin) {
-                    alert('Hanya admin yang bisa menghapus!');
-                    return;
-                }
-                if (confirm('Hapus video ini?')) {
-                    videoData.splice(index, 1);
-                    localStorage.videos = JSON.stringify(videoData);
-                    window.renderVideos();
-                }
-            };
-
-            window.setupVideoUpload = function() {
-                if (!isAdmin) {
-                    alert('Hanya admin yang bisa upload!');
-                    return;
-                }
-                var input = document.getElementById('videoUploadInput');
-                if (!input) return;
-                input.click();
-            };
-
-            window.handleVideoUpload = function(e) {
-                if (!isAdmin) return;
-                var files = e.target.files;
-                if (!files || files.length === 0) return;
-
-                Array.from(files).forEach(function(file) {
-                    if (!file.type.startsWith('video/')) {
-                        alert('File ' + file.name + ' bukan video!');
-                        return;
-                    }
-                    var reader = new FileReader();
-                    reader.onload = function(ev) {
-                        videoData.push({
-                            data: ev.target.result,
-                            name: file.name,
-                            size: file.size,
-                            date: new Date().toISOString()
-                        });
-                        localStorage.videos = JSON.stringify(videoData);
-                        window.renderVideos();
-                    };
-                    reader.readAsDataURL(file);
-                });
-                e.target.value = '';
-            };
-
-            // Initial render
-            setTimeout(window.renderVideos, 200);
-        })();
-
-        // ============================================================
-        // 18. TIMELINE
+        // TIMELINE
         // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
@@ -3472,7 +3437,7 @@
         })();
 
         // ============================================================
-        // 19. KUTIPAN (kedua)
+        // KUTIPAN (kedua)
         // ============================================================
         (function() {
             var quotes = [
@@ -3494,7 +3459,7 @@
         })();
 
         // ============================================================
-        // 20. MATRIX RAIN
+        // MATRIX RAIN
         // ============================================================
         (function() {
             var canvas = document.getElementById("matrix");
@@ -3532,7 +3497,7 @@
         })();
 
         // ============================================================
-        // 21. QR GENERATOR
+        // QR GENERATOR
         // ============================================================
         function generateQR() {
             var qrText = document.getElementById("qrText");
@@ -3545,7 +3510,7 @@
         }
 
         // ============================================================
-        // 22. UPDATE STATS
+        // UPDATE STATS
         // ============================================================
         function updateStats() {
             var galleryData = JSON.parse(localStorage.gallery || "[]");
@@ -3562,7 +3527,7 @@
         }
 
         // ============================================================
-        // 23. TOOLS - YOUTUBE, SPOTIFY, CALCULATOR, WEATHER, STOCK
+        // TOOLS
         // ============================================================
         function openTool(tool) {
             var modal = document.getElementById('toolsModal');
@@ -3656,7 +3621,6 @@
             document.getElementById('toolsModal').classList.remove('active');
         }
 
-        // ===== MODAL CALCULATOR =====
         function modalCalc() {
             var input = document.getElementById('modalCalcInput');
             var result = document.getElementById('modalCalcResult');
@@ -3673,7 +3637,6 @@
             }
         }
 
-        // ===== WEATHER (BMKG + OpenWeather) =====
         function getWeather() {
             var icon = document.getElementById('weatherIcon');
             var temp = document.getElementById('weatherTemp');
@@ -3725,7 +3688,6 @@
                 });
         }
 
-        // ===== STOCKS (Simulasi) =====
         function getStocks() {
             var widget = document.getElementById('stockWidget');
             if (!widget) return;
@@ -3759,15 +3721,12 @@
         }
 
         // ============================================================
-        // 24. NOTIFIKASI
+        // NOTIFIKASI
         // ============================================================
         setTimeout(function() {
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
 
-        // ============================================================
-        // 25. WELCOME
-        // ============================================================
         console.log("ALFATT28 PREMIUM SPACE LOADED");
     </script>
 
