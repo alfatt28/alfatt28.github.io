@@ -417,24 +417,26 @@
             align-items: center;
             gap: 8px;
             background: #1e2b3c;
-            padding: 8px 14px 8px 12px;
+            padding: 6px 12px 6px 10px;
             border-radius: 40px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.2);
             transition: 0.3s;
+            max-width: 200px;
         }
 
         .music-player:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .music-player .music-btn {
             background: transparent;
             border: none;
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             padding: 4px;
             transition: 0.2s;
+            flex-shrink: 0;
         }
 
         .music-player .music-btn:hover {
@@ -454,6 +456,29 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            cursor: pointer;
+        }
+
+        .music-player .music-label:hover {
+            color: white;
+        }
+
+        .music-player .music-iframe {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 9998;
+            width: 300px;
+            height: 80px;
+            border: none;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            background: transparent;
+        }
+
+        .music-player .music-iframe.show {
+            display: block;
         }
 
         body.dark-mode .music-player {
@@ -910,6 +935,7 @@
             line-height: 1.5;
             word-wrap: break-word;
             transition: 0.3s;
+            min-height: 24px;
         }
 
         .info-box .value i {
@@ -1681,6 +1707,12 @@
                 max-width: 50px;
                 font-size: 9px;
             }
+            .music-player .music-iframe {
+                width: 280px;
+                height: 80px;
+                right: 10px;
+                bottom: 70px;
+            }
             .footer-small {
                 gap: 6px;
                 font-size: 10px;
@@ -1871,6 +1903,13 @@
             .cloud-storage .gallery-item img {
                 height: 120px;
             }
+
+            .music-player .music-iframe {
+                width: 320px;
+                height: 80px;
+                bottom: 90px;
+                right: 30px;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -1931,14 +1970,15 @@
 
     <!-- ===== MUSIC PLAYER ===== -->
     <div class="music-player" id="musicPlayer">
-        <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
-            <i class="fas fa-play"></i>
+        <button class="music-btn" id="musicBtn" onclick="toggleMusicPlayer()">
+            <i class="fas fa-music"></i>
         </button>
-        <span class="music-label" id="musicLabel">🎵 Lofi Relax</span>
-        <audio id="bgMusic" loop preload="none">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-        </audio>
+        <span class="music-label" id="musicLabel" onclick="toggleMusicPlayer()">🎵 Putar Musik</span>
+        <iframe class="music-iframe" id="musicIframe" 
+            src="https://open.spotify.com/embed/playlist/37i9dQZF1DX3Ogo9pFvBkY?utm_source=generator&theme=0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy">
+        </iframe>
     </div>
 
     <!-- ===== SCROLL TOP BUTTON ===== -->
@@ -2438,36 +2478,26 @@
         }
 
         // ============================================================
-        // 5. MUSIC PLAYER
+        // 5. MUSIC PLAYER (Spotify Online)
         // ============================================================
-        var music = document.getElementById('bgMusic');
+        var musicIframe = document.getElementById('musicIframe');
         var musicBtn = document.getElementById('musicBtn');
-        var isMusicPlaying = false;
+        var musicLabel = document.getElementById('musicLabel');
+        var isMusicOpen = false;
 
-        function toggleMusic() {
-            if (isMusicPlaying) {
-                music.pause();
-                musicBtn.innerHTML = '<i class="fas fa-play"></i>';
-                musicBtn.classList.remove('playing');
-                isMusicPlaying = false;
+        function toggleMusicPlayer() {
+            if (isMusicOpen) {
+                musicIframe.classList.remove('show');
+                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+                musicLabel.textContent = '🎵 Putar Musik';
+                isMusicOpen = false;
             } else {
-                music.play().catch(function(e) {
-                    console.log('Click to play music');
-                });
-                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                musicBtn.classList.add('playing');
-                isMusicPlaying = true;
+                musicIframe.classList.add('show');
+                musicBtn.innerHTML = '<i class="fas fa-times"></i>';
+                musicLabel.textContent = '🎵 Tutup Musik';
+                isMusicOpen = true;
             }
         }
-
-        document.addEventListener('click', function() {
-            if (!isMusicPlaying && music.paused) {
-                music.play().catch(function() {});
-                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                musicBtn.classList.add('playing');
-                isMusicPlaying = true;
-            }
-        }, { once: true });
 
         // ============================================================
         // 6. VISITOR COUNTER
@@ -2780,7 +2810,7 @@
         })();
 
         // ============================================================
-        // 16. EDITABLE TEXT (TENTANG & KUTIPAN)
+        // 16. EDITABLE TEXT (TENTANG & KUTIPAN) - BISA DIKOSONGKAN
         // ============================================================
         (function() {
             var savedTentang = localStorage.getItem('tentang');
@@ -2805,11 +2835,18 @@
                 tentangDisplay.textContent = savedTentang;
                 tentangInput.value = savedTentang;
                 if (savedTentangTime) updateTime(tentangTime, savedTentangTime);
+            } else {
+                tentangDisplay.textContent = '';
+                tentangInput.value = '';
             }
+
             if (savedKutipan) {
                 kutipanDisplay.textContent = savedKutipan;
                 kutipanInput.value = savedKutipan;
                 if (savedKutipanTime) updateTime(kutipanTime, savedKutipanTime);
+            } else {
+                kutipanDisplay.textContent = '';
+                kutipanInput.value = '';
             }
 
             window.saveText = function(type) {
@@ -2825,11 +2862,9 @@
                     timeEl = kutipanTime;
                     timeKey = 'kutipanTime';
                 }
+
                 var value = input.value.trim();
-                if (value === '') {
-                    alert('Teks tidak boleh kosong!');
-                    return;
-                }
+                // Bisa kosong (tidak wajib diisi)
                 var now = new Date().toLocaleString('id-ID', {
                     weekday: 'long',
                     year: 'numeric',
@@ -2838,14 +2873,25 @@
                     hour: '2-digit',
                     minute: '2-digit'
                 });
-                display.textContent = value;
-                localStorage.setItem(type, value);
-                localStorage.setItem(timeKey, now);
-                updateTime(timeEl, now);
+
+                if (value === '') {
+                    // Hapus dari localStorage jika kosong
+                    localStorage.removeItem(type);
+                    localStorage.removeItem(timeKey);
+                    display.textContent = '';
+                    timeEl.textContent = '';
+                } else {
+                    display.textContent = value;
+                    localStorage.setItem(type, value);
+                    localStorage.setItem(timeKey, now);
+                    updateTime(timeEl, now);
+                }
+
                 input.classList.remove('active');
                 input.style.display = 'none';
                 display.classList.remove('hidden');
                 display.style.display = '';
+
                 var btn = document.querySelector('[onclick="editText(\'' + type + '\')"]');
                 if (btn) {
                     btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
@@ -2907,7 +2953,7 @@
         })();
 
         // ============================================================
-        // 17. TOGGLE NOTES
+        // 17. TOGGLE NOTES - BISA DIKOSONGKAN
         // ============================================================
         (function() {
             var notes = document.getElementById('notes');
@@ -2938,14 +2984,6 @@
                     notes.focus();
                 } else {
                     var value = notes.value.trim();
-                    if (value === '') {
-                        alert('Catatan tidak boleh kosong!');
-                        return;
-                    }
-                    notes.style.display = 'none';
-                    notesDisplay.style.display = '';
-                    notesDisplay.textContent = value;
-                    localStorage.notes = value;
                     var now = new Date().toLocaleString('id-ID', {
                         weekday: 'long',
                         year: 'numeric',
@@ -2954,29 +2992,65 @@
                         hour: '2-digit',
                         minute: '2-digit'
                     });
-                    localStorage.setItem('notesTime', now);
-                    notesTime.textContent = '🕒 Diperbarui: ' + now;
-                    if (catatanCount) catatanCount.textContent = '1';
+
+                    notes.style.display = 'none';
+                    notesDisplay.style.display = '';
+
+                    if (value === '') {
+                        // Hapus jika kosong
+                        localStorage.removeItem('notes');
+                        localStorage.removeItem('notesTime');
+                        notesDisplay.textContent = 'Tulis ide, rencana, atau pelajaran hari ini.';
+                        notesTime.textContent = '';
+                        if (catatanCount) catatanCount.textContent = '0';
+                    } else {
+                        notesDisplay.textContent = value;
+                        localStorage.notes = value;
+                        localStorage.setItem('notesTime', now);
+                        notesTime.textContent = '🕒 Diperbarui: ' + now;
+                        if (catatanCount) catatanCount.textContent = '1';
+                    }
+
+                    // Reset button
+                    var btn = document.querySelector('[onclick="toggleNotes()"]');
+                    if (btn) {
+                        btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
+                    }
                 }
             };
 
             notes.addEventListener('blur', function() {
                 if (this.style.display !== 'none' && isAdmin) {
                     var value = this.value.trim();
-                    if (value !== '') {
+                    var now = new Date().toLocaleString('id-ID', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    notes.style.display = 'none';
+                    notesDisplay.style.display = '';
+
+                    if (value === '') {
+                        localStorage.removeItem('notes');
+                        localStorage.removeItem('notesTime');
+                        notesDisplay.textContent = 'Tulis ide, rencana, atau pelajaran hari ini.';
+                        notesTime.textContent = '';
+                        if (catatanCount) catatanCount.textContent = '0';
+                    } else {
                         notesDisplay.textContent = value;
                         localStorage.notes = value;
-                        var now = new Date().toLocaleString('id-ID', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        });
                         localStorage.setItem('notesTime', now);
                         notesTime.textContent = '🕒 Diperbarui: ' + now;
                         if (catatanCount) catatanCount.textContent = '1';
+                    }
+
+                    var btn = document.querySelector('[onclick="toggleNotes()"]');
+                    if (btn) {
+                        btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
                     }
                 }
             });
@@ -3009,7 +3083,6 @@
                 data.forEach(function(item) {
                     if (item.size) total += item.size;
                     else {
-                        // Estimate size from base64 string
                         var str = item.data || item;
                         if (typeof str === 'string' && str.startsWith('data:image')) {
                             var base64 = str.split(',')[1] || '';
@@ -3023,14 +3096,12 @@
             function renderCloudGallery() {
                 if (!galleryGrid) return;
 
-                // Update storage info
                 var totalBytes = getTotalSize(galleryData);
                 totalFiles.textContent = galleryData.length + ' File';
                 totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
 
                 if (fotoCount) fotoCount.textContent = galleryData.length;
 
-                // Show/hide empty state
                 if (galleryData.length === 0) {
                     emptyGallery.style.display = 'block';
                     galleryGrid.innerHTML = '';
@@ -3038,7 +3109,6 @@
                 }
                 emptyGallery.style.display = 'none';
 
-                // Render grid
                 galleryGrid.innerHTML = '';
                 galleryData.forEach(function(item, index) {
                     var imgSrc = item.data || item;
@@ -3053,7 +3123,6 @@
                     var actions = document.createElement('div');
                     actions.className = 'item-actions';
 
-                    // Download button
                     var downloadBtn = document.createElement('button');
                     downloadBtn.className = 'btn-download';
                     downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
@@ -3063,7 +3132,6 @@
                         downloadImage(imgSrc, 'foto-' + (index + 1) + '.jpg');
                     };
 
-                    // Copy link button
                     var copyBtn = document.createElement('button');
                     copyBtn.className = 'btn-copy';
                     copyBtn.innerHTML = '<i class="fas fa-link"></i>';
@@ -3073,7 +3141,6 @@
                         copyImageLink(imgSrc);
                     };
 
-                    // Delete button
                     var deleteBtn = document.createElement('button');
                     deleteBtn.className = 'btn-delete';
                     deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
@@ -3157,7 +3224,6 @@
                 }
             };
 
-            // Upload handler
             if (uploadBtn && fileInput) {
                 uploadBtn.addEventListener('click', function() {
                     if (!isAdmin) {
@@ -3195,7 +3261,6 @@
                 };
             }
 
-            // Initial render
             renderCloudGallery();
         })();
 
