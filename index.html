@@ -22,6 +22,303 @@
             align-items: center;
             min-height: 100vh;
             padding: 16px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ===== DARK MODE ===== */
+        body.dark-mode {
+            background: #0f172a;
+        }
+
+        body.dark-mode .card {
+            background: #1e293b;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .header-left i {
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        body.dark-mode .header-left .date {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .badge-pro {
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        body.dark-mode .profile {
+            background: #334155;
+        }
+
+        body.dark-mode .profile-info h2 {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .profile-info .sub {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .profile-location {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .tabs {
+            background: #334155;
+        }
+
+        body.dark-mode .tab-btn {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .tab-btn.active {
+            background: #1e293b;
+            color: #f1f5f9;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .stats {
+            background: #334155;
+            border-color: #475569;
+        }
+
+        body.dark-mode .stat-item .angka {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .stat-item .label {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .info-box {
+            background: #334155;
+            border-color: #475569;
+        }
+
+        body.dark-mode .info-box .label {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .info-box .value {
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .info-box .update-time {
+            color: #64748b;
+        }
+
+        body.dark-mode .mood-tag {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode .social-item {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode .social-item i {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .whatsapp-btn {
+            background: #25D366;
+            color: white !important;
+        }
+
+        body.dark-mode .search-engine {
+            background: #334155;
+            border-color: #475569;
+        }
+
+        body.dark-mode .search-engine .label {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .search-engine .search-row input {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode .search-engine .search-row select {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode .search-engine .search-engines button {
+            background: #1e293b;
+            color: #94a3b8;
+            border-color: #475569;
+        }
+
+        body.dark-mode .search-engine .search-engines button.active-engine {
+            background: #1e2b3c;
+            color: white;
+        }
+
+        body.dark-mode .maps-container {
+            background: #334155;
+            border-color: #475569;
+        }
+
+        body.dark-mode .maps-search input {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode .place-suggestions button {
+            background: #1e293b;
+            color: #94a3b8;
+            border-color: #475569;
+        }
+
+        body.dark-mode .calculator {
+            background: #334155;
+            border-color: #475569;
+        }
+
+        body.dark-mode .calculator .calc-input input {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode .calculator .calc-result {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode .quote-box {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-left-color: #3b82f6;
+        }
+
+        body.dark-mode .quote-nav button {
+            background: transparent;
+            color: #94a3b8;
+            border-color: #475569;
+        }
+
+        body.dark-mode .explore-footer {
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        body.dark-mode hr {
+            border-color: #475569;
+        }
+
+        body.dark-mode .footer-small {
+            color: #64748b;
+        }
+
+        body.dark-mode .mode-toggle {
+            background: #334155;
+            border-color: #475569;
+        }
+
+        body.dark-mode .mode-toggle .mode-label {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .mode-toggle .mode-icon {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .bg-options {
+            background: #1e293b;
+        }
+
+        body.dark-mode .bg-options button.active-bg {
+            border-color: #f1f5f9;
+            box-shadow: 0 0 0 2px #1e293b, 0 0 0 3px #f1f5f9;
+        }
+
+        body.dark-mode .avatar-actions button {
+            background: #1e293b;
+        }
+
+        body.dark-mode .avatar-actions .upload-avatar-btn {
+            background: #1e2b3c;
+            color: white;
+        }
+
+        body.dark-mode .avatar-actions .delete-avatar-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        body.dark-mode .badge-admin {
+            background: #1e2b3c;
+            color: white;
+        }
+
+        body.dark-mode .badge-user {
+            background: #475569;
+            color: #94a3b8;
+        }
+
+        body.dark-mode .info-box .editable-text {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode .info-box .editable-text:focus {
+            border-color: #3b82f6;
+        }
+
+        body.dark-mode #notes {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode #status {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-color: #475569;
+        }
+
+        body.dark-mode #status::placeholder {
+            color: #64748b;
+        }
+
+        body.dark-mode #notes::placeholder {
+            color: #64748b;
+        }
+
+        /* ===== DARK MODE TOGGLE BUTTON ===== */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 20px;
+            transition: 0.2s;
+            color: #2c3e50;
+        }
+
+        .theme-toggle:hover {
+            background: #eef3f9;
+        }
+
+        body.dark-mode .theme-toggle {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #334155;
         }
 
         .card {
@@ -31,7 +328,7 @@
             border-radius: 28px;
             padding: 24px 20px 28px;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
-            transition: all 0.2s;
+            transition: all 0.3s;
             animation: fadeIn .6s ease;
         }
 
@@ -48,6 +345,153 @@
 
         @keyframes grow {
             from { width: 0; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* ===== TYPING EFFECT ===== */
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #1e2b3c;
+            animation: typing 3s steps(30) 1s forwards, blink-caret 0.75s step-end infinite;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #1e2b3c; }
+        }
+
+        body.dark-mode .typing-text {
+            border-right-color: #94a3b8;
+        }
+
+        /* ===== PROFILE LOCATION ===== */
+        .profile-location {
+            font-size: 11px;
+            color: #5b738a;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            line-height: 1.6;
+            margin-top: 4px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .profile-location i {
+            margin-right: 4px;
+            color: #6f889e;
+            font-size: 11px;
+        }
+
+        body.dark-mode .profile-location {
+            border-top-color: rgba(255,255,255,0.08);
+        }
+
+        body.dark-mode .profile-location i {
+            color: #94a3b8;
+        }
+
+        /* ===== MUSIC PLAYER ===== */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e2b3c;
+            padding: 8px 14px 8px 12px;
+            border-radius: 40px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .music-player:hover {
+            transform: scale(1.05);
+        }
+
+        .music-player .music-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px;
+            transition: 0.2s;
+        }
+
+        .music-player .music-btn:hover {
+            color: #60a5fa;
+        }
+
+        .music-player .music-btn.playing {
+            animation: pulse 1s infinite;
+            color: #60a5fa;
+        }
+
+        .music-player .music-label {
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: 500;
+            max-width: 80px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        body.dark-mode .music-player {
+            background: #1e293b;
+        }
+
+        /* ===== VISITOR COUNTER ===== */
+        .visitor-badge {
+            font-size: 10px;
+            color: #6f889e;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #f0f4fa;
+            padding: 2px 10px;
+            border-radius: 30px;
+        }
+
+        body.dark-mode .visitor-badge {
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        /* ===== STREAK BADGE ===== */
+        .streak-badge {
+            font-size: 10px;
+            color: #6f889e;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #f0f4fa;
+            padding: 2px 10px;
+            border-radius: 30px;
+        }
+
+        body.dark-mode .streak-badge {
+            background: #334155;
+            color: #94a3b8;
         }
 
         /* ===== HEADER ===== */
@@ -70,6 +514,7 @@
             background: #f0f4fa;
             padding: 8px 10px;
             border-radius: 14px;
+            transition: 0.3s;
         }
 
         .header-left .date {
@@ -82,7 +527,8 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .header-right i {
@@ -169,7 +615,7 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             padding: 16px;
             border-radius: 20px;
             background: #f0f4fa;
@@ -373,6 +819,7 @@
             border-radius: 24px;
             margin-bottom: 22px;
             border: 1px solid #eaeef5;
+            transition: 0.3s;
         }
 
         .stat-item {
@@ -383,6 +830,7 @@
             font-size: 18px;
             font-weight: 700;
             color: #0f1a26;
+            transition: 0.3s;
         }
 
         .stat-item .label {
@@ -410,6 +858,7 @@
             margin-bottom: 14px;
             border: 1px solid #eaeef5;
             position: relative;
+            transition: 0.3s;
         }
 
         .info-box .label {
@@ -460,6 +909,7 @@
             color: #0f1a26;
             line-height: 1.5;
             word-wrap: break-word;
+            transition: 0.3s;
         }
 
         .info-box .value i {
@@ -522,6 +972,7 @@
             color: #1e2b3c;
             border: 1px solid #e2e9f2;
             cursor: default;
+            transition: 0.3s;
         }
 
         .mood-tag i {
@@ -601,6 +1052,7 @@
             border: 1px solid #eaeef5;
             overflow: hidden;
             margin-bottom: 14px;
+            transition: 0.3s;
         }
 
         .maps-container iframe {
@@ -615,6 +1067,7 @@
             display: flex;
             gap: 6px;
             background: white;
+            transition: 0.3s;
         }
 
         .maps-search input {
@@ -625,6 +1078,7 @@
             font-size: 13px;
             outline: none;
             transition: 0.15s;
+            background: white;
         }
 
         .maps-search input:focus {
@@ -654,6 +1108,7 @@
             gap: 5px;
             padding: 6px 12px 12px;
             background: white;
+            transition: 0.3s;
         }
 
         .place-suggestions button {
@@ -679,6 +1134,7 @@
             border-radius: 20px;
             border: 1px solid #eaeef5;
             margin-bottom: 14px;
+            transition: 0.3s;
         }
 
         .search-engine .label {
@@ -703,6 +1159,7 @@
             font-size: 13px;
             outline: none;
             transition: 0.15s;
+            background: white;
         }
 
         .search-engine .search-row input:focus {
@@ -776,6 +1233,7 @@
             border-radius: 20px;
             border: 1px solid #eaeef5;
             margin-bottom: 14px;
+            transition: 0.3s;
         }
 
         .calc-input {
@@ -808,6 +1266,7 @@
             border-radius: 40px;
             text-align: center;
             border: 1px solid #dce3ed;
+            transition: 0.3s;
         }
 
         .calc-btn {
@@ -836,11 +1295,17 @@
             font-size: 14px;
             line-height: 1.5;
             margin-bottom: 10px;
+            transition: 0.3s;
+            min-height: 80px;
         }
 
         .quote-box i {
             opacity: 0.4;
             margin-right: 6px;
+        }
+
+        .quote-box .quote-animate {
+            transition: opacity 0.5s ease;
         }
 
         .quote-nav {
@@ -872,6 +1337,7 @@
             font-size: 12px;
             color: #1e2b3c;
             text-align: center;
+            transition: 0.3s;
         }
 
         .explore-footer i {
@@ -907,27 +1373,264 @@
             border: none;
             border-top: 1px solid #e8edf4;
             margin: 18px 0 10px;
+            transition: 0.3s;
         }
 
         .footer-small {
             font-size: 11px;
             color: #8aa0b5;
             text-align: center;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         #topBtn {
             position: fixed;
             right: 20px;
-            bottom: 20px;
-            width: 55px;
-            height: 55px;
+            bottom: 80px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            font-size: 22px;
+            font-size: 18px;
             z-index: 999;
+            background: #1e2b3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            display: none;
+        }
+
+        #topBtn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        body.dark-mode #topBtn {
+            background: #334155;
         }
 
         .bar {
             animation: grow 2s ease;
+        }
+
+        /* ===== GALERI CLOUD STYLES ===== */
+        .cloud-storage {
+            margin-bottom: 14px;
+        }
+
+        .cloud-storage .storage-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #eaeef5;
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+
+        body.dark-mode .cloud-storage .storage-info {
+            background: #1e293b;
+            border-color: #475569;
+            color: #f1f5f9;
+        }
+
+        .cloud-storage .storage-info .info-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cloud-storage .storage-info .info-left i {
+            font-size: 20px;
+            color: #3b82f6;
+        }
+
+        .cloud-storage .storage-info .info-left .total-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #0f1a26;
+        }
+
+        body.dark-mode .cloud-storage .storage-info .info-left .total-text {
+            color: #f1f5f9;
+        }
+
+        .cloud-storage .storage-info .info-left .total-size {
+            font-size: 12px;
+            color: #6f889e;
+        }
+
+        body.dark-mode .cloud-storage .storage-info .info-left .total-size {
+            color: #94a3b8;
+        }
+
+        .cloud-storage .upload-btn-cloud {
+            background: #1e2b3c;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cloud-storage .upload-btn-cloud:hover {
+            opacity: 0.85;
+            transform: scale(1.02);
+        }
+
+        body.dark-mode .cloud-storage .upload-btn-cloud {
+            background: #3b82f6;
+        }
+
+        .cloud-storage .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .cloud-storage .gallery-item {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #eaeef5;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item {
+            background: #1e293b;
+            border-color: #475569;
+        }
+
+        .cloud-storage .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .cloud-storage .gallery-item img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cloud-storage .gallery-item .item-actions {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px;
+            background: rgba(255,255,255,0.95);
+            border-top: 1px solid #eaeef5;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions {
+            background: #1e293b;
+            border-top-color: #475569;
+        }
+
+        .cloud-storage .gallery-item .item-actions button {
+            background: transparent;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #4d667e;
+        }
+
+        .cloud-storage .gallery-item .item-actions button:hover {
+            background: #eef3f9;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions button {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions button:hover {
+            background: #334155;
+        }
+
+        .cloud-storage .gallery-item .item-actions .btn-download {
+            color: #3b82f6;
+        }
+
+        .cloud-storage .gallery-item .item-actions .btn-download:hover {
+            background: #dbeafe;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions .btn-download {
+            color: #60a5fa;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions .btn-download:hover {
+            background: #1e3a5f;
+        }
+
+        .cloud-storage .gallery-item .item-actions .btn-copy {
+            color: #8b5cf6;
+        }
+
+        .cloud-storage .gallery-item .item-actions .btn-copy:hover {
+            background: #ede9fe;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions .btn-copy {
+            color: #a78bfa;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions .btn-copy:hover {
+            background: #2d1b69;
+        }
+
+        .cloud-storage .gallery-item .item-actions .btn-delete {
+            color: #ef4444;
+        }
+
+        .cloud-storage .gallery-item .item-actions .btn-delete:hover {
+            background: #fecaca;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions .btn-delete {
+            color: #f87171;
+        }
+
+        body.dark-mode .cloud-storage .gallery-item .item-actions .btn-delete:hover {
+            background: #4c1d1d;
+        }
+
+        .cloud-storage .empty-gallery {
+            text-align: center;
+            padding: 30px 16px;
+            color: #8aa0b5;
+        }
+
+        .cloud-storage .empty-gallery i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            display: block;
+            opacity: 0.5;
+        }
+
+        body.dark-mode .cloud-storage .empty-gallery {
+            color: #64748b;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -962,13 +1665,62 @@
             .mode-toggle .mode-label {
                 font-size: 8px;
             }
+            .header-right {
+                gap: 4px;
+            }
+            .theme-toggle {
+                font-size: 15px;
+                padding: 2px 6px;
+            }
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                padding: 6px 10px 6px 8px;
+            }
+            .music-player .music-label {
+                max-width: 50px;
+                font-size: 9px;
+            }
+            .footer-small {
+                gap: 6px;
+                font-size: 10px;
+            }
+            .visitor-badge, .streak-badge {
+                font-size: 9px;
+                padding: 1px 8px;
+            }
+            .profile-location {
+                font-size: 10px;
+            }
+            .cloud-storage .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .cloud-storage .gallery-item img {
+                height: 100px;
+            }
+            .cloud-storage .gallery-item .item-actions button {
+                font-size: 10px;
+                padding: 2px 6px;
+            }
+            .cloud-storage .storage-info {
+                flex-direction: column;
+                gap: 8px;
+                align-items: stretch;
+            }
+            .cloud-storage .upload-btn-cloud {
+                justify-content: center;
+            }
         }
 
-        /* ===== DESKTOP VERSION ===== */
         @media (min-width: 768px) {
             body {
                 background: #1a2533;
                 padding: 40px;
+            }
+
+            body.dark-mode {
+                background: #0f172a;
             }
 
             .card {
@@ -1099,6 +1851,26 @@
                 font-size: 10px;
                 padding: 3px 12px;
             }
+
+            #topBtn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 100px;
+                right: 30px;
+            }
+
+            .profile-location {
+                font-size: 12px;
+            }
+
+            .cloud-storage .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .cloud-storage .gallery-item img {
+                height: 120px;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -1141,6 +1913,10 @@
         .admin-mode .editable-text {
             display: block !important;
         }
+
+        .admin-mode .cloud-storage .upload-btn-cloud {
+            display: flex !important;
+        }
     </style>
 </head>
 <body>
@@ -1153,6 +1929,23 @@
         </div>
     </div>
 
+    <!-- ===== MUSIC PLAYER ===== -->
+    <div class="music-player" id="musicPlayer">
+        <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+            <i class="fas fa-play"></i>
+        </button>
+        <span class="music-label" id="musicLabel">🎵 Lofi Relax</span>
+        <audio id="bgMusic" loop preload="none">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- ===== SCROLL TOP BUTTON ===== -->
+    <button id="topBtn" onclick="scrollTopPage()" title="Kembali ke Atas">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- ===== MAIN CARD ===== -->
     <div class="card" id="app">
 
@@ -1163,7 +1956,9 @@
                 <span class="date" id="clock">03.26</span>
             </div>
             <div class="header-right">
-                <i class="far fa-bell"></i>
+                <button class="theme-toggle" onclick="toggleTheme()" title="Ganti Tema">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
                 <span class="badge-pro">PRO</span>
                 <!-- Mode Toggle -->
                 <div class="mode-toggle" id="modeToggle" onclick="toggleModeAdmin()">
@@ -1203,11 +1998,16 @@
 
             <div class="profile-info">
                 <h2>
-                    alfatts519
+                    <span class="typing-text" id="typingName">alfatt28</span>
                     <span class="badge-admin">ADMIN</span>
                     <span class="badge-user">USER</span>
                 </h2>
                 <div class="sub">PERSONAL SPACE</div>
+                <!-- LOCATION INFO -->
+                <div class="profile-location">
+                    <i class="fas fa-map-pin"></i> 6°9′44″S 106°42′30″E · 7⁰4'50"S 110⁰58'20"E<br>
+                    <i class="fas fa-globe-asia"></i> अत्तहर् नज़रिल् अल् फातिह् 🇮🇩
+                </div>
             </div>
         </div>
 
@@ -1249,8 +2049,8 @@
                             <span class="lock-icon"><i class="fas fa-lock"></i></span>
                         </span>
                     </div>
-                    <div class="value" id="tentangDisplay">write text 😉</div>
-                    <textarea class="editable-text" id="tentangInput" placeholder="Tulis tentang Anda..."></textarea>
+                    <div class="value" id="tentangDisplay">tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung 😉</div>
+                    <textarea class="editable-text" id="tentangInput" placeholder="Ketik pesan..."></textarea>
                     <span class="update-time" id="tentangTime"></span>
                 </div>
 
@@ -1262,9 +2062,15 @@
                             <span class="lock-icon"><i class="fas fa-lock"></i></span>
                         </span>
                     </div>
-                    <div class="value" id="kutipanDisplay">“write text”</div>
-                    <textarea class="editable-text" id="kutipanInput" placeholder="Tulis kutipan favorit Anda..."></textarea>
+                    <div class="value" id="kutipanDisplay">“Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.”</div>
+                    <textarea class="editable-text" id="kutipanInput" placeholder="Ketik pesan..."></textarea>
                     <span class="update-time" id="kutipanTime"></span>
+                </div>
+
+                <!-- DAILY QUOTE -->
+                <div class="info-box" style="background: linear-gradient(135deg, #f0f6fe, #e8edf4);">
+                    <div class="label">📅 KUTIPAN HARI INI</div>
+                    <div class="value" id="dailyQuote" style="font-style:italic;">“Hari ini adalah kesempatan baru untuk menjadi lebih baik.”</div>
                 </div>
 
                 <div class="info-box">
@@ -1293,16 +2099,37 @@
                 </div>
             </div>
 
-            <!-- ===== GALERI ===== -->
+            <!-- ===== GALERI CLOUD ===== -->
             <div id="page-galeri" class="page">
                 <div class="info-box">
-                    <div class="label">📸 GALERI</div>
-                    <div class="value" style="font-weight:400;" id="galleryStatus">Belum ada foto. Unggah karya terbaikmu!</div>
-                    <div style="margin-top:12px; background:#eef3f9; border-radius:60px; padding:10px 16px; text-align:center; font-size:13px; color:#1e2b3c; cursor:pointer;" id="uploadPhotoBtn">
-                        <i class="fas fa-cloud-upload-alt"></i> Tambah foto
+                    <div class="label">☁️ GALERI CLOUD</div>
+                    <div class="cloud-storage">
+                        <!-- Storage Info -->
+                        <div class="storage-info">
+                            <div class="info-left">
+                                <i class="fas fa-cloud"></i>
+                                <div>
+                                    <div class="total-text" id="totalFiles">0 File</div>
+                                    <div class="total-size" id="totalSize">0 KB Digunakan</div>
+                                </div>
+                            </div>
+                            <button class="upload-btn-cloud" id="uploadPhotoBtn" style="display:none;">
+                                <i class="fas fa-upload"></i> Upload
+                            </button>
+                            <input type="file" id="galleryUpload" accept="image/*" style="display:none;" multiple>
+                        </div>
+
+                        <!-- Gallery Grid -->
+                        <div id="galleryGrid" class="gallery-grid">
+                            <!-- Gallery items akan di-render di sini -->
+                        </div>
+
+                        <!-- Empty State -->
+                        <div class="empty-gallery" id="emptyGallery">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Belum ada file. Upload foto pertamamu!</p>
+                        </div>
                     </div>
-                    <input type="file" id="galleryUpload" accept="image/*" style="display:none;">
-                    <div id="gallery" style="margin-top:12px;"></div>
                 </div>
             </div>
 
@@ -1393,7 +2220,7 @@
                 <!-- Quote -->
                 <div class="quote-box" id="quoteBox">
                     <i class="fas fa-quote-left"></i>
-                    <span id="quoteText">Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.</span>
+                    <span id="quoteText" class="quote-animate">Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.</span>
                 </div>
                 <div class="quote-nav">
                     <button id="nextQuoteBtn"><i class="fas fa-sync-alt"></i> kutipan lain</button>
@@ -1408,7 +2235,13 @@
 
         <hr>
         <div class="footer-small">
-            <i class="far fa-copyright"></i> alfatt28.github.io · personal space
+            <span class="visitor-badge">
+                <i class="fas fa-eye"></i> <span id="visitorCount">0</span> Pengunjung
+            </span>
+            <span class="streak-badge">
+                <i class="fas fa-fire"></i> <span id="streakCount">0</span> Hari Aktif
+            </span>
+            <span><i class="far fa-copyright"></i> alfatt28.github.io</span>
         </div>
     </div>
 
@@ -1418,17 +2251,15 @@
         // 0. ADMIN / USER MODE TOGGLE
         // ============================================================
         var isAdmin = false;
-        var ADMIN_PASSWORD = '31Mei2019'; // Ganti dengan password Anda
+        var ADMIN_PASSWORD = '31Mei2019';
 
         function toggleModeAdmin() {
             if (isAdmin) {
-                // Switch ke USER mode
                 isAdmin = false;
                 document.body.classList.remove('admin-mode');
                 document.getElementById('modeToggle').classList.remove('admin');
                 document.getElementById('modeLabel').textContent = 'USER';
                 localStorage.removeItem('adminMode');
-                // Sembunyikan elemen admin
                 document.querySelectorAll('.bg-options').forEach(function(el) { el.classList.remove('show'); });
                 document.querySelectorAll('.avatar-actions').forEach(function(el) { el.classList.remove('show'); });
                 document.querySelectorAll('.badge-admin').forEach(function(el) { el.classList.remove('show'); });
@@ -1443,13 +2274,14 @@
                     el.classList.remove('hidden');
                     el.style.display = '';
                 });
-                // Reset notes
                 var notes = document.getElementById('notes');
                 var notesDisplay = document.getElementById('notesDisplay');
                 if (notes) notes.style.display = 'none';
                 if (notesDisplay) notesDisplay.style.display = '';
+                // Sembunyikan tombol upload di cloud
+                var uploadBtn = document.getElementById('uploadPhotoBtn');
+                if (uploadBtn) uploadBtn.style.display = 'none';
             } else {
-                // Minta password untuk masuk ke ADMIN mode
                 var password = prompt('Masukkan password ADMIN:');
                 if (password === ADMIN_PASSWORD) {
                     isAdmin = true;
@@ -1457,27 +2289,27 @@
                     document.getElementById('modeToggle').classList.add('admin');
                     document.getElementById('modeLabel').textContent = 'ADMIN';
                     localStorage.setItem('adminMode', 'true');
-                    // Tampilkan elemen admin
                     document.querySelectorAll('.bg-options').forEach(function(el) { el.classList.add('show'); });
                     document.querySelectorAll('.avatar-actions').forEach(function(el) { el.classList.add('show'); });
                     document.querySelectorAll('.badge-admin').forEach(function(el) { el.classList.add('show'); });
                     document.querySelectorAll('.badge-user').forEach(function(el) { el.classList.add('hide'); });
                     document.querySelectorAll('.edit-btn').forEach(function(el) { el.classList.add('show'); });
                     document.querySelectorAll('.lock-icon').forEach(function(el) { el.classList.add('hide'); });
-                    // Show notes
                     var notes = document.getElementById('notes');
                     var notesDisplay = document.getElementById('notesDisplay');
                     if (notes && notesDisplay) {
                         notes.style.display = 'block';
                         notesDisplay.style.display = 'none';
                     }
+                    // Tampilkan tombol upload di cloud
+                    var uploadBtn = document.getElementById('uploadPhotoBtn');
+                    if (uploadBtn) uploadBtn.style.display = 'flex';
                 } else if (password !== null) {
                     alert('Password salah!');
                 }
             }
         }
 
-        // Check saved admin mode
         if (localStorage.getItem('adminMode') === 'true') {
             isAdmin = true;
             document.body.classList.add('admin-mode');
@@ -1495,6 +2327,8 @@
                 notes.style.display = 'block';
                 notesDisplay.style.display = 'none';
             }
+            var uploadBtn = document.getElementById('uploadPhotoBtn');
+            if (uploadBtn) uploadBtn.style.display = 'flex';
         }
 
         // ============================================================
@@ -1505,6 +2339,16 @@
                 var loader = document.getElementById("loader");
                 if (loader) loader.style.display = "none";
             }, 1500);
+            updateStats();
+            renderCloudGallery();
+            window.addEventListener('scroll', function() {
+                var topBtn = document.getElementById('topBtn');
+                if (window.scrollY > 300) {
+                    topBtn.style.display = 'block';
+                } else {
+                    topBtn.style.display = 'none';
+                }
+            });
         });
 
         // ============================================================
@@ -1538,7 +2382,6 @@
                         btn.classList.remove('active');
                     }
                 });
-
                 Object.keys(pages).forEach(function(key) {
                     if (pages[key]) {
                         if (key === pageId) {
@@ -1548,7 +2391,6 @@
                         }
                     }
                 });
-
                 var baseUrl = window.location.pathname + window.location.search;
                 var newUrl = baseUrl + (baseUrl.includes('?') ? '&' : '?') + 'tab=' + pageId;
                 window.history.replaceState({ tab: pageId }, '', newUrl);
@@ -1576,12 +2418,134 @@
         })();
 
         // ============================================================
-        // 4. BACKGROUND PROFILE
+        // 4. DARK MODE
+        // ============================================================
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            var icon = document.getElementById('themeIcon');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeIcon').className = 'fas fa-sun';
+        }
+
+        // ============================================================
+        // 5. MUSIC PLAYER
+        // ============================================================
+        var music = document.getElementById('bgMusic');
+        var musicBtn = document.getElementById('musicBtn');
+        var isMusicPlaying = false;
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                music.pause();
+                musicBtn.innerHTML = '<i class="fas fa-play"></i>';
+                musicBtn.classList.remove('playing');
+                isMusicPlaying = false;
+            } else {
+                music.play().catch(function(e) {
+                    console.log('Click to play music');
+                });
+                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                musicBtn.classList.add('playing');
+                isMusicPlaying = true;
+            }
+        }
+
+        document.addEventListener('click', function() {
+            if (!isMusicPlaying && music.paused) {
+                music.play().catch(function() {});
+                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                musicBtn.classList.add('playing');
+                isMusicPlaying = true;
+            }
+        }, { once: true });
+
+        // ============================================================
+        // 6. VISITOR COUNTER
+        // ============================================================
+        (function() {
+            var visitors = parseInt(localStorage.visitors || 0);
+            visitors++;
+            localStorage.visitors = visitors;
+            var counterEl = document.getElementById('visitorCount');
+            if (counterEl) {
+                counterEl.innerHTML = visitors;
+            }
+        })();
+
+        // ============================================================
+        // 7. STREAK / HARI AKTIF
+        // ============================================================
+        (function() {
+            var today = new Date().toDateString();
+            var lastVisit = localStorage.getItem('lastVisit');
+            var streak = parseInt(localStorage.getItem('streak') || 0);
+
+            if (lastVisit === today) {
+                // Sudah visit hari ini
+            } else {
+                var yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                if (lastVisit === yesterday.toDateString()) {
+                    streak++;
+                } else {
+                    streak = 1;
+                }
+                localStorage.setItem('lastVisit', today);
+                localStorage.setItem('streak', streak);
+            }
+
+            var streakEl = document.getElementById('streakCount');
+            if (streakEl) {
+                streakEl.innerHTML = streak;
+            }
+        })();
+
+        // ============================================================
+        // 8. DAILY QUOTE
+        // ============================================================
+        (function() {
+            var dailyQuotes = [
+                "Hari ini adalah kesempatan baru untuk menjadi lebih baik.",
+                "Kebahagiaan bukanlah tujuan, tapi perjalanan.",
+                "Setiap hari adalah halaman baru dalam hidupmu.",
+                "Jangan bandingkan dirimu dengan orang lain, bandingkan dengan dirimu yang kemarin.",
+                "Bersyukurlah untuk hari ini, karena masih ada kesempatan.",
+                "Kamu lebih kuat dari yang kamu pikirkan.",
+                "Hari ini pilihlah untuk tersenyum.",
+                "Kesuksesan dimulai dari langkah kecil hari ini.",
+                "Jangan takut gagal, takutlah untuk tidak mencoba.",
+                "Hidup ini indah, nikmati setiap momennya."
+            ];
+            var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+            var dailyQuoteEl = document.getElementById('dailyQuote');
+            if (dailyQuoteEl) {
+                dailyQuoteEl.textContent = '“' + dailyQuotes[dayOfYear % dailyQuotes.length] + '”';
+            }
+        })();
+
+        // ============================================================
+        // 9. SCROLL TOP
+        // ============================================================
+        function scrollTopPage() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        // 10. BACKGROUND PROFILE
         // ============================================================
         (function() {
             var profile = document.getElementById('profileContainer');
             var bgButtons = document.querySelectorAll('#bgOptions button');
-
             var savedBg = localStorage.getItem('profileBg');
             if (savedBg) {
                 profile.style.background = savedBg;
@@ -1593,7 +2557,6 @@
                     }
                 });
             }
-
             bgButtons.forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     var color = this.dataset.bg;
@@ -1606,7 +2569,7 @@
         })();
 
         // ============================================================
-        // 5. AVATAR PROFILE (Upload & Delete)
+        // 11. AVATAR PROFILE (Upload & Delete)
         // ============================================================
         (function() {
             var avatar = document.getElementById('avatar');
@@ -1657,13 +2620,12 @@
         })();
 
         // ============================================================
-        // 6. KALKULATOR (Kosong saat pertama)
+        // 12. KALKULATOR
         // ============================================================
         (function() {
             var calcInput = document.getElementById('calcInput');
             var calcBtn = document.getElementById('calcBtn');
             var calcResult = document.getElementById('calcResult');
-
             if (calcInput && calcBtn && calcResult) {
                 calcInput.value = '';
                 calcResult.textContent = '0';
@@ -1686,7 +2648,6 @@
                         calcResult.textContent = 'Error';
                     }
                 }
-
                 calcBtn.addEventListener('click', evaluateCalc);
                 calcInput.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') evaluateCalc();
@@ -1695,7 +2656,7 @@
         })();
 
         // ============================================================
-        // 7. KUTIPAN (10) - Untuk di Jelajah
+        // 13. KUTIPAN (10) - Untuk di Jelajah - AUTO ROTATE
         // ============================================================
         (function() {
             var quotes = [
@@ -1714,34 +2675,31 @@
             var quoteText = document.getElementById('quoteText');
             var nextQuoteBtn = document.getElementById('nextQuoteBtn');
 
-            if (quoteText && nextQuoteBtn) {
-                function showQuote(index) {
+            function showQuote(index) {
+                if (!quoteText) return;
+                quoteText.style.opacity = '0';
+                setTimeout(function() {
                     quoteText.textContent = quotes[index % quotes.length];
-                }
+                    quoteText.style.opacity = '1';
+                }, 300);
+            }
 
+            setInterval(function() {
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                showQuote(quoteIndex);
+            }, 10000);
+
+            if (nextQuoteBtn) {
                 nextQuoteBtn.addEventListener('click', function() {
                     quoteIndex = (quoteIndex + 1) % quotes.length;
                     showQuote(quoteIndex);
                 });
-
-                showQuote(0);
             }
+            showQuote(0);
         })();
 
         // ============================================================
-        // 8. DARK MODE
-        // ============================================================
-        function toggleMode() {
-            document.body.classList.toggle("light");
-            localStorage.theme = document.body.classList.contains("light") ? "light" : "dark";
-        }
-
-        if (localStorage.theme === "light") {
-            document.body.classList.add("light");
-        }
-
-        // ============================================================
-        // 9. GOOGLE MAPS SEARCH
+        // 14. GOOGLE MAPS SEARCH
         // ============================================================
         function searchPlace() {
             var place = document.getElementById('placeSearch');
@@ -1773,7 +2731,7 @@
         }
 
         // ============================================================
-        // 10. SEARCH ENGINE
+        // 15. SEARCH ENGINE
         // ============================================================
         (function() {
             var searchInput = document.getElementById('searchInput');
@@ -1806,13 +2764,11 @@
             if (searchBtn) {
                 searchBtn.addEventListener('click', doSearch);
             }
-
             if (searchInput) {
                 searchInput.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') doSearch();
                 });
             }
-
             engineButtons.forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     var engine = this.dataset.engine;
@@ -1824,7 +2780,7 @@
         })();
 
         // ============================================================
-        // 11. EDITABLE TEXT (TENTANG & KUTIPAN) - SYNC via localStorage
+        // 16. EDITABLE TEXT (TENTANG & KUTIPAN)
         // ============================================================
         (function() {
             var savedTentang = localStorage.getItem('tentang');
@@ -1850,7 +2806,6 @@
                 tentangInput.value = savedTentang;
                 if (savedTentangTime) updateTime(tentangTime, savedTentangTime);
             }
-
             if (savedKutipan) {
                 kutipanDisplay.textContent = savedKutipan;
                 kutipanInput.value = savedKutipan;
@@ -1870,32 +2825,27 @@
                     timeEl = kutipanTime;
                     timeKey = 'kutipanTime';
                 }
-
                 var value = input.value.trim();
                 if (value === '') {
                     alert('Teks tidak boleh kosong!');
                     return;
                 }
-
-                var now = new Date().toLocaleString('id-ID', { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric', 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
+                var now = new Date().toLocaleString('id-ID', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
                 });
-
                 display.textContent = value;
                 localStorage.setItem(type, value);
                 localStorage.setItem(timeKey, now);
                 updateTime(timeEl, now);
-
                 input.classList.remove('active');
                 input.style.display = 'none';
                 display.classList.remove('hidden');
                 display.style.display = '';
-
                 var btn = document.querySelector('[onclick="editText(\'' + type + '\')"]');
                 if (btn) {
                     btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
@@ -1903,12 +2853,10 @@
             };
 
             window.editText = function(type) {
-                // Hanya admin yang bisa edit
                 if (!isAdmin) {
                     alert('Hanya admin yang bisa mengedit!');
                     return;
                 }
-
                 var input, display;
                 if (type === 'tentang') {
                     input = tentangInput;
@@ -1917,7 +2865,6 @@
                     input = kutipanInput;
                     display = kutipanDisplay;
                 }
-
                 if (input.classList.contains('active')) {
                     saveText(type);
                 } else {
@@ -1926,12 +2873,10 @@
                     input.style.display = 'block';
                     display.classList.add('hidden');
                     display.style.display = 'none';
-
                     var btn = document.querySelector('[onclick="editText(\'' + type + '\')"]');
                     if (btn) {
                         btn.innerHTML = '<i class="fas fa-save"></i> Simpan';
                     }
-
                     input.focus();
                     input.select();
                 }
@@ -1943,21 +2888,17 @@
                     if (isAdmin) saveText('tentang');
                 }
             });
-
             kutipanInput.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
                     e.preventDefault();
                     if (isAdmin) saveText('kutipan');
                 }
             });
-
-            // Auto-save on blur
             tentangInput.addEventListener('blur', function() {
                 if (this.classList.contains('active') && isAdmin) {
                     saveText('tentang');
                 }
             });
-
             kutipanInput.addEventListener('blur', function() {
                 if (this.classList.contains('active') && isAdmin) {
                     saveText('kutipan');
@@ -1966,7 +2907,7 @@
         })();
 
         // ============================================================
-        // 12. TOGGLE NOTES - SYNC via localStorage
+        // 17. TOGGLE NOTES
         // ============================================================
         (function() {
             var notes = document.getElementById('notes');
@@ -1987,12 +2928,10 @@
             }
 
             window.toggleNotes = function() {
-                // Hanya admin yang bisa edit
                 if (!isAdmin) {
                     alert('Hanya admin yang bisa mengedit catatan!');
                     return;
                 }
-
                 if (notes.style.display === 'none' || notes.style.display === '') {
                     notes.style.display = 'block';
                     notesDisplay.style.display = 'none';
@@ -2007,18 +2946,16 @@
                     notesDisplay.style.display = '';
                     notesDisplay.textContent = value;
                     localStorage.notes = value;
-
-                    var now = new Date().toLocaleString('id-ID', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric', 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
+                    var now = new Date().toLocaleString('id-ID', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
                     });
                     localStorage.setItem('notesTime', now);
                     notesTime.textContent = '🕒 Diperbarui: ' + now;
-
                     if (catatanCount) catatanCount.textContent = '1';
                 }
             };
@@ -2029,13 +2966,13 @@
                     if (value !== '') {
                         notesDisplay.textContent = value;
                         localStorage.notes = value;
-                        var now = new Date().toLocaleString('id-ID', { 
-                            weekday: 'long', 
-                            year: 'numeric', 
-                            month: 'long', 
-                            day: 'numeric', 
-                            hour: '2-digit', 
-                            minute: '2-digit' 
+                        var now = new Date().toLocaleString('id-ID', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
                         });
                         localStorage.setItem('notesTime', now);
                         notesTime.textContent = '🕒 Diperbarui: ' + now;
@@ -2046,74 +2983,230 @@
         })();
 
         // ============================================================
-        // 13. GALERI FOTO
+        // 18. GALERI CLOUD STORAGE
         // ============================================================
         (function() {
-            var gallery = document.getElementById('gallery');
-            var galleryUpload = document.getElementById('galleryUpload');
+            var galleryData = JSON.parse(localStorage.gallery || "[]");
+            var galleryGrid = document.getElementById('galleryGrid');
+            var emptyGallery = document.getElementById('emptyGallery');
             var uploadBtn = document.getElementById('uploadPhotoBtn');
-            var galleryStatus = document.getElementById('galleryStatus');
+            var fileInput = document.getElementById('galleryUpload');
+            var totalFiles = document.getElementById('totalFiles');
+            var totalSize = document.getElementById('totalSize');
             var fotoCount = document.getElementById('fotoCount');
 
-            var galleryData = JSON.parse(localStorage.gallery || "[]");
+            function formatSize(bytes) {
+                if (bytes === 0) return '0 KB';
+                var k = 1024;
+                var sizes = ['B', 'KB', 'MB', 'GB'];
+                var i = Math.floor(Math.log(bytes) / Math.log(k));
+                var size = (bytes / Math.pow(k, i)).toFixed(1);
+                return size + ' ' + sizes[i];
+            }
 
-            function renderGallery() {
-                if (!gallery) return;
-                gallery.innerHTML = "";
-                if (galleryData.length === 0) {
-                    if (galleryStatus) galleryStatus.style.display = "block";
-                    if (fotoCount) fotoCount.textContent = "0";
-                    return;
-                }
-                if (galleryStatus) galleryStatus.style.display = "none";
+            function getTotalSize(data) {
+                var total = 0;
+                data.forEach(function(item) {
+                    if (item.size) total += item.size;
+                    else {
+                        // Estimate size from base64 string
+                        var str = item.data || item;
+                        if (typeof str === 'string' && str.startsWith('data:image')) {
+                            var base64 = str.split(',')[1] || '';
+                            total += Math.round(base64.length * 0.75);
+                        }
+                    }
+                });
+                return total;
+            }
+
+            function renderCloudGallery() {
+                if (!galleryGrid) return;
+
+                // Update storage info
+                var totalBytes = getTotalSize(galleryData);
+                totalFiles.textContent = galleryData.length + ' File';
+                totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
+
                 if (fotoCount) fotoCount.textContent = galleryData.length;
 
-                galleryData.forEach(function(img, index) {
-                    var card = document.createElement('div');
-                    card.style.cssText = "margin-bottom:12px; background:white; border-radius:16px; padding:8px; border:1px solid #eaeef5;";
-                    var date = new Date().toLocaleString('id-ID', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
-                    card.innerHTML = '<img src="' + img + '" style="width:100%; border-radius:12px; max-height:300px; object-fit:cover;"><div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;"><small style="color:#8aa0b5; font-size:11px;">' + date + '</small><button onclick="deleteImage(' + index + ')" style="background:#e74c3c; border:none; color:white; padding:4px 14px; border-radius:40px; font-size:11px; cursor:pointer;">Hapus</button></div>';
-                    gallery.appendChild(card);
+                // Show/hide empty state
+                if (galleryData.length === 0) {
+                    emptyGallery.style.display = 'block';
+                    galleryGrid.innerHTML = '';
+                    return;
+                }
+                emptyGallery.style.display = 'none';
+
+                // Render grid
+                galleryGrid.innerHTML = '';
+                galleryData.forEach(function(item, index) {
+                    var imgSrc = item.data || item;
+                    var div = document.createElement('div');
+                    div.className = 'gallery-item';
+
+                    var img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = 'Foto ' + (index + 1);
+                    img.loading = 'lazy';
+
+                    var actions = document.createElement('div');
+                    actions.className = 'item-actions';
+
+                    // Download button
+                    var downloadBtn = document.createElement('button');
+                    downloadBtn.className = 'btn-download';
+                    downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
+                    downloadBtn.title = 'Download';
+                    downloadBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        downloadImage(imgSrc, 'foto-' + (index + 1) + '.jpg');
+                    };
+
+                    // Copy link button
+                    var copyBtn = document.createElement('button');
+                    copyBtn.className = 'btn-copy';
+                    copyBtn.innerHTML = '<i class="fas fa-link"></i>';
+                    copyBtn.title = 'Salin Link';
+                    copyBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        copyImageLink(imgSrc);
+                    };
+
+                    // Delete button
+                    var deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'btn-delete';
+                    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                    deleteBtn.title = 'Hapus';
+                    deleteBtn.onclick = function(e) {
+                        e.stopPropagation();
+                        deleteImage(index);
+                    };
+
+                    actions.appendChild(downloadBtn);
+                    actions.appendChild(copyBtn);
+                    actions.appendChild(deleteBtn);
+
+                    div.appendChild(img);
+                    div.appendChild(actions);
+                    galleryGrid.appendChild(div);
                 });
+            }
+
+            function downloadImage(dataUrl, filename) {
+                var link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            function copyImageLink(dataUrl) {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(dataUrl).then(function() {
+                        showToast('✅ Link foto disalin!');
+                    }).catch(function() {
+                        fallbackCopy(dataUrl);
+                    });
+                } else {
+                    fallbackCopy(dataUrl);
+                }
+            }
+
+            function fallbackCopy(text) {
+                var textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast('✅ Link foto disalin!');
+                } catch (e) {
+                    showToast('❌ Gagal menyalin link');
+                }
+                document.body.removeChild(textarea);
+            }
+
+            function showToast(message) {
+                var toast = document.createElement('div');
+                toast.textContent = message;
+                toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e2b3c;color:white;padding:10px 20px;border-radius:40px;font-size:13px;font-weight:500;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,0.2);animation:fadeIn 0.3s ease;';
+                document.body.appendChild(toast);
+                setTimeout(function() {
+                    toast.style.opacity = '0';
+                    toast.style.transition = 'opacity 0.3s';
+                    setTimeout(function() {
+                        document.body.removeChild(toast);
+                    }, 300);
+                }, 2000);
             }
 
             window.deleteImage = function(index) {
-                galleryData.splice(index, 1);
-                localStorage.gallery = JSON.stringify(galleryData);
-                renderGallery();
+                if (!isAdmin) {
+                    alert('Hanya admin yang bisa menghapus!');
+                    return;
+                }
+                if (confirm('Hapus foto ini?')) {
+                    galleryData.splice(index, 1);
+                    localStorage.gallery = JSON.stringify(galleryData);
+                    renderCloudGallery();
+                    updateStats();
+                }
             };
 
-            renderGallery();
-
-            if (uploadBtn && galleryUpload) {
+            // Upload handler
+            if (uploadBtn && fileInput) {
                 uploadBtn.addEventListener('click', function() {
-                    galleryUpload.click();
+                    if (!isAdmin) {
+                        alert('Hanya admin yang bisa upload!');
+                        return;
+                    }
+                    fileInput.click();
                 });
 
-                galleryUpload.onchange = function(e) {
-                    var file = e.target.files[0];
-                    if (!file) return;
-                    var reader = new FileReader();
-                    reader.onload = function() {
-                        galleryData.push(reader.result);
-                        localStorage.gallery = JSON.stringify(galleryData);
-                        renderGallery();
-                    };
-                    reader.readAsDataURL(file);
+                fileInput.onchange = function(e) {
+                    if (!isAdmin) return;
+                    var files = e.target.files;
+                    if (!files || files.length === 0) return;
+
+                    Array.from(files).forEach(function(file) {
+                        if (!file.type.startsWith('image/')) {
+                            alert('File ' + file.name + ' bukan gambar!');
+                            return;
+                        }
+                        var reader = new FileReader();
+                        reader.onload = function(ev) {
+                            galleryData.push({
+                                data: ev.target.result,
+                                size: file.size,
+                                name: file.name,
+                                type: file.type
+                            });
+                            localStorage.gallery = JSON.stringify(galleryData);
+                            renderCloudGallery();
+                            updateStats();
+                        };
+                        reader.readAsDataURL(file);
+                    });
                     this.value = '';
                 };
             }
+
+            // Initial render
+            renderCloudGallery();
         })();
 
         // ============================================================
-        // 14. TIMELINE
+        // 19. TIMELINE
         // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
             var statusInput = document.getElementById('status');
             var timelineStatus = document.getElementById('timelineStatus');
             var timelineCount = document.getElementById('timelineCount');
-
             var posts = JSON.parse(localStorage.posts || "[]");
 
             function renderPosts() {
@@ -2126,7 +3219,6 @@
                 }
                 if (timelineStatus) timelineStatus.style.display = "none";
                 if (timelineCount) timelineCount.textContent = posts.length;
-
                 posts.forEach(function(post, index) {
                     var div = document.createElement('div');
                     div.style.cssText = "margin-bottom:12px; background:white; border-radius:16px; padding:14px; border:1px solid #eaeef5;";
@@ -2150,6 +3242,7 @@
                 localStorage.posts = JSON.stringify(posts);
                 statusInput.value = "";
                 renderPosts();
+                updateStats();
             };
 
             window.deletePost = function(index) {
@@ -2160,6 +3253,7 @@
                 posts.splice(index, 1);
                 localStorage.posts = JSON.stringify(posts);
                 renderPosts();
+                updateStats();
             };
 
             if (statusInput) {
@@ -2170,12 +3264,11 @@
                     }
                 });
             }
-
             renderPosts();
         })();
 
         // ============================================================
-        // 15. KUTIPAN (kedua)
+        // 20. KUTIPAN (kedua)
         // ============================================================
         (function() {
             var quotes = [
@@ -2187,19 +3280,17 @@
                 "Hari ini lebih baik dari kemarin.",
                 "Terus bergerak maju."
             ];
-
             window.newQuote = function() {
                 var quoteEl = document.getElementById("quote");
                 if (quoteEl) {
                     quoteEl.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
                 }
             };
-
             newQuote();
         })();
 
         // ============================================================
-        // 16. MATRIX RAIN
+        // 21. MATRIX RAIN
         // ============================================================
         (function() {
             var canvas = document.getElementById("matrix");
@@ -2207,7 +3298,6 @@
             var ctx = canvas.getContext("2d");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
             var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var fontSize = 14;
             var columns = canvas.width / fontSize;
@@ -2221,7 +3311,6 @@
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = "#00ff88";
                 ctx.font = fontSize + "px monospace";
-
                 for (var i = 0; i < drops.length; i++) {
                     var text = letters[Math.floor(Math.random() * letters.length)];
                     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -2231,9 +3320,7 @@
                     drops[i]++;
                 }
             }
-
             setInterval(drawMatrix, 33);
-
             window.addEventListener("resize", function() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
@@ -2241,42 +3328,7 @@
         })();
 
         // ============================================================
-        // 17. VISITOR COUNTER
-        // ============================================================
-        (function() {
-            var visitors = parseInt(localStorage.visitors || 0);
-            visitors++;
-            localStorage.visitors = visitors;
-            var counterEl = document.getElementById("visitorCount");
-            if (counterEl) {
-                counterEl.innerHTML = visitors;
-            }
-        })();
-
-        // ============================================================
-        // 18. SCROLL TOP
-        // ============================================================
-        function scrollTopPage() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-
-        // ============================================================
-        // 19. MUSIC
-        // ============================================================
-        (function() {
-            var music = document.getElementById("bgMusic");
-            window.toggleMusic = function() {
-                if (!music) return;
-                if (music.paused) {
-                    music.play();
-                } else {
-                    music.pause();
-                }
-            };
-        })();
-
-        // ============================================================
-        // 20. QR GENERATOR
+        // 22. QR GENERATOR
         // ============================================================
         function generateQR() {
             var qrText = document.getElementById("qrText");
@@ -2289,14 +3341,31 @@
         }
 
         // ============================================================
-        // 21. NOTIFIKASI
+        // 23. UPDATE STATS
+        // ============================================================
+        function updateStats() {
+            var galleryData = JSON.parse(localStorage.gallery || "[]");
+            var posts = JSON.parse(localStorage.posts || "[]");
+            var notes = localStorage.notes || "";
+
+            var fotoCount = document.getElementById('fotoCount');
+            var timelineCount = document.getElementById('timelineCount');
+            var catatanCount = document.getElementById('catatanCount');
+
+            if (fotoCount) fotoCount.textContent = galleryData.length;
+            if (timelineCount) timelineCount.textContent = posts.length;
+            if (catatanCount) catatanCount.textContent = notes.trim().length > 0 ? 1 : 0;
+        }
+
+        // ============================================================
+        // 24. NOTIFIKASI
         // ============================================================
         setTimeout(function() {
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
 
         // ============================================================
-        // 22. WELCOME
+        // 25. WELCOME
         // ============================================================
         console.log("ALFATT28 PREMIUM SPACE LOADED");
     </script>
