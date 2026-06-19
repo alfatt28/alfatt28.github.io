@@ -2180,7 +2180,7 @@
                 </div>
             </div>
 
-            <!-- ===== GALERI CLOUD - REVISI TOTAL ===== -->
+            <!-- ===== GALERI CLOUD - IndexedDB ===== -->
             <div id="page-galeri" class="page">
                 <div class="info-box">
                     <div class="label">☁️ GALERI CLOUD</div>
@@ -2196,25 +2196,14 @@
                             <button class="upload-btn-cloud" id="uploadPhotoBtn">
                                 <i class="fas fa-upload"></i> Upload
                             </button>
-                            <input type="file" id="galleryUpload" accept="image/*" style="display:none;" multiple>
+                            <input type="file" id="galleryUpload" accept="image/*,video/*" style="display:none;" multiple>
                         </div>
 
                         <div id="galleryGrid" class="gallery-grid"></div>
 
                         <div class="empty-gallery" id="emptyGallery">
                             <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Belum ada file. Upload foto pertamamu!</p>
-                        </div>
-
-                        <div class="video-upload-section">
-                            <span class="video-label">🎬 VIDEO</span>
-                            <div id="videoGallery"></div>
-                            <div style="margin-top:8px;">
-                                <button onclick="setupVideoUpload()" class="upload-video-btn" id="uploadVideoBtn">
-                                    <i class="fas fa-video"></i> Upload Video
-                                </button>
-                                <input type="file" id="videoUploadInput" accept="video/*" style="display:none;" multiple>
-                            </div>
+                            <p>Belum ada file. Upload foto/video pertamamu!</p>
                         </div>
                     </div>
                 </div>
@@ -2404,8 +2393,6 @@
                     // Tampilkan tombol upload di cloud
                     var uploadBtn = document.getElementById('uploadPhotoBtn');
                     if (uploadBtn) uploadBtn.style.display = 'flex';
-                    var videoBtn = document.getElementById('uploadVideoBtn');
-                    if (videoBtn) videoBtn.style.display = 'flex';
                 } else if (password !== null) {
                     alert('Password salah!');
                 }
@@ -2431,8 +2418,6 @@
             }
             var uploadBtn = document.getElementById('uploadPhotoBtn');
             if (uploadBtn) uploadBtn.style.display = 'flex';
-            var videoBtn = document.getElementById('uploadVideoBtn');
-            if (videoBtn) videoBtn.style.display = 'flex';
         }
 
         // ============================================================
@@ -2444,8 +2429,7 @@
                 if (loader) loader.style.display = "none";
             }, 1500);
             updateStats();
-            renderCloudGallery();
-            renderVideos();
+            initIndexedDB();
             window.addEventListener('scroll', function() {
                 var topBtn = document.getElementById('topBtn');
                 if (window.scrollY > 300) {
@@ -3058,315 +3042,298 @@
         })();
 
         // ============================================================
-        // GALERI CLOUD - REVISI TOTAL (FOTO & VIDEO)
+        // INDEXEDDB - GALERI CLOUD (SOLUSI UNTUK BANYAK FILE)
         // ============================================================
-        (function() {
-            var galleryData = JSON.parse(localStorage.gallery || '[]');
-            var videoData = JSON.parse(localStorage.videos || '[]');
+        var DB_NAME = 'GalleryDB';
+        var STORE_NAME = 'files';
+        var db = null;
 
-            // ===== FORMAT SIZE =====
-            function formatSize(bytes) {
-                if (bytes === 0) return '0 KB';
-                var k = 1024;
-                var sizes = ['B', 'KB', 'MB', 'GB'];
-                var i = Math.floor(Math.log(bytes) / Math.log(k));
-                var size = (bytes / Math.pow(k, i)).toFixed(1);
-                return size + ' ' + sizes[i];
-            }
+        function initIndexedDB() {
+            var request = indexedDB.open(DB_NAME, 1);
 
-            // ===== GET TOTAL SIZE =====
-            function getTotalSize(data) {
-                var total = 0;
-                data.forEach(function(item) {
-                    if (item.size) total += item.size;
-                    else {
-                        var str = item.data || item;
-                        if (typeof str === 'string' && str.startsWith('data:image')) {
-                            var base64 = str.split(',')[1] || '';
-                            total += Math.round(base64.length * 0.75);
-                        }
-                    }
-                });
-                return total;
-            }
+            request.onerror = function(event) {
+                console.error('Database error:', event.target.error);
+                showToast('❌ Gagal membuka database!');
+            };
 
-            // ===== SHOW TOAST =====
-            function showToast(message) {
-                var toast = document.createElement('div');
-                toast.textContent = message;
-                toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e2b3c;color:white;padding:10px 20px;border-radius:40px;font-size:13px;font-weight:500;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,0.2);animation:fadeIn 0.3s ease;';
-                document.body.appendChild(toast);
-                setTimeout(function() {
-                    toast.style.opacity = '0';
-                    toast.style.transition = 'opacity 0.3s';
-                    setTimeout(function() {
-                        document.body.removeChild(toast);
-                    }, 300);
-                }, 2000);
-            }
+            request.onsuccess = function(event) {
+                db = event.target.result;
+                console.log('Database berhasil dibuka');
+                loadAllFiles();
+            };
 
-            // ===== RENDER GALERI FOTO =====
-            window.renderCloudGallery = function() {
-                var galleryGrid = document.getElementById('galleryGrid');
-                var emptyGallery = document.getElementById('emptyGallery');
-                var totalFiles = document.getElementById('totalFiles');
-                var totalSize = document.getElementById('totalSize');
-                var fotoCount = document.getElementById('fotoCount');
-
-                if (!galleryGrid) return;
-
-                var data = JSON.parse(localStorage.gallery || '[]');
-                var totalBytes = getTotalSize(data);
-
-                if (totalFiles) totalFiles.textContent = data.length + ' File';
-                if (totalSize) totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
-                if (fotoCount) fotoCount.textContent = data.length;
-
-                if (data.length === 0) {
-                    if (emptyGallery) emptyGallery.style.display = 'block';
-                    galleryGrid.innerHTML = '';
-                    return;
+            request.onupgradeneeded = function(event) {
+                var db = event.target.result;
+                if (!db.objectStoreNames.contains(STORE_NAME)) {
+                    var store = db.createObjectStore(STORE_NAME, {
+                        keyPath: 'id',
+                        autoIncrement: true
+                    });
+                    store.createIndex('type', 'type', { unique: false });
+                    store.createIndex('date', 'date', { unique: false });
+                    console.log('Object store created');
                 }
-                if (emptyGallery) emptyGallery.style.display = 'none';
+            };
+        }
 
+        function getFileType(file) {
+            if (file.type.startsWith('image/')) return 'image';
+            if (file.type.startsWith('video/')) return 'video';
+            return 'other';
+        }
+
+        function uploadFilesToDB(files) {
+            if (!isAdmin) {
+                alert('Hanya admin yang bisa upload!');
+                return;
+            }
+            if (!db) {
+                alert('Database belum siap!');
+                return;
+            }
+
+            var transaction = db.transaction([STORE_NAME], 'readwrite');
+            var store = transaction.objectStore(STORE_NAME);
+
+            Array.from(files).forEach(function(file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var fileData = {
+                        data: e.target.result,
+                        name: file.name,
+                        type: getFileType(file),
+                        mimeType: file.type,
+                        size: file.size,
+                        date: new Date().toISOString()
+                    };
+                    var request = store.add(fileData);
+                    request.onsuccess = function() {
+                        console.log('File tersimpan:', file.name);
+                        loadAllFiles();
+                    };
+                    request.onerror = function() {
+                        console.error('Gagal menyimpan:', file.name);
+                        showToast('❌ Gagal upload: ' + file.name);
+                    };
+                };
+                reader.readAsDataURL(file);
+            });
+
+            transaction.oncomplete = function() {
+                showToast('✅ File berhasil diupload!');
+                updateStats();
+            };
+        }
+
+        function loadAllFiles() {
+            if (!db) return;
+
+            var transaction = db.transaction([STORE_NAME], 'readonly');
+            var store = transaction.objectStore(STORE_NAME);
+            var request = store.getAll();
+
+            request.onsuccess = function(event) {
+                var files = event.target.result;
+                renderGallery(files);
+                updateStorageInfo(files);
+            };
+
+            request.onerror = function() {
+                console.error('Gagal load files');
+            };
+        }
+
+        function renderGallery(files) {
+            var galleryGrid = document.getElementById('galleryGrid');
+            var emptyGallery = document.getElementById('emptyGallery');
+
+            if (!galleryGrid) return;
+
+            if (!files || files.length === 0) {
+                if (emptyGallery) emptyGallery.style.display = 'block';
                 galleryGrid.innerHTML = '';
-                data.forEach(function(item, index) {
-                    var imgSrc = item.data || item;
-                    var div = document.createElement('div');
-                    div.className = 'gallery-item';
+                return;
+            }
+            if (emptyGallery) emptyGallery.style.display = 'none';
 
-                    var img = document.createElement('img');
-                    img.src = imgSrc;
-                    img.alt = 'Foto ' + (index + 1);
-                    img.loading = 'lazy';
+            galleryGrid.innerHTML = '';
+            files.forEach(function(file, index) {
+                var div = document.createElement('div');
+                div.className = 'gallery-item';
 
-                    var actions = document.createElement('div');
-                    actions.className = 'item-actions';
+                var isVideo = file.type === 'video';
+                var media;
 
-                    var downloadBtn = document.createElement('button');
-                    downloadBtn.className = 'btn-download';
-                    downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
-                    downloadBtn.title = 'Download';
-                    downloadBtn.onclick = function(e) {
-                        e.stopPropagation();
-                        var link = document.createElement('a');
-                        link.href = imgSrc;
-                        link.download = 'foto-' + (index + 1) + '.jpg';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    };
-
-                    var copyBtn = document.createElement('button');
-                    copyBtn.className = 'btn-copy';
-                    copyBtn.innerHTML = '<i class="fas fa-link"></i>';
-                    copyBtn.title = 'Salin Link';
-                    copyBtn.onclick = function(e) {
-                        e.stopPropagation();
-                        var textarea = document.createElement('textarea');
-                        textarea.value = imgSrc;
-                        textarea.style.position = 'fixed';
-                        textarea.style.opacity = '0';
-                        document.body.appendChild(textarea);
-                        textarea.select();
-                        try {
-                            document.execCommand('copy');
-                            showToast('✅ Link foto disalin!');
-                        } catch (err) {
-                            showToast('❌ Gagal menyalin link');
-                        }
-                        document.body.removeChild(textarea);
-                    };
-
-                    var deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'btn-delete';
-                    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-                    deleteBtn.title = 'Hapus';
-                    deleteBtn.onclick = function(e) {
-                        e.stopPropagation();
-                        if (!isAdmin) {
-                            alert('Hanya admin yang bisa menghapus!');
-                            return;
-                        }
-                        if (confirm('Hapus foto ini?')) {
-                            var allData = JSON.parse(localStorage.gallery || '[]');
-                            allData.splice(index, 1);
-                            localStorage.gallery = JSON.stringify(allData);
-                            window.renderCloudGallery();
-                            updateStats();
-                        }
-                    };
-
-                    actions.appendChild(downloadBtn);
-                    actions.appendChild(copyBtn);
-                    actions.appendChild(deleteBtn);
-
-                    div.appendChild(img);
-                    div.appendChild(actions);
-                    galleryGrid.appendChild(div);
-                });
-            };
-
-            // ===== RENDER VIDEO =====
-            window.renderVideos = function() {
-                var container = document.getElementById('videoGallery');
-                if (!container) return;
-                var data = JSON.parse(localStorage.videos || '[]');
-                container.innerHTML = '';
-                if (data.length === 0) {
-                    container.innerHTML = '<p style="color:#8aa0b5; font-size:12px; text-align:center; padding:8px;">Belum ada video.</p>';
-                    return;
-                }
-                data.forEach(function(video, index) {
-                    var div = document.createElement('div');
-                    div.className = 'video-item';
-                    div.innerHTML = `
-                        <video src="${video.data}" muted></video>
-                        <div class="video-info">
-                            ${video.name || 'Video ' + (index + 1)}
-                            <small>${new Date(video.date).toLocaleString('id-ID')}</small>
-                        </div>
-                        <button class="video-delete" onclick="window.deleteVideo(${index})">Hapus</button>
-                    `;
-                    container.appendChild(div);
-                });
-            };
-
-            // ===== DELETE VIDEO =====
-            window.deleteVideo = function(index) {
-                if (!isAdmin) {
-                    alert('Hanya admin yang bisa menghapus!');
-                    return;
-                }
-                if (confirm('Hapus video ini?')) {
-                    var data = JSON.parse(localStorage.videos || '[]');
-                    data.splice(index, 1);
-                    localStorage.videos = JSON.stringify(data);
-                    window.renderVideos();
-                }
-            };
-
-            // ===== UPLOAD FOTO =====
-            var uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
-            var galleryInput = document.getElementById('galleryUpload');
-
-            if (uploadPhotoBtn && galleryInput) {
-                // Tampilkan tombol upload hanya jika admin
-                if (isAdmin) {
-                    uploadPhotoBtn.style.display = 'flex';
+                if (isVideo) {
+                    media = document.createElement('video');
+                    media.src = file.data;
+                    media.muted = true;
+                    media.controls = false;
                 } else {
-                    uploadPhotoBtn.style.display = 'none';
+                    media = document.createElement('img');
+                    media.src = file.data;
+                    media.alt = file.name;
                 }
+                media.style.width = '100%';
+                media.style.height = '140px';
+                media.style.objectFit = 'cover';
+                media.style.display = 'block';
+                media.loading = 'lazy';
 
-                uploadPhotoBtn.addEventListener('click', function() {
+                var actions = document.createElement('div');
+                actions.className = 'item-actions';
+
+                // Download
+                var downloadBtn = document.createElement('button');
+                downloadBtn.className = 'btn-download';
+                downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
+                downloadBtn.title = 'Download';
+                downloadBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    var link = document.createElement('a');
+                    link.href = file.data;
+                    link.download = file.name || 'file-' + (index + 1);
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                };
+
+                // Copy Link
+                var copyBtn = document.createElement('button');
+                copyBtn.className = 'btn-copy';
+                copyBtn.innerHTML = '<i class="fas fa-link"></i>';
+                copyBtn.title = 'Salin Link';
+                copyBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    var textarea = document.createElement('textarea');
+                    textarea.value = file.data;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        showToast('✅ Link disalin!');
+                    } catch (err) {
+                        showToast('❌ Gagal menyalin link');
+                    }
+                    document.body.removeChild(textarea);
+                };
+
+                // Delete
+                var deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn-delete';
+                deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                deleteBtn.title = 'Hapus';
+                deleteBtn.onclick = function(e) {
+                    e.stopPropagation();
                     if (!isAdmin) {
-                        alert('Hanya admin yang bisa upload!');
+                        alert('Hanya admin yang bisa menghapus!');
                         return;
                     }
-                    galleryInput.click();
-                });
+                    if (confirm('Hapus file ini?')) {
+                        deleteFileFromDB(file.id);
+                    }
+                };
 
-                galleryInput.addEventListener('change', function(e) {
-                    if (!isAdmin) return;
-                    var files = e.target.files;
-                    if (!files || files.length === 0) return;
+                actions.appendChild(downloadBtn);
+                actions.appendChild(copyBtn);
+                actions.appendChild(deleteBtn);
 
-                    Array.from(files).forEach(function(file) {
-                        if (!file.type.startsWith('image/')) {
-                            alert('File ' + file.name + ' bukan gambar!');
-                            return;
-                        }
-                        var reader = new FileReader();
-                        reader.onload = function(ev) {
-                            var data = JSON.parse(localStorage.gallery || '[]');
-                            data.push({
-                                data: ev.target.result,
-                                size: file.size,
-                                name: file.name,
-                                type: file.type,
-                                date: new Date().toISOString()
-                            });
-                            localStorage.gallery = JSON.stringify(data);
-                            window.renderCloudGallery();
-                            updateStats();
-                        };
-                        reader.readAsDataURL(file);
-                    });
-                    this.value = '';
-                });
+                div.appendChild(media);
+                div.appendChild(actions);
+                galleryGrid.appendChild(div);
+            });
+        }
+
+        function deleteFileFromDB(id) {
+            if (!db) return;
+            var transaction = db.transaction([STORE_NAME], 'readwrite');
+            var store = transaction.objectStore(STORE_NAME);
+            var request = store.delete(id);
+
+            request.onsuccess = function() {
+                showToast('✅ File dihapus!');
+                loadAllFiles();
+                updateStats();
+            };
+
+            request.onerror = function() {
+                showToast('❌ Gagal menghapus file');
+            };
+        }
+
+        function updateStorageInfo(files) {
+            var totalFiles = document.getElementById('totalFiles');
+            var totalSize = document.getElementById('totalSize');
+            var fotoCount = document.getElementById('fotoCount');
+
+            if (!files) files = [];
+
+            var totalBytes = 0;
+            var imageCount = 0;
+            files.forEach(function(file) {
+                totalBytes += file.size || 0;
+                if (file.type === 'image') imageCount++;
+            });
+
+            if (totalFiles) totalFiles.textContent = files.length + ' File';
+            if (totalSize) totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
+            if (fotoCount) fotoCount.textContent = files.length;
+        }
+
+        function formatSize(bytes) {
+            if (bytes === 0) return '0 KB';
+            var k = 1024;
+            var sizes = ['B', 'KB', 'MB', 'GB'];
+            var i = Math.floor(Math.log(bytes) / Math.log(k));
+            var size = (bytes / Math.pow(k, i)).toFixed(1);
+            return size + ' ' + sizes[i];
+        }
+
+        function showToast(message) {
+            var toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e2b3c;color:white;padding:10px 20px;border-radius:40px;font-size:13px;font-weight:500;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,0.2);animation:fadeIn 0.3s ease;';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s';
+                setTimeout(function() {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 2000);
+        }
+
+        // ============================================================
+        // UPLOAD HANDLER
+        // ============================================================
+        var uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+        var galleryInput = document.getElementById('galleryUpload');
+
+        if (uploadPhotoBtn && galleryInput) {
+            if (isAdmin) {
+                uploadPhotoBtn.style.display = 'flex';
+            } else {
+                uploadPhotoBtn.style.display = 'none';
             }
 
-            // ===== UPLOAD VIDEO =====
-            window.setupVideoUpload = function() {
+            uploadPhotoBtn.addEventListener('click', function() {
                 if (!isAdmin) {
                     alert('Hanya admin yang bisa upload!');
                     return;
                 }
-                var input = document.getElementById('videoUploadInput');
-                if (!input) return;
-                input.click();
-            };
+                galleryInput.click();
+            });
 
-            var videoInput = document.getElementById('videoUploadInput');
-            if (videoInput) {
-                videoInput.addEventListener('change', function(e) {
-                    if (!isAdmin) return;
-                    var files = e.target.files;
-                    if (!files || files.length === 0) return;
-
-                    Array.from(files).forEach(function(file) {
-                        if (!file.type.startsWith('video/')) {
-                            alert('File ' + file.name + ' bukan video!');
-                            return;
-                        }
-                        var reader = new FileReader();
-                        reader.onload = function(ev) {
-                            var data = JSON.parse(localStorage.videos || '[]');
-                            data.push({
-                                data: ev.target.result,
-                                name: file.name,
-                                size: file.size,
-                                date: new Date().toISOString()
-                            });
-                            localStorage.videos = JSON.stringify(data);
-                            window.renderVideos();
-                        };
-                        reader.readAsDataURL(file);
-                    });
-                    this.value = '';
-                });
-            }
-
-            // ===== DELETE FOTO (global) =====
-            window.deleteImage = function(index) {
-                if (!isAdmin) {
-                    alert('Hanya admin yang bisa menghapus!');
-                    return;
-                }
-                if (confirm('Hapus foto ini?')) {
-                    var data = JSON.parse(localStorage.gallery || '[]');
-                    data.splice(index, 1);
-                    localStorage.gallery = JSON.stringify(data);
-                    window.renderCloudGallery();
-                    updateStats();
-                }
-            };
-
-            // ===== INITIAL RENDER =====
-            setTimeout(function() {
-                window.renderCloudGallery();
-                window.renderVideos();
-                // Update tombol upload
-                var uploadBtn = document.getElementById('uploadPhotoBtn');
-                var videoBtn = document.getElementById('uploadVideoBtn');
-                if (uploadBtn) {
-                    uploadBtn.style.display = isAdmin ? 'flex' : 'none';
-                }
-                if (videoBtn) {
-                    videoBtn.style.display = isAdmin ? 'flex' : 'none';
-                }
-            }, 200);
-        })();
+            galleryInput.addEventListener('change', function(e) {
+                if (!isAdmin) return;
+                var files = e.target.files;
+                if (!files || files.length === 0) return;
+                uploadFilesToDB(files);
+                this.value = '';
+            });
+        }
 
         // ============================================================
         // TIMELINE
@@ -3513,15 +3480,11 @@
         // UPDATE STATS
         // ============================================================
         function updateStats() {
-            var galleryData = JSON.parse(localStorage.gallery || "[]");
             var posts = JSON.parse(localStorage.posts || "[]");
             var notes = localStorage.notes || "";
-
-            var fotoCount = document.getElementById('fotoCount');
             var timelineCount = document.getElementById('timelineCount');
             var catatanCount = document.getElementById('catatanCount');
 
-            if (fotoCount) fotoCount.textContent = galleryData.length;
             if (timelineCount) timelineCount.textContent = posts.length;
             if (catatanCount) catatanCount.textContent = notes.trim().length > 0 ? 1 : 0;
         }
@@ -3727,7 +3690,7 @@
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
 
-        console.log("ALFATT28 PREMIUM SPACE LOADED");
+        console.log("ALFATT28 PREMIUM SPACE LOADED - IndexedDB Enabled");
     </script>
 
 </body>
