@@ -1249,7 +1249,7 @@
                             <span class="lock-icon"><i class="fas fa-lock"></i></span>
                         </span>
                     </div>
-                    <div class="value" id="tentangDisplay">write text 😉</div>
+                    <div class="value" id="tentangDisplay">tidak perlu menjadi pemain utama untuk terus berproses..</div>
                     <textarea class="editable-text" id="tentangInput" placeholder="Tulis tentang Anda..."></textarea>
                     <span class="update-time" id="tentangTime"></span>
                 </div>
@@ -1262,7 +1262,7 @@
                             <span class="lock-icon"><i class="fas fa-lock"></i></span>
                         </span>
                     </div>
-                    <div class="value" id="kutipanDisplay">“write text”</div>
+                    <div class="value" id="kutipanDisplay">“”</div>
                     <textarea class="editable-text" id="kutipanInput" placeholder="Tulis kutipan favorit Anda..."></textarea>
                     <span class="update-time" id="kutipanTime"></span>
                 </div>
