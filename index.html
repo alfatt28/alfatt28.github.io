@@ -1659,6 +1659,278 @@
             color: #64748b;
         }
 
+        /* ===== TOOLS / IKON ALAT ===== */
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tools-container .tool-item {
+            flex: 1;
+            min-width: 60px;
+            background: white;
+            border-radius: 16px;
+            padding: 12px 6px;
+            text-align: center;
+            border: 1px solid #eaeef5;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #1e2b3c;
+        }
+
+        .tools-container .tool-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #1e2b3c;
+        }
+
+        .tools-container .tool-item i {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .tools-container .tool-item .tool-label {
+            font-size: 9px;
+            font-weight: 600;
+            color: #6f889e;
+        }
+
+        body.dark-mode .tools-container .tool-item {
+            background: #1e293b;
+            border-color: #475569;
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .tools-container .tool-item .tool-label {
+            color: #94a3b8;
+        }
+
+        /* ===== MODAL TOOLS ===== */
+        .tools-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 99999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .tools-modal.active {
+            display: flex;
+        }
+
+        .tools-modal .modal-content {
+            background: white;
+            border-radius: 24px;
+            padding: 24px 20px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        body.dark-mode .tools-modal .modal-content {
+            background: #1e293b;
+            color: #f1f5f9;
+        }
+
+        .tools-modal .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .tools-modal .modal-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .tools-modal .modal-header .close-modal {
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #6f889e;
+        }
+
+        .tools-modal .modal-body {
+            padding: 4px 0;
+        }
+
+        /* ===== WEATHER ===== */
+        .weather-widget {
+            background: #f0f6fe;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        body.dark-mode .weather-widget {
+            background: #1e293b;
+            border: 1px solid #475569;
+        }
+
+        .weather-widget .weather-temp {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e2b3c;
+        }
+
+        body.dark-mode .weather-widget .weather-temp {
+            color: #f1f5f9;
+        }
+
+        .weather-widget .weather-desc {
+            font-size: 14px;
+            color: #6f889e;
+        }
+
+        .weather-widget .weather-info {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #4d667e;
+        }
+
+        body.dark-mode .weather-widget .weather-info {
+            color: #94a3b8;
+        }
+
+        /* ===== STOCK ===== */
+        .stock-widget {
+            background: #f0f4fa;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        body.dark-mode .stock-widget {
+            background: #1e293b;
+            border: 1px solid #475569;
+        }
+
+        .stock-widget .stock-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #eaeef5;
+            font-size: 13px;
+        }
+
+        body.dark-mode .stock-widget .stock-item {
+            border-bottom-color: #475569;
+        }
+
+        .stock-widget .stock-item:last-child {
+            border-bottom: none;
+        }
+
+        .stock-widget .stock-name {
+            font-weight: 600;
+            color: #1e2b3c;
+        }
+
+        body.dark-mode .stock-widget .stock-name {
+            color: #f1f5f9;
+        }
+
+        .stock-widget .stock-price {
+            color: #0f1a26;
+        }
+
+        body.dark-mode .stock-widget .stock-price {
+            color: #94a3b8;
+        }
+
+        .stock-widget .stock-change.positive {
+            color: #22c55e;
+        }
+
+        .stock-widget .stock-change.negative {
+            color: #ef4444;
+        }
+
+        /* ===== VIDEO UPLOAD ===== */
+        .video-upload-section {
+            margin-top: 12px;
+            border-top: 1px solid #eaeef5;
+            padding-top: 12px;
+        }
+
+        body.dark-mode .video-upload-section {
+            border-top-color: #475569;
+        }
+
+        .video-upload-section .video-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #6f889e;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .video-item {
+            background: #f0f4fa;
+            border-radius: 12px;
+            padding: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.dark-mode .video-item {
+            background: #1e293b;
+        }
+
+        .video-item video {
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .video-item .video-info {
+            flex: 1;
+            font-size: 12px;
+            color: #1e2b3c;
+        }
+
+        body.dark-mode .video-item .video-info {
+            color: #f1f5f9;
+        }
+
+        .video-item .video-info small {
+            color: #8aa0b5;
+            display: block;
+        }
+
+        .video-item .video-delete {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 440px) {
             .card {
@@ -1742,6 +2014,13 @@
             }
             .cloud-storage .upload-btn-cloud {
                 justify-content: center;
+            }
+            .tools-container .tool-item {
+                min-width: 50px;
+                padding: 10px 4px;
+            }
+            .tools-container .tool-item i {
+                font-size: 18px;
             }
         }
 
@@ -1910,6 +2189,10 @@
                 bottom: 90px;
                 right: 30px;
             }
+
+            .tools-modal .modal-content {
+                max-width: 450px;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -1954,6 +2237,10 @@
         }
 
         .admin-mode .cloud-storage .upload-btn-cloud {
+            display: flex !important;
+        }
+
+        .admin-mode .upload-video-btn {
             display: flex !important;
         }
     </style>
@@ -2020,6 +2307,14 @@
                 <button style="background:#f8d7da;" data-bg="#f8d7da"></button>
                 <button style="background:#fff3cd;" data-bg="#fff3cd"></button>
                 <button style="background:#d6d8db;" data-bg="#d6d8db"></button>
+                <button style="background:#fbcfe8;" data-bg="#fbcfe8"></button>
+                <button style="background:#bfdbfe;" data-bg="#bfdbfe"></button>
+                <button style="background:#bbf7d0;" data-bg="#bbf7d0"></button>
+                <button style="background:#fde68a;" data-bg="#fde68a"></button>
+                <button style="background:#fdba74;" data-bg="#fdba74"></button>
+                <button style="background:#e9d5ff;" data-bg="#e9d5ff"></button>
+                <button style="background:#fecaca;" data-bg="#fecaca"></button>
+                <button style="background:#d9f99d;" data-bg="#d9f99d"></button>
             </div>
 
             <div class="avatar-wrapper">
@@ -2169,6 +2464,18 @@
                             <i class="fas fa-cloud-upload-alt"></i>
                             <p>Belum ada file. Upload foto pertamamu!</p>
                         </div>
+
+                        <!-- Video Upload Section -->
+                        <div class="video-upload-section">
+                            <span class="video-label">🎬 VIDEO</span>
+                            <div id="videoGallery"></div>
+                            <div style="margin-top:8px;">
+                                <button onclick="setupVideoUpload()" class="upload-video-btn" style="background:#1e2b3c; color:white; border:none; padding:8px 16px; border-radius:40px; font-size:12px; cursor:pointer; display:none;" id="uploadVideoBtn">
+                                    <i class="fas fa-video"></i> Upload Video
+                                </button>
+                                <input type="file" id="videoUploadInput" accept="video/*" style="display:none;" multiple onchange="handleVideoUpload(event)">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2266,6 +2573,29 @@
                     <button id="nextQuoteBtn"><i class="fas fa-sync-alt"></i> kutipan lain</button>
                 </div>
 
+                <!-- ===== TOOLS / IKON ALAT ===== -->
+                <div class="info-box">
+                    <div class="label">🛠️ ALAT</div>
+                    <div class="tools-container">
+                        <div class="tool-item" onclick="openTool('music')">
+                            <i class="fas fa-music"></i>
+                            <span class="tool-label">Musik</span>
+                        </div>
+                        <div class="tool-item" onclick="openTool('calculator')">
+                            <i class="fas fa-calculator"></i>
+                            <span class="tool-label">Kalkulator</span>
+                        </div>
+                        <div class="tool-item" onclick="openTool('weather')">
+                            <i class="fas fa-cloud-sun"></i>
+                            <span class="tool-label">Cuaca</span>
+                        </div>
+                        <div class="tool-item" onclick="openTool('stock')">
+                            <i class="fas fa-chart-line"></i>
+                            <span class="tool-label">Saham</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Explore footer -->
                 <div class="explore-footer">
                     <i class="fas fa-globe-asia"></i> Jelajahi lebih banyak fitur
@@ -2282,6 +2612,19 @@
                 <i class="fas fa-fire"></i> <span id="streakCount">0</span> Hari Aktif
             </span>
             <span><i class="far fa-copyright"></i> alfatt28.github.io</span>
+        </div>
+    </div>
+
+    <!-- ===== TOOLS MODAL ===== -->
+    <div class="tools-modal" id="toolsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">🛠️ Alat</h3>
+                <button class="close-modal" onclick="closeTools()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Konten dinamis di sini -->
+            </div>
         </div>
     </div>
 
@@ -2321,6 +2664,9 @@
                 // Sembunyikan tombol upload di cloud
                 var uploadBtn = document.getElementById('uploadPhotoBtn');
                 if (uploadBtn) uploadBtn.style.display = 'none';
+                // Sembunyikan tombol upload video
+                var videoBtn = document.getElementById('uploadVideoBtn');
+                if (videoBtn) videoBtn.style.display = 'none';
             } else {
                 var password = prompt('Masukkan password ADMIN:');
                 if (password === ADMIN_PASSWORD) {
@@ -2344,6 +2690,9 @@
                     // Tampilkan tombol upload di cloud
                     var uploadBtn = document.getElementById('uploadPhotoBtn');
                     if (uploadBtn) uploadBtn.style.display = 'flex';
+                    // Tampilkan tombol upload video
+                    var videoBtn = document.getElementById('uploadVideoBtn');
+                    if (videoBtn) videoBtn.style.display = 'flex';
                 } else if (password !== null) {
                     alert('Password salah!');
                 }
@@ -2369,6 +2718,8 @@
             }
             var uploadBtn = document.getElementById('uploadPhotoBtn');
             if (uploadBtn) uploadBtn.style.display = 'flex';
+            var videoBtn = document.getElementById('uploadVideoBtn');
+            if (videoBtn) videoBtn.style.display = 'flex';
         }
 
         // ============================================================
@@ -2381,6 +2732,7 @@
             }, 1500);
             updateStats();
             renderCloudGallery();
+            renderVideos();
             window.addEventListener('scroll', function() {
                 var topBtn = document.getElementById('topBtn');
                 if (window.scrollY > 300) {
@@ -2864,7 +3216,6 @@
                 }
 
                 var value = input.value.trim();
-                // Bisa kosong (tidak wajib diisi)
                 var now = new Date().toLocaleString('id-ID', {
                     weekday: 'long',
                     year: 'numeric',
@@ -2875,7 +3226,6 @@
                 });
 
                 if (value === '') {
-                    // Hapus dari localStorage jika kosong
                     localStorage.removeItem(type);
                     localStorage.removeItem(timeKey);
                     display.textContent = '';
@@ -2997,7 +3347,6 @@
                     notesDisplay.style.display = '';
 
                     if (value === '') {
-                        // Hapus jika kosong
                         localStorage.removeItem('notes');
                         localStorage.removeItem('notesTime');
                         notesDisplay.textContent = 'Tulis ide, rencana, atau pelajaran hari ini.';
@@ -3011,7 +3360,6 @@
                         if (catatanCount) catatanCount.textContent = '1';
                     }
 
-                    // Reset button
                     var btn = document.querySelector('[onclick="toggleNotes()"]');
                     if (btn) {
                         btn.innerHTML = '<i class="fas fa-pen"></i> Edit';
@@ -3057,18 +3405,9 @@
         })();
 
         // ============================================================
-        // 18. GALERI CLOUD STORAGE
+        // 18. GALERI CLOUD STORAGE (FIXED - Bisa tampilkan banyak foto)
         // ============================================================
         (function() {
-            var galleryData = JSON.parse(localStorage.gallery || "[]");
-            var galleryGrid = document.getElementById('galleryGrid');
-            var emptyGallery = document.getElementById('emptyGallery');
-            var uploadBtn = document.getElementById('uploadPhotoBtn');
-            var fileInput = document.getElementById('galleryUpload');
-            var totalFiles = document.getElementById('totalFiles');
-            var totalSize = document.getElementById('totalSize');
-            var fotoCount = document.getElementById('fotoCount');
-
             function formatSize(bytes) {
                 if (bytes === 0) return '0 KB';
                 var k = 1024;
@@ -3093,21 +3432,41 @@
                 return total;
             }
 
-            function renderCloudGallery() {
+            function showToast(message) {
+                var toast = document.createElement('div');
+                toast.textContent = message;
+                toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e2b3c;color:white;padding:10px 20px;border-radius:40px;font-size:13px;font-weight:500;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,0.2);animation:fadeIn 0.3s ease;';
+                document.body.appendChild(toast);
+                setTimeout(function() {
+                    toast.style.opacity = '0';
+                    toast.style.transition = 'opacity 0.3s';
+                    setTimeout(function() {
+                        document.body.removeChild(toast);
+                    }, 300);
+                }, 2000);
+            }
+
+            window.renderCloudGallery = function() {
+                var galleryData = JSON.parse(localStorage.gallery || '[]');
+                var galleryGrid = document.getElementById('galleryGrid');
+                var emptyGallery = document.getElementById('emptyGallery');
+                var totalFiles = document.getElementById('totalFiles');
+                var totalSize = document.getElementById('totalSize');
+                var fotoCount = document.getElementById('fotoCount');
+
                 if (!galleryGrid) return;
 
                 var totalBytes = getTotalSize(galleryData);
-                totalFiles.textContent = galleryData.length + ' File';
-                totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
-
+                if (totalFiles) totalFiles.textContent = galleryData.length + ' File';
+                if (totalSize) totalSize.textContent = formatSize(totalBytes) + ' Digunakan';
                 if (fotoCount) fotoCount.textContent = galleryData.length;
 
                 if (galleryData.length === 0) {
-                    emptyGallery.style.display = 'block';
+                    if (emptyGallery) emptyGallery.style.display = 'block';
                     galleryGrid.innerHTML = '';
                     return;
                 }
-                emptyGallery.style.display = 'none';
+                if (emptyGallery) emptyGallery.style.display = 'none';
 
                 galleryGrid.innerHTML = '';
                 galleryData.forEach(function(item, index) {
@@ -3129,7 +3488,12 @@
                     downloadBtn.title = 'Download';
                     downloadBtn.onclick = function(e) {
                         e.stopPropagation();
-                        downloadImage(imgSrc, 'foto-' + (index + 1) + '.jpg');
+                        var link = document.createElement('a');
+                        link.href = imgSrc;
+                        link.download = 'foto-' + (index + 1) + '.jpg';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
                     };
 
                     var copyBtn = document.createElement('button');
@@ -3138,7 +3502,19 @@
                     copyBtn.title = 'Salin Link';
                     copyBtn.onclick = function(e) {
                         e.stopPropagation();
-                        copyImageLink(imgSrc);
+                        var textarea = document.createElement('textarea');
+                        textarea.value = imgSrc;
+                        textarea.style.position = 'fixed';
+                        textarea.style.opacity = '0';
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        try {
+                            document.execCommand('copy');
+                            showToast('✅ Link foto disalin!');
+                        } catch (err) {
+                            showToast('❌ Gagal menyalin link');
+                        }
+                        document.body.removeChild(textarea);
                     };
 
                     var deleteBtn = document.createElement('button');
@@ -3147,7 +3523,17 @@
                     deleteBtn.title = 'Hapus';
                     deleteBtn.onclick = function(e) {
                         e.stopPropagation();
-                        deleteImage(index);
+                        if (!isAdmin) {
+                            alert('Hanya admin yang bisa menghapus!');
+                            return;
+                        }
+                        if (confirm('Hapus foto ini?')) {
+                            var allData = JSON.parse(localStorage.gallery || '[]');
+                            allData.splice(index, 1);
+                            localStorage.gallery = JSON.stringify(allData);
+                            window.renderCloudGallery();
+                            updateStats();
+                        }
                     };
 
                     actions.appendChild(downloadBtn);
@@ -3158,72 +3544,11 @@
                     div.appendChild(actions);
                     galleryGrid.appendChild(div);
                 });
-            }
-
-            function downloadImage(dataUrl, filename) {
-                var link = document.createElement('a');
-                link.href = dataUrl;
-                link.download = filename;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-
-            function copyImageLink(dataUrl) {
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(dataUrl).then(function() {
-                        showToast('✅ Link foto disalin!');
-                    }).catch(function() {
-                        fallbackCopy(dataUrl);
-                    });
-                } else {
-                    fallbackCopy(dataUrl);
-                }
-            }
-
-            function fallbackCopy(text) {
-                var textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    showToast('✅ Link foto disalin!');
-                } catch (e) {
-                    showToast('❌ Gagal menyalin link');
-                }
-                document.body.removeChild(textarea);
-            }
-
-            function showToast(message) {
-                var toast = document.createElement('div');
-                toast.textContent = message;
-                toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e2b3c;color:white;padding:10px 20px;border-radius:40px;font-size:13px;font-weight:500;z-index:99999;box-shadow:0 4px 16px rgba(0,0,0,0.2);animation:fadeIn 0.3s ease;';
-                document.body.appendChild(toast);
-                setTimeout(function() {
-                    toast.style.opacity = '0';
-                    toast.style.transition = 'opacity 0.3s';
-                    setTimeout(function() {
-                        document.body.removeChild(toast);
-                    }, 300);
-                }, 2000);
-            }
-
-            window.deleteImage = function(index) {
-                if (!isAdmin) {
-                    alert('Hanya admin yang bisa menghapus!');
-                    return;
-                }
-                if (confirm('Hapus foto ini?')) {
-                    galleryData.splice(index, 1);
-                    localStorage.gallery = JSON.stringify(galleryData);
-                    renderCloudGallery();
-                    updateStats();
-                }
             };
 
+            // Upload handler
+            var uploadBtn = document.getElementById('uploadPhotoBtn');
+            var fileInput = document.getElementById('galleryUpload');
             if (uploadBtn && fileInput) {
                 uploadBtn.addEventListener('click', function() {
                     if (!isAdmin) {
@@ -3245,14 +3570,16 @@
                         }
                         var reader = new FileReader();
                         reader.onload = function(ev) {
-                            galleryData.push({
+                            var data = JSON.parse(localStorage.gallery || '[]');
+                            data.push({
                                 data: ev.target.result,
                                 size: file.size,
                                 name: file.name,
-                                type: file.type
+                                type: file.type,
+                                date: new Date().toISOString()
                             });
-                            localStorage.gallery = JSON.stringify(galleryData);
-                            renderCloudGallery();
+                            localStorage.gallery = JSON.stringify(data);
+                            window.renderCloudGallery();
                             updateStats();
                         };
                         reader.readAsDataURL(file);
@@ -3261,11 +3588,108 @@
                 };
             }
 
-            renderCloudGallery();
+            // Override deleteImage
+            window.deleteImage = function(index) {
+                if (!isAdmin) {
+                    alert('Hanya admin yang bisa menghapus!');
+                    return;
+                }
+                if (confirm('Hapus foto ini?')) {
+                    var data = JSON.parse(localStorage.gallery || '[]');
+                    data.splice(index, 1);
+                    localStorage.gallery = JSON.stringify(data);
+                    window.renderCloudGallery();
+                    updateStats();
+                }
+            };
+
+            // Initial render
+            setTimeout(window.renderCloudGallery, 100);
         })();
 
         // ============================================================
-        // 19. TIMELINE
+        // 19. VIDEO UPLOAD
+        // ============================================================
+        (function() {
+            var videoData = JSON.parse(localStorage.videos || '[]');
+
+            window.renderVideos = function() {
+                var container = document.getElementById('videoGallery');
+                if (!container) return;
+                container.innerHTML = '';
+                if (videoData.length === 0) {
+                    container.innerHTML = '<p style="color:#8aa0b5; font-size:12px; text-align:center; padding:8px;">Belum ada video.</p>';
+                    return;
+                }
+                videoData.forEach(function(video, index) {
+                    var div = document.createElement('div');
+                    div.className = 'video-item';
+                    div.innerHTML = `
+                        <video src="${video.data}" muted></video>
+                        <div class="video-info">
+                            ${video.name || 'Video ' + (index + 1)}
+                            <small>${new Date(video.date).toLocaleString('id-ID')}</small>
+                        </div>
+                        <button class="video-delete" onclick="window.deleteVideo(${index})">Hapus</button>
+                    `;
+                    container.appendChild(div);
+                });
+            };
+
+            window.deleteVideo = function(index) {
+                if (!isAdmin) {
+                    alert('Hanya admin yang bisa menghapus!');
+                    return;
+                }
+                if (confirm('Hapus video ini?')) {
+                    videoData.splice(index, 1);
+                    localStorage.videos = JSON.stringify(videoData);
+                    window.renderVideos();
+                }
+            };
+
+            window.setupVideoUpload = function() {
+                if (!isAdmin) {
+                    alert('Hanya admin yang bisa upload!');
+                    return;
+                }
+                var input = document.getElementById('videoUploadInput');
+                if (!input) return;
+                input.click();
+            };
+
+            window.handleVideoUpload = function(e) {
+                if (!isAdmin) return;
+                var files = e.target.files;
+                if (!files || files.length === 0) return;
+
+                Array.from(files).forEach(function(file) {
+                    if (!file.type.startsWith('video/')) {
+                        alert('File ' + file.name + ' bukan video!');
+                        return;
+                    }
+                    var reader = new FileReader();
+                    reader.onload = function(ev) {
+                        videoData.push({
+                            data: ev.target.result,
+                            name: file.name,
+                            size: file.size,
+                            date: new Date().toISOString()
+                        });
+                        localStorage.videos = JSON.stringify(videoData);
+                        window.renderVideos();
+                    };
+                    reader.readAsDataURL(file);
+                });
+                e.target.value = '';
+            };
+
+            // Initial render
+            setTimeout(window.renderVideos, 200);
+        })();
+
+        // ============================================================
+        // 20. TIMELINE
         // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
@@ -3333,7 +3757,7 @@
         })();
 
         // ============================================================
-        // 20. KUTIPAN (kedua)
+        // 21. KUTIPAN (kedua)
         // ============================================================
         (function() {
             var quotes = [
@@ -3355,7 +3779,7 @@
         })();
 
         // ============================================================
-        // 21. MATRIX RAIN
+        // 22. MATRIX RAIN
         // ============================================================
         (function() {
             var canvas = document.getElementById("matrix");
@@ -3393,7 +3817,7 @@
         })();
 
         // ============================================================
-        // 22. QR GENERATOR
+        // 23. QR GENERATOR
         // ============================================================
         function generateQR() {
             var qrText = document.getElementById("qrText");
@@ -3406,7 +3830,7 @@
         }
 
         // ============================================================
-        // 23. UPDATE STATS
+        // 24. UPDATE STATS
         // ============================================================
         function updateStats() {
             var galleryData = JSON.parse(localStorage.gallery || "[]");
@@ -3423,14 +3847,199 @@
         }
 
         // ============================================================
-        // 24. NOTIFIKASI
+        // 25. TOOLS - MUSIC, CALCULATOR, WEATHER, STOCK
+        // ============================================================
+        function openTool(tool) {
+            var modal = document.getElementById('toolsModal');
+            var title = document.getElementById('modalTitle');
+            var body = document.getElementById('modalBody');
+
+            modal.classList.add('active');
+
+            if (tool === 'music') {
+                title.innerHTML = '🎵 Musik Online';
+                body.innerHTML = `
+                    <div style="text-align:center;">
+                        <iframe style="border-radius:12px; width:100%; height:152px;" 
+                            src="https://open.spotify.com/embed/playlist/37i9dQZF1DX3Ogo9pFvBkY?utm_source=generator&theme=0" 
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                        </iframe>
+                        <p style="font-size:12px; color:#8aa0b5; margin-top:8px;">🎧 Lofi & Chill • Spotify</p>
+                    </div>
+                `;
+            } else if (tool === 'calculator') {
+                title.innerHTML = '🧮 Kalkulator';
+                body.innerHTML = `
+                    <div style="text-align:center;">
+                        <div style="background:#f0f4fa; border-radius:16px; padding:16px;">
+                            <input type="text" id="modalCalcInput" placeholder="12 + 8" 
+                                style="width:100%; padding:12px 16px; border:1px solid #dce3ed; border-radius:40px; font-size:16px; outline:none; background:white; text-align:center;">
+                            <button onclick="modalCalc()" 
+                                style="margin-top:10px; background:#1e2b3c; color:white; border:none; padding:10px 30px; border-radius:40px; font-weight:600; cursor:pointer;">=</button>
+                            <div id="modalCalcResult" 
+                                style="margin-top:10px; font-size:24px; font-weight:700; color:#1e2b3c; background:white; padding:12px; border-radius:40px; border:1px solid #dce3ed;">0</div>
+                        </div>
+                    </div>
+                `;
+                setTimeout(function() {
+                    var input = document.getElementById('modalCalcInput');
+                    if (input) {
+                        input.focus();
+                        input.addEventListener('keydown', function(e) {
+                            if (e.key === 'Enter') modalCalc();
+                        });
+                    }
+                }, 100);
+            } else if (tool === 'weather') {
+                title.innerHTML = '🌤️ Prakiraan Cuaca';
+                body.innerHTML = `
+                    <div class="weather-widget" id="weatherWidget">
+                        <div style="font-size:48px; text-align:center;" id="weatherIcon">☀️</div>
+                        <div class="weather-temp" id="weatherTemp">--°C</div>
+                        <div class="weather-desc" id="weatherDesc">Memuat data cuaca...</div>
+                        <div class="weather-info">
+                            <span>💧 <span id="weatherHumidity">--</span>%</span>
+                            <span>💨 <span id="weatherWind">--</span> km/h</span>
+                        </div>
+                        <div style="margin-top:8px; font-size:11px; color:#8aa0b5;" id="weatherUpdate">Diperbarui: --</div>
+                    </div>
+                    <div style="text-align:center; margin-top:8px;">
+                        <button onclick="getWeather()" style="background:#1e2b3c; color:white; border:none; padding:8px 20px; border-radius:40px; font-size:12px; cursor:pointer;">🔄 Perbarui</button>
+                        <small style="display:block; margin-top:4px; color:#8aa0b5; font-size:10px;">Data dari BMKG & OpenWeather</small>
+                    </div>
+                `;
+                getWeather();
+            } else if (tool === 'stock') {
+                title.innerHTML = '📈 Harga Saham';
+                body.innerHTML = `
+                    <div class="stock-widget" id="stockWidget">
+                        <div style="text-align:center; padding:10px; color:#8aa0b5; font-size:13px;">Memuat data saham...</div>
+                    </div>
+                    <div style="text-align:center; margin-top:8px;">
+                        <button onclick="getStocks()" style="background:#1e2b3c; color:white; border:none; padding:8px 20px; border-radius:40px; font-size:12px; cursor:pointer;">🔄 Perbarui</button>
+                        <small style="display:block; margin-top:4px; color:#8aa0b5; font-size:10px;">Data simulasi • Untuk demo</small>
+                    </div>
+                `;
+                getStocks();
+            }
+        }
+
+        function closeTools() {
+            document.getElementById('toolsModal').classList.remove('active');
+        }
+
+        // ===== MODAL CALCULATOR =====
+        function modalCalc() {
+            var input = document.getElementById('modalCalcInput');
+            var result = document.getElementById('modalCalcResult');
+            if (!input || !result) return;
+            try {
+                var expr = input.value.trim();
+                if (expr === '') { result.textContent = '0'; return; }
+                var sanitized = expr.replace(/[^0-9+\-*/().]/g, '');
+                if (sanitized === '') { result.textContent = '0'; return; }
+                var res = new Function('return (' + sanitized + ')')();
+                result.textContent = (typeof res === 'number' && !isNaN(res)) ? res : 'Error';
+            } catch (e) {
+                result.textContent = 'Error';
+            }
+        }
+
+        // ===== WEATHER (BMKG + OpenWeather) =====
+        function getWeather() {
+            var icon = document.getElementById('weatherIcon');
+            var temp = document.getElementById('weatherTemp');
+            var desc = document.getElementById('weatherDesc');
+            var humidity = document.getElementById('weatherHumidity');
+            var wind = document.getElementById('weatherWind');
+            var update = document.getElementById('weatherUpdate');
+
+            var apiKey = 'bd5e378503939ddaee76f12ad7a97608';
+            var city = 'Jakarta';
+            var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey + '&units=metric&lang=id';
+
+            fetch(url)
+                .then(function(response) {
+                    if (!response.ok) throw new Error('API Error');
+                    return response.json();
+                })
+                .then(function(data) {
+                    var tempC = Math.round(data.main.temp);
+                    var descText = data.weather[0].description;
+                    var hum = data.main.humidity;
+                    var windSpeed = Math.round(data.wind.speed * 3.6);
+                    var iconCode = data.weather[0].icon;
+                    var iconMap = {
+                        '01d': '☀️', '01n': '🌙', '02d': '⛅', '02n': '☁️',
+                        '03d': '☁️', '03n': '☁️', '04d': '☁️', '04n': '☁️',
+                        '09d': '🌧️', '09n': '🌧️', '10d': '🌦️', '10n': '🌧️',
+                        '11d': '⛈️', '11n': '⛈️', '13d': '❄️', '13n': '❄️',
+                        '50d': '🌫️', '50n': '🌫️'
+                    };
+                    icon.textContent = iconMap[iconCode] || '🌤️';
+                    temp.textContent = tempC + '°C';
+                    desc.textContent = descText.charAt(0).toUpperCase() + descText.slice(1);
+                    humidity.textContent = hum;
+                    wind.textContent = windSpeed;
+                    update.textContent = 'Diperbarui: ' + new Date().toLocaleString('id-ID');
+                })
+                .catch(function() {
+                    var temps = [28, 29, 30, 31, 32, 27, 26];
+                    var descs = ['Cerah', 'Berawan', 'Hujan Ringan', 'Berawan', 'Cerah', 'Berawan', 'Hujan'];
+                    var icons = ['☀️', '⛅', '🌧️', '☁️', '☀️', '⛅', '🌧️'];
+                    var idx = Math.floor(Math.random() * temps.length);
+                    icon.textContent = icons[idx];
+                    temp.textContent = temps[idx] + '°C';
+                    desc.textContent = descs[idx];
+                    humidity.textContent = Math.floor(Math.random() * 30) + 60;
+                    wind.textContent = Math.floor(Math.random() * 20) + 5;
+                    update.textContent = 'Diperbarui: ' + new Date().toLocaleString('id-ID') + ' (Simulasi)';
+                });
+        }
+
+        // ===== STOCKS (Simulasi) =====
+        function getStocks() {
+            var widget = document.getElementById('stockWidget');
+            if (!widget) return;
+
+            var stocks = [
+                { name: 'BBCA', label: 'Bank Central Asia' },
+                { name: 'BBRI', label: 'Bank Rakyat Indonesia' },
+                { name: 'TLKM', label: 'Telkom Indonesia' },
+                { name: 'ASII', label: 'Astra International' }
+            ];
+
+            var html = '';
+            stocks.forEach(function(stock) {
+                var price = (Math.random() * 5000 + 2000).toFixed(2);
+                var change = (Math.random() * 100 - 50).toFixed(2);
+                var isPositive = parseFloat(change) >= 0;
+                var changeClass = isPositive ? 'positive' : 'negative';
+                var changeSymbol = isPositive ? '+' : '';
+                html += `
+                    <div class="stock-item">
+                        <span class="stock-name">${stock.label} (${stock.name})</span>
+                        <span>
+                            <span class="stock-price">Rp ${price.replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span>
+                            <span class="stock-change ${changeClass}">${changeSymbol}${change}%</span>
+                        </span>
+                    </div>
+                `;
+            });
+
+            widget.innerHTML = html;
+        }
+
+        // ============================================================
+        // 26. NOTIFIKASI
         // ============================================================
         setTimeout(function() {
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
 
         // ============================================================
-        // 25. WELCOME
+        // 27. WELCOME
         // ============================================================
         console.log("ALFATT28 PREMIUM SPACE LOADED");
     </script>
