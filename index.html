@@ -260,12 +260,6 @@
             border-color: #3b82f6;
         }
 
-        body.dark-mode #notes {
-            background: #1e293b;
-            color: #f1f5f9;
-            border-color: #475569;
-        }
-
         body.dark-mode #status {
             background: #1e293b;
             color: #f1f5f9;
@@ -276,8 +270,33 @@
             color: #64748b;
         }
 
+<<<<<<< HEAD
         body.dark-mode #notes::placeholder {
             color: #64748b;
+=======
+        /* ===== DARK MODE TOGGLE BUTTON ===== */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 20px;
+            transition: 0.2s;
+            color: #2c3e50;
+        }
+
+        .theme-toggle:hover {
+            background: #eef3f9;
+        }
+
+        body.dark-mode .theme-toggle {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #334155;
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
         }
 
         .card {
@@ -2150,7 +2169,6 @@
             <button class="tab-btn active" data-page="beranda"><i class="fas fa-home"></i> Beranda</button>
             <button class="tab-btn" data-page="galeri"><i class="fas fa-image"></i> Galeri</button>
             <button class="tab-btn" data-page="timeline"><i class="fas fa-clock"></i> Timeline</button>
-            <button class="tab-btn" data-page="catatan"><i class="fas fa-pen"></i> Catatan</button>
             <button class="tab-btn" data-page="jelajah"><i class="fas fa-compass"></i> Jelajah</button>
             <button class="tab-btn proyek-tab" data-page="proyek"><i class="fas fa-code"></i> Proyek</button>
         </div>
@@ -2191,6 +2209,7 @@
                     <span class="update-time" id="tentangTime"></span>
                 </div>
 
+<<<<<<< HEAD
                 <!-- KUTIPAN -->
                 <div class="info-box">
                     <div class="label">
@@ -2242,13 +2261,78 @@
                     </div>
                 </div>
 
+=======
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
                 <!-- DAILY QUOTE -->
                 <div class="info-box" style="background: linear-gradient(135deg, #f0f6fe, #e8edf4);">
                     <div class="label">📅 KUTIPAN HARI INI</div>
                     <div class="value" id="dailyQuote" style="font-style:italic;">“Hari ini adalah kesempatan baru untuk menjadi lebih baik.”</div>
                 </div>
 
+<<<<<<< HEAD
                 <!-- MOOD -->
+=======
+                <!-- 💻 TECH STACK -->
+                <div class="info-box" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                    <div class="label">💻 TECH STACK</div>
+                    <div class="value" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px;">
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" 
+                           style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
+                                  text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
+                                  transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
+                           onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#e44d26'; this.style.borderColor='#e44d26'; this.style.boxShadow='0 4px 12px rgba(228,77,38,0.4)';"
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                            <i class="fab fa-html5" style="font-size: 14px;"></i> HTML
+                        </a>
+
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" 
+                           style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
+                                  text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
+                                  transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
+                           onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#264de4'; this.style.borderColor='#264de4'; this.style.boxShadow='0 4px 12px rgba(38,77,228,0.4)';"
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                            <i class="fab fa-css3-alt" style="font-size: 14px;"></i> CSS
+                        </a>
+
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" 
+                           style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
+                                  text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
+                                  transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
+                           onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#f7df1e'; this.style.color='#1e2b3c'; this.style.borderColor='#f7df1e'; this.style.boxShadow='0 4px 12px rgba(247,223,30,0.4)';"
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.color='white'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                            <i class="fab fa-js" style="font-size: 14px;"></i> JavaScript
+                        </a>
+
+                        <a href="https://www.python.org/" target="_blank" 
+                           style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
+                                  text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
+                                  transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
+                           onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#3776ab'; this.style.borderColor='#3776ab'; this.style.boxShadow='0 4px 12px rgba(55,118,171,0.4)';"
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                            <i class="fab fa-python" style="font-size: 14px;"></i> Python
+                        </a>
+
+                        <a href="https://git-scm.com/" target="_blank" 
+                           style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
+                                  text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
+                                  transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
+                           onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#f05032'; this.style.borderColor='#f05032'; this.style.boxShadow='0 4px 12px rgba(240,80,50,0.4)';"
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                            <i class="fab fa-git-alt" style="font-size: 14px;"></i> Git
+                        </a>
+
+                        <a href="https://github.com/alfatt28" target="_blank" 
+                           style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
+                                  text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
+                                  transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
+                           onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#ffffff'; this.style.color='#1e2b3c'; this.style.borderColor='#ffffff'; this.style.boxShadow='0 4px 12px rgba(255,255,255,0.4)';"
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.color='white'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                            <i class="fab fa-github" style="font-size: 14px;"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
                 <div class="info-box">
                     <div class="label">MOOD HARI INI</div>
                     <div class="mood-row">
@@ -2323,22 +2407,6 @@
                         <button onclick="postStatus()" style="background:#1e2b3c; border:none; color:white; padding:10px 20px; border-radius:40px; font-weight:600; cursor:pointer;">Kirim</button>
                     </div>
                     <div id="timeline" style="margin-top:12px;"></div>
-                </div>
-            </div>
-
-            <!-- ===== CATATAN ===== -->
-            <div id="page-catatan" class="page">
-                <div class="info-box">
-                    <div class="label">
-                        📝 CATATAN
-                        <span>
-                            <button class="edit-btn" onclick="toggleNotes()"><i class="fas fa-pen"></i> Edit</button>
-                            <span class="lock-icon"><i class="fas fa-lock"></i></span>
-                        </span>
-                    </div>
-                    <div class="value" style="font-weight:400;" id="notesDisplay">Tulis ide, rencana, atau pelajaran hari ini.</div>
-                    <textarea id="notes" style="width:100%; margin-top:12px; padding:12px; border:1px solid #dce3ed; border-radius:16px; font-size:14px; min-height:120px; resize:vertical; outline:none; font-family:inherit; display:none;" placeholder="Tulis catatan di sini..."></textarea>
-                    <span class="update-time" id="notesTime"></span>
                 </div>
             </div>
 
@@ -2501,6 +2569,7 @@
                 document.getElementById('modeToggle').classList.remove('admin');
                 document.getElementById('modeLabel').textContent = 'USER';
                 localStorage.removeItem('adminMode');
+<<<<<<< HEAD
                 document.querySelectorAll('.bg-options').forEach(el => el.classList.remove('show'));
                 document.querySelectorAll('.avatar-actions').forEach(el => el.classList.remove('show'));
                 document.querySelectorAll('.badge-admin').forEach(el => el.classList.remove('show'));
@@ -2513,6 +2582,22 @@
                 var notesDisplay = document.getElementById('notesDisplay');
                 if (notes) notes.style.display = 'none';
                 if (notesDisplay) notesDisplay.style.display = '';
+=======
+                document.querySelectorAll('.bg-options').forEach(function(el) { el.classList.remove('show'); });
+                document.querySelectorAll('.avatar-actions').forEach(function(el) { el.classList.remove('show'); });
+                document.querySelectorAll('.badge-admin').forEach(function(el) { el.classList.remove('show'); });
+                document.querySelectorAll('.badge-user').forEach(function(el) { el.classList.remove('hide'); });
+                document.querySelectorAll('.edit-btn').forEach(function(el) { el.classList.remove('show'); });
+                document.querySelectorAll('.lock-icon').forEach(function(el) { el.classList.remove('hide'); });
+                document.querySelectorAll('.editable-text').forEach(function(el) {
+                    el.classList.remove('active');
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.value.hidden').forEach(function(el) {
+                    el.classList.remove('hidden');
+                    el.style.display = '';
+                });
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
                 var uploadBtn = document.getElementById('uploadPhotoBtn');
                 if (uploadBtn) uploadBtn.style.display = 'none';
                 var videoBtn = document.getElementById('uploadVideoBtn');
@@ -2525,6 +2610,7 @@
                     document.getElementById('modeToggle').classList.add('admin');
                     document.getElementById('modeLabel').textContent = 'ADMIN';
                     localStorage.setItem('adminMode', 'true');
+<<<<<<< HEAD
                     document.querySelectorAll('.bg-options').forEach(el => el.classList.add('show'));
                     document.querySelectorAll('.avatar-actions').forEach(el => el.classList.add('show'));
                     document.querySelectorAll('.badge-admin').forEach(el => el.classList.add('show'));
@@ -2534,6 +2620,14 @@
                     var notes = document.getElementById('notes');
                     var notesDisplay = document.getElementById('notesDisplay');
                     if (notes && notesDisplay) { notes.style.display = 'block'; notesDisplay.style.display = 'none'; }
+=======
+                    document.querySelectorAll('.bg-options').forEach(function(el) { el.classList.add('show'); });
+                    document.querySelectorAll('.avatar-actions').forEach(function(el) { el.classList.add('show'); });
+                    document.querySelectorAll('.badge-admin').forEach(function(el) { el.classList.add('show'); });
+                    document.querySelectorAll('.badge-user').forEach(function(el) { el.classList.add('hide'); });
+                    document.querySelectorAll('.edit-btn').forEach(function(el) { el.classList.add('show'); });
+                    document.querySelectorAll('.lock-icon').forEach(function(el) { el.classList.add('hide'); });
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
                     var uploadBtn = document.getElementById('uploadPhotoBtn');
                     if (uploadBtn) uploadBtn.style.display = 'flex';
                     var videoBtn = document.getElementById('uploadVideoBtn');
@@ -2547,6 +2641,7 @@
             document.body.classList.add('admin-mode');
             document.getElementById('modeToggle').classList.add('admin');
             document.getElementById('modeLabel').textContent = 'ADMIN';
+<<<<<<< HEAD
             document.querySelectorAll('.bg-options').forEach(el => el.classList.add('show'));
             document.querySelectorAll('.avatar-actions').forEach(el => el.classList.add('show'));
             document.querySelectorAll('.badge-admin').forEach(el => el.classList.add('show'));
@@ -2556,6 +2651,14 @@
             var notes = document.getElementById('notes');
             var notesDisplay = document.getElementById('notesDisplay');
             if (notes && notesDisplay) { notes.style.display = 'block'; notesDisplay.style.display = 'none'; }
+=======
+            document.querySelectorAll('.bg-options').forEach(function(el) { el.classList.add('show'); });
+            document.querySelectorAll('.avatar-actions').forEach(function(el) { el.classList.add('show'); });
+            document.querySelectorAll('.badge-admin').forEach(function(el) { el.classList.add('show'); });
+            document.querySelectorAll('.badge-user').forEach(function(el) { el.classList.add('hide'); });
+            document.querySelectorAll('.edit-btn').forEach(function(el) { el.classList.add('show'); });
+            document.querySelectorAll('.lock-icon').forEach(function(el) { el.classList.add('hide'); });
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
             var uploadBtn = document.getElementById('uploadPhotoBtn');
             if (uploadBtn) uploadBtn.style.display = 'flex';
             var videoBtn = document.getElementById('uploadVideoBtn');
@@ -2579,9 +2682,13 @@
                 beranda: document.getElementById('page-beranda'),
                 galeri: document.getElementById('page-galeri'),
                 timeline: document.getElementById('page-timeline'),
+<<<<<<< HEAD
                 catatan: document.getElementById('page-catatan'),
                 jelajah: document.getElementById('page-jelajah'),
                 proyek: document.getElementById('page-proyek')
+=======
+                jelajah: document.getElementById('page-jelajah')
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
             };
 
             function setActiveTab(pageId) {
@@ -2837,23 +2944,23 @@
         })();
 
         // ============================================================
+<<<<<<< HEAD
         // EDITABLE TEXT
+=======
+        // 14. EDITABLE TEXT (TENTANG)
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
         // ============================================================
         (function() {
             var savedTentang = localStorage.getItem('tentang');
-            var savedKutipan = localStorage.getItem('kutipan');
             var savedTentangTime = localStorage.getItem('tentangTime');
-            var savedKutipanTime = localStorage.getItem('kutipanTime');
 
             var tentangDisplay = document.getElementById('tentangDisplay');
             var tentangInput = document.getElementById('tentangInput');
             var tentangTime = document.getElementById('tentangTime');
-            var kutipanDisplay = document.getElementById('kutipanDisplay');
-            var kutipanInput = document.getElementById('kutipanInput');
-            var kutipanTime = document.getElementById('kutipanTime');
 
             function updateTime(el, time) { if (el && time) el.textContent = '🕒 Diperbarui: ' + time; }
 
+<<<<<<< HEAD
             if (savedTentang) { tentangDisplay.textContent = savedTentang; tentangInput.value = savedTentang; if (savedTentangTime) updateTime(tentangTime, savedTentangTime); }
             if (savedKutipan) { kutipanDisplay.textContent = savedKutipan; kutipanInput.value = savedKutipan; if (savedKutipanTime) updateTime(kutipanTime, savedKutipanTime); }
 
@@ -2861,6 +2968,26 @@
                 var input, display, timeEl, timeKey;
                 if (type === 'tentang') { input = tentangInput; display = tentangDisplay; timeEl = tentangTime; timeKey = 'tentangTime'; }
                 else if (type === 'kutipan') { input = kutipanInput; display = kutipanDisplay; timeEl = kutipanTime; timeKey = 'kutipanTime'; }
+=======
+            if (savedTentang) {
+                tentangDisplay.textContent = savedTentang;
+                tentangInput.value = savedTentang;
+                if (savedTentangTime) updateTime(tentangTime, savedTentangTime);
+            } else {
+                tentangDisplay.textContent = 'tidak perlu menjadi pemain utama untuk terus berkembang.. tetap bertarung 😉';
+                tentangInput.value = '';
+            }
+
+            window.saveText = function(type) {
+                var input, display, timeEl, timeKey;
+                if (type === 'tentang') {
+                    input = tentangInput;
+                    display = tentangDisplay;
+                    timeEl = tentangTime;
+                    timeKey = 'tentangTime';
+                }
+
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
                 var value = input.value.trim();
                 var now = new Date().toLocaleString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
                 if (value === '') { localStorage.removeItem(type); localStorage.removeItem(timeKey); display.textContent = ''; timeEl.textContent = ''; }
@@ -2874,10 +3001,20 @@
             window.editText = function(type) {
                 if (!isAdmin) { alert('Hanya admin yang bisa mengedit!'); return; }
                 var input, display;
+<<<<<<< HEAD
                 if (type === 'tentang') { input = tentangInput; display = tentangDisplay; }
                 else if (type === 'kutipan') { input = kutipanInput; display = kutipanDisplay; }
                 if (input.classList.contains('active')) { saveText(type); }
                 else {
+=======
+                if (type === 'tentang') {
+                    input = tentangInput;
+                    display = tentangDisplay;
+                }
+                if (input.classList.contains('active')) {
+                    saveText(type);
+                } else {
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
                     input.value = display.textContent;
                     input.classList.add('active'); input.style.display = 'block';
                     display.classList.add('hidden'); display.style.display = 'none';
@@ -2887,6 +3024,7 @@
                 }
             };
 
+<<<<<<< HEAD
             tentangInput.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey && isAdmin) { e.preventDefault(); saveText('tentang'); } });
             kutipanInput.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey && isAdmin) { e.preventDefault(); saveText('kutipan'); } });
             tentangInput.addEventListener('blur', function() { if (this.classList.contains('active') && isAdmin) saveText('tentang'); });
@@ -2936,6 +3074,23 @@
 
         // ============================================================
         // GALLERY
+=======
+            tentangInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.ctrlKey && !e.shiftKey) {
+                    e.preventDefault();
+                    if (isAdmin) saveText('tentang');
+                }
+            });
+            tentangInput.addEventListener('blur', function() {
+                if (this.classList.contains('active') && isAdmin) {
+                    saveText('tentang');
+                }
+            });
+        })();
+
+        // ============================================================
+        // 15. GALERI CLOUD STORAGE
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
         // ============================================================
         (function() {
             function formatSize(bytes) {
@@ -3066,11 +3221,33 @@
                     this.value = '';
                 };
             }
+<<<<<<< HEAD
+=======
+
+            window.deleteImage = function(index) {
+                if (!isAdmin) {
+                    alert('Hanya admin yang bisa menghapus!');
+                    return;
+                }
+                if (confirm('Hapus foto ini?')) {
+                    var data = JSON.parse(localStorage.gallery || '[]');
+                    data.splice(index, 1);
+                    localStorage.gallery = JSON.stringify(data);
+                    window.renderCloudGallery();
+                    updateStats();
+                }
+            };
+
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
             setTimeout(window.renderCloudGallery, 100);
         })();
 
         // ============================================================
+<<<<<<< HEAD
         // VIDEO
+=======
+        // 16. VIDEO UPLOAD
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
         // ============================================================
         (function() {
             var videoData = JSON.parse(localStorage.videos || '[]');
@@ -3115,11 +3292,19 @@
                 });
                 e.target.value = '';
             };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
             setTimeout(window.renderVideos, 200);
         })();
 
         // ============================================================
+<<<<<<< HEAD
         // TIMELINE
+=======
+        // 17. TIMELINE
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
         // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
@@ -3166,22 +3351,34 @@
         })();
 
         // ============================================================
+<<<<<<< HEAD
         // UPDATE STATS
+=======
+        // 18. UPDATE STATS
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
         // ============================================================
         function updateStats() {
             var galleryData = JSON.parse(localStorage.gallery || "[]");
             var posts = JSON.parse(localStorage.posts || "[]");
+<<<<<<< HEAD
             var notes = localStorage.notes || "";
+=======
+
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
             var fotoCount = document.getElementById('fotoCount');
             var timelineCount = document.getElementById('timelineCount');
             var catatanCount = document.getElementById('catatanCount');
             if (fotoCount) fotoCount.textContent = galleryData.length;
             if (timelineCount) timelineCount.textContent = posts.length;
-            if (catatanCount) catatanCount.textContent = notes.trim().length > 0 ? 1 : 0;
+            if (catatanCount) catatanCount.textContent = '0';
         }
 
         // ============================================================
+<<<<<<< HEAD
         // TOOLS
+=======
+        // 19. TOOLS - YOUTUBE, SPOTIFY, CALCULATOR, WEATHER, STOCK
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
         // ============================================================
         function openTool(tool) {
             var modal = document.getElementById('toolsModal');
@@ -3291,10 +3488,23 @@
         }
 
         // ============================================================
+<<<<<<< HEAD
         // INIT
         // ============================================================
         updateStats();
         console.log("✅ ALFATT28 PREMIUM SPACE LOADED - siap lolos review is-a.dev!");
+=======
+        // 20. NOTIFIKASI
+        // ============================================================
+        setTimeout(function() {
+            alert("Selamat datang di ALFATT28 Premium Space 🚀");
+        }, 2500);
+
+        // ============================================================
+        // 21. WELCOME
+        // ============================================================
+        console.log("ALFATT28 PREMIUM SPACE LOADED");
+>>>>>>> 1b56762 (update: perbaiki index.html dengan tech stack interaktif)
     </script>
 
 </body>
