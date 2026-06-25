@@ -1453,240 +1453,122 @@
             font-size: 10px;
             cursor: pointer;
         }
+        /* ===== TERMINAL STYLE ===== */
+        .terminal-box {
+            background: #0a0a1a;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #00ff8844;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+        .terminal-box .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #00ff8822;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+        .terminal-box .terminal-header .prompt {
+            color: #ff6b6b;
+        }
+        .terminal-box .terminal-header .command {
+            color: #f1c40f;
+            font-size: 12px;
+        }
+        .terminal-box .terminal-header .status {
+            color: #00ff88;
+            font-size: 11px;
+        }
+        .terminal-box .terminal-output {
+            color: #ffffff;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .terminal-box .terminal-output .link {
+            color: #4fc3f7;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .terminal-box .terminal-output .dim {
+            color: #666;
+            font-size: 10px;
+        }
+        .terminal-box .terminal-output .info-icon {
+            color: #ffd54f;
+        }
         @media (max-width: 440px) {
-            .card {
-                padding: 18px 14px 22px;
-            }
-            .tab-btn {
-                font-size: 12px;
-                padding: 8px 0;
-            }
-            .tab-btn i {
-                margin-right: 3px;
-            }
-            .bg-options {
-                top: -6px;
-                right: 6px;
-            }
-            .bg-options button {
-                width: 16px;
-                height: 16px;
-            }
-            .maps-container iframe {
-                height: 150px;
-            }
-            .search-engine .search-row {
-                flex-wrap: wrap;
-            }
-            .search-engine .search-row select {
-                flex: 1;
-            }
-            .mode-toggle .mode-label {
-                font-size: 8px;
-            }
-            .header-right {
-                gap: 4px;
-            }
-            .theme-toggle {
-                font-size: 15px;
-                padding: 2px 6px;
-            }
-            .footer-small {
-                gap: 6px;
-                font-size: 10px;
-            }
-            .visitor-badge, .streak-badge {
-                font-size: 9px;
-                padding: 1px 8px;
-            }
-            .profile-location {
-                font-size: 10px;
-            }
-            .cloud-storage .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-            .cloud-storage .gallery-item img {
-                height: 100px;
-            }
-            .cloud-storage .gallery-item .item-actions button {
-                font-size: 10px;
-                padding: 2px 6px;
-            }
-            .cloud-storage .storage-info {
-                flex-direction: column;
-                gap: 8px;
-                align-items: stretch;
-            }
-            .cloud-storage .upload-btn-cloud {
-                justify-content: center;
-            }
-            .tools-container .tool-item {
-                min-width: 50px;
-                padding: 10px 4px;
-            }
-            .tools-container .tool-item i {
-                font-size: 18px;
-            }
+            .card { padding: 18px 14px 22px; }
+            .tab-btn { font-size: 12px; padding: 8px 0; }
+            .tab-btn i { margin-right: 3px; }
+            .bg-options { top: -6px; right: 6px; }
+            .bg-options button { width: 16px; height: 16px; }
+            .maps-container iframe { height: 150px; }
+            .search-engine .search-row { flex-wrap: wrap; }
+            .search-engine .search-row select { flex: 1; }
+            .mode-toggle .mode-label { font-size: 8px; }
+            .header-right { gap: 4px; }
+            .theme-toggle { font-size: 15px; padding: 2px 6px; }
+            .footer-small { gap: 6px; font-size: 10px; }
+            .visitor-badge, .streak-badge { font-size: 9px; padding: 1px 8px; }
+            .profile-location { font-size: 10px; }
+            .cloud-storage .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .cloud-storage .gallery-item img { height: 100px; }
+            .cloud-storage .gallery-item .item-actions button { font-size: 10px; padding: 2px 6px; }
+            .cloud-storage .storage-info { flex-direction: column; gap: 8px; align-items: stretch; }
+            .cloud-storage .upload-btn-cloud { justify-content: center; }
+            .tools-container .tool-item { min-width: 50px; padding: 10px 4px; }
+            .tools-container .tool-item i { font-size: 18px; }
+            .terminal-box { padding: 8px; }
+            .terminal-box .terminal-output { font-size: 10px; }
         }
         @media (min-width: 768px) {
-            body {
-                background: #1a2533;
-                padding: 40px;
-            }
-            body.dark-mode {
-                background: #0f172a;
-            }
-            .card {
-                max-width: 500px;
-                padding: 32px 28px 32px;
-                border-radius: 32px;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            }
-            .profile {
-                padding: 20px;
-                border-radius: 24px;
-            }
-            .avatar {
-                width: 64px;
-                height: 64px;
-                font-size: 24px;
-                border-radius: 32px;
-            }
-            .profile-info h2 {
-                font-size: 20px;
-            }
-            .tabs {
-                padding: 6px;
-                border-radius: 50px;
-                gap: 4px;
-            }
-            .tab-btn {
-                padding: 12px 0;
-                font-size: 14px;
-                border-radius: 50px;
-            }
-            .tab-btn i {
-                font-size: 14px;
-                margin-right: 6px;
-            }
-            .stats {
-                padding: 16px 14px;
-                border-radius: 28px;
-            }
-            .stat-item .angka {
-                font-size: 20px;
-            }
-            .info-box {
-                padding: 16px 20px;
-                border-radius: 24px;
-            }
-            .info-box .value {
-                font-size: 15px;
-            }
-            .maps-container iframe {
-                height: 250px;
-            }
-            .quote-box {
-                padding: 16px 20px;
-                font-size: 15px;
-            }
-            .search-engine {
-                padding: 16px 20px;
-            }
-            .search-engine .search-row input {
-                padding: 12px 16px;
-                font-size: 14px;
-            }
-            .search-engine .search-row select {
-                padding: 12px 14px;
-                font-size: 13px;
-            }
-            .search-engine .search-row button {
-                padding: 12px 20px;
-            }
-            .place-suggestions button {
-                padding: 6px 14px;
-                font-size: 12px;
-            }
-            .mode-toggle {
-                padding: 4px 8px;
-            }
-            .mode-toggle .mode-switch {
-                width: 36px;
-                height: 20px;
-            }
-            .mode-toggle .mode-switch .mode-dot {
-                width: 16px;
-                height: 16px;
-                top: 2px;
-                left: 2px;
-            }
-            .mode-toggle.admin .mode-switch .mode-dot {
-                left: 18px;
-            }
-            .badge-admin, .badge-user {
-                font-size: 10px;
-                padding: 3px 12px;
-            }
-            #topBtn {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
-                bottom: 100px;
-                right: 30px;
-            }
-            .profile-location {
-                font-size: 12px;
-            }
-            .cloud-storage .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-            }
-            .cloud-storage .gallery-item img {
-                height: 120px;
-            }
-            .tools-modal .modal-content {
-                max-width: 450px;
-            }
+            body { background: #1a2533; padding: 40px; }
+            body.dark-mode { background: #0f172a; }
+            .card { max-width: 500px; padding: 32px 28px 32px; border-radius: 32px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); }
+            .profile { padding: 20px; border-radius: 24px; }
+            .avatar { width: 64px; height: 64px; font-size: 24px; border-radius: 32px; }
+            .profile-info h2 { font-size: 20px; }
+            .tabs { padding: 6px; border-radius: 50px; gap: 4px; }
+            .tab-btn { padding: 12px 0; font-size: 14px; border-radius: 50px; }
+            .tab-btn i { font-size: 14px; margin-right: 6px; }
+            .stats { padding: 16px 14px; border-radius: 28px; }
+            .stat-item .angka { font-size: 20px; }
+            .info-box { padding: 16px 20px; border-radius: 24px; }
+            .info-box .value { font-size: 15px; }
+            .maps-container iframe { height: 250px; }
+            .quote-box { padding: 16px 20px; font-size: 15px; }
+            .search-engine { padding: 16px 20px; }
+            .search-engine .search-row input { padding: 12px 16px; font-size: 14px; }
+            .search-engine .search-row select { padding: 12px 14px; font-size: 13px; }
+            .search-engine .search-row button { padding: 12px 20px; }
+            .place-suggestions button { padding: 6px 14px; font-size: 12px; }
+            .mode-toggle { padding: 4px 8px; }
+            .mode-toggle .mode-switch { width: 36px; height: 20px; }
+            .mode-toggle .mode-switch .mode-dot { width: 16px; height: 16px; top: 2px; left: 2px; }
+            .mode-toggle.admin .mode-switch .mode-dot { left: 18px; }
+            .badge-admin, .badge-user { font-size: 10px; padding: 3px 12px; }
+            #topBtn { width: 50px; height: 50px; font-size: 20px; bottom: 100px; right: 30px; }
+            .profile-location { font-size: 12px; }
+            .cloud-storage .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .cloud-storage .gallery-item img { height: 120px; }
+            .tools-modal .modal-content { max-width: 450px; }
         }
         @media (min-width: 1024px) {
-            .card {
-                max-width: 560px;
-                padding: 36px 32px 36px;
-            }
-            .tab-btn {
-                padding: 14px 0;
-                font-size: 15px;
-            }
+            .card { max-width: 560px; padding: 36px 32px 36px; }
+            .tab-btn { padding: 14px 0; font-size: 15px; }
         }
-        .admin-mode .bg-options {
-            display: flex !important;
-        }
-        .admin-mode .avatar-actions {
-            display: flex !important;
-        }
-        .admin-mode .badge-admin {
-            display: inline-block !important;
-        }
-        .admin-mode .badge-user {
-            display: none !important;
-        }
-        .admin-mode .edit-btn {
-            display: inline-block !important;
-        }
-        .admin-mode .lock-icon {
-            display: none !important;
-        }
-        .admin-mode .editable-text {
-            display: block !important;
-        }
-        .admin-mode .cloud-storage .upload-btn-cloud {
-            display: flex !important;
-        }
-        .admin-mode .upload-video-btn {
-            display: flex !important;
-        }
+        .admin-mode .bg-options { display: flex !important; }
+        .admin-mode .avatar-actions { display: flex !important; }
+        .admin-mode .badge-admin { display: inline-block !important; }
+        .admin-mode .badge-user { display: none !important; }
+        .admin-mode .edit-btn { display: inline-block !important; }
+        .admin-mode .lock-icon { display: none !important; }
+        .admin-mode .editable-text { display: block !important; }
+        .admin-mode .cloud-storage .upload-btn-cloud { display: flex !important; }
+        .admin-mode .upload-video-btn { display: flex !important; }
     </style>
 </head>
 <body>
@@ -1823,58 +1705,107 @@
                     <div class="value" id="dailyQuote" style="font-style:italic;">“Hari ini adalah kesempatan baru untuk menjadi lebih baik.”</div>
                 </div>
 
-                <!-- 💻 TECH STACK -->
+                <!-- 💻 TECH STACK + TERMINAL -->
                 <div class="info-box" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
-                    <div class="label">💻 TECH STACK</div>
+                    <div class="label">💻 TECH STACK <span style="font-size:9px;color:#6f889e;font-weight:400;"><i class="fas fa-terminal"></i> Klik kanan/tahan = terminal</span></div>
                     <div class="value" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px;">
+                        
+                        <!-- HTML -->
                         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" 
                            style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
                                   text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
                                   transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
                            onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#e44d26'; this.style.borderColor='#e44d26'; this.style.boxShadow='0 4px 12px rgba(228,77,38,0.4)';"
-                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';"
+                           oncontextmenu="event.preventDefault(); showTerminal('HTML', 'https://developer.mozilla.org/en-US/docs/Web/HTML');"
+                           ontouchstart="this._timer=setTimeout(()=>{ showTerminal('HTML', 'https://developer.mozilla.org/en-US/docs/Web/HTML'); }, 800);"
+                           ontouchend="clearTimeout(this._timer);">
                             <i class="fab fa-html5" style="font-size: 14px;"></i> HTML
                         </a>
+
+                        <!-- CSS -->
                         <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" 
                            style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
                                   text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
                                   transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
                            onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#264de4'; this.style.borderColor='#264de4'; this.style.boxShadow='0 4px 12px rgba(38,77,228,0.4)';"
-                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';"
+                           oncontextmenu="event.preventDefault(); showTerminal('CSS', 'https://developer.mozilla.org/en-US/docs/Web/CSS');"
+                           ontouchstart="this._timer=setTimeout(()=>{ showTerminal('CSS', 'https://developer.mozilla.org/en-US/docs/Web/CSS'); }, 800);"
+                           ontouchend="clearTimeout(this._timer);">
                             <i class="fab fa-css3-alt" style="font-size: 14px;"></i> CSS
                         </a>
+
+                        <!-- JavaScript -->
                         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" 
                            style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
                                   text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
                                   transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
                            onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#f7df1e'; this.style.color='#1e2b3c'; this.style.borderColor='#f7df1e'; this.style.boxShadow='0 4px 12px rgba(247,223,30,0.4)';"
-                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.color='white'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.color='white'; this.style.borderColor='transparent'; this.style.boxShadow='none';"
+                           oncontextmenu="event.preventDefault(); showTerminal('JavaScript', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript');"
+                           ontouchstart="this._timer=setTimeout(()=>{ showTerminal('JavaScript', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'); }, 800);"
+                           ontouchend="clearTimeout(this._timer);">
                             <i class="fab fa-js" style="font-size: 14px;"></i> JavaScript
                         </a>
+
+                        <!-- Python -->
                         <a href="https://www.python.org/" target="_blank" 
                            style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
                                   text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
                                   transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
                            onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#3776ab'; this.style.borderColor='#3776ab'; this.style.boxShadow='0 4px 12px rgba(55,118,171,0.4)';"
-                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';"
+                           oncontextmenu="event.preventDefault(); showTerminal('Python', 'https://www.python.org/');"
+                           ontouchstart="this._timer=setTimeout(()=>{ showTerminal('Python', 'https://www.python.org/'); }, 800);"
+                           ontouchend="clearTimeout(this._timer);">
                             <i class="fab fa-python" style="font-size: 14px;"></i> Python
                         </a>
+
+                        <!-- Git -->
                         <a href="https://git-scm.com/" target="_blank" 
                            style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
                                   text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
                                   transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
                            onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#f05032'; this.style.borderColor='#f05032'; this.style.boxShadow='0 4px 12px rgba(240,80,50,0.4)';"
-                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.borderColor='transparent'; this.style.boxShadow='none';"
+                           oncontextmenu="event.preventDefault(); showTerminal('Git', 'https://git-scm.com/');"
+                           ontouchstart="this._timer=setTimeout(()=>{ showTerminal('Git', 'https://git-scm.com/'); }, 800);"
+                           ontouchend="clearTimeout(this._timer);">
                             <i class="fab fa-git-alt" style="font-size: 14px;"></i> Git
                         </a>
+
+                        <!-- GitHub -->
                         <a href="https://github.com/alfatt28" target="_blank" 
                            style="background: #1e2b3c; color: white; padding: 6px 16px; border-radius: 20px; 
                                   text-decoration: none; display: inline-flex; align-items: center; gap: 6px; 
                                   transition: all 0.3s ease; font-weight: 500; border: 2px solid transparent;"
                            onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.background='#ffffff'; this.style.color='#1e2b3c'; this.style.borderColor='#ffffff'; this.style.boxShadow='0 4px 12px rgba(255,255,255,0.4)';"
-                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.color='white'; this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                           onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.background='#1e2b3c'; this.style.color='white'; this.style.borderColor='transparent'; this.style.boxShadow='none';"
+                           oncontextmenu="event.preventDefault(); showTerminal('GitHub', 'https://github.com/alfatt28');"
+                           ontouchstart="this._timer=setTimeout(()=>{ showTerminal('GitHub', 'https://github.com/alfatt28'); }, 800);"
+                           ontouchend="clearTimeout(this._timer);">
                             <i class="fab fa-github" style="font-size: 14px;"></i> GitHub
                         </a>
+
+                    </div>
+                    
+                    <!-- Terminal Output -->
+                    <div id="terminalOutput" class="terminal-box" style="display:none;">
+                        <div class="terminal-header">
+                            <span class="prompt">$</span>
+                            <span class="command" id="terminalCommand">--version</span>
+                            <span class="status">✅</span>
+                        </div>
+                        <div class="terminal-output" id="terminalResult">
+                            <span class="dim">📟 Klik kanan/tahan salah satu tech untuk info terminal</span>
+                        </div>
+                    </div>
+
+                    <!-- Info Cara Pakai -->
+                    <div style="font-size: 10px; color: #6f889e; margin-top: 8px; text-align: center; border-top: 1px dashed #dce3ed; padding-top: 8px;">
+                        <i class="fas fa-mouse-pointer"></i> Klik = buka dokumentasi · 
+                        <i class="fas fa-hand-pointer"></i> Klik kanan/tahan = terminal info
                     </div>
                 </div>
 
@@ -2059,6 +1990,9 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
+        // ============================================================
+        // ADMIN / USER MODE
+        // ============================================================
         var isAdmin = false;
         var ADMIN_PASSWORD = '31Mei2019';
 
@@ -2128,6 +2062,9 @@
             if (videoBtn) videoBtn.style.display = 'flex';
         }
 
+        // ============================================================
+        // LOADING SCREEN
+        // ============================================================
         window.addEventListener("load", function() {
             setTimeout(function() {
                 var loader = document.getElementById("loader");
@@ -2146,6 +2083,9 @@
             });
         });
 
+        // ============================================================
+        // JAM DIGITAL
+        // ============================================================
         setInterval(function() {
             var clock = document.getElementById("clock");
             if (clock) {
@@ -2153,6 +2093,9 @@
             }
         }, 1000);
 
+        // ============================================================
+        // TAB NAVIGASI
+        // ============================================================
         (function() {
             var tabButtons = document.querySelectorAll('.tab-btn');
             var pages = {
@@ -2205,6 +2148,9 @@
             }
         })();
 
+        // ============================================================
+        // DARK MODE
+        // ============================================================
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             var icon = document.getElementById('themeIcon');
@@ -2222,6 +2168,9 @@
             document.getElementById('themeIcon').className = 'fas fa-sun';
         }
 
+        // ============================================================
+        // VISITOR COUNTER
+        // ============================================================
         (function() {
             var visitors = parseInt(localStorage.visitors || 0);
             visitors++;
@@ -2232,13 +2181,14 @@
             }
         })();
 
+        // ============================================================
+        // STREAK
+        // ============================================================
         (function() {
             var today = new Date().toDateString();
             var lastVisit = localStorage.getItem('lastVisit');
             var streak = parseInt(localStorage.getItem('streak') || 0);
-            if (lastVisit === today) {
-                // Sudah visit hari ini
-            } else {
+            if (lastVisit === today) {} else {
                 var yesterday = new Date();
                 yesterday.setDate(yesterday.getDate() - 1);
                 if (lastVisit === yesterday.toDateString()) {
@@ -2255,6 +2205,9 @@
             }
         })();
 
+        // ============================================================
+        // DAILY QUOTE
+        // ============================================================
         (function() {
             var dailyQuotes = [
                 "Hari ini adalah kesempatan baru untuk menjadi lebih baik.",
@@ -2275,10 +2228,16 @@
             }
         })();
 
+        // ============================================================
+        // SCROLL TOP
+        // ============================================================
         function scrollTopPage() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // ============================================================
+        // BACKGROUND PROFILE
+        // ============================================================
         (function() {
             var profile = document.getElementById('profileContainer');
             var bgButtons = document.querySelectorAll('#bgOptions button');
@@ -2304,6 +2263,9 @@
             });
         })();
 
+        // ============================================================
+        // AVATAR
+        // ============================================================
         (function() {
             var avatar = document.getElementById('avatar');
             var avatarPlaceholder = document.getElementById('avatarPlaceholder');
@@ -2352,6 +2314,9 @@
             });
         })();
 
+        // ============================================================
+        // QUOTE ROTATOR (Jelajah)
+        // ============================================================
         (function() {
             var quotes = [
                 "Jangan pernah berhenti belajar, karena hidup ini adalah proses belajar yang tak pernah usai.",
@@ -2392,6 +2357,39 @@
             showQuote(0);
         })();
 
+        // ============================================================
+        // TERMINAL - FITUR UTAMA TECH STACK
+        // ============================================================
+        function showTerminal(name, url) {
+            var output = document.getElementById('terminalOutput');
+            var command = document.getElementById('terminalCommand');
+            var result = document.getElementById('terminalResult');
+            
+            if (!output) return;
+            
+            // Tampilkan terminal
+            output.style.display = 'block';
+            
+            var data = {
+                'HTML': { cmd: 'html --version', output: 'HTML5 (Living Standard) 2024\n📄 Dokumentasi lengkap di MDN Web Docs' },
+                'CSS': { cmd: 'css --version', output: 'CSS3 (Level 4) 2024\n🎨 Dokumentasi lengkap di MDN Web Docs' },
+                'JavaScript': { cmd: 'js --version', output: 'JavaScript ES2024 (ECMAScript 2024)\n⚡ Dokumentasi lengkap di MDN Web Docs' },
+                'Python': { cmd: 'python --version', output: 'Python 3.12.4\n🐍 Dokumentasi lengkap di python.org' },
+                'Git': { cmd: 'git --version', output: 'git version 2.45.0\n🔀 Dokumentasi lengkap di git-scm.com' },
+                'GitHub': { cmd: 'gh --version', output: 'GitHub CLI 2.50.0\n🐙 Profil: github.com/alfatt28' }
+            };
+            
+            var info = data[name] || { cmd: 'unknown', output: 'Tech tidak dikenal' };
+            
+            command.textContent = info.cmd;
+            result.innerHTML = info.output.replace(/\n/g, '<br>') + 
+                              '<br><span class="dim">🔗 ' + url + '</span>' +
+                              '<br><span class="dim">📱 Klik kiri/tap untuk buka dokumentasi</span>';
+        }
+
+        // ============================================================
+        // MAPS
+        // ============================================================
         function searchPlace() {
             var place = document.getElementById('placeSearch');
             var mapsFrame = document.getElementById('mapsFrame');
@@ -2421,6 +2419,9 @@
             });
         }
 
+        // ============================================================
+        // SEARCH ENGINE
+        // ============================================================
         (function() {
             var searchInput = document.getElementById('searchInput');
             var searchBtn = document.getElementById('searchBtn');
@@ -2467,6 +2468,9 @@
             });
         })();
 
+        // ============================================================
+        // EDITABLE TEXT (TENTANG)
+        // ============================================================
         (function() {
             var savedTentang = localStorage.getItem('tentang');
             var savedTentangTime = localStorage.getItem('tentangTime');
@@ -2572,6 +2576,9 @@
             });
         })();
 
+        // ============================================================
+        // GALERI CLOUD
+        // ============================================================
         (function() {
             function formatSize(bytes) {
                 if (bytes === 0) return '0 KB';
@@ -2769,6 +2776,9 @@
             setTimeout(window.renderCloudGallery, 100);
         })();
 
+        // ============================================================
+        // VIDEO UPLOAD
+        // ============================================================
         (function() {
             var videoData = JSON.parse(localStorage.videos || '[]');
 
@@ -2846,6 +2856,9 @@
             setTimeout(window.renderVideos, 200);
         })();
 
+        // ============================================================
+        // TIMELINE
+        // ============================================================
         (function() {
             var timeline = document.getElementById('timeline');
             var statusInput = document.getElementById('status');
@@ -2911,6 +2924,9 @@
             renderPosts();
         })();
 
+        // ============================================================
+        // UPDATE STATS
+        // ============================================================
         function updateStats() {
             var galleryData = JSON.parse(localStorage.gallery || "[]");
             var posts = JSON.parse(localStorage.posts || "[]");
@@ -2924,6 +2940,9 @@
             if (catatanCount) catatanCount.textContent = '0';
         }
 
+        // ============================================================
+        // TOOLS
+        // ============================================================
         function openTool(tool) {
             var modal = document.getElementById('toolsModal');
             var title = document.getElementById('modalTitle');
@@ -3115,6 +3134,9 @@
             widget.innerHTML = html;
         }
 
+        // ============================================================
+        // NOTIFIKASI
+        // ============================================================
         setTimeout(function() {
             alert("Selamat datang di ALFATT28 Premium Space 🚀");
         }, 2500);
